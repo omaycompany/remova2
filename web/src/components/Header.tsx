@@ -5,10 +5,11 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  
   // Hide global site header on members dashboard routes to avoid double headers/gap
   if (pathname && pathname.startsWith('/members')) return null;
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
     { href: '/membership', label: 'Membership' },
