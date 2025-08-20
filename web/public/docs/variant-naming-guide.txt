@@ -1,0 +1,65 @@
+Variant Naming Guide for Manifest Privacy Filings
+==================================================
+
+Overview
+--------
+When filing for manifest confidentiality under 19 CFR 103.31, it's crucial to include all relevant name variants to ensure comprehensive coverage. This guide helps identify and organize entity name variations for your privacy filing.
+
+What Are Name Variants?
+-----------------------
+Name variants are different ways your organization might appear in trade documentation:
+- Legal entity name (as registered)
+- Doing Business As (DBA) names
+- Trade names
+- Abbreviations and acronyms
+- Common misspellings
+- Subsidiary names
+- Division names
+
+Why Variants Matter
+-------------------
+Trade data platforms may have records under different name variations. Missing a variant in your confidentiality filing could leave some data exposed.
+
+Identifying Variants
+--------------------
+1. Check incorporation documents
+2. Review business licenses
+3. Examine past shipping documentation
+4. Look at customs forms and declarations
+5. Check website and marketing materials
+6. Review contracts with suppliers/customers
+
+Common Variant Patterns
+-----------------------
+- Full Legal Name: "ABC Manufacturing Corporation"
+- Abbreviated: "ABC Mfg Corp", "ABC Manufacturing", "ABC Corp"
+- DBA: "ABC Solutions" (if doing business as)
+- With/without designators: "Inc", "LLC", "Corp", "Ltd"
+- Punctuation variations: "A.B.C. Manufacturing", "A B C Manufacturing"
+
+Best Practices
+--------------
+1. Be comprehensive but not excessive
+2. Include only names you actually use in trade
+3. Document the source of each variant
+4. Update variants when business changes occur
+5. Keep a master list for renewal filings
+
+Filing Considerations
+---------------------
+- Include variants in your initial filing
+- Update CBP when new variants are adopted
+- Consider variants when tracking coverage
+- Monitor for new variants in platform data
+
+Example Format
+--------------
+Primary Entity: [Legal Name]
+DBA Names: [List all DBA registrations]
+Trade Names: [Names used in commerce]
+Abbreviations: [Common short forms]
+Divisions: [Operating divisions, if applicable]
+
+Remember: This is guidance only. Consult with customs brokers or legal counsel for specific filing requirements.
+
+For more information on manifest privacy filings, see our primer document or contact hello@remova.org.

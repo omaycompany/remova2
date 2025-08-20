@@ -1,0 +1,185 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Resources <<
+/Font <<
+/F1 4 0 R
+/F2 5 0 R
+>>
+>>
+/Contents 6 0 R
+>>
+endobj
+
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Times-Bold
+>>
+endobj
+
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Times-Roman
+>>
+endobj
+
+6 0 obj
+<<
+/Length 2700
+>>
+stream
+BT
+/F1 16 Tf
+50 750 Td
+(Evidence Capture Checklist) Tj
+0 -30 Td
+/F2 10 Tf
+(Documentation Standards for Privacy Violations and Takedown Requests) Tj
+
+0 -40 Td
+/F1 12 Tf
+(Essential Evidence Elements:) Tj
+
+0 -25 Td
+/F1 10 Tf
+(1. Screenshot Documentation) Tj
+0 -15 Td
+/F2 10 Tf
+(□ Full page screenshot showing URL in address bar) Tj
+0 -12 Td
+(□ Timestamp visible \(use system clock or browser timestamp\)) Tj
+0 -12 Td
+(□ High resolution \(minimum 1920x1080\)) Tj
+0 -12 Td
+(□ No cropping or editing of evidence) Tj
+
+0 -20 Td
+/F1 10 Tf
+(2. URL Documentation) Tj
+0 -15 Td
+/F2 10 Tf
+(□ Direct link to specific page showing violation) Tj
+0 -12 Td
+(□ Archive.org or archive.today backup link) Tj
+0 -12 Td
+(□ URL parameters and queries preserved) Tj
+
+0 -20 Td
+/F1 10 Tf
+(3. Data Element Identification) Tj
+0 -15 Td
+/F2 10 Tf
+(□ Specific protected data fields highlighted) Tj
+0 -12 Td
+(□ Entity name variants documented) Tj
+0 -12 Td
+(□ Trade details \(dates, quantities, descriptions\)) Tj
+0 -12 Td
+(□ Supplier or consignee information) Tj
+
+0 -20 Td
+/F1 10 Tf
+(4. Filing Reference Information) Tj
+0 -15 Td
+/F2 10 Tf
+(□ CBP filing number and effective date) Tj
+0 -12 Td
+(□ Protected entity names covered by filing) Tj
+0 -12 Td
+(□ Scope of protection \(specific data elements\)) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Quality Standards:) Tj
+0 -20 Td
+/F2 10 Tf
+(• Evidence must be clear and unambiguous) Tj
+0 -15 Td
+(• Multiple screenshots from different angles/views) Tj
+0 -15 Td
+(• Document both desktop and mobile views if applicable) Tj
+0 -15 Td
+(• Include platform navigation path to reach the data) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Common Mistakes to Avoid:) Tj
+0 -20 Td
+/F2 10 Tf
+(• Partial screenshots missing context) Tj
+0 -15 Td
+(• Screenshots without visible URLs) Tj
+0 -15 Td
+(• Low resolution or blurry images) Tj
+0 -15 Td
+(• Missing timestamp documentation) Tj
+0 -15 Td
+(• Edited or annotated evidence) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Storage and Organization:) Tj
+0 -20 Td
+/F2 10 Tf
+(• Use consistent file naming: YYYY-MM-DD_Platform_Entity) Tj
+0 -15 Td
+(• Create separate folders for each violation incident) Tj
+0 -15 Td
+(• Maintain original file formats and metadata) Tj
+0 -15 Td
+(• Keep evidence secure and access-controlled) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Professional Documentation:) Tj
+0 -20 Td
+/F2 10 Tf
+(Remova.org maintains evidence capture standards and provides) Tj
+0 -15 Td
+(professional documentation for all takedown requests and) Tj
+0 -15 Td
+(privacy monitoring activities.) Tj
+
+ET
+endstream
+endobj
+
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000274 00000 n 
+0000000347 00000 n 
+0000000421 00000 n 
+trailer
+<<
+/Size 7
+/Root 1 0 R
+>>
+startxref
+3173
+%%EOF

@@ -1,0 +1,32 @@
+Panjiva Opt-Out Guide - Remova.org
+
+Quick Reference for Panjiva Data Removal
+
+Panjiva Contact:
+- Website: panjiva.com/contact
+- Email: privacy@panjiva.com
+- Subject: "Data Removal Request - [Company Name]"
+
+Required Information:
+- Full legal entity name
+- All known variants/DBAs
+- EIN/DUNS (if available)
+- Specific data to be removed
+- Authorized contact information
+
+Process:
+1. Submit removal request via contact form
+2. Include business justification
+3. Follow up within 5-7 business days
+4. Monitor for compliance
+
+Expected Timeline: 2-4 weeks
+
+Notes:
+- Panjiva may require additional verification
+- Some data may persist in cached results
+- Consider ongoing monitoring
+
+For professional assistance, contact Remova.org Opt-Out Desk service.
+
+Part of Remova.org nonprofit initiative - remova.org/nonprofit

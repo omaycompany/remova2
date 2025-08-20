@@ -1,0 +1,220 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Resources <<
+/Font <<
+/F1 4 0 R
+/F2 5 0 R
+>>
+>>
+/Contents 6 0 R
+>>
+endobj
+
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Times-Bold
+>>
+endobj
+
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Times-Roman
+>>
+endobj
+
+6 0 obj
+<<
+/Length 3100
+>>
+stream
+BT
+/F1 16 Tf
+50 750 Td
+(Datamyne/PIERS/JOC Removal Guide) Tj
+0 -30 Td
+/F2 10 Tf
+(Step-by-step process for trade data removal from IHS Markit platforms) Tj
+
+0 -40 Td
+/F1 12 Tf
+(Platform Overview:) Tj
+0 -20 Td
+/F2 10 Tf
+(Datamyne \(formerly PIERS\) and Journal of Commerce \(JOC\) are trade) Tj
+0 -15 Td
+(intelligence platforms owned by IHS Markit. They aggregate US import/) Tj
+0 -15 Td
+(export manifest data and provide business intelligence services.) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Contact Information:) Tj
+0 -20 Td
+/F2 10 Tf
+(• Privacy Team: privacy@ihsmarkit.com) Tj
+0 -15 Td
+(• Phone: \(800\) 447-2273) Tj
+0 -15 Td
+(• Address: IHS Markit, 15 Inverness Way E, Englewood, CO 80112) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Required Documentation:) Tj
+0 -20 Td
+/F2 10 Tf
+(• Copy of CBP manifest confidentiality filing) Tj
+0 -15 Td
+(• Proof of filing approval and effective date) Tj
+0 -15 Td
+(• List of all protected entity names and variants) Tj
+0 -15 Td
+(• Screenshots of data appearing on platform) Tj
+0 -15 Td
+(• Authorized representative contact information) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Step-by-Step Process:) Tj
+
+0 -20 Td
+/F1 10 Tf
+(Step 1: Document Violations) Tj
+0 -15 Td
+/F2 10 Tf
+(• Search for your entity across all IHS Markit trade platforms) Tj
+0 -12 Td
+(• Capture screenshots with full URLs visible) Tj
+0 -12 Td
+(• Note specific data elements that should be protected) Tj
+
+0 -18 Td
+/F1 10 Tf
+(Step 2: Submit Initial Request) Tj
+0 -15 Td
+/F2 10 Tf
+(• Email privacy@ihsmarkit.com with subject "Privacy Violation - CBP") Tj
+0 -12 Td
+(• Include all required documentation listed above) Tj
+0 -12 Td
+(• Request removal within 5 business days) Tj
+
+0 -18 Td
+/F1 10 Tf
+(Step 3: Follow Up) Tj
+0 -15 Td
+/F2 10 Tf
+(• IHS Markit typically responds within 3-5 business days) Tj
+0 -12 Td
+(• If no response, escalate to compliance team) Tj
+0 -12 Td
+(• Document all correspondence for records) Tj
+
+0 -18 Td
+/F1 10 Tf
+(Step 4: Verify Removal) Tj
+0 -15 Td
+/F2 10 Tf
+(• Check all IHS Markit platforms after removal confirmation) Tj
+0 -12 Td
+(• Verify data is removed from search results) Tj
+0 -12 Td
+(• Monitor for re-indexing \(common issue\)) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Email Template:) Tj
+0 -20 Td
+/F2 10 Tf
+(Subject: Privacy Violation - CBP Manifest Confidentiality) Tj
+
+0 -15 Td
+(Dear IHS Markit Privacy Team,) Tj
+
+0 -15 Td
+(We are requesting immediate removal of protected trade data from) Tj
+0 -12 Td
+(your platforms under CBP filing [FILING_NUMBER].) Tj
+
+0 -15 Td
+(Protected Entity: [ENTITY_NAME]) Tj
+0 -12 Td
+(Effective Date: [DATE]) Tj
+0 -12 Td
+(Platforms: Datamyne, PIERS, JOC) Tj
+
+0 -15 Td
+(Documentation attached. Please confirm removal timeline.) Tj
+
+0 -15 Td
+(Best regards,) Tj
+0 -12 Td
+([YOUR_NAME]) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Common Issues:) Tj
+0 -20 Td
+/F2 10 Tf
+(• Data may remain cached in search results after removal) Tj
+0 -15 Td
+(• Historical reports may still contain protected information) Tj
+0 -15 Td
+(• Cross-platform synchronization delays) Tj
+0 -15 Td
+(• Re-indexing from government data sources) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Professional Services:) Tj
+0 -20 Td
+/F2 10 Tf
+(Remova.org provides comprehensive takedown services for all) Tj
+0 -15 Td
+(major trade intelligence platforms. Contact hello@remova.org) Tj
+0 -15 Td
+(for professional assistance with complex removal cases.) Tj
+
+ET
+endstream
+endobj
+
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000274 00000 n 
+0000000347 00000 n 
+0000000421 00000 n 
+trailer
+<<
+/Size 7
+/Root 1 0 R
+>>
+startxref
+3573
+%%EOF

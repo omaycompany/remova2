@@ -1,0 +1,19 @@
+Manifest privacy primer (19 CFR 103.31)
+
+What this covers
+- What vessel manifest data is and why it appears on commercial platforms
+- Eligibility and scope of privacy requests (importers, exporters, consignees)
+- Filing basics: who files, where to file, what to include, and common name variants
+- Timelines: effective dates, coverage windows, renewals every two years
+- Maintaining privacy: handling name changes, DBAs, subsidiaries
+- Known platform behaviors and expected lag
+
+Checklist
+- Primary entity name and all known variants (DBA, legal, abbreviations)
+- EIN/DUNS (if applicable)
+- Contact for notices
+- Tracking/renewal calendar (60/30/7 reminders)
+
+Notes
+- Privacy is not retroactive. Expect a short lag before platforms stop showing new data.
+- Preserve business utility by keeping safe summaries (lanes/ports/HS) where needed.

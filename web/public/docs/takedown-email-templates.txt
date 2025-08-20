@@ -1,0 +1,167 @@
+Trade Data Takedown Email Templates
+===================================
+
+Template 1: Initial Removal Request
+------------------------------------
+Subject: Data Removal Request - [Company Name]
+
+Dear [Platform] Team,
+
+I am writing to request the removal of [Company Name] data from your platform. We have identified several records that contain sensitive business information that we need to have removed for competitive and privacy reasons.
+
+Specific records for removal:
+- [List specific URLs or record identifiers]
+- [Company profile pages]
+- [Trade relationship data]
+- [Any other specific data points]
+
+Business justification:
+Our supplier relationships and trade patterns constitute confidential business information. Public availability of this data creates competitive disadvantages and compromises our business strategy.
+
+We are prepared to provide verification of our authority to make this request and any additional documentation you may require.
+
+Please confirm receipt of this request and provide an expected timeline for removal.
+
+Thank you for your prompt attention to this matter.
+
+Best regards,
+[Name]
+[Title]
+[Company]
+[Contact Information]
+
+Template 2: Follow-Up Request
+------------------------------
+Subject: Follow-Up: Data Removal Request - [Company Name] - [Reference Number]
+
+Dear [Platform] Team,
+
+I am following up on our data removal request submitted on [Date] regarding [Company Name] data.
+
+We have not yet received confirmation of receipt or timeline for this request. Given the sensitive nature of the exposed data, we would appreciate an update on the status of our removal request.
+
+If additional documentation or verification is needed, please let us know and we will provide it promptly.
+
+Reference details:
+- Original request date: [Date]
+- Company: [Company Name]
+- Contact: [Your contact info]
+
+We look forward to your response.
+
+Best regards,
+[Name]
+[Title]
+[Company]
+
+Template 3: Escalation Request
+-------------------------------
+Subject: URGENT: Data Removal Request Escalation - [Company Name]
+
+Dear [Platform] Management,
+
+This is an escalation of our unresolved data removal request for [Company Name], originally submitted on [Date].
+
+Despite [Number] follow-up attempts, we have not received adequate response or action on our request to remove sensitive business data from your platform.
+
+The continued exposure of our trade data is causing:
+- Competitive harm to our business
+- Compromise of confidential supplier relationships
+- Potential violations of our contractual obligations
+
+We respectfully request immediate escalation to management and prompt resolution of this matter. We are prepared to provide any additional documentation required and would appreciate a direct contact for expedited handling.
+
+Time-sensitive nature: This matter requires urgent attention due to ongoing business impact.
+
+Please confirm receipt and provide immediate next steps.
+
+Best regards,
+[Name]
+[Title]
+[Company]
+[Phone]
+[Email]
+
+Template 4: Legal Notice Template
+----------------------------------
+Subject: Legal Notice - Data Removal Demand - [Company Name]
+
+Dear [Platform] Legal Department,
+
+This serves as formal legal notice demanding immediate removal of [Company Name] data from your platform.
+
+DEMAND FOR REMOVAL:
+We demand the immediate removal of all data, records, profiles, and information related to [Company Name] and its business activities from your platform.
+
+LEGAL BASIS:
+- Proprietary business information
+- Confidential trade relationships
+- [Other applicable legal grounds]
+
+HARM CAUSED:
+The unauthorized publication of our business data has caused and continues to cause:
+- Irreparable business harm
+- Competitive disadvantage
+- Breach of confidential business relationships
+
+TIMELINE:
+We demand removal within [Number] business days of receipt of this notice. Failure to comply will result in further legal action to protect our rights and interests.
+
+CONTACT:
+Please direct all correspondence regarding this matter to:
+[Legal contact information]
+
+This notice is sent without prejudice to our rights and remedies.
+
+[Legal signature block]
+
+Template 5: Verification Response
+----------------------------------
+Subject: Re: Verification Required for Data Removal - [Company Name]
+
+Dear [Platform] Team,
+
+Thank you for your response regarding verification requirements for our data removal request.
+
+Attached please find the requested verification documents:
+- [List of attached documents]
+- Business registration/incorporation documents
+- Letter of authorization
+- [Other requested materials]
+
+Contact verification:
+- Name: [Authorized representative]
+- Title: [Title/Authority]
+- Company: [Legal entity name]
+- Phone: [Direct contact]
+- Email: [Business email]
+
+Please confirm receipt of these documents and advise on next steps and expected timeline for removal completion.
+
+We appreciate your cooperation in this matter.
+
+Best regards,
+[Name]
+[Title]
+[Company]
+
+General Tips for Takedown Requests
+-----------------------------------
+1. Be specific about what data you want removed
+2. Provide clear business justification
+3. Include direct contact information
+4. Keep detailed records of all communications
+5. Follow up promptly but professionally
+6. Escalate when appropriate but maintain professional tone
+7. Be prepared to provide verification documents
+8. Consider legal counsel for complex situations
+
+Platform-Specific Considerations
+---------------------------------
+- Different platforms have different removal policies
+- Some distinguish between public record data and analysis
+- Verification requirements vary by platform
+- Response times range from days to weeks
+- Some platforms may require legal basis for removal
+
+For professional assistance with takedown campaigns, contact Remova.org at hello@remova.org.

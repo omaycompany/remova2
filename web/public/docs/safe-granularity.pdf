@@ -1,0 +1,56 @@
+Safe Granularity in Trade Data Protection
+==========================================
+
+Introduction
+------------
+This guide explains how to balance data privacy with business utility when implementing trade data protection measures.
+
+Key Principles
+--------------
+1. Suppress identifiers while preserving aggregate insights
+2. Maintain lane-level visibility without exposing specific relationships
+3. Protect pricing strategies while allowing market analysis
+4. Enable compliance monitoring without revealing competitive information
+
+Safe Granularity Levels
+------------------------
+
+SAFE TO PUBLISH:
+- Port-to-port traffic volumes (aggregated)
+- HS code summaries by region
+- Seasonal shipping patterns (anonymized)
+- General market trends and analysis
+
+PROCEED WITH CAUTION:
+- Specific shipping lanes with volumes
+- Product categories with frequency data
+- Regional supplier distributions
+- Time-series data with identifiers removed
+
+PROTECT/SUPPRESS:
+- Company names and identifiers
+- Specific supplier relationships
+- Exact shipping dates and quantities
+- Pricing and financial information
+- Detailed product specifications
+- Contact information and addresses
+
+Implementation Strategy
+-----------------------
+1. Assess current data exposure across platforms
+2. Classify information by sensitivity level
+3. Implement graduated suppression approach
+4. Monitor for re-identification risks
+5. Adjust granularity based on business needs
+
+Best Practices
+--------------
+- Start with broader suppression, narrow carefully
+- Consider indirect identification vectors
+- Balance utility with protection needs
+- Document decision rationale
+- Review granularity decisions periodically
+
+This document provides general guidance. Specific implementations should consider individual business requirements and regulatory obligations.
+
+For detailed implementation support, contact Remova.org at hello@remova.org.

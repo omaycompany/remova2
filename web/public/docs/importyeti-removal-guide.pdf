@@ -1,0 +1,226 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Resources <<
+/Font <<
+/F1 4 0 R
+/F2 5 0 R
+>>
+>>
+/Contents 6 0 R
+>>
+endobj
+
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Times-Bold
+>>
+endobj
+
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Times-Roman
+>>
+endobj
+
+6 0 obj
+<<
+/Length 2800
+>>
+stream
+BT
+/F1 16 Tf
+50 750 Td
+(ImportYeti Removal Guide) Tj
+0 -30 Td
+/F2 10 Tf
+(Complete process for removing protected trade data from ImportYeti) Tj
+
+0 -40 Td
+/F1 12 Tf
+(Platform Overview:) Tj
+0 -20 Td
+/F2 10 Tf
+(ImportYeti is a popular trade intelligence platform that provides) Tj
+0 -15 Td
+(free access to US import data with paid premium features.) Tj
+0 -15 Td
+(They aggregate CBP manifest data and make it searchable.) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Contact Information:) Tj
+0 -20 Td
+/F2 10 Tf
+(• Support Email: support@importyeti.com) Tj
+0 -15 Td
+(• Privacy Contact: privacy@importyeti.com) Tj
+0 -15 Td
+(• Website: https://www.importyeti.com/contact) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Required Documentation:) Tj
+0 -20 Td
+/F2 10 Tf
+(• CBP manifest confidentiality filing number and approval) Tj
+0 -15 Td
+(• Entity name variants covered by filing) Tj
+0 -15 Td
+(• Screenshots of protected data on ImportYeti) Tj
+0 -15 Td
+(• Proof of authorization to request removal) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Removal Process:) Tj
+
+0 -20 Td
+/F1 10 Tf
+(Step 1: Search and Document) Tj
+0 -15 Td
+/F2 10 Tf
+(• Search ImportYeti for all entity name variants) Tj
+0 -12 Td
+(• Check both free and premium search results) Tj
+0 -12 Td
+(• Screenshot all instances with URLs visible) Tj
+0 -12 Td
+(• Note specific protected data elements) Tj
+
+0 -18 Td
+/F1 10 Tf
+(Step 2: Submit Removal Request) Tj
+0 -15 Td
+/F2 10 Tf
+(• Email privacy@importyeti.com with complete documentation) Tj
+0 -12 Td
+(• Use subject: "CBP Privacy Filing - Data Removal Request") Tj
+0 -12 Td
+(• Include all screenshots and filing documentation) Tj
+
+0 -18 Td
+/F1 10 Tf
+(Step 3: Follow Up and Verify) Tj
+0 -15 Td
+/F2 10 Tf
+(• ImportYeti typically responds within 7-10 business days) Tj
+0 -12 Td
+(• Verify removal across all search methods) Tj
+0 -12 Td
+(• Check related company connections and shipment details) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Email Template:) Tj
+0 -20 Td
+/F2 10 Tf
+(Subject: CBP Privacy Filing - Data Removal Request) Tj
+
+0 -15 Td
+(Dear ImportYeti Privacy Team,) Tj
+
+0 -15 Td
+(We request removal of protected trade data under CBP manifest) Tj
+0 -12 Td
+(confidentiality filing [FILING_NUMBER].) Tj
+
+0 -15 Td
+(Protected Information:) Tj
+0 -12 Td
+(• Entity: [ENTITY_NAME]) Tj
+0 -12 Td
+(• Filing Effective: [DATE]) Tj
+0 -12 Td
+(• Data Elements: Shipper, Consignee, Trade Details) Tj
+
+0 -15 Td
+(Screenshots and filing documentation are attached.) Tj
+0 -12 Td
+(Please confirm removal and provide timeline.) Tj
+
+0 -15 Td
+(Thank you,) Tj
+0 -12 Td
+([YOUR_NAME]) Tj
+0 -12 Td
+([COMPANY]) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Common Challenges:) Tj
+0 -20 Td
+/F2 10 Tf
+(• ImportYeti may request additional verification) Tj
+0 -15 Td
+(• Data connections through supplier networks) Tj
+0 -15 Td
+(• Historical shipment data in company profiles) Tj
+0 -15 Td
+(• Free vs. premium data access differences) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Success Tips:) Tj
+0 -20 Td
+/F2 10 Tf
+(• Include comprehensive entity variant list) Tj
+0 -15 Td
+(• Provide clear CBP filing documentation) Tj
+0 -15 Td
+(• Be specific about protected data elements) Tj
+0 -15 Td
+(• Follow up if no response within 10 days) Tj
+
+0 -25 Td
+/F1 12 Tf
+(Professional Assistance:) Tj
+0 -20 Td
+/F2 10 Tf
+(For complex cases or expedited removal, contact Remova.org) Tj
+0 -15 Td
+(at hello@remova.org for professional takedown services.) Tj
+
+ET
+endstream
+endobj
+
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000274 00000 n 
+0000000347 00000 n 
+0000000421 00000 n 
+trailer
+<<
+/Size 7
+/Root 1 0 R
+>>
+startxref
+3273
+%%EOF

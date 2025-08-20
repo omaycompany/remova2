@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  /* DaisyUI corporate pairs well with neutral/primary accents */
+}
+
+/* Global resets */
+* { @apply box-border; }
+html, body { @apply max-w-full overflow-x-hidden; }
+
+/* Base typography to look trustworthy and clean */
+body { @apply text-base text-base-content leading-relaxed bg-base-100; }
+a { @apply no-underline; }
+
+
