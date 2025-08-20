@@ -180,7 +180,7 @@ export default function DataPrivacyFight() {
             {/* Connection line */}
             <div className="hidden lg:block absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent opacity-20"></div>
             
-            <div className="grid lg:grid-cols-5 gap-8">
+            <div className="grid lg:grid-cols-4 gap-8">
               {steps.map((step, index) => (
                 <div key={index} className="relative group">
                   {/* Step card */}
@@ -236,7 +236,7 @@ export default function DataPrivacyFight() {
                 <h3 className="text-2xl font-bold mb-2">Ready to secure your protection?</h3>
                 <p className="opacity-80 mb-6">Join the privacy-as-a-service revolution in commercial data protection</p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Link href="/become-member" className="btn btn-primary btn-lg">Start Free Assessment</Link>
+                  <Link href="/become-member" className="btn btn-primary btn-lg">Request Free Exposure Audit</Link>
                   <button className="btn btn-outline btn-lg">See How It Works</button>
                 </div>
               </div>
@@ -303,7 +303,7 @@ export default function DataPrivacyFight() {
                 Join thousands of companies protecting their commercial data with our proven system.
               </p>
               <div className="card-actions justify-center flex-col gap-3">
-                <Link href="/become-member" className="btn btn-primary btn-wide">Start Free Assessment</Link>
+                <Link href="/become-member" className="btn btn-primary btn-wide">Request Free Exposure Audit</Link>
                 <Link href="/membership" className="btn btn-outline">See All Plans</Link>
               </div>
             </div>
