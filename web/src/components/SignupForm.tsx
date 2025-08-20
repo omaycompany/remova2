@@ -22,12 +22,19 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
       id: 'free' as const,
       name: 'Community Member',
       price: 0,
-      description: 'Perfect for getting started',
+      description: 'Learn and explore privacy tools',
+      category: 'community',
       features: [
-        'Initial data exposure assessment',
-        'Basic anonymity checker access',
-        'Educational resources',
-        'Community support access'
+        'Privacy education center access',
+        'Basic anonymity checker',
+        'Community forum access',
+        'Monthly privacy newsletter'
+      ],
+      benefits: [
+        'Understanding your data exposure',
+        'Learning privacy best practices',
+        'Connecting with privacy community',
+        'Getting started with data protection'
       ]
     },
     {
@@ -35,13 +42,20 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
       name: 'Stealth Membership',
       price: 249,
       yearlyPrice: 2999,
-      description: 'Essential privacy-as-a-service protection',
+      description: 'Essential business privacy protection',
+      category: 'business',
       popular: true,
       features: [
-        'Future-Proof Privacy Shield (CBP Filing)',
-        'Digital Footprint Scrub (40+ Platform Takedowns)',
+        'CBP Privacy Filing (Future-Proof Shield)',
+        '40+ Platform Data Takedowns',
         'Monthly Privacy Engine Scans',
-        'Email support & progress reports'
+        'Business email support'
+      ],
+      benefits: [
+        'Removing your business from trade databases',
+        'Preventing competitor intelligence gathering',
+        'Regulatory compliance assistance',
+        'Ongoing privacy monitoring'
       ]
     },
     {
@@ -49,14 +63,20 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
       name: 'Vanish Membership',
       price: 499,
       yearlyPrice: 5999,
-      description: 'Maximum protection & priority support',
+      description: 'Maximum business privacy & priority support',
+      category: 'enterprise',
       popular: false,
       features: [
         'Everything in Stealth +',
         'Weekly monitoring (4x faster)',
         'Dedicated privacy agent',
-        'Partner Privacy Protection',
-        'Personal Privacy Concierge'
+        'Partner & executive protection'
+      ],
+      benefits: [
+        'Comprehensive supply chain privacy',
+        'Executive-level data protection',
+        'Priority response & remediation',
+        'Custom privacy consulting'
       ]
     }
   ];
@@ -133,8 +153,17 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
       <div className="card bg-base-100 border-2 border-base-300 shadow-xl">
         <div className="card-body p-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-4">Create Your Account</h2>
-            <p className="opacity-70 text-lg">Choose your protection level and complete your signup</p>
+            <h2 className="text-3xl font-bold mb-4">
+              {selectedPlan === 'free' ? 'Join Our Community' : 'Secure Your Business'}
+            </h2>
+            <p className="opacity-70 text-lg">
+              {selectedPlan === 'free' 
+                ? 'Get started with free privacy tools and educational resources'
+                : selectedPlan === 'stealth'
+                ? 'Essential privacy-as-a-service protection for your commercial data'
+                : 'Maximum privacy protection with dedicated support and monitoring'
+              }
+            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-10">
@@ -212,18 +241,20 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
 
             {/* Step 2 & 3: Company Info and Payment */}
             <div className="grid lg:grid-cols-2 gap-8">
-              {/* Left Column - Company Information */}
+              {/* Left Column - Account Information */}
               <div className="space-y-6">
                 <div>
                   <h3 className="font-bold text-xl mb-4 flex items-center gap-3">
                     <span className="badge badge-secondary badge-lg">2</span>
-                    Company Information
+                    {selectedPlan === 'free' ? 'Personal Information' : 'Company Information'}
                   </h3>
                 </div>
                 
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text font-medium">Company Name *</span>
+                    <span className="label-text font-medium">
+                      {selectedPlan === 'free' ? 'Your Name or Organization *' : 'Company Name *'}
+                    </span>
                   </label>
                   <input
                     type="text"
@@ -231,13 +262,15 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
                     required
-                    placeholder="Your Company Name"
+                    placeholder={selectedPlan === 'free' ? 'Your Name or Organization' : 'Your Company Name'}
                   />
                 </div>
 
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text font-medium">Business Email *</span>
+                    <span className="label-text font-medium">
+                      {selectedPlan === 'free' ? 'Email Address *' : 'Business Email *'}
+                    </span>
                   </label>
                   <input
                     type="email"
@@ -245,23 +278,43 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    placeholder="business@company.com"
+                    placeholder={selectedPlan === 'free' ? 'your@email.com' : 'business@company.com'}
                   />
                 </div>
 
-                {/* Selected Plan Summary */}
-                <div className="bg-primary/10 border border-primary/20 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-2 text-primary">Selected Plan</h5>
-                  <div className="flex justify-between items-center">
+                {/* Account Type Benefits */}
+                <div className={`p-4 rounded-lg border ${
+                  selectedPlan === 'free' 
+                    ? 'bg-success/10 border-success/20' 
+                    : 'bg-primary/10 border-primary/20'
+                }`}>
+                  <h5 className={`font-semibold mb-3 ${
+                    selectedPlan === 'free' ? 'text-success' : 'text-primary'
+                  }`}>
+                    {selectedPlan === 'free' ? 'What You\'ll Get' : 'Your Protection Package'}
+                  </h5>
+                  <div className="space-y-2">
+                    {plans.find(p => p.id === selectedPlan)?.benefits.slice(0, 2).map((benefit, index) => (
+                      <div key={index} className="flex items-start gap-2">
+                        <svg className="w-4 h-4 text-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-sm">{benefit}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex justify-between items-center mt-3 pt-3 border-t border-current/20">
                     <span className="font-medium">{plans.find(p => p.id === selectedPlan)?.name}</span>
-                    <span className="font-bold text-primary">
-                      {selectedPlan === 'free' ? 'Free' : `$${plans.find(p => p.id === selectedPlan)?.yearlyPrice?.toLocaleString()}/year`}
+                    <span className={`font-bold ${
+                      selectedPlan === 'free' ? 'text-success' : 'text-primary'
+                    }`}>
+                      {selectedPlan === 'free' ? 'Free Forever' : `$${plans.find(p => p.id === selectedPlan)?.yearlyPrice?.toLocaleString()}/year`}
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Right Column - Payment */}
+              {/* Right Column - Payment or Community Info */}
               <div className="space-y-6">
                 {selectedPlan !== 'free' ? (
                   <>
@@ -284,10 +337,53 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
                     )}
                   </>
                 ) : (
-                  <div className="text-center py-16 bg-success/10 rounded-lg border border-success/20">
-                    <div className="text-5xl mb-4">🎉</div>
-                    <h4 className="font-bold text-xl mb-2 text-success">No Payment Required!</h4>
-                    <p className="opacity-70">Your free Community Member account is ready to go.</p>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="font-bold text-xl mb-4 flex items-center gap-3">
+                        <span className="badge badge-success badge-lg">3</span>
+                        Welcome to the Community
+                      </h3>
+                    </div>
+                    
+                    <div className="bg-success/10 rounded-lg border border-success/20 p-6">
+                      <div className="text-center mb-6">
+                        <div className="text-4xl mb-4">🎉</div>
+                        <h4 className="font-bold text-xl mb-2 text-success">No Payment Required!</h4>
+                        <p className="opacity-80">Join thousands of privacy-conscious individuals and organizations.</p>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <div className="text-center">
+                          <h5 className="font-semibold text-success mb-3">What happens after you join:</h5>
+                        </div>
+                        
+                        <div className="space-y-3">
+                          <div className="flex items-start gap-3">
+                            <span className="flex-shrink-0 w-6 h-6 bg-success text-white rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <div>
+                              <div className="font-medium">Instant Access</div>
+                              <div className="text-sm opacity-80">Immediately access privacy education center and tools</div>
+                            </div>
+                          </div>
+                          
+                          <div className="flex items-start gap-3">
+                            <span className="flex-shrink-0 w-6 h-6 bg-success text-white rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <div>
+                              <div className="font-medium">Welcome Email</div>
+                              <div className="text-sm opacity-80">Get your privacy assessment and next steps guide</div>
+                            </div>
+                          </div>
+                          
+                          <div className="flex items-start gap-3">
+                            <span className="flex-shrink-0 w-6 h-6 bg-success text-white rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                            <div>
+                              <div className="font-medium">Community Access</div>
+                              <div className="text-sm opacity-80">Join our forum and connect with privacy advocates</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
@@ -308,7 +404,9 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
               <button
                 type="submit"
                 disabled={isLoading || (selectedPlan !== 'free' && !clientSecret)}
-                className="btn btn-primary btn-lg min-w-80"
+                className={`btn btn-lg min-w-80 ${
+                  selectedPlan === 'free' ? 'btn-success' : 'btn-primary'
+                }`}
               >
                 {isLoading ? (
                   <>
@@ -316,7 +414,7 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
                     Processing...
                   </>
                 ) : selectedPlan === 'free' ? (
-                  'Create Free Account'
+                  'Join the Community - Free'
                 ) : (
                   `Complete Purchase - $${plans.find(p => p.id === selectedPlan)?.yearlyPrice?.toLocaleString()}/year`
                 )}
@@ -326,6 +424,12 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
                 By continuing, you agree to our{' '}
                 <a href="/terms" className="link">Terms of Service</a> and{' '}
                 <a href="/privacy" className="link">Privacy Policy</a>
+                {selectedPlan === 'free' && (
+                  <>
+                    <br />
+                    <span className="text-success font-medium">✓ No credit card required • Always free</span>
+                  </>
+                )}
               </p>
             </div>
           </form>

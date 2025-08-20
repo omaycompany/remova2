@@ -57,10 +57,13 @@ export default function BecomeMemberPage() {
             </div>
             
             <h1 className="text-2xl md:text-4xl font-extrabold leading-tight mb-3">
-              Become a Member
+              {selectedPlan === 'free' ? 'Join Our Community' : 'Secure Your Business'}
             </h1>
             <p className="text-base opacity-80 mb-6 leading-relaxed max-w-xl mx-auto">
-              Choose your protection level and start securing your commercial data today
+              {selectedPlan === 'free' 
+                ? 'Access free privacy tools, education, and join thousands of privacy advocates'
+                : 'Professional privacy-as-a-service protection for your commercial data'
+              }
             </p>
           </div>
         </div>
