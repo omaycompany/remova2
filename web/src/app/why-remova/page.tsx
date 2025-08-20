@@ -7,7 +7,7 @@ export const metadata = {
   openGraph: {
     title: "Why Remova — Remova Inc.",
     description: "Why choose Remova Inc. for commercial data protection. Learn about our unique approach, proven results, and industry expertise.",
-    url: process.env.NODE_ENV === "production" ? "chttps://www.remova.org/why-remova" : "http://127.0.0.1:6161/why-remova",
+    url: process.env.NODE_ENV === "production" ? "https://www.remova.org/why-remova" : "http://127.0.0.1:6161/why-remova",
   },
   alternates: {
     canonical: process.env.NODE_ENV === "production" ? "https://www.remova.org/why-remova" : "http://127.0.0.1:6161/why-remova",

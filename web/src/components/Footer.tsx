@@ -24,12 +24,9 @@ export default function Footer() {
         <h6 className="footer-title">Organization</h6>
         <Link href="/about" className="link link-hover">About Remova Inc.</Link>
         <Link href="/why-remova" className="link link-hover">Why Remova</Link>
+        <Link href="/solution" className="link link-hover">Our Solution</Link>
+        <Link href="/trust" className="link link-hover">Trust & Security</Link>
         <Link href="/responsibilities" className="link link-hover">Our Responsibilities</Link>
-        <Link href="/impact" className="link link-hover">Social Impact</Link>
-        <Link href="/transparency" className="link link-hover">Transparency</Link>
-        <Link href="/open-tools" className="link link-hover">Open Tools</Link>
-        <Link href="/trust" className="link link-hover">Trust & Compliance</Link>
-        <Link href="/investor-relations" className="link link-hover">Investor Relations</Link>
         <Link href="/careers" className="link link-hover">Careers</Link>
         <Link href="/affiliate" className="link link-hover">Affiliate Program</Link>
           </nav>
@@ -57,7 +54,6 @@ export default function Footer() {
         <Link href="/terms" className="link link-hover">Terms of Service</Link>
         <Link href="/dpa" className="link link-hover">Data Processing Agreement (DPA)</Link>
         <Link href="/disclosures" className="link link-hover">Disclosures</Link>
-        <Link href="/trust" className="link link-hover">Trust & Compliance</Link>
           </nav>
           <div>
         <h6 className="footer-title">Contact</h6>
