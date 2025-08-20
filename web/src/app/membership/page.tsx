@@ -242,8 +242,34 @@ export default function Membership() {
           </div>
         </div>
       </section>
+      {/* Insurance Premium Framing */}
+      <section className="py-16 bg-gradient-to-br from-error/5 to-warning/5">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-8 text-error">
+              Your Insurance Premium Against a Multi-Million Dollar Loss.
+            </h2>
+            <div className="prose prose-xl max-w-none mx-auto text-left">
+              <p className="text-xl leading-relaxed mb-6">
+                Consider the cost of losing your most valuable supplier or your biggest customer to a competitor who purchased your trade data for less than $100.
+              </p>
+              <p className="text-xl leading-relaxed mb-6">
+                Your annual investment in Remova is a tiny fraction of that risk. This isn't a cost center; it's your policy for preserving your competitive advantage.
+              </p>
+              <p className="text-2xl font-bold text-center text-error">
+                The question isn't whether you can afford Remova. It's whether you can afford to go without it.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Table */}
       <section className="container mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Choose Your Protection Level</h2>
+          <p className="text-lg opacity-80">Select the insurance policy that matches your business needs</p>
+        </div>
         <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan) => (
             <div key={plan.name} className={`relative flex flex-col h-full card bg-base-100 border-2 hover:shadow-2xl transition-all duration-300 ${plan.isPopular ? 'border-primary shadow-lg scale-105' : 'border-base-300'}`}>

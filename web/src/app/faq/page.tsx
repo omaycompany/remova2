@@ -17,6 +17,27 @@ export const metadata = {
 export default function FAQ() {
   const faqs = [
     {
+      category: "Strategic Questions",
+      questions: [
+        {
+          question: "I already have cybersecurity insurance. Does that cover this?",
+          answer: "No. Cybersecurity insurance typically covers illegal breaches and criminal attacks. Since your trade data is made public through perfectly legal channels (government databases and commercial platforms), it's a policy exclusion for most carriers. We protect you from the legal, lawful threats that traditional insurance and firewalls miss entirely."
+        },
+        {
+          question: "Can't I just file the CBP form myself for free?",
+          answer: "Filing the CBP form only protects *future* U.S. imports. It does nothing to erase the years of data already for sale online, nor does it cover your exports or data from other countries. It's like locking the front door after your company's blueprints have already been stolen and copied. Our service is a complete solution, not a single form."
+        },
+        {
+          question: "My IT team says our firewall protects us. Why do I need this?",
+          answer: "Your firewall protects your servers from hackers. It cannot protect you from government databases that are legally public, or from competitors who simply purchase your trade data from commercial platforms. This is a cybersecurity blind spot that no amount of traditional security can fix."
+        },
+        {
+          question: "Is this really worth thousands of dollars per year?",
+          answer: "Consider the value of losing your most profitable supplier to a competitor, or having your biggest customer poached because they saw your customer list online. Your annual investment in Remova is a fraction of what you'd lose from a single strategic relationship being compromised. This isn't a cost—it's insurance against business extinction."
+        }
+      ]
+    },
+    {
       category: "Getting Started",
       questions: [
         {
