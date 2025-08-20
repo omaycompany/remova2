@@ -21,37 +21,42 @@ function ThankYouContent() {
             </div>
             
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Welcome to 
-              <span className="text-primary block md:inline md:ml-3">Remova Protection</span>
+              Thank You. Your 
+              <span className="text-primary block md:inline md:ml-3">Digital Shield is Being Activated.</span>
             </h1>
             
             <p className="text-xl opacity-80 mb-8 leading-relaxed">
-              Your payment has been processed successfully. We are beginning your privacy protection immediately.
+              Welcome to Remova. We have received your payment and our team is already beginning the process of securing your business data.
             </p>
             
-            {/* Timeline Expectations */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
-              <h3 className="font-semibold text-blue-800 mb-3">🗓️ What to Expect & When</h3>
-              <div className="grid md:grid-cols-3 gap-4 text-sm">
-                <div className="text-center">
-                  <div className="font-medium text-blue-900">CBP Filing</div>
-                  <div className="text-blue-700">15-30 business days</div>
-                  <div className="text-xs text-blue-600">Government processing time</div>
+            {/* What Happens Next */}
+            <div className="bg-primary/10 border border-primary/20 rounded-lg p-8 mb-8">
+              <h3 className="font-bold text-primary text-xl mb-6 text-center">What Happens Next:</h3>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">1</div>
+                  <div>
+                    <h4 className="font-semibold text-lg mb-2">Provide Your Details (Next 10 minutes)</h4>
+                    <p className="opacity-80">Complete our secure intake form below. It should take about 10 minutes and provides us with the company information we need to protect you.</p>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <div className="font-medium text-blue-900">First Removals</div>
-                  <div className="text-blue-700">2-4 weeks</div>
-                  <div className="text-xs text-blue-600">Initial platforms secured</div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-secondary text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">2</div>
+                  <div>
+                    <h4 className="font-semibold text-lg mb-2">Initial Protection Begins (Within 24 hours)</h4>
+                    <p className="opacity-80">As soon as you complete the intake, we will begin the CBP filing process and our initial platform scans. Your shield activation starts immediately.</p>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <div className="font-medium text-blue-900">Full Protection</div>
-                  <div className="text-blue-700">6-12 weeks</div>
-                  <div className="text-xs text-blue-600">All platforms addressed</div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-accent text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">3</div>
+                  <div>
+                    <h4 className="font-semibold text-lg mb-2">Monitor Your Dashboard (First 24-48 hours)</h4>
+                    <p className="opacity-80">You will see real-time progress in your new dashboard within the first 24-48 hours. Track filings, removals, and ongoing protection status.</p>
+                  </div>
                 </div>
               </div>
-              <p className="text-xs text-blue-600 mt-3 text-center">
-                We&apos;ll keep you updated every step of the way via email and your dashboard
-              </p>
             </div>
           </div>
 
