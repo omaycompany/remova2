@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function DirectLoginPage() {
+function DirectLoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const account = searchParams.get('account');
@@ -120,5 +120,20 @@ export default function DirectLoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function DirectLoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="loading loading-spinner loading-lg text-primary"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    }>
+      <DirectLoginContent />
+    </Suspense>
   );
 }
