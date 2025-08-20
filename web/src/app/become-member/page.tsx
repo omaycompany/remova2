@@ -47,27 +47,27 @@ export default function BecomeMemberPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 to-secondary/5">
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      {/* Streamlined Hero Section */}
+      <section className="relative py-16 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-100/70 px-4 py-2 backdrop-blur mb-8">
+          <div className="text-center max-w-5xl mx-auto">
+            <div className="inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-100/70 px-6 py-3 backdrop-blur mb-6">
               <span className="badge badge-primary badge-sm" />
-              <span className="text-sm">Join the Privacy Revolution</span>
+              <span className="text-sm font-medium">Join the Privacy Revolution</span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+            <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4">
               Become a Member
             </h1>
-            <p className="text-xl opacity-80 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg opacity-80 mb-6 leading-relaxed max-w-2xl mx-auto">
               Choose your protection level and start securing your commercial data today
             </p>
           </div>
         </div>
       </section>
 
-      {/* Signup Form with Stripe Elements */}
-      <section className="relative py-16">
+      {/* Horizontal Signup Flow */}
+      <section className="relative pb-20">
         <div className="container mx-auto px-4">
           <StripeProvider clientSecret={clientSecret}>
             <SignupForm

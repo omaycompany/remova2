@@ -128,115 +128,181 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      {/* Plan Selection */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-6 text-center">Choose Your Protection Level</h2>
-        <div className="grid md:grid-cols-3 gap-6">
+    <div className="max-w-7xl mx-auto p-6">
+      {/* Horizontal Plan Selection */}
+      <div className="mb-12">
+        <h2 className="text-3xl font-bold mb-8 text-center">Choose Your Protection Level</h2>
+        <div className="flex flex-col lg:flex-row gap-4 justify-center items-stretch">
           {plans.map((plan) => (
             <div
               key={plan.id}
-              className={`relative card cursor-pointer transition-all duration-200 ${
+              className={`relative flex-1 max-w-sm card cursor-pointer transition-all duration-300 ${
                 selectedPlan === plan.id
-                  ? 'border-primary border-2 shadow-lg scale-105'
-                  : 'border-base-300 border hover:shadow-md'
-              } ${plan.popular ? 'border-primary bg-primary/5' : 'bg-base-100'}`}
+                  ? 'border-primary border-2 shadow-xl scale-105 bg-primary/5'
+                  : 'border-base-300 border hover:shadow-lg hover:border-primary/30'
+              } ${plan.popular ? 'ring-2 ring-primary ring-opacity-50' : 'bg-base-100'}`}
               onClick={() => onPlanChange(plan.id)}
             >
               {plan.popular && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <div className="badge badge-primary font-bold">Most Popular</div>
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                  <div className="badge badge-primary font-bold px-4 py-2">Most Popular</div>
                 </div>
               )}
               
-              <div className="card-body p-6">
-                <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
+              <div className="card-body p-6 text-center">
+                <h3 className="text-xl font-bold mb-3">{plan.name}</h3>
                 <div className="mb-4">
-                  <div className="text-3xl font-extrabold text-primary">
-                    ${plan.price}{plan.price > 0 && <span className="text-base opacity-70">/mo</span>}
+                  <div className="text-4xl font-extrabold text-primary mb-1">
+                    ${plan.price}{plan.price > 0 && <span className="text-lg opacity-70">/mo</span>}
                   </div>
                   {plan.yearlyPrice && (
-                    <div className="text-sm opacity-70">
-                      Billed annually at ${plan.yearlyPrice.toLocaleString()}
+                    <div className="text-sm opacity-70 font-medium">
+                      ${plan.yearlyPrice.toLocaleString()}/year
                     </div>
                   )}
                 </div>
-                <p className="text-sm opacity-80 mb-4">{plan.description}</p>
-                <ul className="space-y-2">
-                  {plan.features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-2">
+                <p className="text-sm opacity-80 mb-4 min-h-[2.5rem] flex items-center justify-center">{plan.description}</p>
+                
+                {/* Features - Condensed for horizontal layout */}
+                <div className="text-left space-y-2">
+                  {plan.features.slice(0, 3).map((feature, index) => (
+                    <div key={index} className="flex items-start gap-2">
                       <svg className="w-4 h-4 text-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
-                      <span className="text-sm">{feature}</span>
-                    </li>
+                      <span className="text-xs leading-tight">{feature}</span>
+                    </div>
                   ))}
-                </ul>
+                  {plan.features.length > 3 && (
+                    <div className="text-xs opacity-60 font-medium">
+                      +{plan.features.length - 3} more features
+                    </div>
+                  )}
+                </div>
+                
+                {/* Selection Indicator */}
+                <div className="mt-4">
+                  {selectedPlan === plan.id ? (
+                    <div className="btn btn-primary btn-sm btn-wide">Selected ✓</div>
+                  ) : (
+                    <div className="btn btn-outline btn-sm btn-wide">Select Plan</div>
+                  )}
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Signup Form */}
-      <div className="card bg-base-100 border border-base-300 max-w-2xl mx-auto">
-        <div className="card-body">
-          <h3 className="text-xl font-bold mb-6">
-            {selectedPlan === 'free' ? 'Create Your Free Account' : 'Complete Your Membership'}
-          </h3>
+      {/* Horizontal Signup Form */}
+      <div className="card bg-base-100 border-2 border-base-300 shadow-xl">
+        <div className="card-body p-8">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold mb-2">
+              {selectedPlan === 'free' ? 'Create Your Free Account' : `Complete Your ${plans.find(p => p.id === selectedPlan)?.name}`}
+            </h3>
+            <p className="opacity-70">
+              {selectedPlan === 'free' 
+                ? 'Get started with our free Community Member tier'
+                : `Secure your business with ${plans.find(p => p.id === selectedPlan)?.name} protection`
+              }
+            </p>
+          </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Company Information */}
-            <div className="space-y-4">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-medium">Company Name *</span>
-                </label>
-                <input
-                  type="text"
-                  className="input input-bordered w-full"
-                  value={companyName}
-                  onChange={(e) => setCompanyName(e.target.value)}
-                  required
-                  placeholder="Your Company Name"
-                />
-              </div>
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {/* Horizontal Form Layout */}
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Left Column - Company Information */}
+              <div className="space-y-6">
+                <div className="text-center lg:text-left">
+                  <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
+                    <span className="badge badge-primary badge-sm">1</span>
+                    Company Information
+                  </h4>
+                </div>
+                
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-medium">Company Name *</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="input input-bordered input-lg w-full"
+                    value={companyName}
+                    onChange={(e) => setCompanyName(e.target.value)}
+                    required
+                    placeholder="Your Company Name"
+                  />
+                </div>
 
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-medium">Business Email *</span>
-                </label>
-                <input
-                  type="email"
-                  className="input input-bordered w-full"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  placeholder="business@company.com"
-                />
-              </div>
-            </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-medium">Business Email *</span>
+                  </label>
+                  <input
+                    type="email"
+                    className="input input-bordered input-lg w-full"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    placeholder="business@company.com"
+                  />
+                </div>
 
-            {/* Payment Section - Only for paid plans */}
-            {selectedPlan !== 'free' && (
-              <div className="space-y-4">
-                <div className="divider">Payment Information</div>
-                {clientSecret ? (
-                  <div className="p-4 border border-base-300 rounded-lg">
-                    <PaymentElement />
+                {/* Selected Plan Summary */}
+                <div className="bg-base-200 p-4 rounded-lg">
+                  <h5 className="font-semibold mb-2">Selected Plan:</h5>
+                  <div className="flex justify-between items-center">
+                    <span className="font-medium">{plans.find(p => p.id === selectedPlan)?.name}</span>
+                    <span className="font-bold text-primary">
+                      {selectedPlan === 'free' ? 'Free' : `$${plans.find(p => p.id === selectedPlan)?.yearlyPrice?.toLocaleString()}/year`}
+                    </span>
                   </div>
+                  <button 
+                    type="button" 
+                    className="btn btn-outline btn-xs mt-2"
+                    onClick={() => document.querySelector('.max-w-7xl')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
+                    Change Plan
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Column - Payment */}
+              <div className="space-y-6">
+                {selectedPlan !== 'free' ? (
+                  <>
+                    <div className="text-center lg:text-left">
+                      <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
+                        <span className="badge badge-secondary badge-sm">2</span>
+                        Payment Information
+                      </h4>
+                    </div>
+                    
+                    {clientSecret ? (
+                      <div className="bg-white p-6 border border-base-300 rounded-lg shadow-sm">
+                        <PaymentElement />
+                      </div>
+                    ) : (
+                      <div className="text-center py-12 bg-base-50 rounded-lg">
+                        <div className="loading loading-spinner loading-lg text-primary"></div>
+                        <p className="mt-4 text-sm opacity-70">Preparing secure payment form...</p>
+                      </div>
+                    )}
+                  </>
                 ) : (
-                  <div className="text-center py-8">
-                    <div className="loading loading-spinner loading-lg text-primary"></div>
-                    <p className="mt-2 text-sm opacity-70">Preparing payment form...</p>
+                  <div className="text-center py-12">
+                    <div className="text-6xl mb-4">🎉</div>
+                    <h4 className="font-bold text-xl mb-2">No Payment Required!</h4>
+                    <p className="opacity-70">Your free Community Member account includes access to basic privacy tools and resources.</p>
                   </div>
                 )}
               </div>
-            )}
+            </div>
 
             {/* Error Display */}
             {error && (
-              <div className="alert alert-error">
+              <div className="alert alert-error max-w-2xl mx-auto">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
@@ -244,30 +310,31 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
               </div>
             )}
 
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isLoading || (selectedPlan !== 'free' && !clientSecret)}
-              className="btn btn-primary btn-lg w-full"
-            >
-              {isLoading ? (
-                <>
-                  <span className="loading loading-spinner loading-sm"></span>
-                  Processing...
-                </>
-              ) : selectedPlan === 'free' ? (
-                'Create Free Account'
-              ) : (
-                `Start ${plans.find(p => p.id === selectedPlan)?.name} - $${plans.find(p => p.id === selectedPlan)?.yearlyPrice?.toLocaleString()}/year`
-              )}
-            </button>
-
-            {/* Terms */}
-            <p className="text-xs text-center opacity-70">
-              By continuing, you agree to our{' '}
-              <a href="/terms" className="link">Terms of Service</a> and{' '}
-              <a href="/privacy" className="link">Privacy Policy</a>
-            </p>
+            {/* Submit Section */}
+            <div className="text-center border-t border-base-300 pt-8">
+              <button
+                type="submit"
+                disabled={isLoading || (selectedPlan !== 'free' && !clientSecret)}
+                className="btn btn-primary btn-lg min-w-64"
+              >
+                {isLoading ? (
+                  <>
+                    <span className="loading loading-spinner loading-sm"></span>
+                    Processing...
+                  </>
+                ) : selectedPlan === 'free' ? (
+                  'Create Free Account'
+                ) : (
+                  `Complete Purchase - $${plans.find(p => p.id === selectedPlan)?.yearlyPrice?.toLocaleString()}`
+                )}
+              </button>
+              
+              <p className="text-xs opacity-70 mt-4 max-w-md mx-auto">
+                By continuing, you agree to our{' '}
+                <a href="/terms" className="link">Terms of Service</a> and{' '}
+                <a href="/privacy" className="link">Privacy Policy</a>
+              </p>
+            </div>
           </form>
         </div>
       </div>
