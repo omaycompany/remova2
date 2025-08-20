@@ -97,12 +97,12 @@ export default function DataPrivacyFight() {
               </svg>
               <span className="font-semibold">Data Exposure Alert</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              Why we fight for your 
-              <span className="text-primary block md:inline md:ml-3">commercial data privacy</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+              While You Focus on Business, 
+              <span className="text-error block md:inline md:ml-3">Your Competitors Buy Your Secrets.</span>
             </h2>
-            <p className="text-xl opacity-70 max-w-4xl mx-auto leading-relaxed">
-              Here's what's at stake when your trade data is exposed on intelligence platforms
+            <p className="text-xl opacity-90 max-w-4xl mx-auto leading-relaxed">
+              Every piece of your trade data that's exposed becomes a weapon in the hands of your competition. Here's exactly what they're using against you right now.
             </p>
           </div>
 
@@ -140,13 +140,15 @@ export default function DataPrivacyFight() {
           </div>
           
           <div className="text-center mt-16">
-            <div className="alert alert-warning max-w-2xl mx-auto">
-              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.732 15.5c-.77.833.192 2.5 1.732 2.5z" />
-              </svg>
-              <div>
-                <h3 className="font-bold">Your business data is exposed right now</h3>
-                <div className="text-sm">Every day of delay means more competitor intelligence gathering and business risk.</div>
+            <div className="card bg-gradient-to-r from-error/10 to-warning/10 border-2 border-error/30 max-w-3xl mx-auto">
+              <div className="card-body text-center">
+                <h3 className="text-2xl font-bold text-error mb-4">This Is Happening to Your Business Right Now.</h3>
+                <p className="text-lg mb-4">
+                  While you read this, competitors are purchasing your trade data, mapping your supplier relationships, and targeting your customers.
+                </p>
+                <p className="text-xl font-semibold text-error">
+                  Every hour of delay gives them more intelligence to use against you.
+                </p>
               </div>
             </div>
           </div>
@@ -233,8 +235,8 @@ export default function DataPrivacyFight() {
           <div className="text-center mt-16">
             <div className="card bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 max-w-3xl mx-auto">
               <div className="card-body text-center">
-                <h3 className="text-2xl font-bold mb-2">Ready to secure your protection?</h3>
-                <p className="opacity-80 mb-6">Join the privacy-as-a-service revolution in commercial data protection</p>
+                <h3 className="text-2xl font-bold mb-2">Stop the Intelligence Leak. Secure Your Business.</h3>
+                <p className="opacity-90 mb-6">Your competitors' intelligence advantage ends the moment you make your data private</p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <Link href="/become-member" className="btn btn-primary btn-lg">Request Free Exposure Audit</Link>
                   <button className="btn btn-outline btn-lg">See How It Works</button>
