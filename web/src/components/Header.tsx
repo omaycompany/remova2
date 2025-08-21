@@ -82,12 +82,14 @@ export default function Header() {
             ))}
           </ul>
         </div>
-        <div className="navbar-end gap-2">
-          <a className="btn btn-primary" href="/contact">
-            Start Intake + NDA
+        <div className="navbar-end gap-1 sm:gap-2">
+          <a className="btn btn-primary btn-sm sm:btn-md text-xs sm:text-sm" href="/contact">
+            <span className="hidden sm:inline">Start Intake + NDA</span>
+            <span className="sm:hidden">Intake</span>
           </a>
-          <a className="btn btn-outline" href="/membership">
-            See Membership
+          <a className="btn btn-outline btn-sm sm:btn-md text-xs sm:text-sm" href="/membership">
+            <span className="hidden sm:inline">See Membership</span>
+            <span className="sm:hidden">Plans</span>
           </a>
         </div>
       </nav>
