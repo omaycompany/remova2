@@ -1,5 +1,3 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export const metadata = {
@@ -92,7 +90,6 @@ const plans = [
 export default function Membership() {
   return (
     <>
-      <Header />
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-base-200 to-secondary/5">
         {/* Background decorative elements */}
         <div className="absolute top-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl transform -translate-x-32 -translate-y-32"></div>
@@ -646,7 +643,6 @@ export default function Membership() {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 }
