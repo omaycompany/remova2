@@ -81,6 +81,7 @@ export default function DataPrivacyFight() {
 
   return (
     <>
+      {/* PROBLEMS SECTION */}
       <section className="relative py-20 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
@@ -155,6 +156,7 @@ export default function DataPrivacyFight() {
         </div>
       </section>
 
+      {/* SOLUTION SECTION */}
       <section className="relative py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
         {/* Decorative elements */}
         <div className="absolute top-10 left-10 w-20 h-20 bg-primary/10 rounded-full blur-xl"></div>
@@ -166,14 +168,14 @@ export default function DataPrivacyFight() {
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
-              <span className="font-semibold">Privacy as a Service</span>
+              <span className="font-semibold">The Remova Shield</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              Commercial data protection 
-              <span className="text-primary block md:inline md:ml-3">shouldn&apos;t be a hassle</span>
+              Your Digital Shield Against 
+              <span className="text-primary block md:inline md:ml-3">Business Intelligence Theft</span>
             </h2>
             <p className="text-xl opacity-70 max-w-4xl mx-auto leading-relaxed">
-              We ensure it isn&apos;t with our privacy-as-a-service protection system
+              A complete protection system that makes your trade data private and keeps it that way
             </p>
           </div>
 
@@ -230,28 +232,21 @@ export default function DataPrivacyFight() {
               ))}
             </div>
           </div>
-          
-          {/* Call to action */}
-          <div className="text-center mt-16">
-            <div className="card bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 max-w-3xl mx-auto">
-              <div className="card-body text-center">
-                <h3 className="text-2xl font-bold mb-2">Stop the Intelligence Leak. Secure Your Business.</h3>
-                <p className="opacity-90 mb-6">Your competitors' intelligence advantage ends the moment you make your data private</p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Link href="/become-member" className="btn btn-primary btn-lg">Request Free Exposure Audit</Link>
-                  <button className="btn btn-outline btn-lg">See How It Works</button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      <section className="container mx-auto px-4 py-16">
+      {/* HOW IT WORKS SECTION */}
+      <section className="container mx-auto px-4 py-20">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">How It Works</h2>
+          <p className="text-xl opacity-80 max-w-3xl mx-auto">
+            Getting started is simple. We handle the complex legal and technical work while you focus on your business.
+          </p>
+        </div>
+        
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <h2 className="text-3xl font-bold mb-6">How it works</h2>
-            <h3 className="text-xl font-semibold mb-4">Get started in three steps</h3>
+            <h3 className="text-2xl font-semibold mb-6">Get started in three simple steps</h3>
             <div className="space-y-6">
               <div className="flex gap-4">
                 <div className="badge badge-primary shrink-0 mt-1">1</div>
@@ -290,7 +285,7 @@ export default function DataPrivacyFight() {
 
           <div className="card bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20">
             <div className="card-body text-center">
-              <h3 className="card-title justify-center mb-4">Ready to Protect Your Business?</h3>
+              <h3 className="card-title justify-center mb-4">Proven Results</h3>
               <div className="stats bg-base-100 shadow mb-6">
                 <div className="stat">
                   <div className="stat-value text-primary">95%</div>
@@ -304,9 +299,33 @@ export default function DataPrivacyFight() {
               <p className="mb-6 opacity-80">
                 Join thousands of companies protecting their commercial data with our proven system.
               </p>
-              <div className="card-actions justify-center flex-col gap-3">
-                <Link href="/become-member" className="btn btn-primary btn-wide">Request Free Exposure Audit</Link>
-                <Link href="/membership" className="btn btn-outline">See All Plans</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CALL TO ACTION SECTION */}
+      <section className="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <div className="card bg-gradient-to-r from-primary/20 to-secondary/20 border-2 border-primary/30 max-w-4xl mx-auto">
+              <div className="card-body text-center p-12">
+                <h2 className="text-4xl font-bold mb-6">Stop the Intelligence Leak. Secure Your Business.</h2>
+                <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+                  Your competitors' intelligence advantage ends the moment you make your data private. 
+                  Don't give them another day to map your business relationships.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link href="/become-member" className="btn btn-primary btn-lg text-lg px-8">
+                    Request Free Exposure Audit
+                  </Link>
+                  <Link href="/membership" className="btn btn-outline btn-lg text-lg px-8">
+                    See Protection Plans
+                  </Link>
+                </div>
+                <p className="text-sm opacity-70 mt-4">
+                  Start with our free assessment - no commitment required
+                </p>
               </div>
             </div>
           </div>
