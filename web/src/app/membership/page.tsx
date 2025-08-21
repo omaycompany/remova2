@@ -272,7 +272,7 @@ export default function Membership() {
           <h2 className="text-3xl font-bold mb-4">Choose Your Protection Level</h2>
           <p className="text-lg opacity-80">Select the insurance policy that matches your business needs</p>
         </div>
-        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {plans.map((plan) => (
             <div key={plan.name} className={`relative flex flex-col h-full card bg-base-100 border-2 hover:shadow-2xl transition-all duration-300 ${plan.isPopular ? 'border-primary shadow-lg scale-105' : 'border-base-300'}`}>
               <div className="card-body p-8 flex flex-col h-full">
