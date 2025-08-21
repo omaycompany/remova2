@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,6 +7,9 @@ export const metadata = {
   title: "The Digital Shield For Your Business - Membership",
   description: "Choose the level of commercial privacy that fits your needs. All our paid plans provide a complete solution to secure your trade data and protect your business relationships.",
 };
+
+// Force dynamic rendering to ensure Header/Footer work properly
+export const dynamic = 'force-dynamic';
 
 const plans = [
   {
