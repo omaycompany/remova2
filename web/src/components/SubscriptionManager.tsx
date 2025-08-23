@@ -30,31 +30,46 @@ const plans: Plan[] = [
   {
     id: 'stealth',
     name: 'Stealth',
-    price: 2999,
+    price: 3540,
     interval: 'year',
-    description: 'Essential privacy protection for growing businesses',
+    description: 'Essential privacy protection - Pillars 1 + 3',
     features: [
-      'CBP confidentiality filing',
-      'Data removal from 12+ platforms',
-      'Monthly progress reports',
-      'Email support',
-      'Partner anonymity protection'
+      'Government filings (managed)',
+      'Trade partner privacy checks',
+      '24/7 automated + manual monitoring',
+      'Real-time breach alerts',
+      'Remova-Verified Partner badge'
     ]
   },
   {
     id: 'vanish',
     name: 'Vanish',
-    price: 5999,
+    price: 7140,
     interval: 'year',
     recommended: true,
-    description: 'Complete privacy protection with premium features',
+    description: 'Complete 3-pillar protection + historical cleanup',
     features: [
       'Everything in Stealth plan',
-      'Dedicated privacy representative',
-      'On-demand takedown requests (5/year)',
-      'Real-time monitoring',
-      'Priority support',
-      'Custom reporting'
+      'Historical data takedowns (40+ platforms)',
+      'Custom removal requests',
+      'Dedicated account manager',
+      'Quarterly compliance audits',
+      'Remova-Verified Partner badge'
+    ]
+  },
+  {
+    id: 'shield',
+    name: 'Shield',
+    price: 15000,
+    interval: 'year',
+    description: 'Ultimate protection with legal coverage + priority SLA',
+    features: [
+      'Everything in Vanish plan',
+      'Legal protection up to $10,000/year',
+      'Priority SLA (<24h escalation)',
+      'Custom partner engagement programs',
+      'Pre-negotiated legal rates',
+      'Remova-Verified Partner badge'
     ]
   }
 ];

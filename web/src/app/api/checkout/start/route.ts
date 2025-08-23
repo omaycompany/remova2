@@ -3,7 +3,7 @@ import { createCheckoutSession } from '@/lib/stripe';
 import { z } from 'zod';
 
 const checkoutSchema = z.object({
-  plan: z.enum(['stealth', 'vanish']),
+  plan: z.enum(['stealth', 'vanish', 'shield']),
 });
 
 export async function GET(request: NextRequest) {

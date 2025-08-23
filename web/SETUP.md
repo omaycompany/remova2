@@ -36,12 +36,14 @@ heroku pg:psql -a your-app-name
 **In your Stripe Dashboard:**
 
 1. **Create Products:**
-   - Stealth Membership: $2,999/year
-   - Vanish Membership: $5,999/year
+   - Stealth Membership: $3,540/year
+   - Vanish Membership: $7,140/year
+   - Shield Membership: $15,000/year
 
 2. **Get Price IDs** (format: `price_1ABC123...`)
    - Copy the Price ID for Stealth Annual
    - Copy the Price ID for Vanish Annual
+   - Copy the Price ID for Shield Annual
 
 3. **Setup Webhook Endpoint:**
    - URL: `https://your-app.herokuapp.com/api/webhooks/stripe`
@@ -57,6 +59,7 @@ heroku config:set STRIPE_SECRET_KEY=sk_live_... -a your-app-name
 heroku config:set STRIPE_WEBHOOK_SECRET=whsec_... -a your-app-name
 heroku config:set STRIPE_PRICE_STEALTH_ANNUAL=price_1ABC123... -a your-app-name
 heroku config:set STRIPE_PRICE_VANISH_ANNUAL=price_1XYZ789... -a your-app-name
+heroku config:set STRIPE_PRICE_SHIELD_ANNUAL=price_1DEF456... -a your-app-name
 ```
 
 **Optional (for HubSpot form):**

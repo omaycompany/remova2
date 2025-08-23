@@ -70,67 +70,80 @@ export default function PageHero({
   const visual = visualCard || defaultVisual;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-base-200 to-secondary/5">
-      {/* Background decorative elements */}
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/10">
+      {/* Enhanced Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10L90 50L50 90L10 50Z' fill='%233b82f6' opacity='0.4'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%233b82f6' stroke-width='1' opacity='0.3'/%3E%3C/svg%3E")`,
+        }}></div>
+      </div>
+      
+      {/* Enhanced Background decorative elements */}
       {backgroundElements && (
         <>
-          <div className="absolute top-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl transform -translate-x-32 -translate-y-32"></div>
-          <div className="absolute bottom-0 right-0 w-80 h-80 bg-secondary/10 rounded-full blur-3xl transform translate-x-40 translate-y-40"></div>
+          <div className="absolute top-20 left-20 w-40 h-40 bg-blue-100 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-48 h-48 bg-indigo-100 rounded-full blur-3xl opacity-50 animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-purple-100 rounded-full blur-3xl opacity-30 animate-pulse delay-500"></div>
         </>
       )}
       
-      <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left column - Content */}
-          <div className="space-y-8">
-            <div className="space-y-6">
+      <div className="container mx-auto px-4 py-24 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left column - Enhanced Content */}
+          <div className="space-y-10">
+            <div className="space-y-8">
               {badge && (
-                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full">
-                  {badge.icon || defaultIcon}
-                  <span className="font-semibold">{badge.text}</span>
+                <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 text-blue-600 px-6 py-3 rounded-full border border-blue-200 backdrop-blur-sm shadow-lg">
+                  <div className="relative">
+                    {badge.icon || defaultIcon}
+                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full animate-ping"></div>
+                  </div>
+                  <span className="font-bold text-lg">{badge.text}</span>
                 </div>
               )}
               
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+              <h1 className="text-5xl md:text-7xl font-black leading-[0.9] bg-gradient-to-r from-gray-900 via-blue-700 to-indigo-700 bg-clip-text text-transparent">
                 {title}
                 {titleAccent && (
-                  <span className="text-primary block md:inline md:ml-3">{titleAccent}</span>
+                  <span className="text-blue-600 block mt-2">{titleAccent}</span>
                 )}
               </h1>
               
-              <p className="text-xl leading-relaxed opacity-80">
+              <p className="text-2xl leading-relaxed text-gray-700 font-medium">
                 {description}
               </p>
             </div>
 
-            {/* Key features */}
+            {/* Enhanced Key features */}
             {features && features.length > 0 && (
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-primary">Key Features:</h3>
-                <div className="grid grid-cols-1 gap-3">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-black text-gray-800">Key Features:</h3>
+                <div className="grid grid-cols-1 gap-4">
                   {features.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <div className={`w-2 h-2 bg-${feature.color} rounded-full`}></div>
-                      <span className="text-sm font-medium">{feature.text}</span>
+                    <div key={index} className="flex items-center gap-4 p-4 rounded-xl bg-white/70 border border-blue-200 shadow-sm hover:shadow-lg transition-all">
+                      <div className="text-2xl">{feature.icon}</div>
+                      <span className="text-lg font-bold text-gray-800">{feature.text}</span>
                     </div>
                   ))}
                 </div>
               </div>
             )}
 
-            {/* CTA buttons */}
+            {/* Enhanced CTA buttons */}
             {(primaryCta || secondaryCta) && (
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col lg:flex-row gap-6">
                 {primaryCta && (
-                  <Link href={primaryCta.href} className="btn btn-primary btn-lg">
-                    {primaryCta.text}
-                    {primaryCta.icon && (
-                      <span className="ml-2">{primaryCta.icon}</span>
-                    )}
+                  <Link href={primaryCta.href} className="group btn btn-primary btn-lg text-xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-2 border-blue-600">
+                    <span className="flex items-center gap-3">
+                      {primaryCta.text}
+                      {primaryCta.icon && (
+                        <span className="group-hover:translate-x-1 transition-transform">{primaryCta.icon}</span>
+                      )}
+                    </span>
                   </Link>
                 )}
                 {secondaryCta && (
-                  <Link href={secondaryCta.href} className="btn btn-outline btn-lg">
+                  <Link href={secondaryCta.href} className="btn btn-outline btn-lg text-xl px-12 py-6 font-bold border-2 border-gray-600 text-gray-700 hover:bg-gray-700 hover:text-white transition-all shadow-xl">
                     {secondaryCta.text}
                   </Link>
                 )}
@@ -138,53 +151,57 @@ export default function PageHero({
             )}
           </div>
 
-          {/* Right column - Visual */}
+          {/* Right column - Enhanced Visual */}
           <div className="relative">
             <div className="relative z-10">
-              {/* Main illustration card */}
-              <div className="card bg-base-100 border border-base-300 shadow-2xl">
-                <div className="card-body p-8">
-                  <div className="text-center space-y-6">
-                    <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center mx-auto">
+              {/* Enhanced Main illustration card */}
+              <div className="bg-white/80 backdrop-blur-md border-2 border-blue-200 shadow-2xl rounded-3xl overflow-hidden">
+                <div className="p-10">
+                  <div className="text-center space-y-8">
+                    <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl flex items-center justify-center mx-auto shadow-lg border border-blue-200">
                       {visual.icon}
                     </div>
                     
                     <div>
-                      <h3 className="text-xl font-bold mb-2">{visual.title}</h3>
-                      <p className="text-sm opacity-70">{visual.description}</p>
+                      <h3 className="text-3xl font-black mb-4 text-gray-800">{visual.title}</h3>
+                      <p className="text-lg text-gray-600 font-medium">{visual.description}</p>
                     </div>
                     
-                    {/* Stats */}
+                    {/* Enhanced Stats */}
                     {visual.stats && visual.stats.length > 0 && (
-                      <div className="grid grid-cols-3 gap-4 pt-4 border-t border-base-300">
+                      <div className="grid grid-cols-3 gap-6 pt-8 border-t-2 border-blue-100">
                         {visual.stats.map((stat, index) => (
                           <div key={index} className="text-center">
-                            <div className={`text-2xl font-bold text-${stat.color}`}>{stat.value}</div>
-                            <div className="text-xs opacity-60">{stat.label}</div>
+                            <div className={`text-3xl font-black text-blue-600 mb-2`}>{stat.value}</div>
+                            <div className="text-sm font-bold text-gray-600 uppercase tracking-wide">{stat.label}</div>
                           </div>
                         ))}
                       </div>
                     )}
                   </div>
                 </div>
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-blue-50/20 pointer-events-none rounded-3xl"></div>
               </div>
               
-              {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-12 h-12 bg-success/20 rounded-full flex items-center justify-center">
-                <svg className="w-6 h-6 text-success" fill="currentColor" viewBox="0 0 20 20">
+              {/* Enhanced Floating elements */}
+              <div className="absolute -top-6 -right-6 w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center shadow-lg border border-emerald-200">
+                <svg className="w-8 h-8 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
               </div>
               
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-warning/20 rounded-full flex items-center justify-center">
-                <svg className="w-8 h-8 text-warning" fill="currentColor" viewBox="0 0 20 20">
+              <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-orange-100 rounded-2xl flex items-center justify-center shadow-lg border border-orange-200">
+                <svg className="w-10 h-10 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
             </div>
             
-            {/* Background decoration */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl transform rotate-3 scale-105 -z-10"></div>
+            {/* Enhanced Background decoration */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-indigo-50/30 rounded-3xl transform rotate-2 scale-105 -z-10 border border-blue-100"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-50/20 to-pink-50/20 rounded-3xl transform -rotate-1 scale-110 -z-20"></div>
           </div>
         </div>
       </div>

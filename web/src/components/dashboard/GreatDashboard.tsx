@@ -108,7 +108,7 @@ export default function GreatDashboard({ client, dashboardData }: GreatDashboard
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
                       <div className="text-center bg-white rounded p-2">
                         <div className="font-medium text-blue-900">CBP Filing</div>
-                        <div className="text-blue-700 text-xs">15-30 days</div>
+                        <div className="text-blue-700 text-xs">Timeline varies</div>
                         <div className="text-xs text-gray-500">
                           {dashboardData.cbpFiling?.status === 'filed' ? '✅ Filed' : 
                            dashboardData.cbpFiling?.status === 'in_progress' ? '🔄 In Progress' : '📋 Starting Soon'}

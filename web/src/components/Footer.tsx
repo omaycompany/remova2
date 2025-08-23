@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 export default function Footer() {
   const pathname = usePathname();
   // Hide footer on members dashboard routes 
-  if (pathname && pathname.startsWith('/members')) return null;
+  if (pathname && pathname.startsWith('/members/')) return null;
   return (
     <footer className="bg-base-200 text-base-content border-t border-base-300" role="contentinfo">
       <div className="container mx-auto px-4">
@@ -39,10 +39,10 @@ export default function Footer() {
           </nav>
           <nav>
         <h6 className="footer-title">Service Tiers</h6>
-        <Link href="/become-member" className="link link-hover">Free Membership</Link>
-        <Link href="/membership" className="link link-hover">Stealth Membership ($2,999/year)</Link>
-        <Link href="/membership" className="link link-hover">Vanish Membership ($5,999/year)</Link>
-        <Link href="/membership" className="link link-hover">Fortress Membership (Custom)</Link>
+        <Link href="/become-member" className="link link-hover">Join Community (Free)</Link>
+        <Link href="/membership" className="link link-hover">Stealth Membership</Link>
+        <Link href="/membership" className="link link-hover">Vanish Membership</Link>
+        <Link href="/membership" className="link link-hover">Shield Membership</Link>
         <Link href="/membership" className="link link-hover">All Membership Details</Link>
           </nav>
           <nav>
@@ -63,7 +63,7 @@ export default function Footer() {
           <p className="text-sm">Dover, DE 19904</p>
           <p className="text-sm">hello@remova.org</p>
         </div>
-        <Link href="/contact" className="btn btn-primary mt-2">Contact / Intake</Link>
+        <Link href="/become-member" className="btn btn-primary mt-2">🛡️ Get Protection</Link>
           </div>
         </div>
       </div>

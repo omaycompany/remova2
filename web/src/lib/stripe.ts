@@ -12,33 +12,38 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 export const STRIPE_PRICES = {
   stealth_annual: process.env.STRIPE_PRICE_STEALTH_ANNUAL || 'price_stealth_annual_placeholder',
   vanish_annual: process.env.STRIPE_PRICE_VANISH_ANNUAL || 'price_vanish_annual_placeholder',
+  shield_annual: process.env.STRIPE_PRICE_SHIELD_ANNUAL || 'price_shield_annual_placeholder',
 } as const;
 
 // Map Stripe Price IDs to plan tiers
-export function getPlanFromPriceId(priceId: string): 'stealth' | 'vanish' | null {
+export function getPlanFromPriceId(priceId: string): 'stealth' | 'vanish' | 'shield' | null {
   switch (priceId) {
     case STRIPE_PRICES.stealth_annual:
       return 'stealth';
     case STRIPE_PRICES.vanish_annual:
       return 'vanish';
+    case STRIPE_PRICES.shield_annual:
+      return 'shield';
     default:
       return null;
   }
 }
 
 // Get price ID from plan tier
-export function getPriceIdFromPlan(plan: 'stealth' | 'vanish'): string {
+export function getPriceIdFromPlan(plan: 'stealth' | 'vanish' | 'shield'): string {
   switch (plan) {
     case 'stealth':
       return STRIPE_PRICES.stealth_annual;
     case 'vanish':
       return STRIPE_PRICES.vanish_annual;
+    case 'shield':
+      return STRIPE_PRICES.shield_annual;
   }
 }
 
 // Create checkout session
 export async function createCheckoutSession(
-  plan: 'stealth' | 'vanish',
+  plan: 'stealth' | 'vanish' | 'shield',
   baseUrl: string
 ): Promise<Stripe.Checkout.Session> {
   const priceId = getPriceIdFromPlan(plan);

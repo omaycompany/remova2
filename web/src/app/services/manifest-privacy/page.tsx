@@ -48,7 +48,7 @@ export default function ManifestPrivacy() {
             <h3 className="card-title justify-center">Included in Membership</h3>
             <p className="opacity-80 max-w-xl mx-auto">
               Manifest privacy filing and renewal management is included in all paid membership tiers: 
-              Stealth, Vanish, and Fortress.
+              Stealth, Vanish, and Shield.
             </p>
             <div className="card-actions justify-center mt-4">
               <a href="/membership" className="btn btn-primary">See Membership Plans</a>

@@ -6,21 +6,21 @@ const features = [
     subtitle: "Proactive Protection",
     desc: "CBP manifest confidentiality filing, multi-entity coverage, and renewal management. Essential protection for any importer or exporter.",
     href: "/pricing",
-    price: "$2,999/year"
+    price: "$3,540/year"
   },
   {
     title: "Vanish Plan", 
     subtitle: "Comprehensive Removal",
     desc: "Historical data takedown campaigns across 40+ platforms including ImportGenius, Panjiva, and Datamyne. Our flagship offering.",
     href: "/pricing",
-    price: "$5,999/year"
+    price: "$7,140/year"
   },
   {
-    title: "Fortress Plan",
-    subtitle: "Strategic Obfuscation", 
-    desc: "Advanced consulting, dedicated privacy agents, and premium enterprise-level supply chain secrecy solutions.",
+    title: "Shield Membership",
+    subtitle: "Ultimate Protection", 
+    desc: "Everything in Vanish plus legal coverage up to $10,000/year, priority SLA, and custom partner engagement programs.",
     href: "/pricing",
-    price: "Custom Quote"
+    price: "$15,000/year"
   },
 ];
 

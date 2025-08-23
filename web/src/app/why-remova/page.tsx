@@ -37,7 +37,7 @@ export default function WhyRemova() {
             </div>
             <div className="mt-10">
               <Link href="/become-member" className="btn btn-primary btn-lg text-lg px-8">
-                Close Your Blind Spot - Start Free
+                Request Your Free Audit Now
               </Link>
             </div>
           </div>
@@ -193,7 +193,7 @@ export default function WhyRemova() {
                 <div className="card-body text-center">
                   <div className="text-4xl mb-4">⚡</div>
                   <h4 className="font-bold text-lg mb-2">Proven Results</h4>
-                  <p className="text-sm">95% success rate protecting businesses from competitor intelligence</p>
+                  <p className="text-sm">Proven performance protecting businesses from competitor intelligence</p>
                 </div>
               </div>
             </div>
@@ -213,7 +213,7 @@ export default function WhyRemova() {
             </p>
             <div className="space-y-4">
               <Link href="/become-member" className="btn btn-primary btn-lg text-lg px-8 py-4">
-                Start Your Free Exposure Assessment
+                Request Your Free Audit Now
               </Link>
               <div className="text-sm opacity-70">
                 ✓ No credit card required • ✓ See your current exposure • ✓ Get protection recommendations

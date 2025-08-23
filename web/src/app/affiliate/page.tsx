@@ -101,7 +101,7 @@ export default function Affiliate() {
           <div>
             <h3 className="font-bold">High-Value Opportunity</h3>
             <div className="text-sm">
-              Our annual membership prices range from $2,999 to $5,999+, meaning significant commission potential for successful referrals.
+              Our annual membership prices range from $3,540 to $15,000+, meaning significant commission potential for successful referrals.
             </div>
           </div>
         </div>
@@ -140,8 +140,8 @@ export default function Affiliate() {
                 </div>
               </div>
               <div className="mt-4 text-sm opacity-80">
-                <p>Example: A $5,999 Vanish Membership referral earns you $1,800 in year one, 
-                plus $600 annually for each renewal year.</p>
+                <p>Example: A $7,140 Vanish Membership referral earns you $2,142 in year one, 
+                plus $714 annually for each renewal year. A $15,000 Shield referral earns $4,500 initially plus $1,500 on renewals.</p>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import { stripe } from '@/lib/stripe';
 import { z } from 'zod';
 
 const paymentIntentSchema = z.object({
-  plan: z.enum(['stealth', 'vanish']),
+  plan: z.enum(['stealth', 'vanish', 'shield']),
   email: z.string().email(),
   companyName: z.string().min(1),
 });
@@ -15,8 +15,9 @@ export async function POST(request: NextRequest) {
 
     // Define pricing (in cents)
     const pricing = {
-      stealth: 299900, // $2,999.00
-      vanish: 599900,  // $5,999.00
+      stealth: 354000, // $3,540.00
+      vanish: 714000,  // $7,140.00
+      shield: 1500000, // $15,000.00
     };
 
     const amount = pricing[plan];
@@ -31,7 +32,7 @@ export async function POST(request: NextRequest) {
         companyName,
       },
       receipt_email: email,
-      description: `${plan === 'stealth' ? 'Stealth' : 'Vanish'} Membership - ${companyName}`,
+      description: `${plan === 'stealth' ? 'Stealth' : plan === 'vanish' ? 'Vanish' : 'Shield'} Membership - ${companyName}`,
       automatic_payment_methods: {
         enabled: true,
       },

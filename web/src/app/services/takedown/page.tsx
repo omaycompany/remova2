@@ -88,7 +88,7 @@ export default function Takedown() {
           <div className="card-body text-center">
             <h3 className="card-title justify-center">Included in Membership</h3>
             <p className="opacity-80 max-w-xl mx-auto">
-              Takedown operations and data removal services are included in Vanish and Fortress 
+              Takedown operations and data removal services are included in Vanish and Shield 
               membership tiers, with comprehensive platform coverage.
             </p>
             <div className="card-actions justify-center mt-4">

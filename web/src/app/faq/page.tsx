@@ -59,7 +59,7 @@ export default function FAQ() {
       questions: [
         {
           question: "What's included in each membership tier?",
-          answer: "Free Membership includes exposure assessment and basic guides. Stealth Membership ($2,999/year) includes CBP manifest privacy filings and renewal management. Vanish Membership ($5,999/year) adds comprehensive data removal across 40+ platforms. Fortress Membership includes advanced consulting and dedicated support."
+          answer: "Free Membership includes exposure assessment and basic guides. Stealth Membership ($3,540/year) includes government filings and continuous monitoring. Vanish Membership ($7,140/year) adds historical data removal across 40+ platforms plus dedicated account management. Shield Membership ($15,000/year) includes legal coverage up to $10,000/year and priority SLA. All paid plans include the Remova-Verified Partner badge and are annual contracts billed upfront."
         },
         {
           question: "How long does it take to see results?",
@@ -67,7 +67,7 @@ export default function FAQ() {
         },
         {
           question: "Do you guarantee results?",
-          answer: "We have a 95% success rate for data removals, but we cannot guarantee results as each platform has its own policies. We provide full transparency about our processes and will work with you if initial attempts are unsuccessful."
+          answer: "We cannot guarantee results as each platform has its own policies. We provide full transparency about our processes and will work with you if initial attempts are unsuccessful."
         }
       ]
     },

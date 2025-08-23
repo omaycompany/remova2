@@ -4,7 +4,7 @@ export interface Client {
   id: string;
   email: string;
   org_name: string | null;
-  plan_tier: 'stealth' | 'vanish';
+  plan_tier: 'stealth' | 'vanish' | 'shield';
   stripe_customer_id: string | null;
   stripe_subscription_id: string | null;
   created_at: Date;
@@ -79,13 +79,13 @@ export interface AuthenticatedClient {
   id: string;
   email: string;
   org_name: string | null;
-  plan_tier: 'stealth' | 'vanish';
+  plan_tier: 'stealth' | 'vanish' | 'shield';
   created_at: Date;
 }
 
 // API types
 export interface CheckoutSessionRequest {
-  plan: 'stealth' | 'vanish';
+  plan: 'stealth' | 'vanish' | 'shield';
 }
 
 export interface StripeWebhookEvent {

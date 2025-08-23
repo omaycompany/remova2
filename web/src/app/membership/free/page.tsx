@@ -84,7 +84,7 @@ export default function FreeMembership() {
               <ul className="list-disc list-inside">
                 <li>Stealth: CBP filing + renewals</li>
                 <li>Vanish: Legacy takedowns (40+ platforms)</li>
-                <li>Fortress: Strategy + dedicated privacy agent</li>
+                <li>Shield: Legal coverage + priority SLA</li>
               </ul>
             </div>
           </div>

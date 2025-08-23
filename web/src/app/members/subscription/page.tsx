@@ -44,9 +44,9 @@ export default async function SubscriptionPage() {
               </div>
               <div className="text-sm text-gray-600 mt-2">
                 {client.plan_tier === 'free' && 'Upgrade to unlock full privacy protection features'}
-                {client.plan_tier === 'stealth' && '$2,999 per year • CBP Filing + Data Removals'}
-                {client.plan_tier === 'vanish' && '$5,999 per year • Full Protection + Premium Features'}
-                {client.plan_tier === 'fortress' && 'Custom Enterprise Plan • Contact for pricing'}
+                {client.plan_tier === 'stealth' && '$3,540 per year • Pillars 1 + 3 (gov filings + monitoring)'}
+                {client.plan_tier === 'vanish' && '$7,140 per year • Complete 3-pillar protection + account mgmt'}
+                {client.plan_tier === 'shield' && '$15,000 per year • Everything + legal coverage + priority SLA'}
               </div>
             </div>
             
@@ -101,7 +101,7 @@ export default async function SubscriptionPage() {
                   <tr className="border-b border-gray-100">
                     <td className="py-3 font-medium">#INV-2024-001</td>
                     <td className="py-3 text-gray-600">Dec 15, 2024</td>
-                    <td className="py-3 font-medium">${client.plan_tier === 'stealth' ? '2,999' : '5,999'}</td>
+                    <td className="py-3 font-medium">${client.plan_tier === 'stealth' ? '3,540' : client.plan_tier === 'vanish' ? '7,140' : '15,000'}</td>
                     <td className="py-3">
                       <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">Paid</span>
                     </td>
@@ -112,7 +112,7 @@ export default async function SubscriptionPage() {
                   <tr className="border-b border-gray-100">
                     <td className="py-3 font-medium">#INV-2023-012</td>
                     <td className="py-3 text-gray-600">Dec 15, 2023</td>
-                    <td className="py-3 font-medium">${client.plan_tier === 'stealth' ? '2,999' : '5,999'}</td>
+                    <td className="py-3 font-medium">${client.plan_tier === 'stealth' ? '3,540' : client.plan_tier === 'vanish' ? '7,140' : '15,000'}</td>
                     <td className="py-3">
                       <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">Paid</span>
                     </td>

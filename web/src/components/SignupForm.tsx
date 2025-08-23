@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 interface SignupFormProps {
-  selectedPlan: 'free' | 'stealth' | 'vanish';
-  onPlanChange: (plan: 'free' | 'stealth' | 'vanish') => void;
+  selectedPlan: 'free' | 'stealth' | 'vanish' | 'shield';
+  onPlanChange: (plan: 'free' | 'stealth' | 'vanish' | 'shield') => void;
   clientSecret?: string;
 }
 
@@ -40,43 +40,67 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
     {
       id: 'stealth' as const,
       name: 'Stealth Membership',
-      price: 249,
-      yearlyPrice: 2999,
-      description: 'Essential business privacy protection',
+      price: 295,
+      yearlyPrice: 3540,
+      description: 'Essential business privacy protection - Pillars 1 + 3',
       category: 'business',
       popular: true,
       features: [
-        'CBP Privacy Filing (Future-Proof Shield)',
-        '40+ Platform Data Takedowns',
-        'Monthly Privacy Engine Scans',
-        'Business email support'
+        'Government filings (managed)',
+        'Trade partner privacy checks',
+        '24/7 automated scanning + manual checks',
+        'Real-time breach alerts (email/SMS/Slack/Teams)',
+        'Remova-Verified Partner badge'
       ],
       benefits: [
-        'Removing your business from trade databases',
-        'Preventing competitor intelligence gathering',
-        'Regulatory compliance assistance',
-        'Ongoing privacy monitoring'
+        'Stopping future data leaks at the source',
+        'Continuous monitoring and verification',
+        'Partner privacy enforcement guidance',
+        'Professional badge for trust signaling'
       ]
     },
     {
       id: 'vanish' as const,
       name: 'Vanish Membership',
-      price: 499,
-      yearlyPrice: 5999,
-      description: 'Maximum business privacy & priority support',
+      price: 595,
+      yearlyPrice: 7140,
+      description: 'Complete 3-pillar protection + historical cleanup',
       category: 'enterprise',
       popular: false,
       features: [
         'Everything in Stealth +',
-        'Weekly monitoring (4x faster)',
-        'Dedicated privacy agent',
-        'Partner & executive protection'
+        'Historical data takedowns (40+ platforms)',
+        'Custom removal requests',
+        'Dedicated account manager',
+        'Quarterly compliance audits'
       ],
       benefits: [
-        'Comprehensive supply chain privacy',
-        'Executive-level data protection',
-        'Priority response & remediation',
-        'Custom privacy consulting'
+        'Past, present, and future protection',
+        'Professional account management',
+        'Systematic historical cleanup',
+        'Quarterly strategic reviews'
+      ]
+    },
+    {
+      id: 'shield' as const,
+      name: 'Shield Membership',
+      price: 1250,
+      yearlyPrice: 15000,
+      description: 'Ultimate protection with legal coverage + priority SLA',
+      category: 'enterprise-plus',
+      popular: false,
+      features: [
+        'Everything in Vanish +',
+        'Legal protection up to $10,000/year',
+        'Priority SLA (<24h escalation)',
+        'Custom partner engagement programs',
+        'Pre-negotiated legal rates for overages'
+      ],
+      benefits: [
+        'Complete protection with legal muscle',
+        'Priority escalation and response',
+        'Custom enterprise solutions',
+        'Legal cost protection and management'
       ]
     }
   ];

@@ -101,7 +101,7 @@ export default function RootLayout({
         "url": `${baseUrl}/membership`,
         "offers": {
           "@type": "Offer",
-          "price": "2999",
+          "price": "3540",
           "priceCurrency": "USD",
           "billingIncrement": "Year"
         }
@@ -113,19 +113,21 @@ export default function RootLayout({
         "url": `${baseUrl}/membership`,
         "offers": {
           "@type": "Offer",
-          "price": "5999",
+          "price": "7140",
           "priceCurrency": "USD",
           "billingIncrement": "Year"
         }
       },
       {
         "@type": "Service",
-        "name": "Fortress Plan", 
-        "description": "Strategic obfuscation with advanced consulting and dedicated privacy agents",
+        "name": "Shield Membership", 
+        "description": "Ultimate protection with legal coverage, priority SLA, and custom partner engagement",
         "url": `${baseUrl}/membership`,
         "offers": {
           "@type": "Offer",
-          "priceSpecification": "Contact for custom quote"
+          "price": "15000",
+          "priceCurrency": "USD",
+          "billingIncrement": "Year"
         }
       }
     ]

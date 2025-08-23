@@ -265,7 +265,7 @@ export default function SolutionPage() {
                 Start Complete Protection Today
               </Link>
               <div className="text-sm opacity-70">
-                ✓ All three pillars included • ✓ No gaps in protection • ✓ Proven 95% success rate
+                ✓ All three pillars included • ✓ No gaps in protection
               </div>
             </div>
           </div>
