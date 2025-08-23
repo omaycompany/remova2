@@ -28,6 +28,7 @@ export default function StripeProvider({ children, clientSecret }: StripeProvide
     },
   } : {
     mode: 'setup' as const,
+    currency: 'usd',
     appearance: {
       theme: 'stripe' as const,
       variables: {
