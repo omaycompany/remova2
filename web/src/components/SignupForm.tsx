@@ -44,7 +44,7 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
       yearlyPrice: 3540,
       description: 'Essential business privacy protection - Pillars 1 + 3',
       category: 'business',
-      popular: true,
+      popular: false,
       features: [
         'Government filings (managed)',
         'Trade partner privacy checks',
@@ -66,7 +66,7 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
       yearlyPrice: 7140,
       description: 'Complete 3-pillar protection + historical cleanup',
       category: 'enterprise',
-      popular: false,
+      popular: true,
       features: [
         'Everything in Stealth +',
         'Historical data takedowns (40+ platforms)',
@@ -172,15 +172,33 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-8 relative">
+      {/* Progress Indicator - Top Right */}
+      <div className="absolute top-4 right-4 bg-white rounded-2xl shadow-lg p-4 border border-gray-200 z-10">
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold">1</div>
+            <span className="text-xs font-medium text-blue-600">Select Plan</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-xs font-bold">2</div>
+            <span className="text-xs font-medium text-gray-500">Enter Details</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-xs font-bold">3</div>
+            <span className="text-xs font-medium text-gray-500">Complete</span>
+          </div>
+        </div>
+      </div>
+      
       {/* Integrated Signup Form with Plan Selection */}
-      <div className="card bg-base-100 border-2 border-base-300 shadow-xl">
-        <div className="card-body p-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-4">
-              {selectedPlan === 'free' ? 'Join Our Community' : 'Secure Your Business'}
+      <div className="card bg-white border-4 border-blue-300 shadow-2xl rounded-3xl">
+        <div className="card-body p-12">
+          <div className="text-center mb-12">
+            <h2 className="text-5xl font-black mb-6 bg-gradient-to-r from-gray-900 via-blue-700 to-indigo-700 bg-clip-text text-transparent">
+              {selectedPlan === 'free' ? 'Join Our Privacy Community' : 'Secure Your Business Today'}
             </h2>
-            <p className="opacity-70 text-lg">
+            <p className="text-2xl font-bold text-gray-700 leading-relaxed mb-6">
               {selectedPlan === 'free' 
                 ? 'Get started with free privacy tools and educational resources'
                 : selectedPlan === 'stealth'
@@ -188,27 +206,30 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
                 : 'Maximum privacy protection with dedicated support and monitoring'
               }
             </p>
+            
+
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-10">
             {/* Step 1: Plan Selection */}
             <div className="space-y-6">
-              <div className="text-center">
-                <h3 className="font-bold text-xl mb-6 flex items-center justify-center gap-3">
-                  <span className="badge badge-primary badge-lg">1</span>
+                            <div className="text-center">
+                <h3 className="font-black text-3xl mb-8 flex items-center justify-center gap-4">
+                  <span className="badge badge-primary badge-xl text-xl p-4">1</span>
                   Choose Your Protection Level
                 </h3>
               </div>
-              
-              <div className="grid md:grid-cols-3 gap-4">
-                {plans.map((plan) => (
+
+              {/* Paid Plans Grid */}
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                {plans.filter(plan => plan.id !== 'free').map((plan) => (
                   <div
                     key={plan.id}
                     className={`relative card cursor-pointer transition-all duration-300 ${
                       selectedPlan === plan.id
-                        ? 'border-primary border-2 shadow-lg bg-primary/5'
-                        : 'border-base-300 border hover:shadow-md hover:border-primary/50'
-                    } ${plan.popular ? 'ring-2 ring-primary ring-opacity-30' : 'bg-base-100'}`}
+                        ? 'border-primary border-4 shadow-2xl bg-primary/10 scale-105'
+                        : 'border-base-300 border-2 hover:shadow-xl hover:border-primary/50 hover:scale-102'
+                    } ${plan.popular ? 'ring-4 ring-primary ring-opacity-50' : ''} bg-white rounded-2xl`}
                     onClick={() => onPlanChange(plan.id)}
                   >
                     {plan.popular && (
@@ -217,32 +238,32 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
                       </div>
                     )}
                     
-                    <div className="card-body p-5 text-center">
-                      <h4 className="text-lg font-bold mb-2">{plan.name}</h4>
-                      <div className="mb-3">
-                        <div className="text-2xl font-extrabold text-primary">
-                          ${plan.price}{plan.price > 0 && <span className="text-sm opacity-70">/mo</span>}
+                    <div className="card-body p-8 text-center">
+                      <h4 className="text-2xl font-black mb-4">{plan.name}</h4>
+                      <div className="mb-6">
+                        <div className="text-4xl font-black text-primary">
+                          ${plan.price}{plan.price > 0 && <span className="text-lg opacity-70">/mo</span>}
                         </div>
                         {plan.yearlyPrice && (
-                          <div className="text-xs opacity-70 font-medium">
+                          <div className="text-sm opacity-70 font-bold">
                             ${plan.yearlyPrice.toLocaleString()}/year
                           </div>
                         )}
                       </div>
-                      <p className="text-xs opacity-80 mb-3">{plan.description}</p>
+                      <p className="text-sm font-semibold opacity-80 mb-6">{plan.description}</p>
                       
                       {/* Condensed features */}
-                      <div className="text-left space-y-1 mb-4">
+                      <div className="text-left space-y-2 mb-6">
                         {plan.features.slice(0, 2).map((feature, index) => (
-                          <div key={index} className="flex items-start gap-1">
-                            <svg className="w-3 h-3 text-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <div key={index} className="flex items-start gap-2">
+                            <svg className="w-4 h-4 text-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
-                            <span className="text-xs leading-tight">{feature}</span>
+                            <span className="text-sm font-medium leading-tight">{feature}</span>
                           </div>
                         ))}
                         {plan.features.length > 2 && (
-                          <div className="text-xs opacity-60 font-medium">
+                          <div className="text-sm opacity-60 font-bold">
                             +{plan.features.length - 2} more features
                           </div>
                         )}
@@ -250,39 +271,65 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
                       
                       {/* Selection indicator */}
                       {selectedPlan === plan.id ? (
-                        <div className="btn btn-primary btn-xs btn-wide">Selected ✓</div>
+                        <div className="btn btn-primary btn-lg font-black">Selected ✓</div>
                       ) : (
-                        <div className="btn btn-outline btn-xs btn-wide">Select</div>
+                        <div className="btn btn-outline btn-lg font-black">Select</div>
                       )}
                     </div>
                   </div>
                 ))}
               </div>
+              
+              {/* Free Plan - Minimal One Line */}
+              <div className="text-center">
+                <div 
+                  className={`inline-flex items-center gap-3 px-4 py-2 rounded-full border border-gray-300 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors ${
+                    selectedPlan === 'free' ? 'ring-2 ring-blue-400 bg-blue-50' : ''
+                  }`}
+                  onClick={() => onPlanChange('free')}
+                >
+                  <span className="text-sm text-gray-600">Community Member (Free) - Basic resources</span>
+                  {selectedPlan === 'free' && <span className="text-blue-600 text-sm">✓</span>}
+                </div>
+              </div>
+            </div>
+            
+            {/* Continue Indicator */}
+            <div className="text-center my-8">
+              <div className="inline-flex items-center gap-3 bg-green-100 text-green-700 px-6 py-3 rounded-full border border-green-200">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span className="font-semibold">Great choice! Continue below to complete your signup</span>
+                <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </div>
             </div>
 
             {/* Divider */}
-            <div className="divider"></div>
+            <div className="divider my-12"></div>
 
             {/* Step 2 & 3: Company Info and Payment */}
-            <div className="grid lg:grid-cols-2 gap-8">
+            <div className="grid lg:grid-cols-2 gap-12">
               {/* Left Column - Account Information */}
-              <div className="space-y-6">
+              <div className="space-y-8">
                 <div>
-                  <h3 className="font-bold text-xl mb-4 flex items-center gap-3">
-                    <span className="badge badge-secondary badge-lg">2</span>
+                  <h3 className="font-black text-3xl mb-6 flex items-center gap-4">
+                    <span className="badge badge-secondary badge-xl text-xl p-4">2</span>
                     {selectedPlan === 'free' ? 'Personal Information' : 'Company Information'}
                   </h3>
                 </div>
                 
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text font-medium">
+                    <span className="label-text font-bold text-lg">
                       {selectedPlan === 'free' ? 'Your Name or Organization *' : 'Company Name *'}
                     </span>
                   </label>
                   <input
                     type="text"
-                    className="input input-bordered input-lg w-full"
+                    className="input input-bordered input-xl w-full text-lg p-6 rounded-2xl border-2"
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
                     required
@@ -292,13 +339,13 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
 
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text font-medium">
+                    <span className="label-text font-bold text-lg">
                       {selectedPlan === 'free' ? 'Email Address *' : 'Business Email *'}
                     </span>
                   </label>
                   <input
                     type="email"
-                    className="input input-bordered input-lg w-full"
+                    className="input input-bordered input-xl w-full text-lg p-6 rounded-2xl border-2"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -424,34 +471,34 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
             )}
 
             {/* Submit Section */}
-            <div className="text-center border-t border-base-300 pt-8">
+            <div className="text-center border-t-4 border-base-300 pt-12">
               <button
                 type="submit"
                 disabled={isLoading || (selectedPlan !== 'free' && !clientSecret)}
-                className={`btn btn-lg min-w-80 ${
+                className={`btn btn-xl min-w-96 text-2xl font-black py-6 px-12 rounded-2xl shadow-2xl transform hover:scale-105 transition-all ${
                   selectedPlan === 'free' ? 'btn-success' : 'btn-primary'
                 }`}
               >
                 {isLoading ? (
                   <>
-                    <span className="loading loading-spinner loading-sm"></span>
+                    <span className="loading loading-spinner loading-lg"></span>
                     Processing...
                   </>
                 ) : selectedPlan === 'free' ? (
-                  'Join the Community - Free'
+                  '🎉 Join the Community - Free'
                 ) : (
-                  `Complete Purchase - $${plans.find(p => p.id === selectedPlan)?.yearlyPrice?.toLocaleString()}/year`
+                  `🛡️ Complete Purchase - $${plans.find(p => p.id === selectedPlan)?.yearlyPrice?.toLocaleString()}/year`
                 )}
               </button>
               
-              <p className="text-xs opacity-70 mt-4 max-w-md mx-auto">
+              <p className="text-sm font-semibold opacity-70 mt-6 max-w-lg mx-auto">
                 By continuing, you agree to our{' '}
-                <a href="/terms" className="link">Terms of Service</a> and{' '}
-                <a href="/privacy" className="link">Privacy Policy</a>
+                <a href="/terms" className="link font-bold">Terms of Service</a> and{' '}
+                <a href="/privacy" className="link font-bold">Privacy Policy</a>
                 {selectedPlan === 'free' && (
                   <>
                     <br />
-                    <span className="text-success font-medium">✓ No credit card required • Always free</span>
+                    <span className="text-success font-bold text-lg mt-2 inline-block">✓ No credit card required • Always free</span>
                   </>
                 )}
               </p>
