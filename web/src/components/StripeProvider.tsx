@@ -12,8 +12,22 @@ interface StripeProviderProps {
 }
 
 export default function StripeProvider({ children, clientSecret }: StripeProviderProps) {
-  const options = {
+  const options = clientSecret ? {
     clientSecret,
+    appearance: {
+      theme: 'stripe' as const,
+      variables: {
+        colorPrimary: '#3b82f6',
+        colorBackground: '#ffffff',
+        colorText: '#1f2937',
+        colorDanger: '#ef4444',
+        fontFamily: 'ui-sans-serif, system-ui, sans-serif',
+        spacingUnit: '4px',
+        borderRadius: '8px',
+      },
+    },
+  } : {
+    mode: 'setup' as const,
     appearance: {
       theme: 'stripe' as const,
       variables: {
