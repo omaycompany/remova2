@@ -6,7 +6,13 @@
     "dev": "next dev -H 127.0.0.1 -p 6161",
     "build": "next build",
     "start": "NEXT_DISABLE_RESPONSE_CACHE=1 next start -H 0.0.0.0 -p $PORT",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-pdfs": "node scripts/generate-pdfs.js",
+    "generate-removal-guides": "node scripts/trade-removal-pdfs.js",
+    "generate-brand-guide": "node scripts/brand-identity-generator.js",
+    "generate-flagship-guide": "node scripts/flagship-guide-generator.js",
+    "preview-pdfs": "node scripts/preview-pdfs.js",
+    "serve-previews": "node scripts/serve-previews.js"
   },
   "engines": {
     "node": "^20 || ^22"
@@ -35,6 +41,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
     "postcss": "^8.5.6",
+    "puppeteer": "^22.15.0",
     "tailwindcss": "^4.1.11",
     "typescript": "^5"
   }

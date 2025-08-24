@@ -1,0 +1,163 @@
+# ImportGenius Removal Guide
+## Zoominfo Trade Data Division
+
+### Platform Overview
+ImportGenius is Zoominfo's trade intelligence platform that provides:
+- US import/export records
+- Supplier and customer identification
+- Competitive intelligence reports
+- Supply chain mapping
+- Market analysis tools
+
+### Data Sources
+ImportGenius aggregates data from:
+- US Customs and Border Protection (CBP)
+- Bills of lading
+- Shipping manifests
+- Port authorities
+- Partner databases
+
+### Business Impact of Exposure
+**Competitive Risks**:
+- Competitors can identify your suppliers and poach them
+- Your pricing strategies become visible through shipment values
+- Market timing advantages disappear when competitors track your activities
+- New product launches get spoiled by leaked supplier information
+
+### Removal Procedure
+
+#### Step 1: Data Discovery
+1. Visit **importgenius.com**
+2. Search for all company name variations:
+   - Full legal name
+   - DBA names
+   - Abbreviations
+   - Subsidiary names
+3. Document all findings with screenshots
+4. Note specific data types (shipments, suppliers, customers)
+
+#### Step 2: Prepare Documentation
+**Gather Required Information**:
+- Legal business name and EIN
+- All trade names and DBAs
+- Business registration documentation
+- List of specific data to be removed
+- Screenshots of current exposure
+
+#### Step 3: Submit Privacy Request
+**Contact Method**: Online privacy form or email
+**Website**: importgenius.com/privacy
+**Email**: privacy@zoominfo.com
+
+**Request Template**:
+```
+Subject: CCPA/GDPR Data Removal Request - [Company Name]
+
+Dear ImportGenius Privacy Team,
+
+Under the California Consumer Privacy Act (CCPA) and applicable data protection regulations, I request immediate removal of all data related to [Company Name] from your platform.
+
+Company Information:
+- Legal Name: [Full Company Name]
+- EIN: [Tax ID if applicable]
+- Trade Names: [List all DBAs]
+- Business Type: [Corporation/LLC/etc.]
+
+Data Removal Request:
+Please remove ALL data including:
+- Import/export records
+- Supplier relationships
+- Customer information  
+- Shipment details
+- Company profiles
+- Analytics and reports
+
+Legal Basis:
+This request is made under:
+- California Consumer Privacy Act (CCPA)
+- General Data Protection Regulation (GDPR) if applicable
+- Right to deletion/erasure
+
+Please confirm receipt within 5 business days and complete removal within 30 days. Provide evidence that data has been permanently deleted.
+
+Regards,
+[Name]
+[Title]
+[Company]
+[Contact Information]
+```
+
+#### Step 4: Follow-Up Protocol
+**Day 5**: Email confirmation of receipt
+**Day 15**: Status update request  
+**Day 30**: Verify completion and request proof
+**Day 45**: Escalate if not resolved
+
+#### Step 5: Verification Process
+1. Search platform again for your company
+2. Verify all profiles are removed
+3. Check that supplier/customer data is cleaned
+4. Test various search terms and name variations
+5. Screenshot clean results for records
+
+### Escalation Procedures
+If ImportGenius doesn't comply:
+
+**Level 1**: Zoominfo Corporate Privacy
+- Email: privacy@zoominfo.com
+- Phone: 1-866-904-9666
+
+**Level 2**: Legal Department
+- Email: legal@zoominfo.com
+- Reference: Data Subject Rights Request
+
+**Level 3**: Regulatory Complaints
+- California Attorney General (CCPA violations)
+- State data protection authorities
+
+### Platform-Specific Considerations
+
+**ImportGenius Features to Address**:
+- **Company profiles**: Full removal required
+- **Shipment tracking**: Historical data deletion
+- **Supplier networks**: Relationship mapping removal
+- **Analytics dashboards**: Exclusion from all reports
+- **API access**: Ensure data not available via API
+
+### Timeline Expectations
+- **Initial response**: 5-10 business days
+- **Data processing**: 15-30 business days  
+- **Full removal**: 30-45 business days
+- **Verification**: Additional 7-14 days
+
+### Success Metrics
+✅ Company search returns no results
+✅ Supplier/customer relationships are hidden
+✅ Historical import/export records removed
+✅ Company excluded from all analytics
+✅ API queries return no data
+
+### Ongoing Maintenance
+**Monthly Monitoring**:
+- Search for company reappearance
+- Check new data hasn't been added
+- Monitor for policy changes
+
+**Quarterly Review**:
+- Comprehensive platform audit
+- Update removal requests if needed
+- Document compliance status
+
+### Important Legal Notes
+- **Data retention**: ImportGenius may retain some data for legal compliance
+- **Third-party sharing**: Request disclosure of data sharing partners
+- **Reindexing**: New data may appear if business continues importing/exporting
+- **Backup systems**: Confirm deletion from all backup and archival systems
+
+### Documentation Requirements
+Keep detailed records of:
+- All correspondence with ImportGenius
+- Screenshots of data before and after removal
+- Confirmation emails and removal certificates
+- Timeline of all interactions
+- Any compliance issues or delays

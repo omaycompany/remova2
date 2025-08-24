@@ -1,0 +1,101 @@
+# Panjiva Removal Guide
+## S&P Global Trade Intelligence Platform
+
+### Overview
+Panjiva is the world's largest trade intelligence platform, owned by S&P Global. It contains detailed shipping records, supplier relationships, and trade data from over 190 countries. Companies use Panjiva to:
+- Find new suppliers and customers
+- Track competitor activities
+- Analyze market trends
+- Conduct due diligence
+
+### Why Remove Your Data
+**Competitive Intelligence Risk**: Your supplier relationships, shipping volumes, and business partnerships are visible to competitors who can:
+- Poach your key suppliers
+- Undercut your pricing
+- Copy your supply chain strategies
+- Time their market entries to compete with you
+
+### Removal Process
+
+#### Step 1: Identify Your Company Data
+1. Go to **panjiva.com**
+2. Search for your company name and variations
+3. Note all profiles and data entries
+4. Screenshot everything for evidence
+
+#### Step 2: Prepare Your Request
+**Required Information**:
+- Full legal company name
+- All DBA names and variations
+- Business registration number
+- Contact email for correspondence
+- Specific data you want removed
+
+#### Step 3: Submit Removal Request
+**Email Address**: privacy@panjiva.com
+**Subject**: "Data Removal Request - [Your Company Name]"
+
+**Template Email**:
+```
+Dear Panjiva Privacy Team,
+
+I am writing to request the removal of all data related to [Company Name] from your platform under applicable privacy regulations.
+
+Company Details:
+- Legal Name: [Full Legal Name]
+- DBA Names: [List all variations]
+- Registration: [Business registration number]
+- Contact: [Your email]
+
+Please remove all:
+- Company profiles
+- Shipping records
+- Supplier/customer relationships
+- Trade data and analytics
+
+I have attached screenshots showing the current data exposure.
+
+Please confirm removal within 30 days and provide evidence that data has been deleted.
+
+Best regards,
+[Your Name]
+[Title]
+[Company]
+```
+
+#### Step 4: Follow Up
+- **7 days**: Check if they acknowledged your request
+- **14 days**: Follow up if no response
+- **30 days**: Escalate to S&P Global privacy team if not resolved
+
+#### Step 5: Verify Removal
+1. Search for your company again
+2. Check that all data is removed
+3. Document the clean results
+
+### Escalation Contacts
+If Panjiva doesn't respond:
+- **S&P Global Privacy Office**: privacy@spglobal.com
+- **Data Protection Officer**: dpo@spglobal.com
+
+### Expected Timeline
+- **Response**: 5-10 business days
+- **Removal**: 15-30 business days
+- **Full deletion**: 30-45 business days
+
+### Important Notes
+- **Not retroactive**: Only stops new data collection
+- **Re-indexing risk**: May need periodic monitoring
+- **Business impact**: Consider which data relationships are critical before removal
+- **Documentation**: Keep all correspondence for compliance records
+
+### Success Indicators
+✅ Company name returns no results
+✅ Supplier relationships are hidden
+✅ Historical shipping data is removed
+✅ Profile pages are deleted or privatized
+
+### Maintenance
+- **Quarterly checks**: Verify data hasn't reappeared
+- **New entity monitoring**: Check for subsidiaries or related entities
+- **Policy updates**: Stay informed about platform changes

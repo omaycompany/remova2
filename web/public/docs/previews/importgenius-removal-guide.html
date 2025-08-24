@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImportGenius Removal Guide - Remova</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ef4444 0%, #bc1111 100%);
+            color: white;
+            padding: 40px 40px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .brand-name {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+        
+        .doc-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .doc-title {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            line-height: 1.2;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .doc-subtitle {
+            font-size: 18px;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .content {
+            padding: 40px;
+            max-width: none;
+        }
+        
+        .content h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #ef4444;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ef4444;
+        }
+        
+        .content h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 30px 0 15px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .content h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: #ef4444;
+            border-radius: 2px;
+        }
+        
+        .content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 25px 0 12px 0;
+        }
+        
+        .content p {
+            margin-bottom: 16px;
+            line-height: 1.7;
+            color: #374151;
+        }
+        
+        .content ul, .content ol {
+            margin: 16px 0 16px 20px;
+        }
+        
+        .content li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+            color: #374151;
+        }
+        
+        .content strong {
+            font-weight: 700;
+            color: #1f2937;
+        }
+        
+        .content em {
+            font-style: italic;
+            color: #ef4444;
+            font-weight: 500;
+        }
+        
+        .content blockquote {
+            background: #f8fafc;
+            border-left: 4px solid #ef4444;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+        
+        .content blockquote::before {
+            content: '"';
+            font-size: 48px;
+            color: #ef4444;
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-weight: 900;
+            opacity: 0.3;
+        }
+        
+        .content code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            color: #ef4444;
+            font-weight: 500;
+        }
+        
+        .step-box {
+            background: linear-gradient(135deg, #ef444415 0%, #ef444405 100%);
+            border: 2px solid #ef444440;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #ef4444;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 14px;
+        }
+        
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(90deg, #ef4444 0%, #d62b2b 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .page-number {
+            font-weight: 700;
+        }
+        
+        @media print {
+            .page {
+                box-shadow: none;
+                margin: 0;
+            }
+            .footer {
+                position: fixed;
+                bottom: 0;
+            }
+        }
+        
+        @page {
+            margin: 0;
+            size: A4;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">R</div>
+                <div class="brand-name">REMOVA</div>
+            </div>
+            <div class="doc-icon">🧹</div>
+            <h1 class="doc-title">ImportGenius Removal Guide</h1>
+            <p class="doc-subtitle">Zoominfo Trade Data Division</p>
+            <div class="category-badge">Platform Removal Guides</div>
+        </div>
+        
+        <div class="content">
+            <p><h1>ImportGenius Removal Guide</h1><br><h2>Zoominfo Trade Data Division</h2></p><p><h3>Platform Overview</h3><br>ImportGenius is Zoominfo's trade intelligence platform that provides:<br>- US import/export records<br>- Supplier and customer identification<br>- Competitive intelligence reports<br>- Supply chain mapping<br>- Market analysis tools</p><p><h3>Data Sources</h3><br>ImportGenius aggregates data from:<br>- US Customs and Border Protection (CBP)<br>- Bills of lading<br>- Shipping manifests<br>- Port authorities<br>- Partner databases</p><p><h3>Business Impact of Exposure</h3><br><strong>Competitive Risks</strong>:<br>- Competitors can identify your suppliers and poach them<br>- Your pricing strategies become visible through shipment values<br>- Market timing advantages disappear when competitors track your activities<br>- New product launches get spoiled by leaked supplier information</p><p><h3>Removal Procedure</h3></p><p>#### Step 1: Data Discovery<br><div class="step-box"><div class="step-number">1</div><p>Visit <strong>importgenius.com</strong></p></div><br><div class="step-box"><div class="step-number">2</div><p>Search for all company name variations:</p></div><br>   - Full legal name<br>   - DBA names<br>   - Abbreviations<br>   - Subsidiary names<br><div class="step-box"><div class="step-number">3</div><p>Document all findings with screenshots</p></div><br><div class="step-box"><div class="step-number">4</div><p>Note specific data types (shipments, suppliers, customers)</p></div></p><p>#### Step 2: Prepare Documentation<br><strong>Gather Required Information</strong>:<br>- Legal business name and EIN<br>- All trade names and DBAs<br>- Business registration documentation<br>- List of specific data to be removed<br>- Screenshots of current exposure</p><p>#### Step 3: Submit Privacy Request<br><strong>Contact Method</strong>: Online privacy form or email<br><strong>Website</strong>: importgenius.com/privacy<br><strong>Email</strong>: privacy@zoominfo.com</p><p><strong>Request Template</strong>:<br>```<br>Subject: CCPA/GDPR Data Removal Request - [Company Name]</p><p>Dear ImportGenius Privacy Team,</p><p>Under the California Consumer Privacy Act (CCPA) and applicable data protection regulations, I request immediate removal of all data related to [Company Name] from your platform.</p><p>Company Information:<br>- Legal Name: [Full Company Name]<br>- EIN: [Tax ID if applicable]<br>- Trade Names: [List all DBAs]<br>- Business Type: [Corporation/LLC/etc.]</p><p>Data Removal Request:<br>Please remove ALL data including:<br>- Import/export records<br>- Supplier relationships<br>- Customer information  <br>- Shipment details<br>- Company profiles<br>- Analytics and reports</p><p>Legal Basis:<br>This request is made under:<br>- California Consumer Privacy Act (CCPA)<br>- General Data Protection Regulation (GDPR) if applicable<br>- Right to deletion/erasure</p><p>Please confirm receipt within 5 business days and complete removal within 30 days. Provide evidence that data has been permanently deleted.</p><p>Regards,<br>[Name]<br>[Title]<br>[Company]<br>[Contact Information]<br>```</p><p>#### Step 4: Follow-Up Protocol<br><strong>Day 5</strong>: Email confirmation of receipt<br><strong>Day 15</strong>: Status update request  <br><strong>Day 30</strong>: Verify completion and request proof<br><strong>Day 45</strong>: Escalate if not resolved</p><p>#### Step 5: Verification Process<br><div class="step-box"><div class="step-number">1</div><p>Search platform again for your company</p></div><br><div class="step-box"><div class="step-number">2</div><p>Verify all profiles are removed</p></div><br><div class="step-box"><div class="step-number">3</div><p>Check that supplier/customer data is cleaned</p></div><br><div class="step-box"><div class="step-number">4</div><p>Test various search terms and name variations</p></div><br><div class="step-box"><div class="step-number">5</div><p>Screenshot clean results for records</p></div></p><p><h3>Escalation Procedures</h3><br>If ImportGenius doesn't comply:</p><p><strong>Level 1</strong>: Zoominfo Corporate Privacy<br>- Email: privacy@zoominfo.com<br>- Phone: 1-866-904-9666</p><p><strong>Level 2</strong>: Legal Department<br>- Email: legal@zoominfo.com<br>- Reference: Data Subject Rights Request</p><p><strong>Level 3</strong>: Regulatory Complaints<br>- California Attorney General (CCPA violations)<br>- State data protection authorities</p><p><h3>Platform-Specific Considerations</h3></p><p><strong>ImportGenius Features to Address</strong>:<br>- <strong>Company profiles</strong>: Full removal required<br>- <strong>Shipment tracking</strong>: Historical data deletion<br>- <strong>Supplier networks</strong>: Relationship mapping removal<br>- <strong>Analytics dashboards</strong>: Exclusion from all reports<br>- <strong>API access</strong>: Ensure data not available via API</p><p><h3>Timeline Expectations</h3><br>- <strong>Initial response</strong>: 5-10 business days<br>- <strong>Data processing</strong>: 15-30 business days  <br>- <strong>Full removal</strong>: 30-45 business days<br>- <strong>Verification</strong>: Additional 7-14 days</p><p><h3>Success Metrics</h3><br>✅ Company search returns no results<br>✅ Supplier/customer relationships are hidden<br>✅ Historical import/export records removed<br>✅ Company excluded from all analytics<br>✅ API queries return no data</p><p><h3>Ongoing Maintenance</h3><br><strong>Monthly Monitoring</strong>:<br>- Search for company reappearance<br>- Check new data hasn't been added<br>- Monitor for policy changes</p><p><strong>Quarterly Review</strong>:<br>- Comprehensive platform audit<br>- Update removal requests if needed<br>- Document compliance status</p><p><h3>Important Legal Notes</h3><br>- <strong>Data retention</strong>: ImportGenius may retain some data for legal compliance<br>- <strong>Third-party sharing</strong>: Request disclosure of data sharing partners<br>- <strong>Reindexing</strong>: New data may appear if business continues importing/exporting<br>- <strong>Backup systems</strong>: Confirm deletion from all backup and archival systems</p><p><h3>Documentation Requirements</h3><br>Keep detailed records of:<br>- All correspondence with ImportGenius<br>- Screenshots of data before and after removal<br>- Confirmation emails and removal certificates<br>- Timeline of all interactions<br>- Any compliance issues or delays<br></p>
+        </div>
+        
+        <div class="footer">
+            <div>© 2025 Remova - Professional Privacy Protection</div>
+            <div class="page-number">remova.org</div>
+        </div>
+    </div>
+</body>
+</html>
+  

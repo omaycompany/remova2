@@ -1,97 +1,494 @@
-import PageHero from "@/components/PageHero";
+import Link from "next/link";
 
 export const metadata = {
-  title: "Docs & Guides",
-  description: "Detailed docs on manifest privacy, takedowns, leakage tracking, and secure trade practices.",
+  title: "Privacy Intelligence Hub - Resources & Guides",
+  description: "Your comprehensive library of commercial privacy guides, removal tutorials, and intelligence protection resources. Transform your data security with professional documentation.",
 };
 
-export default function Resources() {
-  const docs = [
-    { title: "Manifest privacy primer (19 CFR 103.31)", href: "/docs/manifest-privacy-primer.pdf", downloadable: true },
-    { title: "Variant naming guide (DBA/legal/abbrev)", href: "/docs/variant-naming-guide.pdf", downloadable: true },
-    { title: "Coverage windows explained", href: "/docs/coverage-windows-explained.pdf", downloadable: true },
-    { title: "Panjiva removal guide", href: "/docs/panjiva-removal-guide.pdf", downloadable: true },
-    { title: "ImportGenius removal guide", href: "/docs/importgenius-removal-guide.pdf", downloadable: true },
-    { title: "Datamyne/PIERS/JOC removal guide", href: "/docs/datamyne-piers-joc-removal-guide.pdf", downloadable: true },
-    { title: "ImportYeti removal guide", href: "/docs/importyeti-removal-guide.pdf", downloadable: true },
-    { title: "ImportInfo removal guide", href: "/docs/importinfo-removal-guide.pdf", downloadable: true },
-    { title: "Trademo removal guide", href: "/docs/trademo-removal-guide.pdf", downloadable: true },
-    { title: "Takedown email templates", href: "/docs/takedown-email-templates.pdf", downloadable: true },
-    { title: "Evidence capture checklist", href: "/docs/evidence-capture-checklist.pdf", downloadable: true },
-    { title: "Safe granularity for business utility", href: "/docs/safe-granularity.pdf", downloadable: true },
-    { title: "Privacy filing cheat sheet", href: "/docs/privacy-filing-cheatsheet.pdf", downloadable: true },
-  ];
+// Force dynamic rendering to ensure Header/Footer work properly
+export const dynamic = 'force-dynamic';
+
+// Resource categories with beautiful data
+const resourceCategories = [
+  {
+    id: "flagship-guide",
+    title: "Ultimate Trade Privacy Guide",
+    description: "The definitive comprehensive guide to trade data protection",
+    icon: "📖",
+    color: "from-purple-600 to-indigo-600",
+    bgPattern: "from-purple-50 to-indigo-50",
+    resources: [
+      {
+        title: "The Ultimate Guide to Trade Privacy",
+        subtitle: "Complete Framework for Trade Data Protection",
+        description: "Comprehensive guide covering risk assessment, legal protections, monitoring systems, and implementation roadmaps with real-world case studies and ROI analysis.",
+        href: "/docs/ultimate-guide-trade-privacy-2025.pdf",
+        type: "Premium Guide",
+        readTime: "120 min",
+        tags: ["Complete Framework", "Case Studies", "Implementation", "ROI Analysis"],
+        difficulty: "All Levels"
+      }
+    ]
+  },
+  {
+    id: "privacy-foundations", 
+    title: "Privacy Foundations",
+    description: "Essential knowledge for commercial data protection",
+    icon: "🛡️",
+    color: "from-blue-600 to-indigo-600",
+    bgPattern: "from-blue-50 to-indigo-50",
+    resources: [
+      {
+        title: "Manifest Privacy Primer",
+        subtitle: "19 CFR 103.31 Legal Framework",
+        description: "Complete guide to federal regulations protecting commercial shipping data from public disclosure.",
+        href: "/docs/manifest-privacy-primer.pdf",
+        type: "PDF Guide",
+        readTime: "15 min",
+        tags: ["Legal", "Foundation", "CBP"],
+        difficulty: "Beginner"
+      },
+      {
+        title: "Coverage Windows Explained", 
+        subtitle: "Timeline & Protection Periods",
+        description: "Understanding when and how your data becomes vulnerable to competitor intelligence gathering.",
+        href: "/docs/coverage-windows-explained.pdf", 
+        type: "PDF Guide",
+        readTime: "12 min",
+        tags: ["Strategy", "Timing", "Protection"],
+        difficulty: "Intermediate"
+      },
+      {
+        title: "Safe Granularity Guide",
+        subtitle: "Balancing Security & Business Utility", 
+        description: "Strategic framework for protecting sensitive data while maintaining operational efficiency.",
+        href: "/docs/safe-granularity.pdf",
+        type: "PDF Guide", 
+        readTime: "20 min",
+        tags: ["Strategy", "Balance", "Operations"],
+        difficulty: "Advanced"
+      }
+    ]
+  },
+  {
+    id: "removal-guides",
+    title: "Platform Removal Guides",
+    description: "Step-by-step takedown instructions for major intelligence platforms",
+    icon: "🧹",
+    color: "from-red-600 to-pink-600", 
+    bgPattern: "from-red-50 to-pink-50",
+    resources: [
+      {
+        title: "Panjiva Data Removal Guide",
+        subtitle: "S&P Global Trade Intelligence Platform",
+        description: "Complete step-by-step process to remove your trade data from the world's largest trade intelligence platform.",
+        href: "/docs/removal-guides/panjiva-removal.pdf",
+        type: "Professional Guide",
+        readTime: "15 min",
+        tags: ["Panjiva", "S&P Global", "Trade Intelligence"],
+        difficulty: "Beginner"
+      },
+      {
+        title: "ImportGenius Removal Guide",
+        subtitle: "U.S. Import/Export Data Platform", 
+        description: "Strategic approach to removing your import/export data from ImportGenius and preventing future data collection.",
+        href: "/docs/removal-guides/importgenius-removal.pdf",
+        type: "Professional Guide",
+        readTime: "12 min", 
+        tags: ["ImportGenius", "U.S. Trade Data", "Removal"],
+        difficulty: "Beginner"
+      },
+      {
+        title: "TradeMap Data Protection Guide",
+        subtitle: "ITC International Trade Database",
+        description: "Navigate the complex process of data protection within international trade mapping systems.",
+        href: "/docs/removal-guides/trademap-removal.pdf", 
+        type: "Professional Guide",
+        readTime: "18 min",
+        tags: ["TradeMap", "ITC", "International"],
+        difficulty: "Intermediate"
+      },
+      {
+        title: "UN Comtrade Data Shield Guide",
+        subtitle: "United Nations Trade Database",
+        description: "Advanced strategies for managing your trade data visibility in UN Comtrade and related systems.",
+        href: "/docs/removal-guides/comtrade-protection.pdf",
+        type: "Professional Guide", 
+        readTime: "25 min",
+        tags: ["UN Comtrade", "United Nations", "Advanced"],
+        difficulty: "Advanced"
+      },
+      {
+        title: "Descartes Datamyne Removal",
+        subtitle: "Commercial Trade Intelligence Platform",
+        description: "Comprehensive removal process for Descartes Datamyne and associated trade intelligence services.",
+        href: "/docs/removal-guides/descartes-removal.pdf",
+        type: "Professional Guide",
+        readTime: "20 min", 
+        tags: ["Descartes", "Datamyne", "Commercial"],
+        difficulty: "Intermediate"
+      },
+      {
+        title: "Zauba Trade Data Removal", 
+        subtitle: "Indian Trade Information Platform",
+        description: "Quick and effective methods to remove your trade data from India's leading trade intelligence platform.",
+        href: "/docs/removal-guides/zauba-removal.pdf",
+        type: "Professional Guide",
+        readTime: "10 min",
+        tags: ["Zauba", "India", "Regional"],
+        difficulty: "Beginner"
+      }
+    ]
+  },
+  {
+    id: "implementation-tools",
+    title: "Implementation Tools",
+    description: "Templates, checklists, and tactical resources for privacy protection",
+    icon: "🔧", 
+    color: "from-green-600 to-emerald-600",
+    bgPattern: "from-green-50 to-emerald-50", 
+    resources: [
+      {
+        title: "Takedown Email Templates",
+        subtitle: "Professional Removal Requests",
+        description: "Proven email templates for requesting data removal from intelligence platforms with high success rates.",
+        href: "/docs/takedown-email-templates.pdf",
+        type: "Templates",
+        readTime: "5 min",
+        tags: ["Templates", "Email", "Takedown"],
+        difficulty: "Beginner"
+      },
+      {
+        title: "Evidence Capture Checklist",
+        subtitle: "Documentation & Proof Collection",
+        description: "Systematic checklist for capturing evidence of data exposure before and after removal efforts.",
+        href: "/docs/evidence-capture-checklist.pdf", 
+        type: "Checklist",
+        readTime: "10 min",
+        tags: ["Evidence", "Documentation", "Proof"],
+        difficulty: "Intermediate"
+      },
+      {
+        title: "Privacy Filing Cheat Sheet", 
+        subtitle: "Government Forms & Procedures",
+        description: "Quick reference guide for filing government privacy protection forms and understanding procedures.",
+        href: "/docs/privacy-filing-cheatsheet.pdf",
+        type: "Reference",
+        readTime: "8 min", 
+        tags: ["Filing", "Government", "Forms"],
+        difficulty: "Intermediate"
+      },
+      {
+        title: "Variant Naming Guide",
+        subtitle: "DBA, Legal & Abbreviation Strategy",
+        description: "Strategic guide for using business name variations to complicate competitor intelligence gathering.",
+        href: "/docs/variant-naming-guide.pdf",
+        type: "Strategy Guide", 
+        readTime: "12 min",
+        tags: ["Naming", "Strategy", "DBA"],
+        difficulty: "Advanced"
+      }
+    ]
+  }
+];
+
+// Get total resource count
+const totalResources = resourceCategories.reduce((total, category) => total + category.resources.length, 0);
+
+// Difficulty colors
+const difficultyColors = {
+  "Beginner": "bg-green-100 text-green-800",
+  "Intermediate": "bg-yellow-100 text-yellow-800", 
+  "Advanced": "bg-red-100 text-red-800"
+};
+
+export default function ResourcesPage() {
   return (
-    <>
-      <PageHero
-        badge={{
-          text: "Free Resources",
-          icon: (
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          ),
-        }}
-        title="Documentation &"
-        titleAccent="Privacy Guides"
-        description="Long‑form, nonprofit documentation to help make trade secure again. Professional guides, removal instructions, and privacy implementation resources available for download."
-        features={[
-          { icon: "📄", text: "Professional PDF guides", color: "primary" },
-          { icon: "🔒", text: "Privacy implementation guides", color: "secondary" },
-          { icon: "📋", text: "Step-by-step removal instructions", color: "accent" },
-        ]}
-        primaryCta={{
-          text: "Browse All Docs",
-          href: "#resources-grid",
-          icon: (
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50/20">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900 text-white">
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3Ccircle cx='10' cy='10' r='1'/%3E%3Ccircle cx='50' cy='50' r='1'/%3E%3Ccircle cx='10' cy='50' r='1'/%3E%3Ccircle cx='50' cy='10' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+        
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-20 w-40 h-40 bg-blue-400 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-48 h-48 bg-purple-400 rounded-full blur-3xl opacity-20 animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-indigo-400 rounded-full blur-3xl opacity-15 animate-pulse delay-500"></div>
+        
+        <div className="container mx-auto px-4 py-20 relative z-10">
+          <div className="text-center max-w-5xl mx-auto">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md text-white px-6 py-3 rounded-full mb-8 border border-white/20 shadow-xl">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
             </svg>
-          ),
-        }}
-        secondaryCta={{
-          text: "Get Professional Help",
-          href: "/membership",
-        }}
-        visualCard={{
-          icon: (
-            <svg className="w-10 h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
+              <span className="font-bold text-lg">PRIVACY INTELLIGENCE HUB</span>
+            </div>
+            
+            {/* Main Title */}
+            <h1 className="text-5xl md:text-7xl font-black leading-[0.9] mb-8">
+              Professional Privacy<br />
+              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Resource Library
+              </span>
+            </h1>
+            
+            {/* Description */}
+            <p className="text-2xl leading-relaxed opacity-90 mb-12 max-w-4xl mx-auto font-medium">
+              Transform your commercial data security with our comprehensive collection of privacy guides, removal tutorials, and intelligence protection resources.
+            </p>
+            
+            {/* Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto mb-12">
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 text-center">
+                <div className="text-4xl font-black mb-2">{totalResources}</div>
+                <div className="text-lg font-semibold opacity-90">Expert Resources</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 text-center">
+                <div className="text-4xl font-black mb-2">7</div>
+                <div className="text-lg font-semibold opacity-90">Comprehensive Chapters</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 text-center">
+                <div className="text-4xl font-black mb-2">4</div>
+                <div className="text-lg font-semibold opacity-90">Resource Categories</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 text-center">
+                <div className="text-4xl font-black mb-2">FREE</div>
+                <div className="text-lg font-semibold opacity-90">Complete Access</div>
+              </div>
+            </div>
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col lg:flex-row gap-6 justify-center">
+              <Link href="#resource-categories" className="btn btn-lg bg-white text-indigo-900 hover:bg-gray-100 font-black text-xl px-12 py-6 shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-0">
+                <svg className="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M3 10a1 1 0 011-1h10a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
             </svg>
-          ),
-          title: "Free Documentation",
-          description: "Comprehensive privacy guides and removal instructions",
-          stats: [
-            { value: `${docs.length}`, label: "Resources", color: "primary" },
-            { value: "PDF", label: "Format", color: "secondary" },
-            { value: "Free", label: "Access", color: "success" },
-          ],
-        }}
-      />
-      
-      <section id="resources-grid" className="container mx-auto px-4 py-12">
-        <div className="stats bg-base-100 shadow">
-          <div className="stat">
-            <div className="stat-title">Downloads available</div>
-            <div className="stat-value text-primary">{docs.length}</div>
+                Explore Resources
+              </Link>
+              <Link href="/membership" className="btn btn-lg btn-outline text-white border-white hover:bg-white hover:text-indigo-900 font-bold text-xl px-12 py-6 shadow-xl transition-all">
+                Get Professional Help
+              </Link>
+            </div>
           </div>
         </div>
-        <div className="mt-8 grid md:grid-cols-2 gap-6">
-          {docs.map((d) => (
-            <div key={d.href} className="card bg-base-100 border border-base-300 hover:shadow-xl transition-shadow">
-              <div className="card-body">
-                <h3 className="card-title">{d.title}</h3>
-                <p className="opacity-80">Downloadable resource.</p>
-                <div className="card-actions justify-end">
-                  <a href={d.href} download={d.downloadable} className="btn btn-primary">Download</a>
-                  <a href={d.href} target="_blank" className="btn btn-outline">Preview</a>
+      </section>
+      
+      {/* Quick Access Features */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-gray-800 mb-2">PDF Downloads</h3>
+              <p className="text-gray-600 text-sm">Professional-grade documentation ready for immediate use</p>
+            </div>
+            
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-gray-800 mb-2">Step-by-Step</h3>
+              <p className="text-gray-600 text-sm">Clear instructions with proven success rates</p>
+            </div>
+            
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-gray-800 mb-2">Templates Included</h3>
+              <p className="text-gray-600 text-sm">Ready-to-use templates and checklists</p>
+            </div>
+            
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-gray-800 mb-2">Expert Knowledge</h3>
+              <p className="text-gray-600 text-sm">Battle-tested strategies from privacy professionals</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Resource Categories */}
+      <section id="resource-categories" className="py-20 bg-gradient-to-br from-slate-50 to-indigo-50/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-gray-900 via-indigo-700 to-purple-700 bg-clip-text text-transparent">
+              Resource Categories
+            </h2>
+            <p className="text-xl opacity-80 max-w-4xl mx-auto text-gray-700 font-medium leading-relaxed">
+              Organize your privacy protection journey with our expertly curated resource collections
+            </p>
+          </div>
+          
+          {resourceCategories.map((category, categoryIndex) => (
+            <div key={category.id} className="mb-20 last:mb-0">
+              {/* Category Header */}
+              <div className={`bg-gradient-to-r ${category.color} rounded-3xl p-8 mb-8 text-white`}>
+                <div className="flex items-center gap-6">
+                  <div className="text-6xl">{category.icon}</div>
+                  <div>
+                    <h3 className="text-3xl font-black mb-3">{category.title}</h3>
+                    <p className="text-xl opacity-90 font-medium">{category.description}</p>
+                    <div className="mt-4 flex items-center gap-4">
+                      <span className="bg-white/20 backdrop-blur-md px-4 py-2 rounded-full text-sm font-semibold">
+                        {category.resources.length} Resources
+                      </span>
+                      <span className="bg-white/20 backdrop-blur-md px-4 py-2 rounded-full text-sm font-semibold">
+                        Free Access
+                      </span>
+                    </div>
+                  </div>
                 </div>
+              </div>
+              
+              {/* Resources Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+                {category.resources.map((resource, resourceIndex) => (
+                  <div 
+                    key={resource.href} 
+                    className="bg-white rounded-3xl border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-500 group hover:-translate-y-2 overflow-hidden"
+                  >
+                    {/* Resource Header */}
+                    <div className={`bg-gradient-to-r ${category.bgPattern} p-6 border-b border-gray-100`}>
+                      <div className="flex items-start justify-between mb-4">
+                        <div className={`px-3 py-1 rounded-full text-xs font-bold ${difficultyColors[resource.difficulty]}`}>
+                          {resource.difficulty}
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                          </svg>
+                          {resource.readTime}
+                        </div>
+                      </div>
+                      
+                      <h4 className="text-xl font-black text-gray-800 mb-2 group-hover:text-indigo-600 transition-colors">
+                        {resource.title}
+                      </h4>
+                      <p className="text-sm font-semibold text-gray-600 mb-3">
+                        {resource.subtitle}
+                      </p>
+                      <p className="text-gray-700 leading-relaxed text-sm">
+                        {resource.description}
+                      </p>
+                    </div>
+                    
+                    {/* Resource Body */}
+                    <div className="p-6">
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {resource.tags.map((tag) => (
+                          <span 
+                            key={tag} 
+                            className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      
+                      {/* Type & Actions */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                          </svg>
+                          {resource.type}
+                        </div>
+                        
+                        <div className="flex gap-3">
+                          <a 
+                            href={resource.href} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="btn btn-sm btn-outline border-gray-300 hover:border-indigo-500 hover:bg-indigo-500 hover:text-white transition-all"
+                          >
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                              <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                            </svg>
+                            Preview
+                          </a>
+                          <a 
+                            href={resource.href} 
+                            download 
+                            className={`btn btn-sm bg-gradient-to-r ${category.color} text-white border-0 hover:scale-105 transition-all shadow-lg`}
+                          >
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+                            Download
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ))}
         </div>
       </section>
-    </>
+      
+      {/* Professional Help CTA */}
+      <section className="py-20 bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-black mb-6">
+              Need Professional Implementation?
+            </h2>
+            <p className="text-2xl opacity-90 mb-12 font-medium leading-relaxed">
+              While our resources provide comprehensive guidance, sometimes you need expert hands-on implementation. Let our team handle the complex work for you.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-8">
+                <div className="text-4xl mb-4">🛠️</div>
+                <h3 className="text-xl font-bold mb-3">DIY with Resources</h3>
+                <p className="opacity-90 mb-4">Use our comprehensive guides to implement privacy protection yourself</p>
+                <div className="text-3xl font-black text-green-400">FREE</div>
+              </div>
+              
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-8">
+                <div className="text-4xl mb-4">🚀</div>
+                <h3 className="text-xl font-bold mb-3">Professional Service</h3>
+                <p className="opacity-90 mb-4">Our experts handle everything while you focus on your business</p>
+                <div className="text-lg font-semibold text-blue-300">Starting at $295/month</div>
+              </div>
+            </div>
+            
+            <div className="flex flex-col lg:flex-row gap-6 justify-center">
+              <Link href="/membership" className="btn btn-lg bg-white text-indigo-900 hover:bg-gray-100 font-black text-xl px-12 py-6 shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-0">
+                <svg className="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                </svg>
+                Get Professional Help
+              </Link>
+              <Link href="/contact" className="btn btn-lg btn-outline text-white border-white hover:bg-white hover:text-indigo-900 font-bold text-xl px-12 py-6 shadow-xl transition-all">
+                Schedule Consultation
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
-

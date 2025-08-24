@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panjiva Removal Guide - Remova</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ef4444 0%, #bc1111 100%);
+            color: white;
+            padding: 40px 40px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .brand-name {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+        
+        .doc-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .doc-title {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            line-height: 1.2;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .doc-subtitle {
+            font-size: 18px;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .content {
+            padding: 40px;
+            max-width: none;
+        }
+        
+        .content h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #ef4444;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ef4444;
+        }
+        
+        .content h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 30px 0 15px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .content h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: #ef4444;
+            border-radius: 2px;
+        }
+        
+        .content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 25px 0 12px 0;
+        }
+        
+        .content p {
+            margin-bottom: 16px;
+            line-height: 1.7;
+            color: #374151;
+        }
+        
+        .content ul, .content ol {
+            margin: 16px 0 16px 20px;
+        }
+        
+        .content li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+            color: #374151;
+        }
+        
+        .content strong {
+            font-weight: 700;
+            color: #1f2937;
+        }
+        
+        .content em {
+            font-style: italic;
+            color: #ef4444;
+            font-weight: 500;
+        }
+        
+        .content blockquote {
+            background: #f8fafc;
+            border-left: 4px solid #ef4444;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+        
+        .content blockquote::before {
+            content: '"';
+            font-size: 48px;
+            color: #ef4444;
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-weight: 900;
+            opacity: 0.3;
+        }
+        
+        .content code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            color: #ef4444;
+            font-weight: 500;
+        }
+        
+        .step-box {
+            background: linear-gradient(135deg, #ef444415 0%, #ef444405 100%);
+            border: 2px solid #ef444440;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #ef4444;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 14px;
+        }
+        
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(90deg, #ef4444 0%, #d62b2b 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .page-number {
+            font-weight: 700;
+        }
+        
+        @media print {
+            .page {
+                box-shadow: none;
+                margin: 0;
+            }
+            .footer {
+                position: fixed;
+                bottom: 0;
+            }
+        }
+        
+        @page {
+            margin: 0;
+            size: A4;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">R</div>
+                <div class="brand-name">REMOVA</div>
+            </div>
+            <div class="doc-icon">🧹</div>
+            <h1 class="doc-title">Panjiva Removal Guide</h1>
+            <p class="doc-subtitle">S&P Global Trade Intelligence</p>
+            <div class="category-badge">Platform Removal Guides</div>
+        </div>
+        
+        <div class="content">
+            <p><h1>Panjiva Removal Guide</h1><br><h2>S&P Global Trade Intelligence Platform</h2></p><p><h3>Overview</h3><br>Panjiva is the world's largest trade intelligence platform, owned by S&P Global. It contains detailed shipping records, supplier relationships, and trade data from over 190 countries. Companies use Panjiva to:<br>- Find new suppliers and customers<br>- Track competitor activities<br>- Analyze market trends<br>- Conduct due diligence</p><p><h3>Why Remove Your Data</h3><br><strong>Competitive Intelligence Risk</strong>: Your supplier relationships, shipping volumes, and business partnerships are visible to competitors who can:<br>- Poach your key suppliers<br>- Undercut your pricing<br>- Copy your supply chain strategies<br>- Time their market entries to compete with you</p><p><h3>Removal Process</h3></p><p>#### Step 1: Identify Your Company Data<br><div class="step-box"><div class="step-number">1</div><p>Go to <strong>panjiva.com</strong></p></div><br><div class="step-box"><div class="step-number">2</div><p>Search for your company name and variations</p></div><br><div class="step-box"><div class="step-number">3</div><p>Note all profiles and data entries</p></div><br><div class="step-box"><div class="step-number">4</div><p>Screenshot everything for evidence</p></div></p><p>#### Step 2: Prepare Your Request<br><strong>Required Information</strong>:<br>- Full legal company name<br>- All DBA names and variations<br>- Business registration number<br>- Contact email for correspondence<br>- Specific data you want removed</p><p>#### Step 3: Submit Removal Request<br><strong>Email Address</strong>: privacy@panjiva.com<br><strong>Subject</strong>: "Data Removal Request - [Your Company Name]"</p><p><strong>Template Email</strong>:<br>```<br>Dear Panjiva Privacy Team,</p><p>I am writing to request the removal of all data related to [Company Name] from your platform under applicable privacy regulations.</p><p>Company Details:<br>- Legal Name: [Full Legal Name]<br>- DBA Names: [List all variations]<br>- Registration: [Business registration number]<br>- Contact: [Your email]</p><p>Please remove all:<br>- Company profiles<br>- Shipping records<br>- Supplier/customer relationships<br>- Trade data and analytics</p><p>I have attached screenshots showing the current data exposure.</p><p>Please confirm removal within 30 days and provide evidence that data has been deleted.</p><p>Best regards,<br>[Your Name]<br>[Title]<br>[Company]<br>```</p><p>#### Step 4: Follow Up<br>- <strong>7 days</strong>: Check if they acknowledged your request<br>- <strong>14 days</strong>: Follow up if no response<br>- <strong>30 days</strong>: Escalate to S&P Global privacy team if not resolved</p><p>#### Step 5: Verify Removal<br><div class="step-box"><div class="step-number">1</div><p>Search for your company again</p></div><br><div class="step-box"><div class="step-number">2</div><p>Check that all data is removed</p></div><br><div class="step-box"><div class="step-number">3</div><p>Document the clean results</p></div></p><p><h3>Escalation Contacts</h3><br>If Panjiva doesn't respond:<br>- <strong>S&P Global Privacy Office</strong>: privacy@spglobal.com<br>- <strong>Data Protection Officer</strong>: dpo@spglobal.com</p><p><h3>Expected Timeline</h3><br>- <strong>Response</strong>: 5-10 business days<br>- <strong>Removal</strong>: 15-30 business days<br>- <strong>Full deletion</strong>: 30-45 business days</p><p><h3>Important Notes</h3><br>- <strong>Not retroactive</strong>: Only stops new data collection<br>- <strong>Re-indexing risk</strong>: May need periodic monitoring<br>- <strong>Business impact</strong>: Consider which data relationships are critical before removal<br>- <strong>Documentation</strong>: Keep all correspondence for compliance records</p><p><h3>Success Indicators</h3><br>✅ Company name returns no results<br>✅ Supplier relationships are hidden<br>✅ Historical shipping data is removed<br>✅ Profile pages are deleted or privatized</p><p><h3>Maintenance</h3><br>- <strong>Quarterly checks</strong>: Verify data hasn't reappeared<br>- <strong>New entity monitoring</strong>: Check for subsidiaries or related entities<br>- <strong>Policy updates</strong>: Stay informed about platform changes<br></p>
+        </div>
+        
+        <div class="footer">
+            <div>© 2025 Remova - Professional Privacy Protection</div>
+            <div class="page-number">remova.org</div>
+        </div>
+    </div>
+</body>
+</html>
+  
