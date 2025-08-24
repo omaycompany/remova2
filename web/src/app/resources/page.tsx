@@ -8,7 +8,7 @@ export const metadata = {
 // Force dynamic rendering to ensure Header/Footer work properly
 export const dynamic = 'force-dynamic';
 
-// Resource categories with beautiful data
+// Resource categories with brand-compliant configuration
 const resourceCategories = [
   {
     id: "flagship-guide",
@@ -31,9 +31,9 @@ const resourceCategories = [
     ]
   },
   {
-    id: "privacy-foundations", 
+    id: "privacy-foundations",
     title: "Privacy Foundations",
-    description: "Essential knowledge for commercial data protection",
+    description: "Essential legal frameworks and regulatory knowledge for commercial data protection",
     icon: "🛡️",
     color: "from-blue-600 to-indigo-600",
     bgPattern: "from-blue-50 to-indigo-50",
@@ -41,31 +41,31 @@ const resourceCategories = [
       {
         title: "Manifest Privacy Primer",
         subtitle: "19 CFR 103.31 Legal Framework",
-        description: "Complete guide to federal regulations protecting commercial shipping data from public disclosure.",
-        href: "/docs/manifest-privacy-primer.pdf",
-        type: "PDF Guide",
+        description: "Complete guide to federal regulations protecting commercial shipping data from public disclosure. Essential reading for understanding your legal rights and protections.",
+        href: "/docs/resources/manifest-privacy-primer.pdf",
+        type: "Legal Guide",
         readTime: "15 min",
-        tags: ["Legal", "Foundation", "CBP"],
+        tags: ["Legal Framework", "Federal Regulations", "CBP Compliance"],
         difficulty: "Beginner"
       },
       {
-        title: "Coverage Windows Explained", 
+        title: "Coverage Windows Explained",
         subtitle: "Timeline & Protection Periods",
-        description: "Understanding when and how your data becomes vulnerable to competitor intelligence gathering.",
-        href: "/docs/coverage-windows-explained.pdf", 
-        type: "PDF Guide",
+        description: "Understanding when and how your data becomes vulnerable to competitor intelligence gathering. Critical timing knowledge for protection strategies.",
+        href: "/docs/resources/coverage-windows-explained.pdf",
+        type: "Strategic Guide",
         readTime: "12 min",
-        tags: ["Strategy", "Timing", "Protection"],
+        tags: ["Timing", "Strategy", "Risk Windows"],
         difficulty: "Intermediate"
       },
       {
-        title: "Safe Granularity Guide",
-        subtitle: "Balancing Security & Business Utility", 
-        description: "Strategic framework for protecting sensitive data while maintaining operational efficiency.",
-        href: "/docs/safe-granularity.pdf",
-        type: "PDF Guide", 
+        title: "Legal Protection Framework",
+        subtitle: "GDPR, CCPA & Trade Secret Rights",
+        description: "Comprehensive overview of privacy rights that can be leveraged for trade data protection across multiple jurisdictions.",
+        href: "/docs/resources/legal-protection-framework.pdf",
+        type: "Legal Guide",
         readTime: "20 min",
-        tags: ["Strategy", "Balance", "Operations"],
+        tags: ["GDPR", "CCPA", "International Law"],
         difficulty: "Advanced"
       }
     ]
@@ -73,7 +73,7 @@ const resourceCategories = [
   {
     id: "removal-guides",
     title: "Platform Removal Guides",
-    description: "Step-by-step takedown instructions for major intelligence platforms",
+    description: "Step-by-step removal procedures for major trade intelligence platforms",
     icon: "🧹",
     color: "from-red-600 to-pink-600", 
     bgPattern: "from-red-50 to-pink-50",
@@ -81,112 +81,112 @@ const resourceCategories = [
       {
         title: "Panjiva Data Removal Guide",
         subtitle: "S&P Global Trade Intelligence Platform",
-        description: "Complete step-by-step process to remove your trade data from the world's largest trade intelligence platform.",
-        href: "/docs/removal-guides/panjiva-removal.pdf",
+        description: "Complete step-by-step process to remove your trade data from the world's largest trade intelligence platform. Includes email templates and escalation procedures.",
+        href: "/docs/resources/panjiva-removal.pdf",
         type: "Professional Guide",
         readTime: "15 min",
-        tags: ["Panjiva", "S&P Global", "Trade Intelligence"],
+        tags: ["Panjiva", "S&P Global", "Step-by-Step"],
         difficulty: "Beginner"
       },
       {
         title: "ImportGenius Removal Guide",
         subtitle: "U.S. Import/Export Data Platform", 
-        description: "Strategic approach to removing your import/export data from ImportGenius and preventing future data collection.",
-        href: "/docs/removal-guides/importgenius-removal.pdf",
+        description: "Strategic approach to removing your import/export data from ImportGenius and preventing future data collection through legal and operational measures.",
+        href: "/docs/resources/importgenius-removal.pdf",
         type: "Professional Guide",
         readTime: "12 min", 
-        tags: ["ImportGenius", "U.S. Trade Data", "Removal"],
+        tags: ["ImportGenius", "U.S. Trade Data", "Prevention"],
         difficulty: "Beginner"
       },
       {
-        title: "TradeMap Data Protection Guide",
-        subtitle: "ITC International Trade Database",
-        description: "Navigate the complex process of data protection within international trade mapping systems.",
-        href: "/docs/removal-guides/trademap-removal.pdf", 
+        title: "Multi-Platform Removal Strategy",
+        subtitle: "Systematic Approach Across All Major Platforms",
+        description: "Advanced framework for removing data from multiple intelligence platforms simultaneously. Includes prioritization matrix and batch processing techniques.",
+        href: "/docs/resources/comprehensive-platform-removal.pdf",
         type: "Professional Guide",
-        readTime: "18 min",
-        tags: ["TradeMap", "ITC", "International"],
-        difficulty: "Intermediate"
-      },
-      {
-        title: "UN Comtrade Data Shield Guide",
-        subtitle: "United Nations Trade Database",
-        description: "Advanced strategies for managing your trade data visibility in UN Comtrade and related systems.",
-        href: "/docs/removal-guides/comtrade-protection.pdf",
-        type: "Professional Guide", 
         readTime: "25 min",
-        tags: ["UN Comtrade", "United Nations", "Advanced"],
+        tags: ["Multi-Platform", "Systematic", "Advanced Strategy"],
         difficulty: "Advanced"
-      },
-      {
-        title: "Descartes Datamyne Removal",
-        subtitle: "Commercial Trade Intelligence Platform",
-        description: "Comprehensive removal process for Descartes Datamyne and associated trade intelligence services.",
-        href: "/docs/removal-guides/descartes-removal.pdf",
-        type: "Professional Guide",
-        readTime: "20 min", 
-        tags: ["Descartes", "Datamyne", "Commercial"],
-        difficulty: "Intermediate"
-      },
-      {
-        title: "Zauba Trade Data Removal", 
-        subtitle: "Indian Trade Information Platform",
-        description: "Quick and effective methods to remove your trade data from India's leading trade intelligence platform.",
-        href: "/docs/removal-guides/zauba-removal.pdf",
-        type: "Professional Guide",
-        readTime: "10 min",
-        tags: ["Zauba", "India", "Regional"],
-        difficulty: "Beginner"
       }
     ]
   },
   {
     id: "implementation-tools",
     title: "Implementation Tools",
-    description: "Templates, checklists, and tactical resources for privacy protection",
+    description: "Practical templates, checklists, and tactical resources for immediate implementation",
     icon: "🔧", 
     color: "from-green-600 to-emerald-600",
     bgPattern: "from-green-50 to-emerald-50", 
     resources: [
       {
-        title: "Takedown Email Templates",
-        subtitle: "Professional Removal Requests",
-        description: "Proven email templates for requesting data removal from intelligence platforms with high success rates.",
-        href: "/docs/takedown-email-templates.pdf",
+        title: "Professional Takedown Templates",
+        subtitle: "Proven Removal Request Formats",
+        description: "Battle-tested email templates for requesting data removal from intelligence platforms. Includes legal language and escalation scripts with high success rates.",
+        href: "/docs/resources/takedown-email-templates.pdf",
         type: "Templates",
-        readTime: "5 min",
-        tags: ["Templates", "Email", "Takedown"],
+        readTime: "8 min",
+        tags: ["Templates", "Email Scripts", "Legal Language"],
         difficulty: "Beginner"
       },
       {
-        title: "Evidence Capture Checklist",
-        subtitle: "Documentation & Proof Collection",
-        description: "Systematic checklist for capturing evidence of data exposure before and after removal efforts.",
-        href: "/docs/evidence-capture-checklist.pdf", 
+        title: "Comprehensive Audit Checklist",
+        subtitle: "Systematic Exposure Assessment",
+        description: "Professional-grade checklist for auditing trade data exposure across all major platforms. Includes risk scoring and prioritization frameworks.",
+        href: "/docs/resources/exposure-audit-checklist.pdf", 
         type: "Checklist",
-        readTime: "10 min",
-        tags: ["Evidence", "Documentation", "Proof"],
+        readTime: "18 min",
+        tags: ["Audit", "Risk Assessment", "Systematic"],
         difficulty: "Intermediate"
       },
       {
-        title: "Privacy Filing Cheat Sheet", 
-        subtitle: "Government Forms & Procedures",
-        description: "Quick reference guide for filing government privacy protection forms and understanding procedures.",
-        href: "/docs/privacy-filing-cheatsheet.pdf",
-        type: "Reference",
-        readTime: "8 min", 
-        tags: ["Filing", "Government", "Forms"],
-        difficulty: "Intermediate"
-      },
-      {
-        title: "Variant Naming Guide",
-        subtitle: "DBA, Legal & Abbreviation Strategy",
-        description: "Strategic guide for using business name variations to complicate competitor intelligence gathering.",
-        href: "/docs/variant-naming-guide.pdf",
-        type: "Strategy Guide", 
-        readTime: "12 min",
-        tags: ["Naming", "Strategy", "DBA"],
+        title: "Vendor Protection Agreements",
+        subtitle: "Contractual Safeguards for Logistics Partners",
+        description: "Legal templates for protecting trade data through vendor agreements. Includes specific clauses for freight forwarders, customs brokers, and shipping partners.",
+        href: "/docs/resources/vendor-agreement-templates.pdf",
+        type: "Legal Templates",
+        readTime: "22 min", 
+        tags: ["Legal Templates", "Vendor Management", "Contracts"],
         difficulty: "Advanced"
+      }
+    ]
+  },
+  {
+    id: "advanced-strategies",
+    title: "Advanced Protection Strategies",
+    description: "Professional-grade tactics for comprehensive trade data security",
+    icon: "⚡",
+    color: "from-cyan-600 to-blue-600",
+    bgPattern: "from-cyan-50 to-blue-50",
+    resources: [
+      {
+        title: "Automated Monitoring Systems",
+        subtitle: "Professional Surveillance & Alert Configuration",
+        description: "Advanced guide to setting up automated monitoring across multiple platforms with intelligent alerting. Includes API integrations and response workflows.",
+        href: "/docs/resources/monitoring-automation-guide.pdf",
+        type: "Technical Guide",
+        readTime: "30 min",
+        tags: ["Automation", "Monitoring", "API Integration"],
+        difficulty: "Advanced"
+      },
+      {
+        title: "Competitive Intelligence Defense",
+        subtitle: "Counter-Surveillance Strategies",
+        description: "Professional tactics for defending against competitive intelligence gathering. Includes operational security measures and disinformation strategies.",
+        href: "/docs/resources/competitive-intelligence-defense.pdf",
+        type: "Strategic Guide",
+        readTime: "28 min",
+        tags: ["Counter-Intelligence", "OpSec", "Advanced Defense"],
+        difficulty: "Expert"
+      },
+      {
+        title: "Enterprise Protection Implementation",
+        subtitle: "Large-Scale Deployment Framework",
+        description: "Complete framework for implementing trade data protection at enterprise scale. Includes organizational change management and ROI measurement.",
+        href: "/docs/resources/enterprise-implementation.pdf",
+        type: "Enterprise Guide",
+        readTime: "35 min",
+        tags: ["Enterprise", "Implementation", "Change Management"],
+        difficulty: "Expert"
       }
     ]
   }
@@ -199,7 +199,9 @@ const totalResources = resourceCategories.reduce((total, category) => total + ca
 const difficultyColors = {
   "Beginner": "bg-green-100 text-green-800",
   "Intermediate": "bg-yellow-100 text-yellow-800", 
-  "Advanced": "bg-red-100 text-red-800"
+  "Advanced": "bg-red-100 text-red-800",
+  "Expert": "bg-purple-100 text-purple-800",
+  "All Levels": "bg-blue-100 text-blue-800"
 };
 
 export default function ResourcesPage() {
@@ -253,7 +255,7 @@ export default function ResourcesPage() {
                 <div className="text-lg font-semibold opacity-90">Comprehensive Chapters</div>
               </div>
               <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 text-center">
-                <div className="text-4xl font-black mb-2">4</div>
+                <div className="text-4xl font-black mb-2">5</div>
                 <div className="text-lg font-semibold opacity-90">Resource Categories</div>
               </div>
               <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 text-center">
@@ -289,8 +291,8 @@ export default function ResourcesPage() {
                   <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-gray-800 mb-2">PDF Downloads</h3>
-              <p className="text-gray-600 text-sm">Professional-grade documentation ready for immediate use</p>
+              <h3 className="text-lg font-bold text-gray-800 mb-2">Premium PDFs</h3>
+              <p className="text-gray-600 text-sm">Professional-grade documentation with brand-consistent design</p>
             </div>
             
             <div className="text-center group">
@@ -300,7 +302,7 @@ export default function ResourcesPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-bold text-gray-800 mb-2">Step-by-Step</h3>
-              <p className="text-gray-600 text-sm">Clear instructions with proven success rates</p>
+              <p className="text-gray-600 text-sm">Clear instructions with proven success rates and professional templates</p>
             </div>
             
             <div className="text-center group">
@@ -310,7 +312,7 @@ export default function ResourcesPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-bold text-gray-800 mb-2">Templates Included</h3>
-              <p className="text-gray-600 text-sm">Ready-to-use templates and checklists</p>
+              <p className="text-gray-600 text-sm">Ready-to-use templates, checklists, and legal frameworks</p>
             </div>
             
             <div className="text-center group">

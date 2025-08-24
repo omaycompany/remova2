@@ -175,34 +175,46 @@ function generateFlagshipGuideHTML() {
     <style>
         @page {
             size: A4;
-            margin: 15mm 12mm 20mm 12mm;
+            margin: 15mm 12mm 25mm 12mm;
             
             @bottom-center {
                 content: "The Ultimate Guide to Trade Privacy • Remova.org";
                 font-family: 'Inter', sans-serif;
-                font-size: 9px;
-                font-weight: 500;
-                color: #6b7280;
-                border-top: 1px solid #e5e7eb;
-                padding-top: 6px;
-                margin-top: 8px;
+                font-size: 10px;
+                font-weight: 600;
+                color: #4f46e5;
+                border-top: 2px solid #4f46e5;
+                padding-top: 8px;
+                margin-top: 10px;
+                width: 100%;
+                text-align: center;
             }
             
             @bottom-right {
                 content: "Page " counter(page);
                 font-family: 'Inter', sans-serif;
-                font-size: 9px;
-                font-weight: 600;
-                color: #374151;
+                font-size: 10px;
+                font-weight: 700;
+                color: #1f2937;
+                padding-top: 8px;
+                margin-top: 10px;
             }
             
             @bottom-left {
                 content: "© Remova.org • Confidential";
                 font-family: 'Inter', sans-serif;
-                font-size: 9px;
-                font-weight: 500;
+                font-size: 10px;
+                font-weight: 600;
                 color: #6b7280;
+                padding-top: 8px;
+                margin-top: 10px;
             }
+        }
+        
+        @page:first {
+            @bottom-center { content: none; }
+            @bottom-right { content: none; }
+            @bottom-left { content: none; }
         }
         
         * {
