@@ -125,18 +125,19 @@ export default function About() {
               </div>
             </div>
 
-            <div className="card bg-base-100 border-2 border-accent/20 hover:border-accent/40 hover:shadow-2xl transition-all duration-300 group">
-              <div className="card-body text-center p-8">
-                <div className="w-20 h-20 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-accent/20 transition-colors">
-                  <svg className="w-10 h-10 text-accent" fill="currentColor" viewBox="0 0 20 20">
+            <div className="bg-white border-2 border-orange-200 hover:border-orange-400 hover:shadow-2xl transition-all duration-500 h-full rounded-3xl overflow-hidden group-hover:scale-[1.02] transform backdrop-blur-sm group relative">
+              <div className="p-10 text-center">
+                <div className="w-24 h-24 bg-gradient-to-br from-orange-100 to-red-100 rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform shadow-lg border border-orange-200">
+                  <svg className="w-12 h-12 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 group-hover:text-accent transition-colors">Why We&apos;re Different</h3>
-                <p className="leading-relaxed opacity-80">
+                <h3 className="text-3xl font-black mb-6 group-hover:text-orange-600 transition-colors text-gray-800">Why We&apos;re Different</h3>
+                <p className="text-lg leading-relaxed font-medium text-gray-600">
                   Unlike generic privacy services, we specialize exclusively in competitive intelligence defense. We understand the specific threats, platforms, and tactics used against importers and exporters.
                 </p>
               </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-orange-50/20 pointer-events-none rounded-3xl"></div>
             </div>
           </div>
         </div>
