@@ -65,7 +65,7 @@ export default function BecomeMemberPage() {
   return (
     <div className="min-h-screen bg-gray-50 relative">
       <div className="container mx-auto px-4 py-8">
-        <StripeProvider clientSecret={clientSecret}>
+        <StripeProvider key={clientSecret || 'no-client-secret'} clientSecret={clientSecret}>
           <SignupForm
             selectedPlan={selectedPlan}
             onPlanChange={setSelectedPlan}

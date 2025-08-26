@@ -330,7 +330,7 @@ export const emailTemplates = {
   },
 
   contactFormNotification: (data: any) => ({
-    subject: `🔔 New Contact Form Submission from ${data.company || data.email}`,
+    subject: `🔔 New Contact Form: ${data.subject || 'Privacy Consultation'} - ${data.name || data.email}`,
     html: `
 <!DOCTYPE html>
 <html>
@@ -341,25 +341,28 @@ export const emailTemplates = {
 </head>
 <body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
     <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden;">
-        <div style="background-color: #1f2937; padding: 20px; text-align: center;">
+        <div style="background-color: #dc2626; padding: 20px; text-align: center;">
             <h1 style="color: #ffffff; margin: 0; font-size: 24px;">🔔 New Contact Form Submission</h1>
         </div>
         
         <div style="padding: 30px;">
             <div style="background-color: #f3f4f6; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
                 <h2 style="margin: 0 0 15px 0; color: #1f2937;">Contact Details:</h2>
+                <p style="margin: 5px 0; color: #4b5563;"><strong>Name:</strong> ${data.name}</p>
                 <p style="margin: 5px 0; color: #4b5563;"><strong>Email:</strong> ${data.email}</p>
                 <p style="margin: 5px 0; color: #4b5563;"><strong>Company:</strong> ${data.company || 'Not provided'}</p>
-                <p style="margin: 5px 0; color: #4b5563;"><strong>Name:</strong> ${data.name || 'Not provided'}</p>
                 <p style="margin: 5px 0; color: #4b5563;"><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
+                <p style="margin: 5px 0; color: #4b5563;"><strong>Subject:</strong> ${data.subject || 'Privacy consultation request'}</p>
             </div>
             
-            <div style="background-color: #f8fafc; border-radius: 8px; padding: 20px;">
+            <div style="background-color: #f8fafc; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
                 <h3 style="margin: 0 0 10px 0; color: #1f2937;">Message:</h3>
                 <p style="margin: 0; color: #4b5563; line-height: 1.6; white-space: pre-wrap;">${data.message}</p>
             </div>
             
-            ${data.nda ? '<div style="background-color: #fef3c7; border-radius: 8px; padding: 15px; margin-top: 15px;"><p style="margin: 0; color: #92400e; font-weight: bold;">⚠️ NDA requested for this inquiry</p></div>' : ''}
+            <div style="background-color: #dbeafe; border-radius: 8px; padding: 15px; text-align: center;">
+                <p style="margin: 0; color: #1e40af; font-weight: bold;">📅 Submitted: ${new Date().toLocaleString()}</p>
+            </div>
         </div>
   </div>
 </body>
