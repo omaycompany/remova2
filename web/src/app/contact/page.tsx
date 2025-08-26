@@ -29,7 +29,7 @@ export default function Contact() {
         setSubmitError(result.error || 'Something went wrong. Please try again.');
       }
     } catch {
-      setSubmitError('Network error. Please try again or email hello@remova.org directly.');
+      setSubmitError('Network error. Please try again or email notifications@remova.org directly.');
     } finally {
       setIsSubmitting(false);
     }
@@ -72,7 +72,7 @@ export default function Contact() {
               <a href="#contact-form" className="btn btn-primary btn-lg text-xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-2 border-blue-600">
                 📧 Send Message
               </a>
-              <a href="mailto:hello@remova.org" className="btn btn-outline btn-lg text-xl px-12 py-6 font-bold border-2 border-gray-600 text-gray-700 hover:bg-gray-700 hover:text-white transition-all shadow-xl">
+              <a href="mailto:notifications@remova.org" className="btn btn-outline btn-lg text-xl px-12 py-6 font-bold border-2 border-gray-600 text-gray-700 hover:bg-gray-700 hover:text-white transition-all shadow-xl">
                 ✉️ Email Directly
               </a>
             </div>
@@ -144,8 +144,8 @@ export default function Contact() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-black mb-3 text-gray-800">Email</h3>
-                <p className="text-gray-600 mb-4">hello@remova.org</p>
-                <a href="mailto:hello@remova.org" className="btn btn-primary btn-sm font-black shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+                <p className="text-gray-600 mb-4">notifications@remova.org</p>
+                <a href="mailto:notifications@remova.org" className="btn btn-primary btn-sm font-black shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
                   Send Email
                 </a>
               </div>
@@ -349,24 +349,34 @@ export default function Contact() {
                     />
                   </div>
                   
-                  <div className="flex flex-col sm:flex-row gap-6 items-center justify-between pt-6">
-                    <button 
-                      type="submit" 
-                      disabled={isSubmitting}
-                      className={`btn btn-primary btn-lg text-xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-2 border-blue-600 ${
-                        isSubmitting ? 'loading' : ''
-                      }`}
-                    >
-                      {isSubmitting ? 'Sending...' : '📧 Send Message'}
-                    </button>
+                  <div className="flex flex-col gap-6 pt-6">
+                    <div className="flex justify-center">
+                      <button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className="btn btn-primary btn-lg text-xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-2 border-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {isSubmitting ? (
+                          <span className="flex items-center gap-3">
+                            <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Sending...
+                          </span>
+                        ) : (
+                          '📧 Send Message'
+                        )}
+                      </button>
+                    </div>
                     
-                    <div className="text-center">
-                      <p className="text-sm text-gray-600 mb-2">Prefer email?</p>
+                    <div className="text-center border-t border-gray-200 pt-6">
+                      <p className="text-sm text-gray-600 mb-3">Prefer direct email?</p>
                       <a 
-                        href="mailto:hello@remova.org" 
+                        href="mailto:notifications@remova.org" 
                         className="btn btn-outline btn-lg font-bold border-2 border-gray-600 text-gray-700 hover:bg-gray-700 hover:text-white transition-all shadow-xl"
                       >
-                        ✉️ hello@remova.org
+                        ✉️ notifications@remova.org
                       </a>
                     </div>
                   </div>

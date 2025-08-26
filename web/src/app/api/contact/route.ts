@@ -1,15 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 interface ContactFormData {
-  company: string;
-  aliases?: string;
-  ein?: string;
-  platforms?: string;
-  contactName: string;
+  name: string;
   email: string;
+  company?: string;
   phone?: string;
-  notes?: string;
-  nda: boolean;
+  subject?: string;
+  message: string;
 }
 
 export async function POST(request: NextRequest) {
@@ -18,21 +15,18 @@ export async function POST(request: NextRequest) {
     
     // Extract and validate form data
     const data: ContactFormData = {
-      company: formData.get('company') as string,
-      aliases: formData.get('aliases') as string || '',
-      ein: formData.get('ein') as string || '',
-      platforms: formData.get('platforms') as string || '',
-      contactName: formData.get('contactName') as string,
+      name: formData.get('name') as string,
       email: formData.get('email') as string,
+      company: formData.get('company') as string || '',
       phone: formData.get('phone') as string || '',
-      notes: formData.get('notes') as string || '',
-      nda: formData.get('nda') === 'on'
+      subject: formData.get('subject') as string || '',
+      message: formData.get('message') as string
     };
 
     // Basic validation
-    if (!data.company || !data.contactName || !data.email || !data.nda) {
+    if (!data.name || !data.email || !data.message) {
       return NextResponse.json(
-        { error: 'Missing required fields: company, contactName, email, and NDA agreement' },
+        { error: 'Missing required fields: name, email, and message' },
         { status: 400 }
       );
     }
@@ -46,38 +40,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Format the email content
-    const emailContent = `
-New Contact Form Submission - Remova.org
-
-Company: ${data.company}
-Aliases: ${data.aliases || 'None provided'}
-EIN/DUNS: ${data.ein || 'None provided'}
-Priority Platforms: ${data.platforms || 'None specified'}
-
-Contact Information:
-Name: ${data.contactName}
-Email: ${data.email}
-Phone: ${data.phone || 'None provided'}
-
-Notes/Urgency:
-${data.notes || 'None provided'}
-
-NDA Agreement: ${data.nda ? 'Agreed' : 'Not agreed'}
-
-Submitted at: ${new Date().toISOString()}
-    `;
-
-    // Log the submission (in production, you'd send an actual email)
-    console.log('Contact form submission received:');
-    console.log(emailContent);
-
     // Send email using our email system
     const { sendEmail, emailTemplates } = await import('@/lib/email');
     
-    const contactTemplate = emailTemplates.contactFormNotification(validatedData);
+    const contactTemplate = emailTemplates.contactFormNotification(data);
     const emailResult = await sendEmail({
-      to: process.env.TEAM_NOTIFICATIONS_EMAIL || 'hello@remova.org',
+      to: process.env.TEAM_NOTIFICATIONS_EMAIL || 'notifications@remova.org',
       subject: contactTemplate.subject,
       html: contactTemplate.html
     });
@@ -99,7 +67,7 @@ Submitted at: ${new Date().toISOString()}
   } catch (error) {
     console.error('Contact form error:', error);
     return NextResponse.json(
-      { error: 'Internal server error. Please try again or email hello@remova.org directly.' },
+      { error: 'Internal server error. Please try again or email notifications@remova.org directly.' },
       { status: 500 }
     );
   }

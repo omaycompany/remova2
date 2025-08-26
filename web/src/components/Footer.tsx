@@ -46,8 +46,8 @@ export default function Footer() {
                 <p className="font-medium text-gray-900">Remova Inc.</p>
                 <p>1111B S Governors Ave STE 39322</p>
                 <p>Dover, DE 19904, United States</p>
-                <a href="mailto:hello@remova.org" className="text-red-600 hover:text-red-700 font-medium">
-                  hello@remova.org
+                <a href="mailto:notifications@remova.org" className="text-red-600 hover:text-red-700 font-medium">
+                  notifications@remova.org
                 </a>
               </div>
             </div>
