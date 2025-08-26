@@ -48,6 +48,11 @@ export default function Header() {
                 </li>
               ))}
               <li className="mt-4">
+                <a className="btn btn-ghost btn-md w-full font-bold text-gray-700 hover:bg-gray-100 border border-gray-300 transition-all" href="/signin">
+                  🔐 Sign In
+                </a>
+              </li>
+              <li className="mt-2">
                 <a className="btn btn-error btn-md w-full font-black text-white shadow-lg hover:shadow-xl transition-all transform hover:scale-105" href="/become-member">
                   🛡️ Get Protection Now
                 </a>
@@ -88,6 +93,12 @@ export default function Header() {
         </div>
         
         <div className="navbar-end gap-3">
+          {/* Sign In Button */}
+          <a className="btn btn-ghost btn-sm lg:btn-md font-bold text-gray-700 hover:bg-gray-100 border border-gray-300 transition-all" href="/signin">
+            <span className="hidden lg:inline">🔐 Sign In</span>
+            <span className="lg:hidden">🔐</span>
+          </a>
+          
           {/* Primary CTA Button */}
           <a className="group btn btn-error btn-sm lg:btn-md font-black text-white shadow-xl hover:shadow-2xl transition-all transform hover:scale-105 border-2 border-red-600" href="/become-member">
             <span className="hidden lg:inline flex items-center gap-2">

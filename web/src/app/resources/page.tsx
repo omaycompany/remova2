@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { getClientFromSession } from '@/lib/auth';
+import { cookies } from 'next/headers';
 
 export const metadata = {
   title: "Privacy Intelligence Hub - Resources & Guides",
@@ -226,7 +228,12 @@ const difficultyColors: Record<string, string> = {
   "All Levels": "bg-blue-100 text-blue-800"
 };
 
-export default function ResourcesPage() {
+export default async function ResourcesPage() {
+  // Check if user is authenticated 
+  const cookieStore = await cookies();
+  const sessionCookie = cookieStore.get('remova_session');
+  const client = sessionCookie ? await getClientFromSession(sessionCookie.value) : null;
+  const isLoggedIn = !!client;
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50/20">
       {/* Hero Section */}
@@ -416,7 +423,7 @@ export default function ResourcesPage() {
                       <p className="text-sm font-semibold text-gray-600 mb-3">
                         {resource.subtitle}
                       </p>
-                      <p className={`text-gray-700 leading-relaxed text-sm ${resource.isGated ? 'blur-sm' : ''}`}>
+                      <p className={`text-gray-700 leading-relaxed text-sm ${resource.isGated && !isLoggedIn ? 'blur-sm' : ''}`}>
                         {resource.description}
                       </p>
                     </div>
@@ -424,7 +431,7 @@ export default function ResourcesPage() {
                     {/* Resource Body */}
                     <div className="p-6">
                       {/* Tags */}
-                      <div className={`flex flex-wrap gap-2 mb-6 ${resource.isGated ? 'blur-sm' : ''}`}>
+                      <div className={`flex flex-wrap gap-2 mb-6 ${resource.isGated && !isLoggedIn ? 'blur-sm' : ''}`}>
                         {resource.tags.map((tag) => (
                           <span 
                             key={tag} 
@@ -445,7 +452,7 @@ export default function ResourcesPage() {
                         </div>
                         
                         <div className="flex gap-3">
-                          {resource.isGated ? (
+                          {resource.isGated && !isLoggedIn ? (
                             <>
                               <button 
                                 disabled
