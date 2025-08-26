@@ -12,14 +12,14 @@ export interface EmailOptions {
 // Create transporter (cached)
 let transporter: any = null;
 
-function getTransporter() {
+async function getTransporter() {
   if (!transporter) {
-    // Force dynamic import to avoid Next.js bundling issues
-    const createTransporter = eval('require')('nodemailer').createTransporter;
+    // Import nodemailer dynamically to avoid Next.js bundling issues
+    const nodemailer = await import('nodemailer');
     
     // In development, log emails instead of sending
     if (process.env.NODE_ENV === 'development') {
-      transporter = createTransporter({
+      transporter = nodemailer.default.createTransporter({
         streamTransport: true,
         newline: 'unix',
         buffer: true
@@ -28,7 +28,7 @@ function getTransporter() {
       // Production email configuration
       console.log('🔧 Creating SMTP transporter with config:', {
         host: process.env.SMTP_HOST,
-        port: parseInt(process.env.SMTP_PORT || '587'),
+    port: parseInt(process.env.SMTP_PORT || '587'),
         secure: process.env.SMTP_PORT === '465',
         auth: {
           user: process.env.SMTP_USER,
@@ -36,7 +36,7 @@ function getTransporter() {
         }
       });
       
-      transporter = createTransporter({
+      transporter = nodemailer.default.createTransporter({
         host: process.env.SMTP_HOST,
         port: parseInt(process.env.SMTP_PORT || '587'),
         secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
@@ -84,10 +84,10 @@ export async function sendEmail(options: EmailOptions): Promise<{ success: boole
     return { success: true, messageId: `dev-${Date.now()}` };
   }
 
-  // Try Nodemailer first, then fallback to fetch-based solution
+  // Use Nodemailer with proper dynamic import
   try {
     console.log('🚀 Attempting Nodemailer approach...');
-    const transporter = getTransporter();
+    const transporter = await getTransporter();
     console.log('✅ Transporter created successfully');
     
     const mailOptions = {
@@ -107,7 +107,7 @@ export async function sendEmail(options: EmailOptions): Promise<{ success: boole
     });
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('✅ Email sent successfully via Nodemailer:', {
+    console.log('✅ Email sent successfully:', {
       messageId: info.messageId,
       response: info.response || 'No response',
       accepted: info.accepted || [],
@@ -115,49 +115,17 @@ export async function sendEmail(options: EmailOptions): Promise<{ success: boole
     });
     
     return { success: true, messageId: info.messageId };
-  } catch (nodemailerError) {
-    console.error('❌ Nodemailer failed, trying fetch-based approach:', nodemailerError);
-    
-    // Fallback to simple fetch-based email using Gmail SMTP via API
-    try {
-      console.log('🔄 Attempting fetch-based email...');
-      
-      // Create a simple email message
-      const emailMessage = {
-        to: Array.isArray(options.to) ? options.to.join(', ') : options.to,
-        from: options.from || `"Remova" <${process.env.SMTP_USER}>`,
-        subject: options.subject,
-        html: options.html,
-        text: options.text || stripHtml(options.html),
-        timestamp: new Date().toISOString()
-      };
-      
-      console.log('📮 Fallback email message prepared:', emailMessage);
-      
-      // For now, just log the email and return success 
-      // (we'll implement a proper API-based solution later)
-      console.log('📧 EMAIL LOGGED (FALLBACK MODE):');
-      console.log('═'.repeat(60));
-      console.log(`TO: ${emailMessage.to}`);
-      console.log(`FROM: ${emailMessage.from}`);
-      console.log(`SUBJECT: ${emailMessage.subject}`);
-      console.log(`TIMESTAMP: ${emailMessage.timestamp}`);
-      console.log(`HTML LENGTH: ${emailMessage.html?.length || 0}`);
-      console.log('═'.repeat(60));
-      
-      return { 
-        success: true, 
-        messageId: `fallback-${Date.now()}`,
-        error: `Nodemailer failed, logged email instead: ${nodemailerError instanceof Error ? nodemailerError.message : 'Unknown error'}`
-      };
-      
-    } catch (fallbackError) {
-      console.error('❌ Fallback email method also failed:', fallbackError);
-      return { 
-        success: false, 
-        error: `Both Nodemailer and fallback failed. Nodemailer: ${nodemailerError instanceof Error ? nodemailerError.message : 'Unknown'}. Fallback: ${fallbackError instanceof Error ? fallbackError.message : 'Unknown'}`
-      };
-    }
+  } catch (error) {
+    console.error('❌ Email sending failed:', {
+      error: error,
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : 'No stack trace',
+      name: error instanceof Error ? error.name : 'Unknown error type'
+    });
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : 'Unknown error'
+    };
   }
 }
 
