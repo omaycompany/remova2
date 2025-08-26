@@ -10,82 +10,55 @@ export default function Footer() {
   if (pathname && pathname.startsWith('/members/')) return null;
   
   return (
-    <footer className="relative bg-gradient-to-br from-slate-50 via-gray-50 to-indigo-50/30 text-gray-900 overflow-hidden border-t border-gray-200" role="contentinfo">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L55 30L30 55L5 30Z' fill='%23334155' opacity='0.4'/%3E%3C/svg%3E")`,
-        }}></div>
-      </div>
+    <footer className="bg-gray-50 text-gray-900 border-t border-gray-200" role="contentinfo">
       
-      {/* Animated Background Elements */}
-      <div className="absolute top-20 left-20 w-40 h-40 bg-blue-200 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-      <div className="absolute bottom-20 right-20 w-48 h-48 bg-purple-200 rounded-full blur-3xl opacity-20 animate-pulse delay-1000"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-indigo-200 rounded-full blur-3xl opacity-15 animate-pulse delay-500"></div>
-      
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 py-16">
           
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-block mb-6">
+            <Link href="/" className="inline-block mb-4">
               <Image 
                 src="/REMOVA LOGO.png" 
                 alt="Remova" 
-                width={240} 
-                height={64} 
-                className="h-16 w-auto opacity-90 hover:opacity-100 transition-all duration-300" 
+                width={180} 
+                height={48} 
+                className="h-12 w-auto" 
               />
             </Link>
-            <p className="text-gray-600 leading-relaxed mb-6 max-w-md">
+            <p className="text-gray-600 mb-6 max-w-md">
               Advanced commercial data protection for global traders. Privacy-as-a-Service to secure your supply chain intelligence from competitors.
             </p>
             
-            {/* Social Proof */}
-            <div className="bg-white/50 backdrop-blur-md rounded-xl border border-gray-200 p-4 mb-6 shadow-sm">
-              <div className="flex items-center gap-3 text-sm">
-                <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span className="text-green-600 font-semibold">Trusted by importers and exporters</span>
-              </div>
-            </div>
-            
-            {/* Primary CTA */}
+            {/* Simple CTA */}
             <Link 
               href="/become-member" 
-              className="group inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-2xl font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-red-500"
+              className="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-              </svg>
-              🛡️ Get Protection Now
-              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              Get Protection
             </Link>
           </div>
           
-          {/* Smart Resources */}
+          {/* Resources */}
           <div>
-            <h6 className="text-lg font-black mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              🛡️ Privacy Foundations
+            <h6 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide">
+              Resources
             </h6>
             <div className="space-y-3">
-              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:translate-x-1 transform">
-                <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full mr-2">FREE</span>
+              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">FREE</span>
                 Manifest Privacy Primer
               </Link>
-              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:translate-x-1 transform">
-                <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full mr-2">MEMBER</span>
+              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">MEMBER</span>
                 Coverage Windows Guide
               </Link>
-              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:translate-x-1 transform">
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full mr-2">MEMBER</span>
+              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">MEMBER</span>
                 Legal Protection Framework
               </Link>
-              <Link href="/resources" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors mt-2 font-semibold">
+              <Link href="/resources" className="inline-flex items-center gap-1 text-gray-900 hover:text-gray-700 transition-colors mt-2 font-medium">
                 View All Resources
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -94,25 +67,25 @@ export default function Footer() {
             </div>
           </div>
           
-          {/* Removal Guides */}
+          {/* Tools */}
           <div>
-            <h6 className="text-lg font-black mb-4 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
-              🔧 Implementation Tools
+            <h6 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide">
+              Tools
             </h6>
             <div className="space-y-3">
-              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:translate-x-1 transform">
-                <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full mr-2">MEMBER</span>
+              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">MEMBER</span>
                 Takedown Templates
               </Link>
-              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:translate-x-1 transform">
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full mr-2">MEMBER</span>
+              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">MEMBER</span>
                 Audit Checklists
               </Link>
-              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:translate-x-1 transform">
-                <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full mr-2">PRO</span>
+              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">PRO</span>
                 Vendor Agreements
               </Link>
-              <Link href="/blog" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors mt-2 font-semibold">
+              <Link href="/blog" className="inline-flex items-center gap-1 text-gray-900 hover:text-gray-700 transition-colors mt-2 font-medium">
                 Latest Insights
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -121,50 +94,50 @@ export default function Footer() {
             </div>
           </div>
           
-          {/* Membership Tiers */}
+          {/* Plans */}
           <div>
-            <h6 className="text-lg font-black mb-4 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-              💎 Protection Tiers
+            <h6 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide">
+              Plans
             </h6>
             <div className="space-y-3">
-              <Link href="/become-member" className="block text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:translate-x-1 transform">
-                <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full mr-2">$0</span>
+              <Link href="/become-member" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">$0</span>
                 Community Member
               </Link>
-              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:translate-x-1 transform">
-                <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full mr-2">$295</span>
+              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">$295</span>
                 Stealth Membership
               </Link>
-              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:translate-x-1 transform">
-                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full mr-2 font-bold">POPULAR</span>
+              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                <span className="text-xs bg-gray-900 text-white px-2 py-1 rounded mr-2">POPULAR</span>
                 Vanish Membership
               </Link>
-              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:translate-x-1 transform">
-                <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full mr-2">$1250</span>
+              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">$1250</span>
                 Shield Membership
               </Link>
             </div>
           </div>
           
-          {/* Company & Support */}
+          {/* Company */}
           <div>
-            <h6 className="text-lg font-black mb-4 bg-gradient-to-r from-gray-600 to-slate-600 bg-clip-text text-transparent">
-              🏢 Company & Support
+            <h6 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide">
+              Company
             </h6>
             <div className="space-y-3">
-              <Link href="/about" className="block text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:translate-x-1 transform">About Remova Inc.</Link>
-              <Link href="/trust" className="block text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:translate-x-1 transform">Trust & Security</Link>
-              <Link href="/faq" className="block text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:translate-x-1 transform">FAQ & Help</Link>
-              <Link href="/contact" className="block text-gray-600 hover:text-gray-900 transition-colors duration-200 hover:translate-x-1 transform">Contact Us</Link>
+              <Link href="/about" className="block text-gray-600 hover:text-gray-900 transition-colors">About Remova Inc.</Link>
+              <Link href="/trust" className="block text-gray-600 hover:text-gray-900 transition-colors">Trust & Security</Link>
+              <Link href="/faq" className="block text-gray-600 hover:text-gray-900 transition-colors">FAQ & Help</Link>
+              <Link href="/contact" className="block text-gray-600 hover:text-gray-900 transition-colors">Contact Us</Link>
             </div>
             
             {/* Contact Info */}
-            <div className="bg-white/70 backdrop-blur-md rounded-xl border border-gray-200 p-4 mt-6 shadow-sm">
-              <div className="space-y-2 text-sm">
+            <div className="bg-white border border-gray-200 rounded-lg p-4 mt-6">
+              <div className="space-y-1 text-sm">
                 <p className="font-semibold text-gray-900">Remova Inc.</p>
                 <p className="text-gray-600">1111B S Governors Ave STE 39322</p>
                 <p className="text-gray-600">Dover, DE 19904</p>
-                <a href="mailto:hello@remova.org" className="text-blue-600 hover:text-blue-800 transition-colors">
+                <a href="mailto:hello@remova.org" className="text-gray-900 hover:text-gray-700">
                   hello@remova.org
                 </a>
               </div>
@@ -173,23 +146,17 @@ export default function Footer() {
         </div>
         
         {/* Bottom Bar */}
-        <div className="border-t border-gray-200 py-8">
+        <div className="border-t border-gray-200 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
-              <Link href="/privacy" className="hover:text-gray-900 transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-gray-900 transition-colors">Terms of Service</Link>
-              <Link href="/dpa" className="hover:text-gray-900 transition-colors">DPA</Link>
-              <Link href="/disclosures" className="hover:text-gray-900 transition-colors">Disclosures</Link>
+              <Link href="/privacy" className="hover:text-gray-700 transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-gray-700 transition-colors">Terms of Service</Link>
+              <Link href="/dpa" className="hover:text-gray-700 transition-colors">DPA</Link>
+              <Link href="/disclosures" className="hover:text-gray-700 transition-colors">Disclosures</Link>
             </div>
             
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-500">
-                © 2025 Remova Inc. All rights reserved.
-              </span>
-              <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-semibold border border-green-200">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                System Operational
-              </div>
+            <div className="text-sm text-gray-500">
+              © 2025 Remova Inc. All rights reserved.
             </div>
           </div>
         </div>
