@@ -5,6 +5,7 @@ import { query } from '@/lib/db';
 import type { CBPFiling, TakedownCase } from '@/lib/types';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import GreatDashboard from '@/components/dashboard/GreatDashboard';
+import FreeDashboard from '@/components/dashboard/FreeDashboard';
 
 interface DashboardData {
   cbpFiling: CBPFiling | null;
@@ -50,7 +51,16 @@ async function getDashboardData(clientId: string): Promise<DashboardData> {
   }
 }
 
-async function MembersPage() {
+interface MembersPageProps {
+  searchParams: Promise<{
+    welcome?: string;
+    plan?: string;
+    intake_completed?: string;
+  }>;
+}
+
+async function MembersPage({ searchParams }: MembersPageProps) {
+  const params = await searchParams;
   const cookieStore = await cookies();
   const sessionCookie = cookieStore.get('remova_session');
 
@@ -80,10 +90,25 @@ async function MembersPage() {
     redirect('/membership/free?error=client_not_found');
   }
 
-  // Get dashboard data
+  // Check if user is on free tier
+  const isFreeUser = client.plan_tier === 'free';
+  const showWelcome = params.welcome === 'true' || params.intake_completed === 'true';
+
+  if (isFreeUser) {
+    return (
+      <DashboardLayout>
+        <FreeDashboard 
+          client={client} 
+          showWelcome={showWelcome}
+        />
+      </DashboardLayout>
+    );
+  }
+
+  // Get dashboard data for paid users
   const dashboardData = await getDashboardData(clientId);
 
-    return (
+  return (
     <DashboardLayout>
       <GreatDashboard 
         client={client} 

@@ -1,4 +1,6 @@
 import nodemailer from 'nodemailer';
+import { generateMagicLinkToken } from './auth';
+import { query } from './db';
 
 export interface EmailOptions {
   to: string | string[];
@@ -87,7 +89,7 @@ function stripHtml(html: string): string {
 
 // Email templates
 export const emailTemplates = {
-  freeSignupWelcome: (data: { email: string; companyName: string }) => ({
+  freeSignupWelcome: (data: { email: string; companyName: string; magicLink?: string }) => ({
     subject: '🎉 Welcome to Remova Community!',
     html: `
 <!DOCTYPE html>
@@ -134,6 +136,12 @@ export const emailTemplates = {
             </div>
             
             <div style="text-align: center; margin: 40px 0;">
+                ${data.magicLink ? `
+                <a href="${data.magicLink}" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; display: inline-block; margin-bottom: 15px;">
+                    🔐 Access Your Dashboard
+                </a>
+                <br/>
+                ` : ''}
                 <a href="https://remova.org/resources" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; display: inline-block;">
                     🔍 Explore Free Resources
         </a>
@@ -184,7 +192,7 @@ export const emailTemplates = {
     `
   }),
 
-  paidSignupWelcome: (data: { email: string; companyName: string; plan: 'stealth' | 'vanish' | 'shield'; amount: number }) => {
+  paidSignupWelcome: (data: { email: string; companyName: string; plan: 'stealth' | 'vanish' | 'shield'; amount: number; magicLink?: string }) => {
     const planNames = { stealth: 'Stealth', vanish: 'Vanish', shield: 'Shield' };
     const planColors = { stealth: '#3b82f6', vanish: '#8b5cf6', shield: '#10b981' };
     const planEmojis = { stealth: '🛡️', vanish: '👻', shield: '🛡️' };
@@ -292,6 +300,12 @@ export const emailTemplates = {
             </div>
             
             <div style="text-align: center; margin: 40px 0;">
+                ${data.magicLink ? `
+                <a href="${data.magicLink}" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; display: inline-block; margin-bottom: 15px;">
+                    🔐 Access Your Dashboard
+                </a>
+                <br/>
+                ` : ''}
                 <a href="https://remova.org/thank-you?plan=${data.plan}" style="background: linear-gradient(135deg, ${planColors[data.plan]} 0%, #1e40af 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; display: inline-block;">
                     Complete Intake Form
                 </a>
@@ -353,6 +367,29 @@ export const emailTemplates = {
     `
   })
 };
+
+// Generate magic link for email inclusion
+export async function generateEmailMagicLink(clientId: string): Promise<string | null> {
+  try {
+    const { token, hash } = generateMagicLinkToken();
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+
+    // Store session for magic link
+    await query(
+      `INSERT INTO member_sessions (client_id, token_hash, expires_at)
+       VALUES ($1, $2, $3)`,
+      [clientId, hash, expiresAt]
+    );
+
+    const baseUrl = process.env.APP_BASE_URL || 
+      (process.env.NODE_ENV === 'production' ? 'https://www.remova.org' : 'http://127.0.0.1:6161');
+    
+    return `${baseUrl}/members/verify?token=${token}`;
+  } catch (error) {
+    console.error('Error generating email magic link:', error);
+    return null;
+  }
+}
 
 // Helper function to send notification to team
 export async function sendTeamNotification(subject: string, html: string) {

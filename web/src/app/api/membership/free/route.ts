@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { query } from '@/lib/db';
-import { sendEmail, emailTemplates, sendTeamNotification } from '@/lib/email';
+import { sendEmail, emailTemplates, sendTeamNotification, generateEmailMagicLink } from '@/lib/email';
 import { stripe } from '@/lib/stripe';
 
 const freeSignupSchema = z.object({
@@ -36,25 +36,37 @@ export async function POST(request: NextRequest) {
     }
 
     // 2. Save user to database (upsert to handle duplicates)
+    let clientId: string | null = null;
     try {
-      await query(
+      const result = await query(
         `INSERT INTO clients (email, company_name, plan_tier, stripe_customer_id, created_at)
          VALUES ($1, $2, $3, $4, NOW())
          ON CONFLICT (email) DO UPDATE SET
            company_name = EXCLUDED.company_name,
            stripe_customer_id = COALESCE(EXCLUDED.stripe_customer_id, clients.stripe_customer_id),
-           updated_at = NOW()`,
+           updated_at = NOW()
+         RETURNING id`,
         [email, companyName, 'free', stripeCustomerId]
       );
       
-      console.log(`✅ Free user saved to database: ${email} with Stripe customer: ${stripeCustomerId}`);
+      clientId = result[0]?.id || null;
+      console.log(`✅ Free user saved to database: ${email} with client ID: ${clientId}, Stripe customer: ${stripeCustomerId}`);
     } catch (dbError) {
       console.error('Database error for free signup:', dbError);
       // Continue with email sending even if DB fails
     }
 
-    // 3. Send welcome email to user
-    const welcomeTemplate = emailTemplates.freeSignupWelcome({ email, companyName });
+    // 3. Send welcome email to user (with magic link if available)
+    let magicLink: string | null = null;
+    if (clientId) {
+      magicLink = await generateEmailMagicLink(clientId);
+    }
+    
+    const welcomeTemplate = emailTemplates.freeSignupWelcome({ 
+      email, 
+      companyName, 
+      magicLink: magicLink || undefined 
+    });
     const emailResult = await sendEmail({
       to: email,
       subject: welcomeTemplate.subject,
@@ -82,11 +94,38 @@ export async function POST(request: NextRequest) {
       `
     );
 
-    return NextResponse.json({
+    // 5. Create session for immediate dashboard access
+    let redirectUrl = '/thank-you?plan=free'; // fallback
+    const response = NextResponse.json({
       success: true,
       message: 'Free membership created successfully',
-      redirectUrl: '/thank-you?plan=free'
+      redirectUrl
     });
+    
+    // Only create session if we have a client ID
+    if (clientId) {
+      const sessionValue = `${clientId}:${Date.now()}`;
+      redirectUrl = '/members?welcome=true';
+      
+      response.cookies.set('remova_session', sessionValue, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 24 * 60 * 60, // 24 hours
+        path: '/',
+        sameSite: 'lax'
+      });
+      
+      // Update the response with the new redirect URL
+      return NextResponse.json({
+        success: true,
+        message: 'Free membership created successfully',
+        redirectUrl
+      }, {
+        headers: response.headers
+      });
+    }
+    
+    return response;
 
   } catch (error) {
     console.error('Free signup error:', error);

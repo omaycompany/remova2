@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { Suspense } from "react";
 import { SearchParamsWrapper } from "@/components/SearchParamsWrapper";
+import IntakeForm from "@/components/IntakeForm";
 
 export const metadata: Metadata = {
   title: "Welcome to Remova Community - Thank You",
@@ -480,22 +481,15 @@ function ThankYouContent({ searchParams }: { searchParams: { plan?: string } }) 
           </div>
 
           {/* Intake Form */}
-          <div className="bg-white rounded-3xl border border-gray-200 p-8 mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">📋 Complete Your Company Profile</h2>
-            <p className="text-gray-600 mb-8">
-              Please provide your company details so we can begin your {plan} privacy protection services immediately.
-            </p>
-            
-            <div className="bg-gray-50 rounded-2xl p-8 border-2 border-dashed border-gray-300">
-              <div className="text-center">
-                <svg className="w-12 h-12 text-gray-400 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm0 2h12v8H4V6z" clipRule="evenodd" />
-                </svg>
-                <p className="text-lg font-medium text-gray-700 mb-2">Secure Intake Form Loading...</p>
-                <p className="text-gray-500 text-sm">Your personalized {plan} intake form will appear here shortly.</p>
-              </div>
-            </div>
-          </div>
+          <IntakeForm 
+            plan={plan as 'stealth' | 'vanish' | 'shield'} 
+            onSubmit={(data) => {
+              console.log('Intake completed:', data);
+              // Redirect to dashboard after successful submission
+              window.location.href = '/members?intake_completed=true';
+            }}
+            className="mb-12"
+          />
 
           {/* Support */}
           <div className="bg-gray-50 rounded-2xl p-6">

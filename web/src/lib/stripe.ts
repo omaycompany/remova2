@@ -57,7 +57,7 @@ export async function createCheckoutSession(
         quantity: 1,
       },
     ],
-    success_url: `${baseUrl}/thank-you?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&plan=${plan}`,
     cancel_url: `${baseUrl}/membership`,
     allow_promotion_codes: true,
     billing_address_collection: 'required',

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import { verifyWebhookSignature, getPlanFromPriceId } from '@/lib/stripe';
 import { withTransaction } from '@/lib/db';
-import { sendEmail, emailTemplates, sendTeamNotification } from '@/lib/email';
+import { sendEmail, emailTemplates, sendTeamNotification, generateEmailMagicLink } from '@/lib/email';
 
 // List of 40+ platforms for takedown cases
 const TAKEDOWN_PLATFORMS = [
@@ -147,11 +147,15 @@ export async function POST(request: NextRequest) {
 
       // Send welcome email for paid plans
       if (plan && ['stealth', 'vanish', 'shield'].includes(plan)) {
+        // Generate magic link for immediate dashboard access
+        const magicLink = await generateEmailMagicLink(clientId);
+        
         const welcomeTemplate = emailTemplates.paidSignupWelcome({
           email: customerEmail,
           companyName: customerEmail.split('@')[0], // Fallback if company name not available
           plan: plan as 'stealth' | 'vanish' | 'shield',
-          amount: amount
+          amount: amount,
+          magicLink: magicLink || undefined
         });
 
         const emailResult = await sendEmail({

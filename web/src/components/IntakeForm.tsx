@@ -1,786 +1,745 @@
-'use client';
+"use client";
 
 import { useState } from 'react';
 
-interface IntakeData {
-  // Step 1: Company Information
+interface IntakeFormProps {
+  plan: 'stealth' | 'vanish' | 'shield';
+  onSubmit?: (data: IntakeFormData) => void;
+  className?: string;
+}
+
+export interface IntakeFormData {
+  // Company Information
   companyName: string;
-  legalBusinessName: string;
-  industry: string;
-  companySize: string;
-  yearEstablished: string;
+  legalCompanyName: string;
+  companyType: 'corporation' | 'llc' | 'partnership' | 'sole_proprietorship' | 'other';
+  foundedYear: string;
+  employeeCount: string;
+  annualRevenue: string;
   website: string;
   
-  // Step 2: Contact Information
+  // Business Details
+  primaryIndustry: string;
+  products: string;
+  services: string;
+  targetMarkets: string[];
+  
+  // Contact Information
   primaryContactName: string;
   primaryContactTitle: string;
   primaryContactEmail: string;
   primaryContactPhone: string;
   companyAddress: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  country: string;
   
-  // Step 3: Trade Information
-  tradingCountries: string[];
-  primaryProducts: string;
-  monthlyShipments: string;
-  averageShipmentValue: string;
-  keyPartners: string;
-  competitiveSensitivity: string;
+  // Trade Information
+  importExportActivity: 'imports' | 'exports' | 'both' | 'neither';
+  primaryTradingPartners: string;
+  keySuppliers: string;
+  tradingVolume: string;
   
-  // Step 4: Current Exposure
-  knownExposures: string[];
-  discoveryMethod: string;
-  urgencyLevel: string;
-  additionalConcerns: string;
+  // Privacy Concerns
+  currentPrivacyConcerns: string;
+  previousDataLeaks: boolean;
+  previousDataLeaksDetails?: string;
+  sensitiveBusinessInfo: string;
+  competitorConcerns: string;
   
-  // Step 5: Service Preferences
-  preferredContactMethod: string;
-  reportingFrequency: string;
-  specialRequests: string;
-  nda: boolean;
-  termsAccepted: boolean;
+  // Service Preferences
+  urgencyLevel: 'immediate' | 'within_week' | 'within_month' | 'standard';
+  preferredCommunication: 'email' | 'phone' | 'slack' | 'teams';
+  notificationPreferences: string[];
+  
+  // Additional Information
+  specialRequirements: string;
+  additionalComments: string;
 }
 
-const initialData: IntakeData = {
-  companyName: '',
-  legalBusinessName: '',
-  industry: '',
-  companySize: '',
-  yearEstablished: '',
-  website: '',
-  primaryContactName: '',
-  primaryContactTitle: '',
-  primaryContactEmail: '',
-  primaryContactPhone: '',
-  companyAddress: '',
-  city: '',
-  state: '',
-  zipCode: '',
-  country: 'United States',
-  tradingCountries: [],
-  primaryProducts: '',
-  monthlyShipments: '',
-  averageShipmentValue: '',
-  keyPartners: '',
-  competitiveSensitivity: '',
-  knownExposures: [],
-  discoveryMethod: '',
-  urgencyLevel: '',
-  additionalConcerns: '',
-  preferredContactMethod: 'email',
-  reportingFrequency: 'weekly',
-  specialRequests: '',
-  nda: false,
-  termsAccepted: false,
-};
-
-const steps = [
-  { id: 1, title: 'Company Details', description: 'Basic company information' },
-  { id: 2, title: 'Contact Information', description: 'Primary contact and address' },
-  { id: 3, title: 'Trade Profile', description: 'Your international trade activities' },
-  { id: 4, title: 'Current Exposure', description: 'Known data exposure concerns' },
-  { id: 5, title: 'Service Preferences', description: 'How you want to work with us' },
-];
-
-const countries = [
-  'United States', 'Canada', 'Mexico', 'United Kingdom', 'Germany', 'France', 'Italy', 'Spain',
-  'Netherlands', 'Belgium', 'Switzerland', 'China', 'Japan', 'South Korea', 'India', 'Singapore',
-  'Australia', 'Brazil', 'Argentina', 'Chile', 'Colombia', 'Turkey', 'UAE', 'Saudi Arabia',
-  'Other'
-];
-
 const industries = [
-  'Manufacturing', 'Electronics', 'Automotive', 'Textiles & Apparel', 'Food & Beverage',
-  'Chemicals', 'Pharmaceuticals', 'Medical Devices', 'Industrial Equipment', 'Consumer Goods',
-  'Technology', 'Energy', 'Mining', 'Agriculture', 'Logistics', 'Other'
+  'Manufacturing', 'Technology', 'Healthcare', 'Finance', 'Retail',
+  'Automotive', 'Textiles', 'Electronics', 'Chemicals', 'Food & Beverage',
+  'Machinery', 'Construction', 'Energy', 'Aerospace', 'Agriculture', 'Other'
 ];
 
-const companySizes = [
-  '1-10 employees', '11-50 employees', '51-200 employees', '201-500 employees', 
-  '501-1000 employees', '1000+ employees'
+const markets = [
+  'North America', 'Europe', 'Asia-Pacific', 'Latin America', 
+  'Middle East', 'Africa', 'Global'
 ];
 
-export default function IntakeForm() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState<IntakeData>(initialData);
+const employeeCounts = [
+  '1-10', '11-50', '51-200', '201-500', '501-1000', '1000+'
+];
+
+const revenueRanges = [
+  'Under $1M', '$1M-$10M', '$10M-$50M', '$50M-$100M', '$100M-$500M', '$500M+'
+];
+
+export default function IntakeForm({ plan, onSubmit, className = '' }: IntakeFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errors, setErrors] = useState<Partial<IntakeData>>({});
+  const [currentStep, setCurrentStep] = useState(1);
+  const totalSteps = 6;
+  
+  const [formData, setFormData] = useState<IntakeFormData>({
+    companyName: '',
+    legalCompanyName: '',
+    companyType: 'corporation',
+    foundedYear: '',
+    employeeCount: '',
+    annualRevenue: '',
+    website: '',
+    primaryIndustry: '',
+    products: '',
+    services: '',
+    targetMarkets: [],
+    primaryContactName: '',
+    primaryContactTitle: '',
+    primaryContactEmail: '',
+    primaryContactPhone: '',
+    companyAddress: '',
+    importExportActivity: 'neither',
+    primaryTradingPartners: '',
+    keySuppliers: '',
+    tradingVolume: '',
+    currentPrivacyConcerns: '',
+    previousDataLeaks: false,
+    previousDataLeaksDetails: '',
+    sensitiveBusinessInfo: '',
+    competitorConcerns: '',
+    urgencyLevel: 'standard',
+    preferredCommunication: 'email',
+    notificationPreferences: [],
+    specialRequirements: '',
+    additionalComments: ''
+  });
 
-  const updateFormData = (field: keyof IntakeData, value: string | string[] | boolean) => {
+  const updateFormData = (field: string, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    // Clear error when user starts typing
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
-    }
   };
 
-  const validateStep = (step: number): boolean => {
-    const newErrors: Partial<IntakeData> = {};
-
-    switch (step) {
-      case 1:
-        if (!formData.companyName.trim()) newErrors.companyName = 'Company name is required';
-        if (!formData.legalBusinessName.trim()) newErrors.legalBusinessName = 'Legal business name is required';
-        if (!formData.industry) newErrors.industry = 'Industry is required';
-        if (!formData.companySize) newErrors.companySize = 'Company size is required';
-        break;
-      case 2:
-        if (!formData.primaryContactName.trim()) newErrors.primaryContactName = 'Contact name is required';
-        if (!formData.primaryContactEmail.trim()) newErrors.primaryContactEmail = 'Email is required';
-        if (!formData.companyAddress.trim()) newErrors.companyAddress = 'Address is required';
-        if (!formData.city.trim()) newErrors.city = 'City is required';
-        if (!formData.country) newErrors.country = 'Country is required';
-        break;
-      case 3:
-        if (formData.tradingCountries.length === 0) newErrors.tradingCountries = 'At least one trading country is required' as string;
-        if (!formData.primaryProducts.trim()) newErrors.primaryProducts = 'Primary products description is required';
-        break;
-      case 4:
-        if (!formData.urgencyLevel) newErrors.urgencyLevel = 'Urgency level is required';
-        break;
-      case 5:
-        if (!formData.termsAccepted) newErrors.termsAccepted = 'You must accept the terms' as string;
-        break;
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const handleArrayUpdate = (field: string, value: string, checked: boolean) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: checked 
+        ? [...(prev[field as keyof IntakeFormData] as string[]), value]
+        : (prev[field as keyof IntakeFormData] as string[]).filter(item => item !== value)
+    }));
   };
 
-  const nextStep = () => {
-    if (validateStep(currentStep)) {
-      setCurrentStep(prev => Math.min(prev + 1, steps.length));
-    }
-  };
-
-  const prevStep = () => {
-    setCurrentStep(prev => Math.max(prev - 1, 1));
-  };
-
-  const handleSubmit = async () => {
-    if (!validateStep(currentStep)) return;
-
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setIsSubmitting(true);
+    
     try {
-      // TODO: Submit to API
-      console.log('Submitting intake data:', formData);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Redirect to thank you or dashboard
-      window.location.href = '/thank-you?intake=completed';
+      // Submit form data
+      const response = await fetch('/api/intake/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...formData, plan }),
+      });
+
+      if (response.ok) {
+        onSubmit?.(formData);
+      } else {
+        throw new Error('Failed to submit intake form');
+      }
     } catch (error) {
-      console.error('Submission error:', error);
-      alert('There was an error submitting your information. Please try again.');
+      console.error('Intake form submission error:', error);
+      alert('Error submitting form. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const renderStep = () => {
+  const nextStep = () => {
+    if (currentStep < totalSteps) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const prevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const getStepTitle = () => {
     switch (currentStep) {
-      case 1:
+      case 1: return 'Company Information';
+      case 2: return 'Business Details';
+      case 3: return 'Contact Information';
+      case 4: return 'Trade Activity';
+      case 5: return 'Privacy & Security';
+      case 6: return 'Service Preferences';
+      default: return 'Intake Form';
+    }
+  };
+
         return (
+    <div className={`bg-white rounded-3xl border border-gray-200 shadow-lg ${className}`}>
+      <div className="p-8">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            Complete Your {plan === 'stealth' ? 'Stealth' : plan === 'vanish' ? 'Vanish' : 'Shield'} Setup
+          </h2>
+          <p className="text-gray-600">
+            Help us configure your privacy protection services for maximum effectiveness
+          </p>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-sm font-medium text-gray-600">Step {currentStep} of {totalSteps}</span>
+            <span className="text-sm font-medium text-gray-600">{getStepTitle()}</span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2">
+            <div 
+              className="bg-blue-600 h-2 rounded-full transition-all duration-300" 
+              style={{ width: `${(currentStep / totalSteps) * 100}%` }}
+            ></div>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Step 1: Company Information */}
+          {currentStep === 1 && (
           <div className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Company Name (Trading Name) *
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold">Company Name (as known publicly) *</span>
                 </label>
                 <input
                   type="text"
+                    className="input input-bordered w-full"
                   value={formData.companyName}
                   onChange={(e) => updateFormData('companyName', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Acme Trading Company"
-                />
-                {errors.companyName && <p className="text-red-600 text-xs mt-1">{errors.companyName}</p>}
+                    required
+                    placeholder="Your Company"
+                  />
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold">Legal Company Name *</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="input input-bordered w-full"
+                    value={formData.legalCompanyName}
+                    onChange={(e) => updateFormData('legalCompanyName', e.target.value)}
+                    required
+                    placeholder="Your Company LLC"
+                  />
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold">Company Type *</span>
+                  </label>
+                  <select
+                    className="select select-bordered w-full"
+                    value={formData.companyType}
+                    onChange={(e) => updateFormData('companyType', e.target.value)}
+                    required
+                  >
+                    <option value="corporation">Corporation</option>
+                    <option value="llc">LLC</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="sole_proprietorship">Sole Proprietorship</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold">Founded Year *</span>
+                  </label>
+                  <input
+                    type="number"
+                    className="input input-bordered w-full"
+                    value={formData.foundedYear}
+                    onChange={(e) => updateFormData('foundedYear', e.target.value)}
+                    required
+                    min="1800"
+                    max={new Date().getFullYear()}
+                    placeholder="2020"
+                  />
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold">Employee Count *</span>
+                  </label>
+                  <select
+                    className="select select-bordered w-full"
+                    value={formData.employeeCount}
+                    onChange={(e) => updateFormData('employeeCount', e.target.value)}
+                    required
+                  >
+                    <option value="">Select range</option>
+                    {employeeCounts.map(count => (
+                      <option key={count} value={count}>{count}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold">Annual Revenue</span>
+                  </label>
+                  <select
+                    className="select select-bordered w-full"
+                    value={formData.annualRevenue}
+                    onChange={(e) => updateFormData('annualRevenue', e.target.value)}
+                  >
+                    <option value="">Prefer not to say</option>
+                    {revenueRanges.map(range => (
+                      <option key={range} value={range}>{range}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Legal Business Name *
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Company Website</span>
                 </label>
                 <input
-                  type="text"
-                  value={formData.legalBusinessName}
-                  onChange={(e) => updateFormData('legalBusinessName', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Acme Trading Company LLC"
+                  type="url"
+                  className="input input-bordered w-full"
+                  value={formData.website}
+                  onChange={(e) => updateFormData('website', e.target.value)}
+                  placeholder="https://yourcompany.com"
                 />
-                {errors.legalBusinessName && <p className="text-red-600 text-xs mt-1">{errors.legalBusinessName}</p>}
               </div>
             </div>
+          )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Industry *
+          {/* Step 2: Business Details */}
+          {currentStep === 2 && (
+            <div className="space-y-6">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Primary Industry *</span>
                 </label>
                 <select
-                  value={formData.industry}
-                  onChange={(e) => updateFormData('industry', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="select select-bordered w-full"
+                  value={formData.primaryIndustry}
+                  onChange={(e) => updateFormData('primaryIndustry', e.target.value)}
+                  required
                 >
                   <option value="">Select industry</option>
                   {industries.map(industry => (
                     <option key={industry} value={industry}>{industry}</option>
                   ))}
                 </select>
-                {errors.industry && <p className="text-red-600 text-xs mt-1">{errors.industry}</p>}
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Company Size *
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Primary Products *</span>
                 </label>
-                <select
-                  value={formData.companySize}
-                  onChange={(e) => updateFormData('companySize', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="">Select size</option>
-                  {companySizes.map(size => (
-                    <option key={size} value={size}>{size}</option>
+                <textarea
+                  className="textarea textarea-bordered w-full h-24"
+                  value={formData.products}
+                  onChange={(e) => updateFormData('products', e.target.value)}
+                  required
+                  placeholder="Describe your main products..."
+                />
+            </div>
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Primary Services</span>
+                </label>
+                <textarea
+                  className="textarea textarea-bordered w-full h-24"
+                  value={formData.services}
+                  onChange={(e) => updateFormData('services', e.target.value)}
+                  placeholder="Describe your main services..."
+                />
+              </div>
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Target Markets *</span>
+                </label>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2">
+                  {markets.map(market => (
+                    <label key={market} className="label cursor-pointer justify-start gap-3">
+                <input
+                        type="checkbox"
+                        className="checkbox checkbox-sm"
+                        checked={formData.targetMarkets.includes(market)}
+                        onChange={(e) => handleArrayUpdate('targetMarkets', market, e.target.checked)}
+                      />
+                      <span className="label-text text-sm">{market}</span>
+                    </label>
                   ))}
-                </select>
-                {errors.companySize && <p className="text-red-600 text-xs mt-1">{errors.companySize}</p>}
+                </div>
               </div>
             </div>
+          )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Year Established
-                </label>
-                <input
-                  type="number"
-                  min="1800"
-                  max={new Date().getFullYear()}
-                  value={formData.yearEstablished}
-                  onChange={(e) => updateFormData('yearEstablished', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="2020"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Company Website
-                </label>
-                <input
-                  type="url"
-                  value={formData.website}
-                  onChange={(e) => updateFormData('website', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="https://acmetrading.com"
-                />
-              </div>
-            </div>
-          </div>
-        );
-
-      case 2:
-        return (
+          {/* Step 3: Contact Information */}
+          {currentStep === 3 && (
           <div className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Primary Contact Name *
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold">Primary Contact Name *</span>
                 </label>
                 <input
                   type="text"
+                    className="input input-bordered w-full"
                   value={formData.primaryContactName}
                   onChange={(e) => updateFormData('primaryContactName', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
                   placeholder="John Smith"
                 />
-                {errors.primaryContactName && <p className="text-red-600 text-xs mt-1">{errors.primaryContactName}</p>}
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Title/Position
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold">Title/Position *</span>
                 </label>
                 <input
                   type="text"
+                    className="input input-bordered w-full"
                   value={formData.primaryContactTitle}
                   onChange={(e) => updateFormData('primaryContactTitle', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="CEO, Trading Director, etc."
+                    required
+                    placeholder="CEO, VP Operations, etc."
                 />
-              </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email Address *
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold">Email Address *</span>
                 </label>
                 <input
                   type="email"
+                    className="input input-bordered w-full"
                   value={formData.primaryContactEmail}
                   onChange={(e) => updateFormData('primaryContactEmail', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="john@acmetrading.com"
+                    required
+                    placeholder="john@company.com"
                 />
-                {errors.primaryContactEmail && <p className="text-red-600 text-xs mt-1">{errors.primaryContactEmail}</p>}
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Phone Number
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold">Phone Number</span>
                 </label>
                 <input
                   type="tel"
+                    className="input input-bordered w-full"
                   value={formData.primaryContactPhone}
                   onChange={(e) => updateFormData('primaryContactPhone', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="+1 (555) 123-4567"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Company Address *
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Company Address *</span>
               </label>
-              <input
-                type="text"
+                <textarea
+                  className="textarea textarea-bordered w-full h-20"
                 value={formData.companyAddress}
                 onChange={(e) => updateFormData('companyAddress', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="123 Business Street, Suite 100"
+                  required
+                  placeholder="Street address, city, state, country, postal code"
               />
-              {errors.companyAddress && <p className="text-red-600 text-xs mt-1">{errors.companyAddress}</p>}
+              </div>
             </div>
+          )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  City *
+          {/* Step 4: Trade Activity */}
+          {currentStep === 4 && (
+            <div className="space-y-6">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Import/Export Activity *</span>
                 </label>
+                <div className="flex flex-wrap gap-4 mt-2">
+                  {[
+                    { value: 'imports', label: 'Imports Only' },
+                    { value: 'exports', label: 'Exports Only' },
+                    { value: 'both', label: 'Both Imports & Exports' },
+                    { value: 'neither', label: 'No International Trade' }
+                  ].map(option => (
+                    <label key={option.value} className="label cursor-pointer gap-3">
                 <input
-                  type="text"
-                  value={formData.city}
-                  onChange={(e) => updateFormData('city', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="New York"
-                />
-                {errors.city && <p className="text-red-600 text-xs mt-1">{errors.city}</p>}
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  State/Province
-                </label>
-                <input
-                  type="text"
-                  value={formData.state}
-                  onChange={(e) => updateFormData('state', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="NY"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  ZIP/Postal Code
-                </label>
-                <input
-                  type="text"
-                  value={formData.zipCode}
-                  onChange={(e) => updateFormData('zipCode', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="10001"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Country *
-                </label>
-                <select
-                  value={formData.country}
-                  onChange={(e) => updateFormData('country', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  {countries.map(country => (
-                    <option key={country} value={country}>{country}</option>
+                        type="radio"
+                        name="importExportActivity"
+                        className="radio"
+                        value={option.value}
+                        checked={formData.importExportActivity === option.value}
+                        onChange={(e) => updateFormData('importExportActivity', e.target.value)}
+                      />
+                      <span className="label-text">{option.label}</span>
+                    </label>
                   ))}
-                </select>
-                {errors.country && <p className="text-red-600 text-xs mt-1">{errors.country}</p>}
+                </div>
               </div>
-            </div>
-          </div>
-        );
 
-      case 3:
-        return (
-          <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Countries You Trade With *
-              </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-60 overflow-y-auto border border-gray-300 rounded-lg p-3">
-                {countries.filter(country => country !== 'Other').map(country => (
-                  <label key={country} className="flex items-center gap-2 text-sm">
-                    <input
-                      type="checkbox"
-                      checked={formData.tradingCountries.includes(country)}
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          updateFormData('tradingCountries', [...formData.tradingCountries, country]);
-                        } else {
-                          updateFormData('tradingCountries', formData.tradingCountries.filter(c => c !== country));
-                        }
-                      }}
-                      className="text-blue-600"
-                    />
-                    {country}
-                  </label>
-                ))}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Primary Trading Partners</span>
+                </label>
+                <textarea
+                  className="textarea textarea-bordered w-full h-24"
+                  value={formData.primaryTradingPartners}
+                  onChange={(e) => updateFormData('primaryTradingPartners', e.target.value)}
+                  placeholder="List your main international trading partners, customers, or markets..."
+                />
               </div>
-              {errors.tradingCountries && <p className="text-red-600 text-xs mt-1">{errors.tradingCountries}</p>}
-            </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Primary Products/Services *
-              </label>
-              <textarea
-                value={formData.primaryProducts}
-                onChange={(e) => updateFormData('primaryProducts', e.target.value)}
-                rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Describe the main products or services your company imports/exports..."
-              />
-              {errors.primaryProducts && <p className="text-red-600 text-xs mt-1">{errors.primaryProducts}</p>}
-            </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Key Suppliers</span>
+                </label>
+                <textarea
+                  className="textarea textarea-bordered w-full h-24"
+                  value={formData.keySuppliers}
+                  onChange={(e) => updateFormData('keySuppliers', e.target.value)}
+                  placeholder="List your main suppliers or vendor relationships..."
+                />
+              </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Monthly Shipments (approximate)
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Annual Trading Volume</span>
                 </label>
                 <select
-                  value={formData.monthlyShipments}
-                  onChange={(e) => updateFormData('monthlyShipments', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="select select-bordered w-full"
+                  value={formData.tradingVolume}
+                  onChange={(e) => updateFormData('tradingVolume', e.target.value)}
                 >
-                  <option value="">Select range</option>
-                  <option value="1-5">1-5 shipments</option>
-                  <option value="6-20">6-20 shipments</option>
-                  <option value="21-50">21-50 shipments</option>
-                  <option value="51-100">51-100 shipments</option>
-                  <option value="100+">100+ shipments</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Average Shipment Value
-                </label>
-                <select
-                  value={formData.averageShipmentValue}
-                  onChange={(e) => updateFormData('averageShipmentValue', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="">Select range</option>
-                  <option value="Under $10k">Under $10,000</option>
-                  <option value="$10k-$50k">$10,000 - $50,000</option>
-                  <option value="$50k-$100k">$50,000 - $100,000</option>
-                  <option value="$100k-$500k">$100,000 - $500,000</option>
-                  <option value="$500k+">$500,000+</option>
+                  <option value="">Prefer not to say</option>
+                  <option value="under-1m">Under $1M</option>
+                  <option value="1m-10m">$1M - $10M</option>
+                  <option value="10m-50m">$10M - $50M</option>
+                  <option value="50m-100m">$50M - $100M</option>
+                  <option value="over-100m">Over $100M</option>
                 </select>
               </div>
             </div>
+          )}
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Key Trading Partners (Optional)
-              </label>
-              <textarea
-                value={formData.keyPartners}
-                onChange={(e) => updateFormData('keyPartners', e.target.value)}
-                rows={2}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="List important suppliers, customers, or partners you want to protect..."
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Competitive Sensitivity Level
-              </label>
-              <select
-                value={formData.competitiveSensitivity}
-                onChange={(e) => updateFormData('competitiveSensitivity', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="">Select sensitivity level</option>
-                <option value="low">Low - Basic trade info is okay to be public</option>
-                <option value="medium">Medium - Some competitive concerns</option>
-                <option value="high">High - Trade data is highly sensitive</option>
-                <option value="critical">Critical - Any exposure causes significant damage</option>
-              </select>
-            </div>
-          </div>
-        );
-
-      case 4:
-        return (
+          {/* Step 5: Privacy & Security */}
+          {currentStep === 5 && (
           <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Known Data Exposures (Check all that apply)
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Current Privacy Concerns *</span>
               </label>
-              <div className="space-y-2">
-                {[
-                  'Panjiva (S&P Global)',
-                  'ImportGenius', 
-                  'ImportYeti',
-                  'Trademo',
-                  'Descartes Datamyne',
-                  'Volza',
-                  'ImportKey',
-                  'MarineTraffic',
-                  'Other platform (specify in additional concerns)',
-                  'Not sure / Haven\'t checked'
-                ].map(platform => (
-                  <label key={platform} className="flex items-center gap-2 text-sm">
+                <textarea
+                  className="textarea textarea-bordered w-full h-32"
+                  value={formData.currentPrivacyConcerns}
+                  onChange={(e) => updateFormData('currentPrivacyConcerns', e.target.value)}
+                  required
+                  placeholder="What specific privacy threats or exposures are you most concerned about? What brought you to Remova?"
+                />
+              </div>
+
+              <div className="form-control">
+                <label className="label cursor-pointer justify-start gap-3">
                     <input
                       type="checkbox"
-                      checked={formData.knownExposures.includes(platform)}
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          updateFormData('knownExposures', [...formData.knownExposures, platform]);
-                        } else {
-                          updateFormData('knownExposures', formData.knownExposures.filter(p => p !== platform));
-                        }
-                      }}
-                      className="text-blue-600"
-                    />
-                    {platform}
+                    className="checkbox"
+                    checked={formData.previousDataLeaks}
+                    onChange={(e) => updateFormData('previousDataLeaks', e.target.checked)}
+                  />
+                  <span className="label-text font-semibold">Have you experienced previous data leaks or privacy breaches?</span>
                   </label>
-                ))}
-              </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                How did you discover data exposure?
-              </label>
-              <select
-                value={formData.discoveryMethod}
-                onChange={(e) => updateFormData('discoveryMethod', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="">Select method</option>
-                <option value="google-search">Google search results</option>
-                <option value="competitor-intelligence">Competitor told us</option>
-                <option value="partner-notification">Partner/supplier notified us</option>
-                <option value="direct-browsing">Direct platform browsing</option>
-                <option value="media-coverage">Media coverage or news</option>
-                <option value="security-audit">Security audit or compliance review</option>
-                <option value="other">Other</option>
-                <option value="none">Haven&apos;t discovered any yet</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Urgency Level *
-              </label>
-              <select
-                value={formData.urgencyLevel}
-                onChange={(e) => updateFormData('urgencyLevel', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="">Select urgency</option>
-                <option value="critical">Critical - Immediate action needed</option>
-                <option value="high">High - Need protection within 1-2 weeks</option>
-                <option value="medium">Medium - Need protection within 1 month</option>
-                <option value="low">Low - Preventive protection is fine</option>
-              </select>
-              {errors.urgencyLevel && <p className="text-red-600 text-xs mt-1">{errors.urgencyLevel}</p>}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Additional Concerns or Context
+              {formData.previousDataLeaks && (
+                <div className="form-control ml-8">
+                  <label className="label">
+                    <span className="label-text font-semibold">Previous Data Leak Details</span>
               </label>
               <textarea
-                value={formData.additionalConcerns}
-                onChange={(e) => updateFormData('additionalConcerns', e.target.value)}
-                rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Any specific concerns, deadlines, or additional context we should know..."
-              />
+                    className="textarea textarea-bordered w-full h-24"
+                    value={formData.previousDataLeaksDetails}
+                    onChange={(e) => updateFormData('previousDataLeaksDetails', e.target.value)}
+                    placeholder="Please describe the incident(s) and what information was exposed..."
+                  />
             </div>
-          </div>
-        );
+              )}
 
-      case 5:
-        return (
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Most Sensitive Business Information *</span>
+                </label>
+                <textarea
+                  className="textarea textarea-bordered w-full h-24"
+                  value={formData.sensitiveBusinessInfo}
+                  onChange={(e) => updateFormData('sensitiveBusinessInfo', e.target.value)}
+                  required
+                  placeholder="What types of business information would be most damaging if exposed to competitors?"
+                />
+              </div>
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Specific Competitor Concerns</span>
+                </label>
+                <textarea
+                  className="textarea textarea-bordered w-full h-24"
+                  value={formData.competitorConcerns}
+                  onChange={(e) => updateFormData('competitorConcerns', e.target.value)}
+                  placeholder="Are there specific competitors you're concerned about? Any known competitive intelligence activities?"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Step 6: Service Preferences */}
+          {currentStep === 6 && (
           <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Preferred Contact Method
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Implementation Urgency *</span>
               </label>
-              <div className="space-y-2">
-                {[
-                  { value: 'email', label: 'Email updates (recommended)' },
-                  { value: 'phone', label: 'Phone calls for important updates' },
-                  { value: 'dashboard', label: 'Dashboard notifications only' },
-                  { value: 'mixed', label: 'Mix of email and phone' }
-                ].map(option => (
-                  <label key={option.value} className="flex items-center gap-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                  {[
+                    { value: 'immediate', label: 'Immediate (Active threat)', bg: 'bg-red-50 border-red-200' },
+                    { value: 'within_week', label: 'Within 1 week', bg: 'bg-orange-50 border-orange-200' },
+                    { value: 'within_month', label: 'Within 1 month', bg: 'bg-yellow-50 border-yellow-200' },
+                    { value: 'standard', label: 'Standard timeline', bg: 'bg-green-50 border-green-200' }
+                  ].map(option => (
+                    <label key={option.value} className={`p-4 rounded-lg border-2 cursor-pointer ${option.bg} ${formData.urgencyLevel === option.value ? 'ring-2 ring-blue-500' : ''}`}>
                     <input
-                      type="radio"
-                      name="contactMethod"
-                      value={option.value}
-                      checked={formData.preferredContactMethod === option.value}
-                      onChange={(e) => updateFormData('preferredContactMethod', e.target.value)}
-                      className="text-blue-600"
-                    />
-                    {option.label}
+                        type="radio"
+                        name="urgencyLevel"
+                        className="radio mr-3"
+                        value={option.value}
+                        checked={formData.urgencyLevel === option.value}
+                        onChange={(e) => updateFormData('urgencyLevel', e.target.value)}
+                      />
+                      <span className="font-medium">{option.label}</span>
                   </label>
                 ))}
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Reporting Frequency
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Preferred Communication Method *</span>
               </label>
-              <div className="space-y-2">
-                {[
-                  { value: 'realtime', label: 'Real-time alerts (for urgent matters)' },
-                  { value: 'weekly', label: 'Weekly summary reports (recommended)' },
-                  { value: 'monthly', label: 'Monthly comprehensive reports' },
-                  { value: 'quarterly', label: 'Quarterly reviews only' }
+                <div className="flex flex-wrap gap-4 mt-2">
+                  {[
+                    { value: 'email', label: 'Email' },
+                    { value: 'phone', label: 'Phone' },
+                    { value: 'slack', label: 'Slack' },
+                    { value: 'teams', label: 'Microsoft Teams' }
                 ].map(option => (
-                  <label key={option.value} className="flex items-center gap-2">
+                    <label key={option.value} className="label cursor-pointer gap-3">
                     <input
                       type="radio"
-                      name="reportingFrequency"
+                        name="preferredCommunication"
+                        className="radio"
                       value={option.value}
-                      checked={formData.reportingFrequency === option.value}
-                      onChange={(e) => updateFormData('reportingFrequency', e.target.value)}
-                      className="text-blue-600"
+                        checked={formData.preferredCommunication === option.value}
+                        onChange={(e) => updateFormData('preferredCommunication', e.target.value)}
                     />
-                    {option.label}
+                      <span className="label-text">{option.label}</span>
                   </label>
                 ))}
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Special Requests or Requirements
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Notification Preferences</span>
+              </label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                  {[
+                    'Breach alerts', 'Weekly reports', 'Monthly summaries', 
+                    'Service updates', 'Platform changes', 'Account notifications'
+                  ].map(notification => (
+                    <label key={notification} className="label cursor-pointer justify-start gap-3">
+                    <input
+                        type="checkbox"
+                        className="checkbox checkbox-sm"
+                        checked={formData.notificationPreferences.includes(notification)}
+                        onChange={(e) => handleArrayUpdate('notificationPreferences', notification, e.target.checked)}
+                      />
+                      <span className="label-text text-sm">{notification}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Special Requirements</span>
               </label>
               <textarea
-                value={formData.specialRequests}
-                onChange={(e) => updateFormData('specialRequests', e.target.value)}
-                rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Any special requirements, compliance needs, or custom requests..."
+                  className="textarea textarea-bordered w-full h-24"
+                  value={formData.specialRequirements}
+                  onChange={(e) => updateFormData('specialRequirements', e.target.value)}
+                  placeholder="Any specific compliance requirements, industry regulations, or special considerations..."
               />
             </div>
 
-            <div className="border-t border-gray-200 pt-6">
-              <div className="space-y-4">
-                <label className="flex items-start gap-3">
-                  <input
-                    type="checkbox"
-                    checked={formData.nda}
-                    onChange={(e) => updateFormData('nda', e.target.checked)}
-                    className="mt-1 text-blue-600"
-                  />
-                  <span className="text-sm">
-                    I would like to sign a mutual Non-Disclosure Agreement (NDA) before sharing detailed company information
-                  </span>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold">Additional Comments</span>
                 </label>
-
-                <label className="flex items-start gap-3">
-                  <input
-                    type="checkbox"
-                    checked={formData.termsAccepted}
-                    onChange={(e) => updateFormData('termsAccepted', e.target.checked)}
-                    className="mt-1 text-blue-600"
-                  />
-                  <span className="text-sm">
-                    I accept the <a href="/terms" className="text-blue-600 underline" target="_blank">Terms of Service</a> and <a href="/privacy" className="text-blue-600 underline" target="_blank">Privacy Policy</a> *
-                  </span>
-                </label>
-                {errors.termsAccepted && <p className="text-red-600 text-xs">{errors.termsAccepted}</p>}
+                <textarea
+                  className="textarea textarea-bordered w-full h-24"
+                  value={formData.additionalComments}
+                  onChange={(e) => updateFormData('additionalComments', e.target.value)}
+                  placeholder="Anything else you'd like us to know about your business or privacy needs?"
+                />
               </div>
             </div>
-          </div>
-        );
+          )}
 
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-      {/* Progress Bar */}
-      <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
-        <div className="flex items-center justify-between mb-2">
-          <div className="text-sm font-medium text-gray-900">
-            Step {currentStep} of {steps.length}: {steps[currentStep - 1].title}
-          </div>
-          <div className="text-sm text-gray-500">
-            {Math.round((currentStep / steps.length) * 100)}% Complete
-          </div>
-        </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
-          <div 
-            className="bg-blue-600 h-2 rounded-full transition-all duration-300" 
-            style={{ width: `${(currentStep / steps.length) * 100}%` }}
-          ></div>
-        </div>
-        <p className="text-sm text-gray-600 mt-2">
-          {steps[currentStep - 1].description}
-        </p>
-      </div>
-
-      {/* Form Content */}
-      <div className="p-6">
-        {renderStep()}
-      </div>
-
-      {/* Navigation */}
-      <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-between">
+          {/* Navigation Buttons */}
+          <div className="flex justify-between items-center pt-8 border-t border-gray-200">
         <button
+              type="button"
+              className={`btn btn-outline ${currentStep === 1 ? 'btn-disabled' : ''}`}
           onClick={prevStep}
           disabled={currentStep === 1}
-          className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Previous
         </button>
 
-        {currentStep < steps.length ? (
+            <div className="text-center">
+              <span className="text-sm text-gray-500">
+                {currentStep} of {totalSteps} steps completed
+              </span>
+            </div>
+
+            {currentStep < totalSteps ? (
           <button
+                type="button"
+                className="btn btn-primary"
             onClick={nextStep}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
             Next Step
           </button>
         ) : (
           <button
-            onClick={handleSubmit}
+                type="submit"
+                className={`btn btn-primary btn-lg ${isSubmitting ? 'loading' : ''}`}
             disabled={isSubmitting}
-            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isSubmitting ? (
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                Submitting...
-              </div>
-            ) : (
-              'Submit Intake'
+              >
+                {isSubmitting ? 'Submitting...' : 'Complete Setup'}
+              </button>
             )}
-          </button>
-        )}
+          </div>
+        </form>
       </div>
     </div>
   );
