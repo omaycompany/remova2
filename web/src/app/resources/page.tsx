@@ -531,6 +531,110 @@ export default async function ResourcesPage() {
         </div>
       </section>
       
+      {/* Support Our Mission Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-5xl mx-auto">
+            <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md text-white px-6 py-3 rounded-full mb-8 border border-white/20 shadow-xl">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+              <span className="font-bold text-lg">SUPPORT OUR MISSION</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-6xl font-black mb-8 leading-[0.9]">
+              Help Us Defend<br />
+              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Trade Privacy for All
+              </span>
+            </h2>
+            
+            <p className="text-2xl opacity-90 mb-12 font-medium leading-relaxed max-w-4xl mx-auto">
+              Your support helps us develop more tools, create better resources, and build stronger defenses against competitive intelligence operations. Together, we can level the playing field for all traders.
+            </p>
+            
+            {/* Mission Impact */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 p-8">
+                <div className="text-4xl mb-4">🛠️</div>
+                <h3 className="text-xl font-bold mb-3">Better Tools</h3>
+                <p className="opacity-80 text-sm leading-relaxed">
+                  Your membership funds development of advanced anonymity checkers, real-time monitoring systems, and automated takedown tools for the entire community.
+                </p>
+              </div>
+              
+              <div className="bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 p-8">
+                <div className="text-4xl mb-4">📚</div>
+                <h3 className="text-xl font-bold mb-3">More Resources</h3>
+                <p className="opacity-80 text-sm leading-relaxed">
+                  Professional memberships enable us to research new threats, document emerging platforms, and create comprehensive guides that benefit all importers and exporters.
+                </p>
+              </div>
+              
+              <div className="bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 p-8">
+                <div className="text-4xl mb-4">⚔️</div>
+                <h3 className="text-xl font-bold mb-3">Stronger Defense</h3>
+                <p className="opacity-80 text-sm leading-relaxed">
+                  Paid plans allow us to maintain relationships with platforms, fund legal challenges, and develop industry-wide standards that protect everyone's trade data.
+                </p>
+              </div>
+            </div>
+            
+            {/* Support Tiers */}
+            <div className="bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 p-8 mb-12">
+              <h3 className="text-2xl font-bold mb-8">Choose Your Level of Support</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="text-lg font-bold">Stealth Supporter</h4>
+                    <span className="text-2xl font-black text-blue-400">$295</span>
+                  </div>
+                  <p className="text-sm opacity-80 mb-4">Help us research new threats and develop better tools for small businesses</p>
+                  <Link href="/membership" className="btn btn-sm btn-outline border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-gray-900 w-full">
+                    Join Stealth
+                  </Link>
+                </div>
+                
+                <div className="bg-gradient-to-br from-purple-800/30 to-blue-800/30 rounded-2xl p-6 border-2 border-purple-400 relative">
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-purple-500 text-white px-4 py-1 rounded-full text-xs font-bold">MOST POPULAR</span>
+                  </div>
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="text-lg font-bold">Vanish Champion</h4>
+                    <span className="text-2xl font-black text-purple-400">$695</span>
+                  </div>
+                  <p className="text-sm opacity-80 mb-4">Fund comprehensive platform research and help us create industry-wide protection standards</p>
+                  <Link href="/membership" className="btn btn-sm bg-purple-500 hover:bg-purple-600 text-white w-full border-0">
+                    Join Vanish
+                  </Link>
+                </div>
+                
+                <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="text-lg font-bold">Shield Guardian</h4>
+                    <span className="text-2xl font-black text-red-400">$1,250</span>
+                  </div>
+                  <p className="text-sm opacity-80 mb-4">Maximum support for legal challenges and enterprise-level tool development</p>
+                  <Link href="/membership" className="btn btn-sm btn-outline border-red-400 text-red-400 hover:bg-red-400 hover:text-gray-900 w-full">
+                    Join Shield
+                  </Link>
+                </div>
+              </div>
+              
+              <div className="mt-8 text-center">
+                <p className="text-sm opacity-70 mb-4">
+                  Not ready for a commitment? You can always start with our free resources and upgrade later.
+                </p>
+                <Link href="/become-member" className="text-blue-400 hover:text-blue-300 font-semibold">
+                  Start with Free Resources →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Professional Help CTA */}
       <section className="py-20 bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 text-white">
         <div className="container mx-auto px-4 text-center">

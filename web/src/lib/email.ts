@@ -368,6 +368,93 @@ export const emailTemplates = {
   })
 };
 
+// Send magic link email for sign in
+export async function sendMagicLinkEmail(email: string, magicLink: string, orgName: string): Promise<{ success: boolean; error?: string }> {
+  try {
+    const subject = "🔐 Your secure sign-in link - Remova";
+    
+    const html = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign In to Remova</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8fafc;">
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); padding: 30px; text-align: center;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">
+                🔐 Secure Sign-In
+            </h1>
+            <p style="color: #fecaca; margin: 10px 0 0 0; font-size: 16px;">
+                Access your Remova dashboard
+            </p>
+        </div>
+        
+        <!-- Content -->
+        <div style="padding: 40px 30px;">
+            <h2 style="color: #1f2937; margin: 0 0 20px 0; font-size: 24px; font-weight: bold;">
+                Hi ${orgName}! 👋
+            </h2>
+            
+            <p style="color: #4b5563; line-height: 1.6; margin: 0 0 25px 0; font-size: 16px;">
+                Click the button below to securely sign in to your Remova account. This link will expire in 24 hours for your security.
+            </p>
+            
+            <!-- CTA Button -->
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="${magicLink}" 
+                   style="display: inline-block; background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 8px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3); transition: all 0.3s ease;">
+                    🛡️ Sign In to Dashboard
+                </a>
+            </div>
+            
+            <div style="background-color: #f3f4f6; border-radius: 8px; padding: 20px; margin: 25px 0;">
+                <h3 style="color: #374151; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">
+                    🔒 Security Notice
+                </h3>
+                <ul style="color: #6b7280; margin: 0; padding-left: 20px; line-height: 1.6;">
+                    <li style="margin-bottom: 8px;">This link is valid for 24 hours only</li>
+                    <li style="margin-bottom: 8px;">Only use this link if you requested sign-in access</li>
+                    <li style="margin-bottom: 8px;">Never share this link with anyone</li>
+                    <li>Contact us if you didn't request this email</li>
+                </ul>
+            </div>
+            
+            <p style="color: #6b7280; font-size: 14px; line-height: 1.5; margin: 20px 0 0 0;">
+                If the button doesn't work, copy and paste this link into your browser:<br>
+                <a href="${magicLink}" style="color: #dc2626; word-break: break-all;">${magicLink}</a>
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <div style="background-color: #f9fafb; padding: 20px 30px; border-top: 1px solid #e5e7eb; text-align: center;">
+            <p style="color: #6b7280; margin: 0; font-size: 14px;">
+                © 2025 Remova Inc. | 1111B S Governors Ave STE 39322, Dover, DE 19904<br>
+                <a href="https://www.remova.org" style="color: #dc2626; text-decoration: none;">www.remova.org</a> | 
+                <a href="mailto:hello@remova.org" style="color: #dc2626; text-decoration: none;">hello@remova.org</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+    `;
+
+    const result = await sendEmail({
+      to: email,
+      subject,
+      html
+    });
+
+    return result;
+  } catch (error) {
+    console.error('Error sending magic link email:', error);
+    return { success: false, error: 'Failed to send magic link email' };
+  }
+}
+
 // Generate magic link for email inclusion
 export async function generateEmailMagicLink(clientId: string): Promise<string | null> {
   try {

@@ -14,133 +14,123 @@ export default function Footer() {
       
       <div className="container mx-auto px-4">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 py-16">
           
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-block mb-4">
+            <Link href="/" className="inline-block mb-6">
               <Image 
                 src="/REMOVA LOGO.png" 
                 alt="Remova" 
-                width={180} 
-                height={48} 
-                className="h-12 w-auto" 
+                width={200} 
+                height={56} 
+                className="h-14 w-auto" 
               />
             </Link>
-            <p className="text-gray-600 mb-6 max-w-md">
-              Advanced commercial data protection for global traders. Privacy-as-a-Service to secure your supply chain intelligence from competitors.
+            <p className="text-gray-600 mb-8 max-w-sm leading-relaxed">
+              Advanced competitive intelligence defense for global traders. Protecting your supplier relationships, pricing strategies, and customer data from sophisticated intelligence operations.
             </p>
             
-            {/* Simple CTA */}
             <Link 
               href="/become-member" 
-              className="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+              className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors shadow-lg"
             >
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+              </svg>
               Get Protection
             </Link>
+            
+            <div className="mt-8 pt-6 border-t border-gray-200">
+              <div className="text-sm text-gray-600 space-y-1">
+                <p className="font-medium text-gray-900">Remova Inc.</p>
+                <p>1111B S Governors Ave STE 39322</p>
+                <p>Dover, DE 19904, United States</p>
+                <a href="mailto:hello@remova.org" className="text-red-600 hover:text-red-700 font-medium">
+                  hello@remova.org
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          {/* Services */}
+          <div>
+            <h6 className="text-sm font-bold text-gray-900 mb-6 uppercase tracking-wide">
+              Services
+            </h6>
+            <div className="space-y-4">
+              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Stealth Protection
+              </Link>
+              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Vanish Campaign
+              </Link>
+              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Shield Defense
+              </Link>
+              <Link href="/members/anonymity-checker" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Anonymity Checker
+              </Link>
+              <Link href="/members/exposure-monitoring" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Exposure Monitoring
+              </Link>
+              <Link href="/membership" className="text-red-600 hover:text-red-700 font-medium text-sm">
+                View All Plans →
+              </Link>
+            </div>
           </div>
           
           {/* Resources */}
           <div>
-            <h6 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide">
+            <h6 className="text-sm font-bold text-gray-900 mb-6 uppercase tracking-wide">
               Resources
             </h6>
-            <div className="space-y-3">
+            <div className="space-y-4">
               <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">FREE</span>
-                Manifest Privacy Primer
+                Privacy Guides
               </Link>
               <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">MEMBER</span>
-                Coverage Windows Guide
-              </Link>
-              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">MEMBER</span>
-                Legal Protection Framework
-              </Link>
-              <Link href="/resources" className="inline-flex items-center gap-1 text-gray-900 hover:text-gray-700 transition-colors mt-2 font-medium">
-                View All Resources
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-          
-          {/* Tools */}
-          <div>
-            <h6 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide">
-              Tools
-            </h6>
-            <div className="space-y-3">
-              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">MEMBER</span>
                 Takedown Templates
               </Link>
               <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">MEMBER</span>
                 Audit Checklists
               </Link>
-              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">PRO</span>
-                Vendor Agreements
+              <Link href="/blog" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Intelligence Blog
               </Link>
-              <Link href="/blog" className="inline-flex items-center gap-1 text-gray-900 hover:text-gray-700 transition-colors mt-2 font-medium">
-                Latest Insights
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+              <Link href="/faq" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                FAQ & Support
               </Link>
-            </div>
-          </div>
-          
-          {/* Plans */}
-          <div>
-            <h6 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide">
-              Plans
-            </h6>
-            <div className="space-y-3">
-              <Link href="/become-member" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">$0</span>
-                Community Member
-              </Link>
-              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">$295</span>
-                Stealth Membership
-              </Link>
-              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                <span className="text-xs bg-gray-900 text-white px-2 py-1 rounded mr-2">POPULAR</span>
-                Vanish Membership
-              </Link>
-              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded mr-2">$1250</span>
-                Shield Membership
+              <Link href="/resources" className="text-red-600 hover:text-red-700 font-medium text-sm">
+                Browse All →
               </Link>
             </div>
           </div>
           
           {/* Company */}
           <div>
-            <h6 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide">
+            <h6 className="text-sm font-bold text-gray-900 mb-6 uppercase tracking-wide">
               Company
             </h6>
-            <div className="space-y-3">
-              <Link href="/about" className="block text-gray-600 hover:text-gray-900 transition-colors">About Remova Inc.</Link>
-              <Link href="/trust" className="block text-gray-600 hover:text-gray-900 transition-colors">Trust & Security</Link>
-              <Link href="/faq" className="block text-gray-600 hover:text-gray-900 transition-colors">FAQ & Help</Link>
-              <Link href="/contact" className="block text-gray-600 hover:text-gray-900 transition-colors">Contact Us</Link>
-            </div>
-            
-            {/* Contact Info */}
-            <div className="bg-white border border-gray-200 rounded-lg p-4 mt-6">
-              <div className="space-y-1 text-sm">
-                <p className="font-semibold text-gray-900">Remova Inc.</p>
-                <p className="text-gray-600">1111B S Governors Ave STE 39322</p>
-                <p className="text-gray-600">Dover, DE 19904</p>
-                <a href="mailto:hello@remova.org" className="text-gray-900 hover:text-gray-700">
-                  hello@remova.org
-                </a>
-              </div>
+            <div className="space-y-4">
+              <Link href="/about" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                About Remova
+              </Link>
+              <Link href="/why-remova" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Why Choose Us
+              </Link>
+              <Link href="/trust" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Trust & Security
+              </Link>
+              <Link href="/careers" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Careers
+              </Link>
+              <Link href="/contact" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Contact Us
+              </Link>
+              <Link href="/impact" className="text-red-600 hover:text-red-700 font-medium text-sm">
+                Our Impact →
+              </Link>
             </div>
           </div>
         </div>

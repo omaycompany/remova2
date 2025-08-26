@@ -17,39 +17,39 @@ export default function About() {
             </svg>
           ),
         }}
-        title="The Digital Shield for"
-        titleAccent="Global Commerce"
-        description="Remova Inc. is a for-profit organization that prevents corporate data from being sold and businesses getting hurt because of it. We provide Privacy-as-a-Service to restore data privacy to international trade."
+        title="Defending Against the"
+        titleAccent="$200B Intelligence War"
+        description="Every day, your competitors use sophisticated trade intelligence platforms to systematically steal your suppliers, undercut your pricing, and poach your customers. Remova Inc. levels the playing field by making your commercial data invisible to competitive intelligence operations."
         features={[
-          { icon: "🛡️", text: "Corporate Data Protection", color: "primary" },
-          { icon: "🌐", text: "Global Commerce Privacy", color: "secondary" },
-          { icon: "🏢", text: "Professional Organization", color: "accent" },
+          { icon: "🎯", text: "Anti-Intelligence Warfare", color: "primary" },
+          { icon: "📊", text: "Trade Data Protection", color: "secondary" },
+          { icon: "⚔️", text: "Competitive Defense", color: "accent" },
         ]}
         primaryCta={{
-          text: "Start Protection",
-          href: "/membership/free",
+          text: "Get Protection",
+          href: "/become-member",
           icon: (
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
             </svg>
           ),
         }}
         secondaryCta={{
-          text: "Learn More",
-          href: "/why-remova",
+          text: "See Threats",
+          href: "/blog",
         }}
         visualCard={{
           icon: (
             <svg className="w-10 h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
           ),
-          title: "Trusted Organization",
-          description: "Delaware-incorporated company serving global commerce",
+          title: "Intelligence Defense Company",
+          description: "Specialized in protecting businesses from competitive intelligence operations",
           stats: [
-            { value: "—", label: "Founded", color: "primary" },
-            { value: "DE", label: "Incorporated", color: "secondary" },
-            { value: "B2B", label: "Focus", color: "accent" },
+            { value: "40+", label: "Platforms Monitored", color: "primary" },
+            { value: "2025", label: "Founded", color: "secondary" },
+            { value: "Global", label: "Coverage", color: "accent" },
           ],
         }}
       />
@@ -76,11 +76,11 @@ export default function About() {
               <span className="font-bold text-lg">OUR MISSION</span>
             </div>
             <h2 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9] bg-gradient-to-r from-gray-900 via-emerald-700 to-blue-700 bg-clip-text text-transparent">
-              Restoring Privacy to<br />
-              <span className="text-emerald-600">Global Commerce</span>
+              Stopping the<br />
+              <span className="text-emerald-600">Intelligence War</span>
             </h2>
             <p className="text-2xl opacity-80 max-w-5xl mx-auto leading-relaxed text-gray-700 font-medium">
-              We protect companies&apos; most valuable assets: supplier relationships, pricing strategies, and market intelligence from competitors through professional privacy services.
+              Competitors are using advanced trade intelligence platforms to systematically steal your suppliers, undercut your pricing, and poach your customers. We make your commercial data invisible to these intelligence operations.
             </p>
           </div>
 
@@ -94,7 +94,7 @@ export default function About() {
                 </div>
                 <h3 className="text-3xl font-black mb-6 group-hover:text-emerald-600 transition-colors text-gray-800">Mission</h3>
                 <p className="text-lg leading-relaxed font-medium text-gray-600">
-                  To restore data privacy to international trade, allowing companies to protect their most valuable assets from competitor intelligence gathering.
+                  To level the playing field against sophisticated competitive intelligence operations that systematically exploit trade data to steal suppliers, customers, and pricing strategies from American and allied businesses.
                 </p>
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-emerald-50/20 pointer-events-none rounded-3xl"></div>
@@ -107,19 +107,19 @@ export default function About() {
                     <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <h3 className="text-3xl font-black mb-6 group-hover:text-blue-600 transition-colors text-gray-800">What We Do</h3>
+                <h3 className="text-3xl font-black mb-6 group-hover:text-blue-600 transition-colors text-gray-800">How We Fight Back</h3>
                 <div className="space-y-3 text-left">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                    <span className="text-sm"><strong>Stealth:</strong> CBP manifest confidentiality filings</span>
+                    <span className="text-sm"><strong>Stealth:</strong> Hide future shipments from intelligence platforms</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
-                    <span className="text-sm"><strong>Vanish:</strong> Historical data takedown campaigns</span>
+                    <span className="text-sm"><strong>Vanish:</strong> Remove existing intelligence data from 40+ platforms</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-accent rounded-full mt-2"></div>
-                    <span className="text-sm"><strong>Shield:</strong> Legal protection + priority escalations</span>
+                    <span className="text-sm"><strong>Shield:</strong> Ongoing protection + immediate threat response</span>
                   </div>
                 </div>
               </div>
@@ -132,9 +132,9 @@ export default function About() {
                     <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 group-hover:text-accent transition-colors">How We&apos;re Organized</h3>
+                <h3 className="text-2xl font-bold mb-4 group-hover:text-accent transition-colors">Why We&apos;re Different</h3>
                 <p className="leading-relaxed opacity-80">
-                  Delaware-incorporated for-profit organization with tiered Privacy-as-a-Service business model serving global commerce protection needs.
+                  Unlike generic privacy services, we specialize exclusively in competitive intelligence defense. We understand the specific threats, platforms, and tactics used against importers and exporters.
                 </p>
               </div>
             </div>
@@ -145,22 +145,28 @@ export default function About() {
       {/* Stats Section */}
       <section className="py-16 bg-base-100">
         <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Intelligence War by the Numbers</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Understanding the scale of competitive intelligence operations targeting your business
+            </p>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="space-y-2">
-              <div className="text-4xl font-bold text-primary">40+</div>
-              <div className="text-sm opacity-60 font-medium">Platforms Covered</div>
+              <div className="text-4xl font-bold text-primary">$200B</div>
+              <div className="text-sm opacity-60 font-medium">Intelligence Market Size</div>
             </div>
             <div className="space-y-2">
-              <div className="text-4xl font-bold text-secondary">24/7</div>
-              <div className="text-sm opacity-60 font-medium">Monitoring</div>
+              <div className="text-4xl font-bold text-secondary">40+</div>
+              <div className="text-sm opacity-60 font-medium">Threat Platforms</div>
             </div>
             <div className="space-y-2">
-              <div className="text-4xl font-bold text-accent">2 Years</div>
-              <div className="text-sm opacity-60 font-medium">Protection Period</div>
+              <div className="text-4xl font-bold text-accent">Millions</div>
+              <div className="text-sm opacity-60 font-medium">Exposed Records</div>
             </div>
             <div className="space-y-2">
-              <div className="text-4xl font-bold text-success">2024</div>
-              <div className="text-sm opacity-60 font-medium">Incorporated</div>
+              <div className="text-4xl font-bold text-success">Daily</div>
+              <div className="text-sm opacity-60 font-medium">New Threats</div>
             </div>
           </div>
         </div>
@@ -177,8 +183,8 @@ export default function About() {
               <span className="font-semibold">Trust & Operations</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              Professional Standards &
-              <span className="text-primary block md:inline md:ml-3">Operating Principles</span>
+              Our Intelligence Defense
+              <span className="text-primary block md:inline md:ml-3">Methodology</span>
             </h2>
           </div>
 

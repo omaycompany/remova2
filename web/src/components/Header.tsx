@@ -38,7 +38,7 @@ export default function Header() {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-white/95 backdrop-blur-md rounded-2xl z-[1] mt-4 w-72 p-4 shadow-2xl border border-gray-200"
+              className="menu menu-sm dropdown-content bg-white/95 backdrop-blur-md rounded-2xl z-[9999] mt-4 w-72 p-4 shadow-2xl border border-gray-200"
             >
               {menuItems.map((item) => (
                 <li key={item.href}>
