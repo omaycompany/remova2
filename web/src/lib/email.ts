@@ -24,23 +24,64 @@ function getTransporter() {
       });
     } else {
       // Production email configuration
-      transporter = nodemailer.createTransporter({
+      console.log('🔧 Creating SMTP transporter with config:', {
         host: process.env.SMTP_HOST,
     port: parseInt(process.env.SMTP_PORT || '587'),
-        secure: false, // true for 465, false for other ports
-    auth: {
+        secure: process.env.SMTP_PORT === '465',
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS ? '***SET***' : 'NOT SET'
+        }
+      });
+      
+      transporter = nodemailer.createTransporter({
+        host: process.env.SMTP_HOST,
+        port: parseInt(process.env.SMTP_PORT || '587'),
+        secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
+        auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
-    },
-  });
-    }
+        },
+        tls: {
+          rejectUnauthorized: false // Allow self-signed certificates
+        }
+      });
+}
   }
   return transporter;
 }
 
 export async function sendEmail(options: EmailOptions): Promise<{ success: boolean; messageId?: string; error?: string }> {
+  console.log('🔄 Starting email send process...');
+  console.log('📧 Email options:', {
+    to: options.to,
+    subject: options.subject,
+    from: options.from,
+    htmlLength: options.html?.length || 0,
+    textLength: options.text?.length || 0
+  });
+
+  // Check environment variables
+  console.log('🔧 SMTP Configuration:', {
+    SMTP_HOST: process.env.SMTP_HOST || 'NOT SET',
+    SMTP_PORT: process.env.SMTP_PORT || 'NOT SET',
+    SMTP_USER: process.env.SMTP_USER || 'NOT SET',
+    SMTP_PASS: process.env.SMTP_PASS ? '***SET***' : 'NOT SET',
+    NODE_ENV: process.env.NODE_ENV || 'NOT SET'
+  });
+
   try {
     const transporter = getTransporter();
+    console.log('✅ Transporter created successfully');
+    
+    // Test transporter configuration
+    console.log('🔧 Testing transporter connection...');
+    try {
+      const verification = await transporter.verify();
+      console.log('✅ SMTP connection verified successfully:', verification);
+    } catch (verifyError) {
+      console.error('❌ SMTP connection verification failed:', verifyError);
+    }
     
     const mailOptions = {
       from: options.from || `"Remova" <${process.env.SMTP_USER || 'hello@remova.org'}>`,
@@ -50,9 +91,17 @@ export async function sendEmail(options: EmailOptions): Promise<{ success: boole
       text: options.text || stripHtml(options.html),
     };
 
+    console.log('📮 Mail options prepared:', {
+      from: mailOptions.from,
+      to: mailOptions.to,
+      subject: mailOptions.subject,
+      htmlLength: mailOptions.html?.length || 0,
+      textLength: mailOptions.text?.length || 0
+    });
+
     if (process.env.NODE_ENV === 'development') {
       // In development, just log the email
-      console.log('\n📧 EMAIL WOULD BE SENT:');
+      console.log('\n📧 EMAIL WOULD BE SENT (DEVELOPMENT MODE):');
       console.log('─'.repeat(50));
       console.log(`To: ${mailOptions.to}`);
       console.log(`Subject: ${mailOptions.subject}`);
@@ -62,12 +111,23 @@ export async function sendEmail(options: EmailOptions): Promise<{ success: boole
       return { success: true, messageId: `dev-${Date.now()}` };
     }
 
+    console.log('🚀 Attempting to send email in PRODUCTION...');
     const info = await transporter.sendMail(mailOptions);
-    console.log('📧 Email sent:', info.messageId);
+    console.log('✅ Email sent successfully:', {
+      messageId: info.messageId,
+      response: info.response || 'No response',
+      accepted: info.accepted || [],
+      rejected: info.rejected || []
+    });
     
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.error('📧 Email send error:', error);
+    console.error('❌ Email sending failed:', {
+      error: error,
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : 'No stack trace',
+      name: error instanceof Error ? error.name : 'Unknown error type'
+    });
     return { 
       success: false, 
       error: error instanceof Error ? error.message : 'Unknown error'
