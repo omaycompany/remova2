@@ -72,8 +72,21 @@ Submitted at: ${new Date().toISOString()}
     console.log('Contact form submission received:');
     console.log(emailContent);
 
-    // TODO: In production, integrate with email service (SendGrid, Resend, etc.)
-    // For now, we'll just log and return success
+    // Send email using our email system
+    const { sendEmail, emailTemplates } = await import('@/lib/email');
+    
+    const contactTemplate = emailTemplates.contactFormNotification(validatedData);
+    const emailResult = await sendEmail({
+      to: process.env.TEAM_NOTIFICATIONS_EMAIL || 'hello@remova.org',
+      subject: contactTemplate.subject,
+      html: contactTemplate.html
+    });
+
+    if (emailResult.success) {
+      console.log('✅ Contact form notification sent to team');
+    } else {
+      console.error('❌ Failed to send contact form notification:', emailResult.error);
+    }
     
     return NextResponse.json(
       { 

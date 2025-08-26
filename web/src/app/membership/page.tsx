@@ -237,7 +237,7 @@ export default function MembershipPage() {
               <p className="text-green-700 text-sm leading-relaxed">
                 Government filings and partner verification to keep future shipments and business relationships private by law.
               </p>
-            </div>
+                </div>
             
             <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-6 text-center">
               <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -507,14 +507,14 @@ export default function MembershipPage() {
                 <div className="text-5xl font-extrabold mb-3">$2M+</div>
                 <div className="text-lg font-semibold text-blue-100">Average Value Protected</div>
                 <div className="text-sm text-blue-200 mt-2">Per client in first year alone</div>
-              </div>
+                  </div>
               <div className="text-center">
                 <div className="text-5xl font-extrabold mb-3">24 hrs</div>
                 <div className="text-lg font-semibold text-blue-100">To Start Protection</div>
                 <div className="text-sm text-blue-200 mt-2">Every day of delay = more leaked intelligence</div>
+                </div>
               </div>
-            </div>
-
+              
             <div className="text-center mt-8">
               <p className="text-xl font-semibold mb-4">
                 This isn't an expense. This is the highest-ROI investment your business will ever make.

@@ -2,6 +2,8 @@ import { createHash, randomBytes } from 'crypto';
 import { query, queryOne } from '@/lib/db';
 import { sendMagicLinkEmail } from '@/lib/email';
 import type { Client, MemberSession, AuthenticatedClient } from '@/lib/types';
+import { NextRequest } from 'next/server';
+import { cookies } from 'next/headers';
 
 // Token management
 export function generateMagicLinkToken(): { token: string; hash: string } {
@@ -192,6 +194,40 @@ export async function getAuthenticatedClient(request: Request): Promise<Authenti
     return await getClientById(sessionMatch[1]);
   } catch (error) {
     console.error('Get authenticated client error:', error);
+    return null;
+  }
+}
+
+// Helper for API routes with NextRequest
+export async function getClientFromSession(request: NextRequest): Promise<Client | null> {
+  try {
+    const cookieStore = await cookies();
+    const sessionCookie = cookieStore.get('remova_session');
+    
+    if (!sessionCookie?.value) {
+      return null;
+    }
+
+    // Parse session
+    const [clientId, timestamp] = sessionCookie.value.split(':');
+    
+    if (!clientId || !timestamp) {
+      return null;
+    }
+
+    // Check session expiry
+    const sessionTime = parseInt(timestamp);
+    const now = Date.now();
+    const twentyFourHours = 24 * 60 * 60 * 1000;
+
+    if (now - sessionTime > twentyFourHours) {
+      return null;
+    }
+
+    // Get client info
+    return await getClientById(clientId);
+  } catch (error) {
+    console.error('Get client from session error:', error);
     return null;
   }
 }

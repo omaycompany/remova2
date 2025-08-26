@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import { verifyWebhookSignature, getPlanFromPriceId } from '@/lib/stripe';
 import { withTransaction } from '@/lib/db';
+import { sendEmail, emailTemplates, sendTeamNotification } from '@/lib/email';
 
 // List of 40+ platforms for takedown cases
 const TAKEDOWN_PLATFORMS = [
@@ -78,28 +79,48 @@ export async function POST(request: NextRequest) {
         let clientId: string;
 
         if (existingClient.rows.length > 0) {
-          // Update existing client
+          // Update existing client (upgrade from free or plan change)
           clientId = existingClient.rows[0].id;
           await client.query(
             `UPDATE clients 
-             SET email = $1, plan_tier = $2, stripe_subscription_id = $3 
+             SET email = $1, plan_tier = $2, stripe_subscription_id = $3, updated_at = NOW()
              WHERE stripe_customer_id = $4`,
             [customerEmail, plan, subscriptionId, customerId]
           );
+          console.log(`✅ Updated existing client ${clientId} from plan upgrade`);
         } else {
-          // Create new client
-          const newClient = await client.query(
-            `INSERT INTO clients (email, plan_tier, stripe_customer_id, stripe_subscription_id)
-             VALUES ($1, $2, $3, $4) RETURNING id`,
-            [customerEmail, plan, customerId, subscriptionId]
+          // Check if client exists by email (could be free user upgrading)
+          const emailClient = await client.query(
+            'SELECT id FROM clients WHERE email = $1',
+            [customerEmail]
           );
-          clientId = newClient.rows[0].id;
+          
+          if (emailClient.rows.length > 0) {
+            // Update existing client with Stripe details
+            clientId = emailClient.rows[0].id;
+            await client.query(
+              `UPDATE clients 
+               SET plan_tier = $1, stripe_customer_id = $2, stripe_subscription_id = $3, updated_at = NOW()
+               WHERE id = $4`,
+              [plan, customerId, subscriptionId, clientId]
+            );
+            console.log(`✅ Updated existing email client ${clientId} with Stripe details`);
+          } else {
+            // Create new client
+            const newClient = await client.query(
+              `INSERT INTO clients (email, plan_tier, stripe_customer_id, stripe_subscription_id)
+               VALUES ($1, $2, $3, $4) RETURNING id`,
+              [customerEmail, plan, customerId, subscriptionId]
+            );
+            clientId = newClient.rows[0].id;
+            console.log(`✅ Created new client ${clientId}`);
+          }
         }
 
-        // Record payment
+        // Record payment with more details
         await client.query(
-          `INSERT INTO payments (client_id, stripe_customer_id, stripe_price_id, amount, currency)
-           VALUES ($1, $2, $3, $4, $5)`,
+          `INSERT INTO payments (client_id, stripe_customer_id, stripe_price_id, amount, currency, paid_at)
+           VALUES ($1, $2, $3, $4, $5, NOW())`,
           [clientId, customerId, priceId, amount, 'usd']
         );
 
@@ -123,6 +144,44 @@ export async function POST(request: NextRequest) {
 
         console.log(`Successfully processed payment for client ${clientId} (${customerEmail}) - ${plan} plan`);
       });
+
+      // Send welcome email for paid plans
+      if (plan && ['stealth', 'vanish', 'shield'].includes(plan)) {
+        const welcomeTemplate = emailTemplates.paidSignupWelcome({
+          email: customerEmail,
+          companyName: customerEmail.split('@')[0], // Fallback if company name not available
+          plan: plan as 'stealth' | 'vanish' | 'shield',
+          amount: amount
+        });
+
+        const emailResult = await sendEmail({
+          to: customerEmail,
+          subject: welcomeTemplate.subject,
+          html: welcomeTemplate.html
+        });
+
+        if (emailResult.success) {
+          console.log(`✅ Welcome email sent to: ${customerEmail}`);
+        } else {
+          console.error(`❌ Failed to send welcome email to ${customerEmail}:`, emailResult.error);
+        }
+
+        // Send notification to team
+        await sendTeamNotification(
+          `💰 New ${plan.toUpperCase()} Customer: $${(amount / 100).toLocaleString()}`,
+          `
+            <h2>New paid customer!</h2>
+            <p><strong>Email:</strong> ${customerEmail}</p>
+            <p><strong>Plan:</strong> ${plan.toUpperCase()}</p>
+            <p><strong>Amount:</strong> $${(amount / 100).toLocaleString()}</p>
+            <p><strong>Stripe Customer:</strong> ${customerId}</p>
+            <p><strong>Subscription:</strong> ${subscriptionId}</p>
+            <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
+            
+            <p>Services need to be activated in their dashboard.</p>
+          `
+        );
+      }
     }
 
     return NextResponse.json({ received: true });

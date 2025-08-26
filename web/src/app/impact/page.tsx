@@ -89,7 +89,7 @@ export default function Impact() {
                 alongside platform contact patterns and process disclosures.
               </p>
               <div className="card-actions mt-3">
-                <Link href="/resources" className="btn btn-sm btn-outline">Explore Docs</Link>
+                <Link href="/resources" className="btn btn-sm btn-outline">Explore Tools & Resources</Link>
                 <Link href="/open-tools" className="btn btn-sm">Open Tools (in progress)</Link>
               </div>
             </div>

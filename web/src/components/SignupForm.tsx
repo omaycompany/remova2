@@ -213,13 +213,13 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
           <form onSubmit={handleSubmit} className="space-y-10">
             {/* Step 1: Plan Selection */}
             <div className="space-y-6">
-                            <div className="text-center">
+              <div className="text-center">
                 <h3 className="font-black text-3xl mb-8 flex items-center justify-center gap-4">
                   <span className="badge badge-primary badge-xl text-xl p-4">1</span>
                   Choose Your Protection Level
                 </h3>
               </div>
-
+              
               {/* Paid Plans Grid */}
               <div className="grid md:grid-cols-3 gap-6 mb-8">
                 {plans.filter(plan => plan.id !== 'free').map((plan) => (

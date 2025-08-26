@@ -7,13 +7,15 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- Clients table (paying customers)
 CREATE TABLE IF NOT EXISTS clients (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  email TEXT NOT NULL,
+  email TEXT NOT NULL UNIQUE,
   org_name TEXT,
-  plan_tier TEXT NOT NULL CHECK (plan_tier IN ('stealth', 'vanish')),
+  company_name TEXT,
+  plan_tier TEXT NOT NULL CHECK (plan_tier IN ('free', 'stealth', 'vanish', 'shield')),
   stripe_customer_id TEXT UNIQUE,
   stripe_subscription_id TEXT,
   last_login_at TIMESTAMPTZ,
-  created_at TIMESTAMPTZ DEFAULT NOW()
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- Index for lookups
@@ -51,6 +53,9 @@ BEGIN
     RETURN NEW;
 END;
 $$ language 'plpgsql';
+
+CREATE TRIGGER update_clients_updated_at BEFORE UPDATE ON clients
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
 CREATE TRIGGER update_cbp_filings_updated_at BEFORE UPDATE ON cbp_filings
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();

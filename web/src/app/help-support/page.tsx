@@ -36,7 +36,7 @@ export default function HelpSupport() {
       icon: "📚",
       title: "Documentation",
       description: "Browse our comprehensive library of guides and resources",
-      action: "Browse Docs",
+      action: "Browse Tools & Resources",
       link: "/resources",
       availability: "Always available"
     },

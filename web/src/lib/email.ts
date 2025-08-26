@@ -1,206 +1,366 @@
 import nodemailer from 'nodemailer';
 
-interface EmailConfig {
-  host: string;
-  port: number;
-  user: string;
-  pass: string;
+export interface EmailOptions {
+  to: string | string[];
+  subject: string;
+  html: string;
+  text?: string;
+  from?: string;
 }
 
-function getEmailConfig(): EmailConfig {
-  const config = {
-    host: process.env.SMTP_HOST || 'smtp.gmail.com',
+// Create transporter (cached)
+let transporter: nodemailer.Transporter | null = null;
+
+function getTransporter() {
+  if (!transporter) {
+    // In development, log emails instead of sending
+    if (process.env.NODE_ENV === 'development') {
+      transporter = nodemailer.createTransporter({
+        streamTransport: true,
+        newline: 'unix',
+        buffer: true
+      });
+    } else {
+      // Production email configuration
+      transporter = nodemailer.createTransporter({
+        host: process.env.SMTP_HOST,
     port: parseInt(process.env.SMTP_PORT || '587'),
-    user: process.env.SMTP_USER || '',
-    pass: process.env.SMTP_PASS || '',
-  };
-
-  if (!config.user || !config.pass) {
-    throw new Error('SMTP_USER and SMTP_PASS environment variables are required');
-  }
-
-  return config;
-}
-
-function createTransporter() {
-  const config = getEmailConfig();
-  
-  return nodemailer.createTransporter({
-    host: config.host,
-    port: config.port,
-    secure: config.port === 465, // true for 465, false for other ports
+        secure: false, // true for 465, false for other ports
     auth: {
-      user: config.user,
-      pass: config.pass,
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
     },
   });
+    }
+  }
+  return transporter;
 }
 
-export async function sendMagicLinkEmail(
-  toEmail: string,
-  magicLink: string,
-  orgName: string
-): Promise<void> {
+export async function sendEmail(options: EmailOptions): Promise<{ success: boolean; messageId?: string; error?: string }> {
   try {
-    // In development mode, log to console instead of sending email
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('🔗 MAGIC LINK FOR DEVELOPMENT:');
-      console.log(`📧 Email: ${toEmail}`);
-      console.log(`🏢 Organization: ${orgName}`);
-      console.log(`🌐 Magic Link: ${magicLink}`);
-      console.log('📋 Copy this URL to your browser to login:');
-      console.log(magicLink);
-      console.log('─'.repeat(80));
-      return;
+    const transporter = getTransporter();
+    
+    const mailOptions = {
+      from: options.from || `"Remova" <${process.env.SMTP_USER || 'hello@remova.org'}>`,
+      to: Array.isArray(options.to) ? options.to.join(', ') : options.to,
+      subject: options.subject,
+      html: options.html,
+      text: options.text || stripHtml(options.html),
+    };
+
+    if (process.env.NODE_ENV === 'development') {
+      // In development, just log the email
+      console.log('\n📧 EMAIL WOULD BE SENT:');
+      console.log('─'.repeat(50));
+      console.log(`To: ${mailOptions.to}`);
+      console.log(`Subject: ${mailOptions.subject}`);
+      console.log(`HTML:\n${options.html}`);
+      console.log('─'.repeat(50));
+      
+      return { success: true, messageId: `dev-${Date.now()}` };
     }
 
-    const transporter = createTransporter();
-    const config = getEmailConfig();
+    const info = await transporter.sendMail(mailOptions);
+    console.log('📧 Email sent:', info.messageId);
+    
+    return { success: true, messageId: info.messageId };
+  } catch (error) {
+    console.error('📧 Email send error:', error);
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : 'Unknown error'
+    };
+  }
+}
 
-    const htmlContent = `
+// Helper function to strip HTML tags for plain text
+function stripHtml(html: string): string {
+  return html
+    .replace(/<[^>]*>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .trim();
+}
+
+// Email templates
+export const emailTemplates = {
+  freeSignupWelcome: (data: { email: string; companyName: string }) => ({
+    subject: '🎉 Welcome to Remova Community!',
+    html: `
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Access Your Remova Dashboard</title>
+    <title>Welcome to Remova</title>
 </head>
-<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f8f9fa;">
-  <div style="max-width: 600px; margin: 0 auto; background-color: white;">
+<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
     <!-- Header -->
-    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 20px; text-align: center;">
-      <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 700;">
-        🛡️ Remova
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 30px; text-align: center;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">
+                🛡️ Welcome to Remova
       </h1>
-      <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0 0; font-size: 16px;">
-        Commercial Data Protection
+            <p style="color: #e2e8f0; margin: 10px 0 0 0; font-size: 16px;">
+                Your trade privacy journey starts now
       </p>
     </div>
 
     <!-- Content -->
-    <div style="padding: 40px 20px;">
-      <h2 style="color: #1a202c; margin: 0 0 16px 0; font-size: 24px;">
-        Access Your Dashboard
+        <div style="padding: 40px 30px;">
+            <div style="background-color: #10b981; color: white; padding: 15px 20px; border-radius: 8px; margin-bottom: 30px; text-align: center;">
+                <strong>🎉 Community Access Activated!</strong>
+            </div>
+            
+            <h2 style="color: #1f2937; margin: 0 0 20px 0; font-size: 24px;">
+                Hi from the Remova team!
       </h2>
       
-      <p style="color: #4a5568; line-height: 1.6; margin: 0 0 24px 0;">
-        Hello from Remova! Click the button below to securely access your member dashboard for <strong>${orgName}</strong>.
-      </p>
-
-      <div style="text-align: center; margin: 32px 0;">
-        <a href="${magicLink}" 
-           style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                  color: white; text-decoration: none; padding: 16px 32px; 
-                  border-radius: 8px; font-weight: 600; font-size: 16px;">
-          Access Dashboard →
+            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 20px; font-size: 16px;">
+                Thanks for joining the Remova community, ${data.companyName}! You now have access to our free trade privacy resources and educational content.
+            </p>
+            
+            <div style="background-color: #f3f4f6; border-radius: 12px; padding: 25px; margin: 30px 0;">
+                <h3 style="color: #1f2937; margin: 0 0 15px 0; font-size: 18px;">🚀 What you can do right now:</h3>
+                <ul style="color: #4b5563; line-height: 1.8; margin: 0; padding-left: 20px;">
+                    <li><strong>Browse free resources:</strong> Guides, templates, and educational content</li>
+                    <li><strong>Read expert analysis:</strong> Latest competitive intelligence threats and trends</li>
+                    <li><strong>Use self-service tools:</strong> Basic privacy assessment and monitoring tools</li>
+                    <li><strong>Stay informed:</strong> Get updates on platform changes and new threats</li>
+                </ul>
+            </div>
+            
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="https://remova.org/resources" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; display: inline-block;">
+                    🔍 Explore Free Resources
         </a>
       </div>
 
-      <div style="background-color: #f7fafc; border-left: 4px solid #4299e1; padding: 16px; margin: 24px 0; border-radius: 4px;">
-        <p style="margin: 0; color: #2d3748; font-size: 14px;">
-          <strong>🔒 Security Note:</strong> This link expires in 24 hours and can only be used once.
-        </p>
+            <div style="border-top: 2px solid #e5e7eb; padding-top: 25px; margin-top: 40px;">
+                <h3 style="color: #1f2937; margin: 0 0 15px 0; font-size: 18px;">💡 Ready for professional protection?</h3>
+                <p style="color: #4b5563; line-height: 1.6; margin-bottom: 15px;">
+                    When you're ready to actively protect your business from competitive intelligence threats, our professional services are here to help:
+                </p>
+                
+                <div style="display: grid; gap: 15px;">
+                    <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 15px;">
+                        <div style="font-weight: bold; color: #3b82f6; margin-bottom: 5px;">🛡️ Stealth ($295/month)</div>
+                        <div style="color: #6b7280; font-size: 14px;">Essential protection + monitoring</div>
+                    </div>
+                    <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 15px;">
+                        <div style="font-weight: bold; color: #8b5cf6; margin-bottom: 5px;">👻 Vanish ($595/month)</div>
+                        <div style="color: #6b7280; font-size: 14px;">Complete protection + takedown campaigns</div>
+                    </div>
+                    <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 15px;">
+                        <div style="font-weight: bold; color: #10b981; margin-bottom: 5px;">🛡️ Shield ($1,250/month)</div>
+                        <div style="color: #6b7280; font-size: 14px;">Ultimate protection + legal coverage</div>
+                    </div>
       </div>
 
-      <p style="color: #718096; font-size: 14px; line-height: 1.5; margin: 24px 0 0 0;">
-        If you didn't request this login link, you can safely ignore this email. 
-        The link will expire automatically.
-      </p>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="https://remova.org/membership" style="color: #667eea; text-decoration: none; font-weight: bold;">
+                        Compare All Plans →
+                    </a>
+                </div>
+            </div>
     </div>
 
     <!-- Footer -->
-    <div style="background-color: #edf2f7; padding: 20px; text-align: center; border-top: 1px solid #e2e8f0;">
-      <p style="margin: 0; color: #718096; font-size: 12px;">
-        © ${new Date().getFullYear()} Remova Inc. • 1111B S Governors Ave STE 39322, Dover, DE 19904
-      </p>
-      <p style="margin: 8px 0 0 0; color: #718096; font-size: 12px;">
-        Questions? Reply to this email or contact 
-        <a href="mailto:hello@remova.org" style="color: #4299e1;">hello@remova.org</a>
+        <div style="background-color: #f9fafb; padding: 30px; text-align: center; border-top: 1px solid #e5e7eb;">
+            <p style="color: #6b7280; margin: 0 0 10px 0; font-size: 14px;">
+                Questions? Reply to this email or contact us at 
+                <a href="mailto:hello@remova.org" style="color: #667eea; text-decoration: none;">hello@remova.org</a>
+            </p>
+            <p style="color: #9ca3af; margin: 0; font-size: 12px;">
+                Remova Inc. • 1111B S Governors Ave STE 39322, Dover, DE 19904
       </p>
     </div>
   </div>
 </body>
-</html>`;
+</html>
+    `
+  }),
 
-    const textContent = `
-Access Your Remova Dashboard
+  paidSignupWelcome: (data: { email: string; companyName: string; plan: 'stealth' | 'vanish' | 'shield'; amount: number }) => {
+    const planNames = { stealth: 'Stealth', vanish: 'Vanish', shield: 'Shield' };
+    const planColors = { stealth: '#3b82f6', vanish: '#8b5cf6', shield: '#10b981' };
+    const planEmojis = { stealth: '🛡️', vanish: '👻', shield: '🛡️' };
+    
+    return {
+      subject: `🛡️ ${planNames[data.plan]} Protection Activated - Welcome to Remova!`,
+      html: `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${planNames[data.plan]} Protection Activated</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, ${planColors[data.plan]} 0%, #1e40af 100%); padding: 40px 30px; text-align: center;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">
+                ${planEmojis[data.plan]} ${planNames[data.plan]} Protection Activated
+            </h1>
+            <p style="color: #e2e8f0; margin: 10px 0 0 0; font-size: 16px;">
+                Your business data is now being secured
+            </p>
+        </div>
+        
+        <!-- Content -->
+        <div style="padding: 40px 30px;">
+            <div style="background-color: ${planColors[data.plan]}; color: white; padding: 15px 20px; border-radius: 8px; margin-bottom: 30px; text-align: center;">
+                <strong>✅ Payment Confirmed - Services Activated</strong>
+            </div>
+            
+            <h2 style="color: #1f2937; margin: 0 0 20px 0; font-size: 24px;">
+                Hi ${data.companyName} team!
+            </h2>
+            
+            <p style="color: #4b5563; line-height: 1.6; margin-bottom: 20px; font-size: 16px;">
+                Thank you for your payment of <strong>$${(data.amount / 100).toLocaleString()}</strong>. Your ${planNames[data.plan]} protection services are now being activated by our expert team.
+            </p>
+            
+            <div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 20px; margin: 25px 0; border-radius: 4px;">
+                <h3 style="color: #92400e; margin: 0 0 10px 0; font-size: 16px;">⚡ Next Steps Required</h3>
+                <p style="color: #92400e; margin: 0; line-height: 1.5;">
+                    Please complete your company intake form within the next 24 hours to begin your protection services. 
+                    <a href="https://remova.org/thank-you?plan=${data.plan}" style="color: #92400e; font-weight: bold;">Complete Intake Form →</a>
+                </p>
+            </div>
+            
+            <div style="background-color: #f3f4f6; border-radius: 12px; padding: 25px; margin: 30px 0;">
+                <h3 style="color: #1f2937; margin: 0 0 15px 0; font-size: 18px;">🔧 Your ${planNames[data.plan]} Services:</h3>
+                ${data.plan === 'stealth' ? `
+                <ul style="color: #4b5563; line-height: 1.8; margin: 0; padding-left: 20px;">
+                    <li>Government confidentiality filings</li>
+                    <li>Trade partner privacy verification</li>
+                    <li>24/7 automated platform scanning</li>
+                    <li>Real-time breach alerts</li>
+                    <li>Monthly exposure reports</li>
+                    <li>Priority email support (24h response)</li>
+                </ul>
+                ` : data.plan === 'vanish' ? `
+                <ul style="color: #4b5563; line-height: 1.8; margin: 0; padding-left: 20px;">
+                    <li>Everything in Stealth Membership</li>
+                    <li>Systematic database takedowns (40+ platforms)</li>
+                    <li>Manual follow-up enforcement</li>
+                    <li>Dedicated account manager</li>
+                    <li>Quarterly compliance audits</li>
+                    <li>Priority phone & email support (4h response)</li>
+                </ul>
+                ` : `
+                <ul style="color: #4b5563; line-height: 1.8; margin: 0; padding-left: 20px;">
+                    <li>Everything in Vanish Membership</li>
+                    <li>Legal coverage fund ($10,000/year)</li>
+                    <li>Priority SLA (&lt;24h escalation)</li>
+                    <li>Multi-entity compliance support</li>
+                    <li>Premium support (1h response all channels)</li>
+                </ul>
+                `}
+            </div>
+            
+            <div style="background-color: #ecfdf5; border-radius: 12px; padding: 25px; margin: 30px 0;">
+                <h3 style="color: #065f46; margin: 0 0 15px 0; font-size: 18px;">⏰ Implementation Timeline:</h3>
+                <div style="display: grid; gap: 15px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="background-color: #10b981; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px;">1</div>
+                        <div>
+                            <div style="font-weight: bold; color: #065f46;">Complete Intake Form (Next 24 hours)</div>
+                            <div style="color: #059669; font-size: 14px;">Provide company details for service setup</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="background-color: #10b981; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px;">2</div>
+                        <div>
+                            <div style="font-weight: bold; color: #065f46;">Protection Services Begin (Within ${data.plan === 'shield' ? '12-24' : '24-48'} hours)</div>
+                            <div style="color: #059669; font-size: 14px;">Legal filings and monitoring implementation</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="background-color: #10b981; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px;">3</div>
+                        <div>
+                            <div style="font-weight: bold; color: #065f46;">Dashboard Access (24-48 hours)</div>
+                            <div style="color: #059669; font-size: 14px;">Monitor progress and track protection status</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="https://remova.org/thank-you?plan=${data.plan}" style="background: linear-gradient(135deg, ${planColors[data.plan]} 0%, #1e40af 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; display: inline-block;">
+                    Complete Intake Form
+                </a>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div style="background-color: #f9fafb; padding: 30px; text-align: center; border-top: 1px solid #e5e7eb;">
+            <p style="color: #6b7280; margin: 0 0 10px 0; font-size: 14px;">
+                Questions? Contact your dedicated support team at 
+                <a href="mailto:hello@remova.org" style="color: ${planColors[data.plan]}; text-decoration: none;">hello@remova.org</a>
+            </p>
+            <p style="color: #9ca3af; margin: 0; font-size: 12px;">
+                Remova Inc. • 1111B S Governors Ave STE 39322, Dover, DE 19904
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+      `
+    };
+  },
 
-Hello from Remova! Click the link below to securely access your member dashboard for ${orgName}.
-
-${magicLink}
-
-🔒 Security Note: This link expires in 24 hours and can only be used once.
-
-If you didn't request this login link, you can safely ignore this email. The link will expire automatically.
-
----
-© ${new Date().getFullYear()} Remova Inc.
-Questions? Contact hello@remova.org
-`;
-
-    await transporter.sendMail({
-      from: `"Remova" <${config.user}>`,
-      to: toEmail,
-      subject: '🔐 Access Your Remova Dashboard',
-      text: textContent,
-      html: htmlContent,
-    });
-
-    console.log(`Magic link email sent to ${toEmail}`);
-  } catch (error) {
-    console.error('Email sending error:', error);
-    throw new Error('Failed to send magic link email');
-  }
-}
-
-export async function sendNotificationEmail(
-  subject: string,
-  content: string,
-  meta?: Record<string, unknown>
-): Promise<void> {
-  try {
-    const teamEmail = process.env.TEAM_NOTIFICATIONS_EMAIL;
-    if (!teamEmail) {
-      console.log('No team notification email configured, skipping notification');
-      return;
-    }
-
-    const transporter = createTransporter();
-    const config = getEmailConfig();
-
-    const htmlContent = `
+  contactFormNotification: (data: any) => ({
+    subject: `🔔 New Contact Form Submission from ${data.company || data.email}`,
+    html: `
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Remova Notification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Contact Form Submission</title>
 </head>
-<body style="font-family: sans-serif; margin: 20px;">
-  <h2>🔔 Remova Notification</h2>
-  <div style="background-color: #f8f9fa; padding: 16px; border-radius: 4px; margin: 16px 0;">
-    ${content}
+<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden;">
+        <div style="background-color: #1f2937; padding: 20px; text-align: center;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 24px;">🔔 New Contact Form Submission</h1>
+        </div>
+        
+        <div style="padding: 30px;">
+            <div style="background-color: #f3f4f6; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                <h2 style="margin: 0 0 15px 0; color: #1f2937;">Contact Details:</h2>
+                <p style="margin: 5px 0; color: #4b5563;"><strong>Email:</strong> ${data.email}</p>
+                <p style="margin: 5px 0; color: #4b5563;"><strong>Company:</strong> ${data.company || 'Not provided'}</p>
+                <p style="margin: 5px 0; color: #4b5563;"><strong>Name:</strong> ${data.name || 'Not provided'}</p>
+                <p style="margin: 5px 0; color: #4b5563;"><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
+            </div>
+            
+            <div style="background-color: #f8fafc; border-radius: 8px; padding: 20px;">
+                <h3 style="margin: 0 0 10px 0; color: #1f2937;">Message:</h3>
+                <p style="margin: 0; color: #4b5563; line-height: 1.6; white-space: pre-wrap;">${data.message}</p>
+            </div>
+            
+            ${data.nda ? '<div style="background-color: #fef3c7; border-radius: 8px; padding: 15px; margin-top: 15px;"><p style="margin: 0; color: #92400e; font-weight: bold;">⚠️ NDA requested for this inquiry</p></div>' : ''}
+        </div>
   </div>
-  ${meta ? `
-    <h3>Details</h3>
-    <pre style="background-color: #f1f3f4; padding: 12px; border-radius: 4px; overflow-x: auto;">
-${JSON.stringify(meta, null, 2)}
-    </pre>
-  ` : ''}
-  <hr>
-  <p style="color: #666; font-size: 12px;">
-    Sent at ${new Date().toISOString()}
-  </p>
 </body>
-</html>`;
+</html>
+    `
+  })
+};
 
-    await transporter.sendMail({
-      from: `"Remova System" <${config.user}>`,
+// Helper function to send notification to team
+export async function sendTeamNotification(subject: string, html: string) {
+  const teamEmail = process.env.TEAM_NOTIFICATIONS_EMAIL || 'hello@remova.org';
+  
+  return await sendEmail({
       to: teamEmail,
-      subject: `[Remova] ${subject}`,
-      html: htmlContent,
+    subject,
+    html
     });
-  } catch (error) {
-    console.error('Notification email error:', error);
-    // Don't throw - notifications should not break the main flow
-  }
 }

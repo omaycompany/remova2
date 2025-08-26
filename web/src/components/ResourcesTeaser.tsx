@@ -10,7 +10,7 @@ export default function ResourcesTeaser() {
     <section className="container mx-auto px-4 py-12">
       <div className="grid md:grid-cols-2 gap-6 items-center">
         <div>
-          <h2 className="text-2xl font-bold">Docs to make trade secure again</h2>
+          <h2 className="text-2xl font-bold">Tools and Resources to make trade secure again</h2>
           <p className="opacity-80 mt-2">Our nonprofit initiative maintains in‑depth public guides.</p>
         </div>
         <ul className="space-y-2">

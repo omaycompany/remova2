@@ -1,16 +1,17 @@
-import type { MetadataRoute } from "next";
+import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NODE_ENV === "production" 
     ? "https://www.remova.org" 
     : "http://127.0.0.1:6161";
   
-      const paths = [
-      "",
-      "/services/manifest-privacy",
-      "/services/leakwatch",
-      "/services/takedown",
-      "/services/optout",
+  const paths = [
+    "",
+    "/blog",
+    "/services/manifest-privacy",
+    "/services/leakwatch",
+    "/services/takedown",
+    "/services/optout",
     "/membership",
     "/membership/free",
     "/become-member",
@@ -37,11 +38,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/pricing",
     "/intake",
   ];
+
+  // Blog posts
+  const blogPosts = [
+    "/blog/chinese-suppliers-poaching-european-clients",
+    "/blog/us-businesses-losing-eu-china-competition",
+    "/blog/supplier-intelligence-warfare-2024",
+    "/blog/german-industrial-espionage-us-manufacturers",
+    "/blog/chinese-ai-pricing-attacks-electronics",
+    "/blog/european-automotive-supplier-poaching",
+    "/blog/asian-manufacturing-alliance-threat",
+    "/blog/trade-data-warfare-small-businesses",
+    "/blog/state-sponsored-trade-intelligence"
+  ];
+
+  const allPaths = [...paths, ...blogPosts];
   
-  return paths.map((p) => ({ 
+  return allPaths.map((p) => ({ 
     url: `${baseUrl}${p}`, 
     changeFrequency: "weekly" as const, 
-    priority: p === "" ? 1 : 0.7 
+    priority: p === "" ? 1 : p === "/blog" ? 0.9 : p.startsWith("/blog/") ? 0.8 : 0.7,
+    lastModified: new Date()
   }));
 }
-

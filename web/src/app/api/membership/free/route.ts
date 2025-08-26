@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { query } from '@/lib/db';
+import { sendEmail, emailTemplates, sendTeamNotification } from '@/lib/email';
+import { stripe } from '@/lib/stripe';
 
 const freeSignupSchema = z.object({
   email: z.string().email(),
@@ -11,15 +14,73 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { email, companyName } = freeSignupSchema.parse(body);
 
-    // TODO: Add user to database and send welcome email
-    // For now, we'll just validate the input and return success
-    
     console.log('Free membership signup:', { email, companyName });
 
-    // Here you would typically:
-    // 1. Save user to database
-    // 2. Send welcome email
-    // 3. Set up their free account
+    // 1. Create Stripe customer for free user
+    let stripeCustomerId: string | null = null;
+    try {
+      const stripeCustomer = await stripe.customers.create({
+        email: email,
+        name: companyName,
+        metadata: {
+          plan: 'free',
+          company_name: companyName,
+          signup_date: new Date().toISOString(),
+        },
+      });
+      stripeCustomerId = stripeCustomer.id;
+      console.log(`✅ Stripe customer created for free user: ${stripeCustomerId}`);
+    } catch (stripeError) {
+      console.error('Stripe customer creation error for free user:', stripeError);
+      // Continue without Stripe customer - they can still access free features
+    }
+
+    // 2. Save user to database (upsert to handle duplicates)
+    try {
+      await query(
+        `INSERT INTO clients (email, company_name, plan_tier, stripe_customer_id, created_at)
+         VALUES ($1, $2, $3, $4, NOW())
+         ON CONFLICT (email) DO UPDATE SET
+           company_name = EXCLUDED.company_name,
+           stripe_customer_id = COALESCE(EXCLUDED.stripe_customer_id, clients.stripe_customer_id),
+           updated_at = NOW()`,
+        [email, companyName, 'free', stripeCustomerId]
+      );
+      
+      console.log(`✅ Free user saved to database: ${email} with Stripe customer: ${stripeCustomerId}`);
+    } catch (dbError) {
+      console.error('Database error for free signup:', dbError);
+      // Continue with email sending even if DB fails
+    }
+
+    // 3. Send welcome email to user
+    const welcomeTemplate = emailTemplates.freeSignupWelcome({ email, companyName });
+    const emailResult = await sendEmail({
+      to: email,
+      subject: welcomeTemplate.subject,
+      html: welcomeTemplate.html
+    });
+
+    if (emailResult.success) {
+      console.log(`✅ Welcome email sent to: ${email}`);
+    } else {
+      console.error(`❌ Failed to send welcome email to ${email}:`, emailResult.error);
+    }
+
+    // 4. Send notification to team
+    await sendTeamNotification(
+      `🆓 New Free Community Member: ${companyName}`,
+      `
+        <h2>New free community member signed up!</h2>
+        <p><strong>Company:</strong> ${companyName}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Plan:</strong> Free Community Access</p>
+        <p><strong>Stripe Customer:</strong> ${stripeCustomerId || 'Not created'}</p>
+        <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
+        
+        <p>They now have access to free resources and billing portal${stripeCustomerId ? ' with Stripe customer record' : ''}. Good candidate for upgrade outreach.</p>
+      `
+    );
 
     return NextResponse.json({
       success: true,
