@@ -9,48 +9,42 @@ export interface EmailOptions {
   from?: string;
 }
 
-// Create transporter (cached)
-let transporter: any = null;
-
-async function getTransporter() {
-  if (!transporter) {
-    // Import nodemailer dynamically to avoid Next.js bundling issues
-    const nodemailer = await import('nodemailer');
+// Use Resend for reliable email sending
+async function sendEmailWithResend(to: string, subject: string, html: string): Promise<{ success: boolean; messageId?: string; error?: string }> {
+  try {
+    console.log('🚀 Sending email via Resend...');
     
-    // In development, log emails instead of sending
-    if (process.env.NODE_ENV === 'development') {
-      transporter = nodemailer.default.createTransporter({
-        streamTransport: true,
-        newline: 'unix',
-        buffer: true
-      });
-    } else {
-      // Production email configuration
-      console.log('🔧 Creating SMTP transporter with config:', {
-        host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT || '587'),
-        secure: process.env.SMTP_PORT === '465',
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS ? '***SET***' : 'NOT SET'
-        }
-      });
-      
-      transporter = nodemailer.default.createTransporter({
-        host: process.env.SMTP_HOST,
-        port: parseInt(process.env.SMTP_PORT || '587'),
-        secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
-        },
-        tls: {
-          rejectUnauthorized: false // Allow self-signed certificates
-        }
-      });
+    const { Resend } = await import('resend');
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    
+    const result = await resend.emails.send({
+      from: `"Remova" <${process.env.RESEND_FROM_EMAIL || 'hello@remova.org'}>`,
+      to: [to],
+      subject: subject,
+      html: html,
+    });
+    
+    if (result.error) {
+      console.error('❌ Resend error:', result.error);
+      return { 
+        success: false, 
+        error: `Resend error: ${result.error.message || result.error}`
+      };
     }
+    
+    console.log('✅ Email sent successfully via Resend:', result.data);
+    return { 
+      success: true, 
+      messageId: result.data?.id || `resend-${Date.now()}`
+    };
+    
+  } catch (error) {
+    console.error('❌ Resend send failed:', error);
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : 'Unknown Resend error'
+    };
   }
-  return transporter;
 }
 
 export async function sendEmail(options: EmailOptions): Promise<{ success: boolean; messageId?: string; error?: string }> {
@@ -61,15 +55,6 @@ export async function sendEmail(options: EmailOptions): Promise<{ success: boole
     from: options.from,
     htmlLength: options.html?.length || 0,
     textLength: options.text?.length || 0
-  });
-
-  // Check environment variables
-  console.log('🔧 SMTP Configuration:', {
-    SMTP_HOST: process.env.SMTP_HOST || 'NOT SET',
-    SMTP_PORT: process.env.SMTP_PORT || 'NOT SET',
-    SMTP_USER: process.env.SMTP_USER || 'NOT SET',
-    SMTP_PASS: process.env.SMTP_PASS ? '***SET***' : 'NOT SET',
-    NODE_ENV: process.env.NODE_ENV || 'NOT SET'
   });
 
   // For development, just log
@@ -84,48 +69,21 @@ export async function sendEmail(options: EmailOptions): Promise<{ success: boole
     return { success: true, messageId: `dev-${Date.now()}` };
   }
 
-  // Use Nodemailer with proper dynamic import
-  try {
-    console.log('🚀 Attempting Nodemailer approach...');
-    const transporter = await getTransporter();
-    console.log('✅ Transporter created successfully');
-    
-    const mailOptions = {
-      from: options.from || `"Remova" <${process.env.SMTP_USER || 'hello@remova.org'}>`,
-      to: Array.isArray(options.to) ? options.to.join(', ') : options.to,
-      subject: options.subject,
-      html: options.html,
-      text: options.text || stripHtml(options.html),
-    };
+  const to = Array.isArray(options.to) ? options.to[0] : options.to;
+  const subject = options.subject;
+  const html = options.html || '';
 
-    console.log('📮 Mail options prepared:', {
-      from: mailOptions.from,
-      to: mailOptions.to,
-      subject: mailOptions.subject,
-      htmlLength: mailOptions.html?.length || 0,
-      textLength: mailOptions.text?.length || 0
-    });
-
-    const info = await transporter.sendMail(mailOptions);
-    console.log('✅ Email sent successfully:', {
-      messageId: info.messageId,
-      response: info.response || 'No response',
-      accepted: info.accepted || [],
-      rejected: info.rejected || []
-    });
-    
-    return { success: true, messageId: info.messageId };
-  } catch (error) {
-    console.error('❌ Email sending failed:', {
-      error: error,
-      message: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : 'No stack trace',
-      name: error instanceof Error ? error.name : 'Unknown error type'
-    });
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Unknown error'
-    };
+  // Use Resend for production email sending
+  console.log('🚀 Sending email via Resend...');
+  
+  const result = await sendEmailWithResend(to, subject, html);
+  
+  if (result.success) {
+    console.log('✅ Email sent successfully!');
+    return result;
+  } else {
+    console.error('❌ Email sending failed:', result.error);
+    return result;
   }
 }
 
