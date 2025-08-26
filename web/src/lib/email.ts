@@ -1,4 +1,3 @@
-import nodemailer from 'nodemailer';
 import { generateMagicLinkToken } from './auth';
 import { query } from './db';
 
@@ -11,13 +10,16 @@ export interface EmailOptions {
 }
 
 // Create transporter (cached)
-let transporter: nodemailer.Transporter | null = null;
+let transporter: any = null;
 
 function getTransporter() {
   if (!transporter) {
+    // Dynamic require to avoid Next.js bundling issues
+    const nodemailerLib = require('nodemailer');
+    
     // In development, log emails instead of sending
     if (process.env.NODE_ENV === 'development') {
-      transporter = nodemailer.createTransporter({
+      transporter = nodemailerLib.createTransporter({
         streamTransport: true,
         newline: 'unix',
         buffer: true
@@ -34,7 +36,7 @@ function getTransporter() {
         }
       });
       
-      transporter = nodemailer.createTransporter({
+      transporter = nodemailerLib.createTransporter({
         host: process.env.SMTP_HOST,
         port: parseInt(process.env.SMTP_PORT || '587'),
         secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
