@@ -11,7 +11,7 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
-  const [expandedGroups, setExpandedGroups] = useState<string[]>(['protection', 'tools']);
+  const [expandedGroups, setExpandedGroups] = useState<string[]>(['pillar1', 'pillar2', 'pillar3']);
 
   const toggleGroup = (groupId: string) => {
     setExpandedGroups(prev => 
@@ -40,8 +40,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   const navigationGroups = [
     {
-      id: 'protection',
-      label: 'Data Protection',
+      id: 'pillar1',
+      label: 'Pillar 1: Protect Your Future',
+      description: 'Government filings and partner verification to keep future shipments and business relationships private by law.',
       items: [
         {
           label: 'Privacy Shield',
@@ -49,39 +50,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           icon: (
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-          )
-        },
-        {
-          label: 'Data Removals',
-          href: '/members/data-removals',
-          icon: (
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-            </svg>
-          )
-        },
-        {
-          label: 'Exposure Monitoring',
-          href: '/members/exposure-monitoring',
-          icon: (
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
-          )
-        }
-      ]
-    },
-    {
-      id: 'tools',
-      label: 'Privacy Tools',
-      items: [
-        {
-          label: 'Anonymity Checker',
-          href: '/members/anonymity-checker',
-          icon: (
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           )
         },
@@ -95,6 +63,31 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           )
         },
         {
+          label: 'Privacy Representative',
+          href: '/members/privacy-representative',
+          icon: (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          )
+        }
+      ]
+    },
+    {
+      id: 'pillar2',
+      label: 'Pillar 2: Erase Your Past',
+      description: 'Systematic removal of existing data from 40+ platforms and databases through takedown operations.',
+      items: [
+        {
+          label: 'Data Removals',
+          href: '/members/data-removals',
+          icon: (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+          )
+        },
+        {
           label: 'Report Data Leak',
           href: '/members/report-leak',
           icon: (
@@ -104,11 +97,27 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           )
         },
         {
-          label: 'Privacy Representative',
-          href: '/members/privacy-representative',
+          label: 'Anonymity Checker',
+          href: '/members/anonymity-checker',
           icon: (
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          )
+        }
+      ]
+    },
+    {
+      id: 'pillar3',
+      label: 'Pillar 3: Monitor Continuously',
+      description: '24/7 automated scanning with real-time alerts to catch and stop new data leaks immediately.',
+      items: [
+        {
+          label: 'Exposure Monitoring',
+          href: '/members/exposure-monitoring',
+          icon: (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
           )
         }
@@ -162,24 +171,24 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       
       {/* Sidebar */}
       <aside className={`
-        fixed top-0 left-0 z-50 h-full w-64 bg-white border-r border-gray-200 
+        fixed top-0 left-0 z-50 h-full w-64 bg-white border-r border-slate-200 
         transform transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         lg:translate-x-0
       `}>
         {/* Logo/Header */}
-        <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200">
+        <div className="flex items-center justify-between h-16 px-4 border-b border-slate-200">
           <Link href="/members" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center">
               <span className="text-white font-medium text-sm">R</span>
             </div>
-            <span className="font-medium text-lg text-gray-900">Remova</span>
+            <span className="font-medium text-lg text-slate-800">Remova</span>
           </Link>
           
           {/* Close button for mobile */}
           <button 
             onClick={onClose}
-            className="lg:hidden p-2 text-gray-400 hover:text-gray-600"
+            className="lg:hidden p-2 text-slate-400 hover:text-slate-600"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -198,8 +207,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 className={`
                   flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors
                   ${isActive(item.href) 
-                    ? 'bg-gray-900 text-white' 
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-slate-800 text-white' 
+                    : 'text-slate-700 hover:bg-slate-100'
                   }
                 `}
                 onClick={() => window.innerWidth < 1024 && onClose()}
@@ -215,11 +224,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             <div key={group.id} className="px-3 mb-4">
               <button
                 onClick={() => toggleGroup(group.id)}
-                className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
               >
-                <span>{group.label}</span>
+                <span className="text-left">{group.label}</span>
                 <svg 
-                  className={`w-4 h-4 transition-transform ${isGroupExpanded(group.id) ? 'rotate-90' : ''}`}
+                  className={`w-4 h-4 transition-transform flex-shrink-0 ${isGroupExpanded(group.id) ? 'rotate-90' : ''}`}
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
@@ -227,6 +236,15 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
+              
+              {/* Description for pillars */}
+              {'description' in group && isGroupExpanded(group.id) && (
+                <div className="ml-3 mt-1 mb-2">
+                  <p className="text-xs text-slate-500 px-3 py-1 leading-relaxed">
+                    {group.description}
+                  </p>
+                </div>
+              )}
               
               {isGroupExpanded(group.id) && (
                 <div className="ml-3 mt-1 space-y-1">
@@ -237,8 +255,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                       className={`
                         flex items-center space-x-3 px-3 py-2 rounded-lg text-sm transition-colors
                         ${isActive(item.href) 
-                          ? 'bg-gray-900 text-white' 
-                          : 'text-gray-600 hover:bg-gray-100 hover:text-gray-700'
+                          ? 'bg-slate-800 text-white' 
+                          : 'text-slate-600 hover:bg-slate-100 hover:text-slate-700'
                         }
                       `}
                       onClick={() => window.innerWidth < 1024 && onClose()}
@@ -253,7 +271,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           ))}
 
           {/* Bottom Actions */}
-          <div className="px-3 mt-8 pt-4 border-t border-gray-200">
+          <div className="px-3 mt-8 pt-4 border-t border-slate-200">
             <Link
               href="/members/logout"
               className="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm text-red-600 hover:bg-red-50 transition-colors"

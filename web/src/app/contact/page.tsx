@@ -29,7 +29,7 @@ export default function Contact() {
         setSubmitError(result.error || 'Something went wrong. Please try again.');
       }
     } catch {
-      setSubmitError('Network error. Please try again or email notifications@remova.org directly.');
+      setSubmitError('Network error. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
