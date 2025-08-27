@@ -1,0 +1,82 @@
+{
+  "generatedAt": "2025-08-27T10:13:44.714Z",
+  "stats": {
+    "totalGenerated": 33,
+    "totalFailed": 0,
+    "generationTimeSeconds": 171,
+    "categories": 5
+  },
+  "categories": {
+    "Privacy Foundations": {
+      "description": "Essential legal frameworks and regulatory knowledge",
+      "resources": [
+        "Manifest Privacy Primer (19 CFR 103.31 Legal Framework)",
+        "Coverage Windows Explained (Timeline & Protection Periods)",
+        "Legal Protection Framework (GDPR, CCPA & Trade Secret Rights)"
+      ]
+    },
+    "Platform Removal Guides": {
+      "description": "Step-by-step removal procedures for major platforms",
+      "resources": [
+        "Panjiva Data Removal Guide",
+        "ImportGenius Removal Guide",
+        "TradeMap Data Protection Guide",
+        "UN Comtrade Data Shield Guide",
+        "Descartes Datamyne Removal",
+        "Zauba Trade Data Removal"
+      ]
+    },
+    "Implementation Tools": {
+      "description": "Practical templates, checklists, and tactical resources",
+      "resources": [
+        "Professional Takedown Templates",
+        "Comprehensive Audit Checklist",
+        "Vendor Protection Agreements"
+      ]
+    },
+    "Advanced Strategies": {
+      "description": "Professional-grade tactics for comprehensive protection",
+      "resources": [
+        "Automated Monitoring Systems",
+        "Competitive Intelligence Defense",
+        "Enterprise Protection Implementation"
+      ]
+    },
+    "Premium Executive Resources": {
+      "description": "High-value resources for executives and professionals",
+      "resources": [
+        "Executive Strategic Framework for Trade Data Protection",
+        "Enterprise Implementation Playbook",
+        "Legal Template Library",
+        "ROI Calculation & Business Case Toolkit",
+        "Trade Data Breach Response Playbook",
+        "Advanced Competitive Intelligence Defense",
+        "Vendor & Partner Security Framework"
+      ]
+    },
+    "Industry-Specific Guides": {
+      "description": "Specialized strategies tailored by industry vertical",
+      "resources": [
+        "Pharmaceutical & Life Sciences Trade Data Protection",
+        "Technology & Electronics Trade Data Security",
+        "Automotive & Manufacturing Trade Intelligence Defense",
+        "Fashion & Retail Trade Data Protection",
+        "Aerospace & Defense Trade Security",
+        "Food & Beverage Supply Chain Protection"
+      ]
+    },
+    "Flagship Guide": {
+      "description": "Comprehensive premium guide (50+ pages)",
+      "resources": [
+        "The Ultimate Guide to Trade Privacy (2025 Edition)"
+      ]
+    }
+  },
+  "locations": {
+    "comprehensiveResources": "/public/docs/resources/",
+    "flagshipGuide": "/public/docs/ultimate-guide-trade-privacy-2025.pdf",
+    "removalGuides": "/public/docs/removal-guides/",
+    "premiumResources": "/public/docs/premium/",
+    "industryGuides": "/public/docs/industry-guides/"
+  }
+}
