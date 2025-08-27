@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     const { email, password } = LoginSchema.parse(body);
 
     // Get client info for logging
-    const ipAddress = request.ip || request.headers.get('x-forwarded-for') || undefined;
+    const ipAddress = request.headers.get('x-forwarded-for') || undefined;
     const userAgent = request.headers.get('user-agent') || undefined;
 
     const result = await authenticateAdmin(email, password, ipAddress, userAgent);
