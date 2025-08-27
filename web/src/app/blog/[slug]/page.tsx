@@ -229,8 +229,8 @@ Your supplier relationships and sourcing strategies are valuable business assets
     tags: ["Panjiva", "Supplier Protection", "Trade Intelligence"],
     relatedPosts: [
       "competitive-intelligence-tactics-2024",
-      "manifest-privacy-regulations-2024",
-      "supplier-poaching-prevention-2024"
+      "supplier-intelligence-warfare-2024",
+      "chinese-suppliers-poaching-european-clients"
     ]
   },
   "competitive-intelligence-tactics-2024": {
@@ -532,8 +532,8 @@ The companies that proactively address these challenges will maintain their comp
     tags: ["Competitive Intelligence", "Customer Protection", "Business Defense"],
     relatedPosts: [
       "panjiva-data-exposure-2024",
-      "supplier-poaching-prevention-2024",
-      "pricing-intelligence-defense-2024"
+      "supplier-intelligence-warfare-2024",
+      "german-industrial-espionage-us-manufacturers"
     ]
   },
   "chinese-suppliers-poaching-european-clients": {
@@ -4360,8 +4360,9 @@ The battle against state-sponsored trade intelligence is a national security imp
   }
 };
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = blogPosts[params.slug as keyof typeof blogPosts];
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = blogPosts[slug as keyof typeof blogPosts];
   
   if (!post) {
     return {
@@ -4384,13 +4385,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       siteName: "Remova",
     },
     alternates: {
-      canonical: `https://remova.org/blog/${params.slug}`
+      canonical: `https://remova.org/blog/${slug}`
     }
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = blogPosts[params.slug as keyof typeof blogPosts];
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = blogPosts[slug as keyof typeof blogPosts];
   
   if (!post) {
     notFound();
@@ -4398,15 +4400,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   return (
     <div className="min-h-screen bg-white">
-      <BlogPostStructuredData
-        title={post.title}
-        description={post.description}
-        author={post.author}
-        datePublished={post.date}
-        category={post.category}
-        tags={post.tags}
-        url={`https://remova.org/blog/${params.slug}`}
-      />
       
       {/* Article Header */}
       <header className="bg-gradient-to-br from-slate-50 to-indigo-50/30 py-16">

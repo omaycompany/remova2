@@ -29,7 +29,7 @@ const featuredPosts = [
     date: "2024-12-15",
     category: "Competitive Threats",
     readTime: "12 min read",
-    image: "/blog/chinese-poaching.jpg",
+    image: "/og-image.svg",
     tags: ["Chinese Competition", "European Manufacturing", "Client Poaching"],
     featured: true
   },
@@ -41,7 +41,7 @@ const featuredPosts = [
     date: "2024-12-12",
     category: "US Competitiveness",
     readTime: "14 min read",
-    image: "/blog/us-losing.jpg",
+    image: "/og-image.svg",
     tags: ["US Competition", "Trade War", "Global Markets"],
     featured: true
   },
@@ -53,7 +53,7 @@ const featuredPosts = [
     date: "2024-12-10",
     category: "Supplier Protection",
     readTime: "11 min read",
-    image: "/blog/supplier-war.jpg",
+    image: "/og-image.svg",
     tags: ["Supplier Protection", "Intelligence Warfare", "Manufacturing"],
     featured: true
   }
