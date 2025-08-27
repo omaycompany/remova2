@@ -592,7 +592,7 @@ export const emailTemplates = {
 // Send magic link email for sign in
 export async function sendMagicLinkEmail(email: string, magicLink: string, orgName: string): Promise<{ success: boolean; error?: string }> {
   try {
-    const subject = "🔐 Your secure sign-in link - Remova";
+    const subject = "Your Remova sign-in link";
     
     const html = `
 <!DOCTYPE html>
@@ -614,7 +614,7 @@ export async function sendMagicLinkEmail(email: string, magicLink: string, orgNa
       
       <div style="position: relative; z-index: 10;">
         <h1 style="color: #ffffff; margin: 0 0 15px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-          🔐 Secure Sign-In
+          Sign In to Remova
         </h1>
         <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 18px; font-weight: 500;">
           Access your Remova dashboard
