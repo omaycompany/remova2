@@ -49,7 +49,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/blog/european-automotive-supplier-poaching",
     "/blog/asian-manufacturing-alliance-threat",
     "/blog/trade-data-warfare-small-businesses",
-    "/blog/state-sponsored-trade-intelligence"
+    "/blog/state-sponsored-trade-intelligence",
+    "/blog/new-cold-war-tech-trade-2025",
+    "/blog/rcep-afcfta-opportunity-2025",
+    "/blog/eu-cbam-green-tariffs-2025",
+    "/blog/digital-tariffs-and-data-sovereignty-2025",
+    "/blog/global-trade-outlook-2026"
   ];
 
   const allPaths = [...paths, ...blogPosts];

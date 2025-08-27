@@ -57,6 +57,19 @@ const featuredPosts = [
     tags: ["Supplier Protection", "Intelligence Warfare", "Manufacturing"],
     featured: true
   }
+  ,
+  {
+    id: "new-cold-war-tech-trade-2025",
+    title: "The New Cold War is Fought with Microchips, Not Tariffs",
+    excerpt: "Export controls and licensing regimes became the de facto tariffs of 2025 across chips, AI, and EV supply chains.",
+    author: "Semiconductor Policy Research",
+    date: "2025-08-27",
+    category: "Tech Trade 2025",
+    readTime: "9 min read",
+    image: "/og-image.svg",
+    tags: ["Export Controls", "Semiconductors", "EV Batteries"],
+    featured: true
+  }
 ];
 
 const recentPosts = [
@@ -119,6 +132,46 @@ const recentPosts = [
     category: "State Threats",
     readTime: "12 min read",
     tags: ["State Sponsored", "Government Intelligence", "Corporate Threats"]
+  },
+  {
+    id: "rcep-afcfta-opportunity-2025",
+    title: "Regional Blocs Get Richer: Bet on RCEP and AfCFTA",
+    excerpt: "Regionalization is driving trade growth in 2025. Practical guidance to leverage bloc rules.",
+    author: "Regionalization Research",
+    date: "2025-08-26",
+    category: "Regionalization",
+    readTime: "8 min read",
+    tags: ["RCEP", "AfCFTA", "Rules of Origin"]
+  },
+  {
+    id: "eu-cbam-green-tariffs-2025",
+    title: "Green Tariffs Are Here: EU CBAM Is Reshaping Trade",
+    excerpt: "CBAM moved from theory to practice. What exporters must do in 2025.",
+    author: "Sustainability & Trade",
+    date: "2025-08-25",
+    category: "Sustainability",
+    readTime: "7 min read",
+    tags: ["CBAM", "Carbon", "EU"]
+  },
+  {
+    id: "digital-tariffs-and-data-sovereignty-2025",
+    title: "Digital Tariffs and the New Data Sovereignty",
+    excerpt: "DSTs, DMA obligations, and localization laws act like tariffs on software.",
+    author: "Digital Trade Team",
+    date: "2025-08-24",
+    category: "Digital Trade",
+    readTime: "8 min read",
+    tags: ["DST", "Data Localization", "DMA"]
+  },
+  {
+    id: "global-trade-outlook-2026",
+    title: "2026 Global Trade Outlook: Tech Wars, Green Tariffs, Regionalization",
+    excerpt: "Executive playbook for 2026 amid tech rivalry, CBAM diffusion, and bloc-centric trade.",
+    author: "Executive Briefing",
+    date: "2025-08-23",
+    category: "2026 Outlook",
+    readTime: "9 min read",
+    tags: ["2026", "Outlook", "Resilience"]
   }
 ];
 
