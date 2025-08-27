@@ -208,34 +208,43 @@ export default function GreatDashboard({ client, dashboardData }: GreatDashboard
                 <div className="border border-gray-200 bg-white rounded-lg p-6">
                   <h3 className="font-medium text-gray-900 mb-4">Recent Activity</h3>
                   <div className="space-y-3">
-                    <div className="flex items-center gap-4 py-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <div className="flex-1">
-                        <div className="text-sm font-medium">Panjiva data removal completed</div>
-                        <div className="text-xs text-gray-500">2 days ago</div>
+                    {dashboardData.takedownCases.length > 0 ? (
+                      dashboardData.takedownCases.slice(0, 4).map((takedown, index) => (
+                        <div key={index} className="flex items-center gap-4 py-2">
+                          <div className={`w-2 h-2 rounded-full ${
+                            takedown.status === 'completed' ? 'bg-green-500' : 
+                            takedown.status === 'in_progress' ? 'bg-yellow-500' : 'bg-gray-300'
+                          }`}></div>
+                          <div className="flex-1">
+                            <div className="text-sm font-medium">
+                              {takedown.platform_name || 'Data Platform'} {takedown.status === 'completed' ? 'removal completed' : 'removal in progress'}
+                            </div>
+                            <div className="text-xs text-gray-500">
+                              {takedown.updated_at ? new Date(takedown.updated_at).toLocaleDateString() : 'Recently'}
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                    ) : dashboardData.cbpFiling ? (
+                      <div className="flex items-center gap-4 py-2">
+                        <div className={`w-2 h-2 rounded-full ${
+                          dashboardData.cbpFiling.status === 'approved' ? 'bg-green-500' : 
+                          dashboardData.cbpFiling.status === 'filed' ? 'bg-yellow-500' : 'bg-gray-300'
+                        }`}></div>
+                        <div className="flex-1">
+                          <div className="text-sm font-medium">
+                            CBP confidentiality filing {dashboardData.cbpFiling.status === 'approved' ? 'approved' : 'submitted'}
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            {dashboardData.cbpFiling.updated_at ? new Date(dashboardData.cbpFiling.updated_at).toLocaleDateString() : 'Recently'}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-4 py-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <div className="flex-1">
-                        <div className="text-sm font-medium">ImportGenius data removal completed</div>
-                        <div className="text-xs text-gray-500">3 days ago</div>
+                    ) : (
+                      <div className="text-center py-4 text-gray-500 text-sm">
+                        No recent activity
                       </div>
-                    </div>
-                    <div className="flex items-center gap-4 py-2">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                      <div className="flex-1">
-                        <div className="text-sm font-medium">CBP confidentiality filing approved</div>
-                        <div className="text-xs text-gray-500">1 week ago</div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4 py-2">
-                      <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                      <div className="flex-1">
-                        <div className="text-sm font-medium">ImportYeti removal request submitted</div>
-                        <div className="text-xs text-gray-500">1 week ago</div>
-                      </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>

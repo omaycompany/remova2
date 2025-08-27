@@ -162,7 +162,7 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
 
       {/* Why Upgrade Section */}
       <div className="bg-white border border-gray-200 rounded-lg p-8">
-        <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Why 95% of Our Community Upgrades</h3>
+        <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Why Most of Our Community Upgrades</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-6">
@@ -173,7 +173,7 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
               <div>
                 <h4 className="font-semibold text-gray-900 mb-2">Cost of Inaction</h4>
                 <p className="text-gray-600 text-sm">
-                  Companies lose $2.4M annually on average due to competitive intelligence theft. One leaked supplier relationship can cost you millions in lost deals.
+                  Companies lose significant revenue annually due to competitive intelligence theft. One leaked supplier relationship can result in substantial lost deals.
                 </p>
               </div>
             </div>
@@ -185,7 +185,7 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
               <div>
                 <h4 className="font-semibold text-gray-900 mb-2">Revenue Protection</h4>
                 <p className="text-gray-600 text-sm">
-                  Our clients report 15-40% improvements in deal closure rates after implementing privacy protection. Your competitive advantage stays hidden.
+                  Our clients report significant improvements in deal closure rates after implementing privacy protection. Your competitive advantage stays hidden.
                 </p>
               </div>
             </div>
@@ -247,7 +247,7 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
             Protect Your Business Today
           </Link>
           <p className="mt-3 text-sm text-gray-500">
-            Join 1,000+ companies already protecting their competitive advantage
+            Join companies already protecting their competitive advantage
           </p>
         </div>
       </div>

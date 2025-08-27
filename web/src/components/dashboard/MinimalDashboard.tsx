@@ -25,11 +25,8 @@ export default function MinimalDashboard({ client, dashboardData }: MinimalDashb
   const [activeTab, setActiveTab] = useState('overview');
   const [showPartnerForm, setShowPartnerForm] = useState(false);
   const [showLeakForm, setShowLeakForm] = useState(false);
-  const [partners, setPartners] = useState([
-    { name: 'ABC Manufacturing', relationship: 'supplier' },
-    { name: 'XYZ Logistics', relationship: 'logistics_provider' }
-  ]);
-  const [leakReports, setLeakReports] = useState(3);
+  const [partners, setPartners] = useState([]);
+  const [leakReports, setLeakReports] = useState(0);
 
   const getStatusText = (status: string) => {
     switch (status) {
@@ -142,90 +139,49 @@ export default function MinimalDashboard({ client, dashboardData }: MinimalDashb
                 <div className="border border-gray-200 rounded p-4">
                   <div className="font-medium mb-3">Government Data Sources</div>
                   <div className="space-y-2 text-sm">
-                    <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                        <span>U.S. Customs and Border Protection (CBP)</span>
+                    {dashboardData.cbpFiling ? (
+                      <div className="flex items-center justify-between py-2 border-b border-gray-100">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-2 h-2 rounded-full ${
+                            dashboardData.cbpFiling.status === 'approved' ? 'bg-green-500' : 
+                            dashboardData.cbpFiling.status === 'filed' ? 'bg-yellow-500' : 'bg-gray-300'
+                          }`}></div>
+                          <span>U.S. Customs and Border Protection (CBP)</span>
+                        </div>
+                        <span className="text-xs text-gray-500">{getStatusText(dashboardData.cbpFiling.status)}</span>
                       </div>
-                      <span className="text-xs text-gray-500">Very High Risk</span>
-                    </div>
-                    <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
-                        <span>India ICEGATE / DGCIS</span>
+                    ) : (
+                      <div className="text-center py-4 text-gray-500 text-sm">
+                        No CBP filing submitted yet
                       </div>
-                      <span className="text-xs text-gray-500">High Risk</span>
-                    </div>
-                    <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
-                        <span>Brazil Comex Stat / Siscomex</span>
-                      </div>
-                      <span className="text-xs text-gray-500">High Risk</span>
-                    </div>
-                    <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
-                        <span>UN Comtrade / World Bank WITS</span>
-                      </div>
-                      <span className="text-xs text-gray-500">High Risk (Aggregated)</span>
-                    </div>
-                    <div className="flex items-center justify-between py-2 last:border-b-0">
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                        <span>EU Eurostat COMEXT</span>
-                      </div>
-                      <span className="text-xs text-gray-500">Medium Risk</span>
-                    </div>
+                    )}
+
                   </div>
                 </div>
 
                 {/* Primary Data Platforms */}
                 <div className="border border-gray-200 rounded p-4">
-                  <div className="font-medium mb-3">Primary Trade Data Platforms</div>
+                  <div className="font-medium mb-3">Data Takedown Progress</div>
                   <div className="space-y-2 text-sm">
-                    <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                        <span>Panjiva (S&P Global)</span>
+
+                    {dashboardData.takedownCases.length > 0 ? (
+                      dashboardData.takedownCases.map((takedown, index) => (
+                        <div key={index} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
+                          <div className="flex items-center gap-3">
+                            <div className={`w-2 h-2 rounded-full ${
+                              takedown.status === 'completed' ? 'bg-green-500' : 
+                              takedown.status === 'in_progress' ? 'bg-yellow-500' : 'bg-gray-300'
+                            }`}></div>
+                            <span>{takedown.platform_name || 'Data Platform'}</span>
+                          </div>
+                          <span className="text-xs text-gray-500">{getStatusText(takedown.status)}</span>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="text-center py-4 text-gray-500 text-sm">
+                        No takedown requests yet
                       </div>
-                      <span className="text-xs text-gray-500">Supply Chain Intelligence</span>
-                    </div>
-                    <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                        <span>ImportGenius</span>
-                      </div>
-                      <span className="text-xs text-gray-500">Customs Records & Manifests</span>
-                    </div>
-                    <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
-                        <span>ImportYeti</span>
-                      </div>
-                      <span className="text-xs text-gray-500">Free U.S. Customs Data</span>
-                    </div>
-                    <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
-                        <span>Trademo</span>
-                      </div>
-                      <span className="text-xs text-gray-500">Modern SaaS Platform</span>
-                    </div>
-                    <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
-                        <span>Descartes Datamyne</span>
-                      </div>
-                      <span className="text-xs text-gray-500">50+ Countries Coverage</span>
-                    </div>
-                    <div className="flex items-center justify-between py-2 last:border-b-0">
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-                        <span>Volza</span>
-                      </div>
-                      <span className="text-xs text-gray-500">B2B Marketplace + Data</span>
-                    </div>
+                    )}
                   </div>
                 </div>
 
