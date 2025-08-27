@@ -12,7 +12,7 @@ export function LayoutContent({ children }: LayoutContentProps) {
   const pathname = usePathname();
   
   // Pages that should not have header and footer (dashboard pages)
-  const isDashboardPage = pathname.startsWith('/members');
+  const isDashboardPage = pathname.startsWith('/members/') || pathname === '/members';
   
   if (isDashboardPage) {
     // Dashboard pages: no header/footer, just the content
