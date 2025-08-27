@@ -10,32 +10,54 @@ export interface EmailOptions {
 }
 
 // Use Resend for reliable email sending
-async function sendEmailWithResend(to: string, subject: string, html: string): Promise<{ success: boolean; messageId?: string; error?: string }> {
+async function sendEmailWithResend(to: string, subject: string, html: string, isAdminCopy: boolean = false): Promise<{ success: boolean; messageId?: string; error?: string }> {
   try {
     console.log('🚀 Sending email via Resend...');
     
     const { Resend } = await import('resend');
     const resend = new Resend(process.env.RESEND_API_KEY);
     
-    // For now, in testing mode, only send to verified email
-    // In production, you'll need to verify your domain on Resend
+    // In testing mode, can only send to verified email
     const verifiedEmail = 'omaycompany@gmail.com';
-    const actualTo = to.toLowerCase() === verifiedEmail.toLowerCase() ? to : verifiedEmail;
+    const adminEmail = 'omaycompany@gmail.com';
     
-    if (actualTo !== to) {
-      console.log(`📧 Redirecting email from ${to} to verified address ${actualTo} (Resend testing mode)`);
+    // Determine recipients
+    let recipients: string[];
+    let emailSubject = subject;
+    let emailHtml = html;
+    
+    if (to.toLowerCase() === verifiedEmail.toLowerCase()) {
+      // If sending to verified email, just send normally
+      recipients = [to];
+    } else {
+      // In testing mode: can't send to unverified emails, so send to admin only with notice
+      recipients = [adminEmail];
+      emailSubject = `[FOR: ${to}] ${subject}`;
+      emailHtml = `
+        <div style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+          <strong>🚨 Testing Mode:</strong> This email was originally intended for <strong>${to}</strong> but can only be sent to verified addresses in Resend testing mode.
+        </div>
+        ${html}
+      `;
+      console.log(`📧 Testing mode: Redirecting email from ${to} to ${adminEmail}`);
+    }
+    
+    // If this is an admin copy, mark it clearly
+    if (isAdminCopy) {
+      emailSubject = `[ADMIN COPY] ${emailSubject}`;
+      emailHtml = `
+        <div style="background: #dbeafe; border: 2px solid #3b82f6; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+          <strong>📋 Admin Copy:</strong> This is a copy of the email sent to <strong>${to}</strong> for record keeping.
+        </div>
+        ${emailHtml}
+      `;
     }
     
     const result = await resend.emails.send({
       from: `"Remova" <${process.env.RESEND_FROM_EMAIL || 'hello@remova.org'}>`,
-      to: [actualTo],
-      subject: actualTo !== to ? `[FOR: ${to}] ${subject}` : subject,
-      html: actualTo !== to ? `
-        <div style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-          <strong>🚨 Testing Mode:</strong> This email was originally intended for <strong>${to}</strong> but redirected to your verified address for testing.
-        </div>
-        ${html}
-      ` : html,
+      to: recipients,
+      subject: emailSubject,
+      html: emailHtml,
     });
     
     if (result.error) {
