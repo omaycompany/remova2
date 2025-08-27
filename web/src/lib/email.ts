@@ -17,30 +17,13 @@ async function sendEmailWithResend(to: string, subject: string, html: string, is
     const { Resend } = await import('resend');
     const resend = new Resend(process.env.RESEND_API_KEY);
     
-    // In testing mode, can only send to verified email
-    const verifiedEmail = 'omaycompany@gmail.com';
+    // Production mode: send emails to actual recipients
     const adminEmail = 'omaycompany@gmail.com';
     
-    // Determine recipients
-    let recipients: string[];
+    // Determine recipients (send to actual recipient + admin copy)
+    let recipients: string[] = [to];
     let emailSubject = subject;
     let emailHtml = html;
-    
-    if (to.toLowerCase() === verifiedEmail.toLowerCase()) {
-      // If sending to verified email, just send normally
-      recipients = [to];
-    } else {
-      // In testing mode: can't send to unverified emails, so send to admin only with notice
-      recipients = [adminEmail];
-      emailSubject = `[FOR: ${to}] ${subject}`;
-      emailHtml = `
-        <div style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-          <strong>🚨 Testing Mode:</strong> This email was originally intended for <strong>${to}</strong> but can only be sent to verified addresses in Resend testing mode.
-        </div>
-        ${html}
-      `;
-      console.log(`📧 Testing mode: Redirecting email from ${to} to ${adminEmail}`);
-    }
     
     // If this is an admin copy, mark it clearly
     if (isAdminCopy) {
@@ -54,7 +37,7 @@ async function sendEmailWithResend(to: string, subject: string, html: string, is
     }
     
     const result = await resend.emails.send({
-      from: `"Remova" <${process.env.RESEND_FROM_EMAIL || 'hello@remova.org'}>`,
+      from: process.env.RESEND_FROM_EMAIL || 'notifications@remova.org',
       to: recipients,
       subject: emailSubject,
       html: emailHtml,
