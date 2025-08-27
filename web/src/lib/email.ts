@@ -36,11 +36,25 @@ async function sendEmailWithResend(to: string, subject: string, html: string, is
       `;
     }
     
+    // For plain text emails, extract text content or use provided text
+    let plainText = emailHtml;
+    if (emailHtml.includes('<')) {
+      // Simple HTML to text conversion
+      plainText = emailHtml
+        .replace(/<[^>]*>/g, '') // Remove HTML tags
+        .replace(/&nbsp;/g, ' ') // Replace HTML entities
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/\s+/g, ' ') // Normalize whitespace
+        .trim();
+    }
+
     const result = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'notifications@remova.org',
       to: recipients,
       subject: emailSubject,
-      html: emailHtml,
+      text: plainText, // Plain text version
     });
     
     if (result.error) {
@@ -592,116 +606,48 @@ export const emailTemplates = {
 // Send magic link email for sign in
 export async function sendMagicLinkEmail(email: string, magicLink: string, orgName: string): Promise<{ success: boolean; error?: string }> {
   try {
-    const subject = "Your Remova sign-in link";
+    const subject = "Your Remova access link";
     
-    const html = `
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In to Remova</title>
-</head>
-<body style="margin: 0; padding: 0; background: linear-gradient(135deg, #f8fafc 0%, #e5e7eb 100%); font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <!-- Email Container -->
-  <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
+    const text = `Hello${orgName ? ` from ${orgName}` : ''},
+
+You requested access to your Remova privacy dashboard.
+
+Click this link to sign in (expires in 24 hours):
+${magicLink}
+
+If you have trouble with the link, copy and paste it into your browser address bar.
+
+Security Notice: This email was sent because someone requested access to your Remova account. If you did not request this, please ignore this message.
+
+Need help? Contact our team at notifications@remova.org
+
+Best regards,
+The Remova Team
+
+---
+Remova Inc.
+1111B S Governors Ave STE 39322
+Dover, DE 19904
+www.remova.org`;
+
+    console.log(`Sending access link email to: ${email}`);
     
-    <!-- Header -->
-    <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 25%, #7c2d12 50%, #dc2626 100%); padding: 50px 40px; text-align: center; position: relative; overflow: hidden;">
-      <!-- Decorative Elements -->
-      <div style="position: absolute; top: -50px; right: -50px; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%; opacity: 0.6;"></div>
-      <div style="position: absolute; bottom: -30px; left: -30px; width: 60px; height: 60px; background: rgba(255,255,255,0.1); border-radius: 50%; opacity: 0.4;"></div>
-      
-      <div style="position: relative; z-index: 10;">
-        <h1 style="color: #ffffff; margin: 0 0 15px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-          Sign In to Remova
-        </h1>
-        <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 18px; font-weight: 500;">
-          Access your Remova dashboard
-        </p>
-      </div>
-    </div>
-
-    <!-- Content -->
-    <div style="padding: 50px 40px;">
-      <h2 style="color: #1f2937; margin: 0 0 25px 0; font-size: 28px; font-weight: 700; line-height: 1.2;">
-        Hi ${orgName}! 👋
-      </h2>
-      
-      <p style="color: #4b5563; line-height: 1.7; margin-bottom: 30px; font-size: 16px;">
-        Click the button below to securely sign in to your Remova account. This link will expire in <strong>24 hours</strong> for your security.
-      </p>
-      
-      <!-- CTA Button -->
-      <div style="text-align: center; margin: 45px 0;">
-        <a href="${magicLink}" style="display: inline-block; background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 20px 40px; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 18px; box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3); transition: transform 0.2s ease;">
-          🛡️ Sign In to Dashboard
-        </a>
-      </div>
-      
-      <!-- Security Notice -->
-      <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 2px solid #e2e8f0; border-radius: 16px; padding: 35px; margin: 40px 0;">
-        <h3 style="color: #1f2937; margin: 0 0 20px 0; font-size: 20px; font-weight: 700; display: flex; align-items: center;">
-          <span style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-right: 10px;">🔒</span>
-          Security Notice
-        </h3>
-        <div style="display: grid; gap: 15px;">
-          <div style="display: flex; align-items: flex-start; gap: 15px;">
-            <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; flex-shrink: 0; margin-top: 2px;">⏰</div>
-            <div style="color: #4b5563; line-height: 1.6;">This link is valid for 24 hours only</div>
-          </div>
-          <div style="display: flex; align-items: flex-start; gap: 15px;">
-            <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; flex-shrink: 0; margin-top: 2px;">👤</div>
-            <div style="color: #4b5563; line-height: 1.6;">Only use this link if you requested sign-in access</div>
-          </div>
-          <div style="display: flex; align-items: flex-start; gap: 15px;">
-            <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; flex-shrink: 0; margin-top: 2px;">🚫</div>
-            <div style="color: #4b5563; line-height: 1.6;">Never share this link with anyone</div>
-          </div>
-          <div style="display: flex; align-items: flex-start; gap: 15px;">
-            <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; flex-shrink: 0; margin-top: 2px;">📞</div>
-            <div style="color: #4b5563; line-height: 1.6;">Contact us if you didn't request this email</div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Alternative Link -->
-      <div style="background: linear-gradient(135deg, #fefdf7 0%, #fef3c7 100%); border: 2px solid #f59e0b; border-radius: 12px; padding: 25px; margin: 30px 0;">
-        <h4 style="color: #92400e; margin: 0 0 10px 0; font-size: 16px; font-weight: 700;">Button not working?</h4>
-        <p style="color: #92400e; margin: 0 0 15px 0; font-size: 14px; line-height: 1.5;">
-          Copy and paste this link into your browser:
-        </p>
-        <div style="background: white; border-radius: 8px; padding: 15px; border: 1px solid #f3e8ff;">
-          <a href="${magicLink}" style="color: #dc2626; word-break: break-all; text-decoration: none; font-size: 13px; font-family: monospace;">${magicLink}</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 40px; text-align: center; border-top: 2px solid #e5e7eb;">
-      <p style="color: #6b7280; margin: 0 0 15px 0; font-size: 14px; line-height: 1.6;">
-        © 2025 Remova Inc. | 1111B S Governors Ave STE 39322, Dover, DE 19904
-      </p>
-      <p style="color: #9ca3af; margin: 0; font-size: 12px; line-height: 1.5;">
-        <a href="https://www.remova.org" style="color: #9ca3af; text-decoration: none;">www.remova.org</a> | 
-        <a href="mailto:notifications@remova.org" style="color: #9ca3af; text-decoration: none;">notifications@remova.org</a>
-      </p>
-    </div>
-  </div>
-</body>
-</html>
-    `;
-
-    const result = await sendEmail({
-      to: email,
-      subject,
-      html
-    });
-
-    return result;
+    const result = await sendEmailWithResend(email, subject, text);
+    
+    if (result.success) {
+      console.log(`Access link sent successfully to: ${email}`);
+      return { success: true };
+    } else {
+      console.error('Failed to send access link:', result.error);
+      return { success: false, error: result.error };
+    }
+    
   } catch (error) {
-    console.error('Error sending magic link email:', error);
-    return { success: false, error: 'Failed to send magic link email' };
+    console.error('Access link email error:', error);
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : 'Unknown error sending access link'
+    };
   }
 }
 
