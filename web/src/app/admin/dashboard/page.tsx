@@ -43,38 +43,38 @@ export default function AdminDashboard() {
       color: 'bg-blue-500'
     },
     {
-      title: 'Privacy Cases',
-      description: 'Monitor active privacy protection cases',
+      title: 'Privacy Services',
+      description: 'CBP filings, takedowns, and protection services',
       icon: '🛡️',
-      href: '/admin/cases',
+      href: '/admin/services',
       color: 'bg-green-500'
     },
     {
-      title: 'System Settings',
-      description: 'Configure platform settings',
-      icon: '⚙️',
-      href: '/admin/settings',
+      title: 'Analytics & Reports',
+      description: 'Business intelligence and performance metrics',
+      icon: '📊',
+      href: '/admin/analytics',
       color: 'bg-purple-500'
     },
     {
-      title: 'Analytics',
-      description: 'View platform analytics and reports',
-      icon: '📊',
-      href: '/admin/analytics',
+      title: 'Audit Logs',
+      description: 'Monitor all system activity and security events',
+      icon: '📋',
+      href: '/admin/audit',
       color: 'bg-orange-500'
     },
     {
-      title: 'Admin Users',
-      description: 'Manage administrator accounts',
+      title: 'Admin Management',
+      description: 'Manage administrator accounts and permissions',
       icon: '👨‍💼',
       href: '/admin/admins',
       color: 'bg-red-500'
     },
     {
-      title: 'Audit Logs',
-      description: 'Review system activity logs',
-      icon: '📋',
-      href: '/admin/audit',
+      title: 'System Settings',
+      description: 'Configure platform settings and integrations',
+      icon: '⚙️',
+      href: '/admin/settings',
       color: 'bg-indigo-500'
     }
   ];
