@@ -48,6 +48,76 @@ export default async function PrivacyShieldPage() {
 
   const dashboardData = await getDashboardData(client.id);
 
+  // Function to add sample data based on user plan
+  const addSampleDataIfNeeded = (data: any) => {
+    const hasRealData = data.cbpFiling || (data.takedownCases && data.takedownCases.length > 0);
+    
+    if (!hasRealData) {
+      if (client.plan_tier === 'free') {
+        // Free users see comprehensive sample data
+        return {
+          ...data,
+          cbpFiling: {
+            id: 'sample-cbp',
+            client_id: client.id,
+            status: 'approved',
+            filing_type: 'confidentiality',
+            business_justification: 'Sample business justification for demonstration',
+            created_at: '2024-12-10T10:00:00Z',
+            updated_at: '2024-12-12T15:30:00Z',
+            notes: 'Sample CBP filing - approved status for demonstration'
+          },
+          takedownCases: [
+            {
+              id: 'sample-takedown-1',
+              client_id: client.id,
+              platform_name: 'Panjiva',
+              platform_url: 'https://panjiva.com/sample',
+              request_type: 'data_removal',
+              status: 'completed',
+              evidence_description: 'Sample evidence - shipment data exposure',
+              created_at: '2024-12-08T09:00:00Z',
+              updated_at: '2024-12-14T16:45:00Z'
+            },
+            {
+              id: 'sample-takedown-2',
+              client_id: client.id,
+              platform_name: 'ImportGenius',
+              platform_url: 'https://importgenius.com/sample',
+              request_type: 'data_removal',
+              status: 'in_progress',
+              evidence_description: 'Sample evidence - supplier relationship data',
+              created_at: '2024-12-12T14:20:00Z',
+              updated_at: '2024-12-15T11:10:00Z'
+            }
+          ]
+        };
+      } else {
+        // Paid users see minimal sample data (one example)
+        return {
+          ...data,
+          takedownCases: [
+            {
+              id: 'sample-takedown-paid',
+              client_id: client.id,
+              platform_name: 'Sample Platform',
+              platform_url: 'https://sample-platform.com',
+              request_type: 'data_removal',
+              status: 'monitoring',
+              evidence_description: 'Sample entry - your real protection activity will appear here',
+              created_at: '2024-12-15T10:00:00Z',
+              updated_at: '2024-12-15T10:00:00Z'
+            }
+          ]
+        };
+      }
+    }
+    
+    return data;
+  };
+
+  const enhancedDashboardData = addSampleDataIfNeeded(dashboardData);
+
   // Government data sources with status
   const governmentSources = [
     {
@@ -55,8 +125,8 @@ export default async function PrivacyShieldPage() {
       country: 'United States',
       riskLevel: 'Very High',
       description: 'Vessel manifests and detailed import data',
-      status: dashboardData.cbpFiling?.status || 'not_started',
-      lastUpdated: dashboardData.cbpFiling?.updated_at,
+      status: enhancedDashboardData.cbpFiling?.status || 'not_started',
+      lastUpdated: enhancedDashboardData.cbpFiling?.updated_at,
       protectionType: 'CBP Confidentiality Filing'
     },
     {
@@ -111,7 +181,7 @@ export default async function PrivacyShieldPage() {
 
   // Get status for each platform from actual takedown cases
   const getplatformStatus = (platformName: string) => {
-    const takedownCase = dashboardData.takedownCases.find(
+    const takedownCase = enhancedDashboardData.takedownCases.find(
       (takedown) => takedown.platform_name.toLowerCase().includes(platformName.toLowerCase()) ||
               platformName.toLowerCase().includes(takedown.platform_name.toLowerCase())
     );
@@ -268,8 +338,40 @@ export default async function PrivacyShieldPage() {
   };
 
   return (
-    <DashboardLayout title="Privacy Shield">
+    <DashboardLayout title="Active Protection">
       <div className="space-y-6">
+        {/* Page Header */}
+        <div className="border-b border-gray-200 pb-4">
+          <h1 className="text-2xl font-medium text-gray-900">Active Protection</h1>
+          <p className="text-gray-600 mt-1">
+            Government filings and legal protections to keep your future trade data private by law
+          </p>
+        </div>
+
+        {/* Protection Status Tabs */}
+        <div className="border-b border-gray-200">
+          <nav className="-mb-px flex space-x-8">
+            <a
+              href="#active"
+              className="py-2 px-1 border-b-2 border-green-500 text-green-600 font-medium text-sm"
+            >
+              Active Protection
+            </a>
+            <a
+              href="#to-be-protected"
+              className="py-2 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 font-medium text-sm"
+            >
+              To Be Protected
+            </a>
+            <a
+              href="#not-protecting"
+              className="py-2 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 font-medium text-sm"
+            >
+              Not Protecting
+            </a>
+          </nav>
+        </div>
+
         {/* Overview Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="border border-gray-200 bg-white rounded-lg p-4 text-center">
@@ -319,10 +421,10 @@ export default async function PrivacyShieldPage() {
                     </div>
                     <div className="text-sm text-gray-600 mb-2">{source.description}</div>
                     <div className="flex items-center gap-4 text-xs text-gray-500">
-                      <span>🌍 {source.country}</span>
-                      <span>🛡️ {source.protectionType}</span>
+                      <span>{source.country}</span>
+                      <span>{source.protectionType}</span>
                       {source.lastUpdated && (
-                        <span>📅 Updated {new Date(source.lastUpdated).toLocaleDateString()}</span>
+                        <span>Updated {new Date(source.lastUpdated).toLocaleDateString()}</span>
                       )}
                     </div>
                   </div>
@@ -351,8 +453,8 @@ export default async function PrivacyShieldPage() {
                     </div>
                     <div className="text-sm text-gray-600 mb-2">{platform.description}</div>
                     <div className="flex items-center gap-4 text-xs text-gray-500">
-                      <span>🏷️ {platform.category}</span>
-                      <span>🛡️ {platform.protectionType}</span>
+                      <span>{platform.category}</span>
+                      <span>{platform.protectionType}</span>
                     </div>
                   </div>
                 </div>
@@ -363,7 +465,7 @@ export default async function PrivacyShieldPage() {
 
         {/* What Happens Next */}
         <div className="border border-blue-200 bg-blue-50 rounded-lg p-6">
-          <h3 className="font-medium text-blue-800 mb-3">🔄 What Happens Next?</h3>
+          <h3 className="font-medium text-blue-800 mb-3">What Happens Next?</h3>
           <div className="grid md:grid-cols-2 gap-4 text-sm">
             <div>
               <h4 className="font-medium text-blue-900 mb-2">Automated Protection</h4>

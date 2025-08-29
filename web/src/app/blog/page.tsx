@@ -1,4 +1,5 @@
 import Link from "next/link";
+import RecentPostsList from "./RecentPostsList";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -21,6 +22,42 @@ export const dynamic = 'force-dynamic';
 
 // Blog posts data
 const featuredPosts = [
+  {
+    id: "corporate-data-harvesting-employee-privacy-rights",
+    title: "Corporate Data Harvesting: How Companies Violate Employee Privacy Rights Daily",
+    excerpt: "An exposé of systematic employee surveillance, data collection practices, and the legal frameworks companies exploit to monitor their workforce without consent.",
+    author: "Privacy Rights Research Team",
+    date: "2024-12-10",
+    category: "Employee Privacy",
+    readTime: "14 min read",
+    image: "/og-image.svg",
+    tags: ["Employee Privacy", "Corporate Surveillance", "Workplace Rights"],
+    featured: true
+  },
+  {
+    id: "gdpr-compliance-failures-real-world-consequences",
+    title: "GDPR Compliance Failures: The Hidden Cost of Privacy Law Violations",
+    excerpt: "An investigation into systematic GDPR compliance failures across industries, revealing how companies exploit legal loopholes while facing devastating financial and reputational consequences.",
+    author: "GDPR Compliance Research Team",
+    date: "2024-12-11",
+    category: "Regulatory Compliance",
+    readTime: "16 min read",
+    image: "/og-image.svg",
+    tags: ["GDPR", "Privacy Compliance", "Data Protection"],
+    featured: true
+  },
+  {
+    id: "social-media-data-mining-psychological-profiling",
+    title: "Social Media Data Mining: The Psychology of Digital Manipulation",
+    excerpt: "A comprehensive investigation into how social media platforms use advanced psychological profiling and behavioral manipulation to influence user behavior, purchasing decisions, and political beliefs.",
+    author: "Digital Psychology Research Team",
+    date: "2024-12-12",
+    category: "Digital Manipulation",
+    readTime: "18 min read",
+    image: "/og-image.svg",
+    tags: ["Social Media", "Psychological Profiling", "Digital Manipulation"],
+    featured: true
+  },
   {
     id: "chinese-suppliers-poaching-european-clients",
     title: "How Chinese Suppliers Are Systematically Poaching European Manufacturers' Clients",
@@ -73,6 +110,26 @@ const featuredPosts = [
 ];
 
 const recentPosts = [
+  {
+    id: "iot-device-privacy-vulnerabilities-corporate-networks",
+    title: "IoT Device Privacy Vulnerabilities: Corporate Networks Under Siege",
+    excerpt: "An investigative analysis of how Internet of Things devices create massive privacy and security vulnerabilities in corporate environments, exposing sensitive business data and employee information.",
+    author: "IoT Security Research Team",
+    date: "2024-12-13",
+    category: "IoT Privacy",
+    readTime: "17 min read",
+    tags: ["IoT Security", "Corporate Privacy", "Device Vulnerabilities"]
+  },
+  {
+    id: "third-party-data-brokers-b2b-information-trading",
+    title: "Third-Party Data Brokers: The Hidden B2B Information Trading Economy",
+    excerpt: "An investigation into the massive underground economy of data brokers who collect, aggregate, and sell comprehensive business intelligence about companies and their employees.",
+    author: "Data Intelligence Research Team",
+    date: "2024-12-14",
+    category: "Data Brokers",
+    readTime: "19 min read",
+    tags: ["Data Brokers", "Business Intelligence", "B2B Privacy"]
+  },
   {
     id: "german-industrial-espionage-us-manufacturers",
     title: "German Industrial Consortiums Target US Manufacturers with Trade Intelligence",
@@ -359,57 +416,7 @@ export default function BlogPage() {
             {/* Recent Posts */}
             <div className="lg:col-span-3">
               <h2 className="text-3xl font-bold text-gray-800 mb-8">Recent Articles</h2>
-              <div className="space-y-6">
-                {recentPosts.map((post) => (
-                  <article key={post.id} className="bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
-                    <div className="p-6">
-                      <div className="flex items-center gap-4 mb-4 text-sm text-gray-600">
-                        <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-md text-xs font-medium">
-                          {post.category}
-                        </span>
-                        <span>{post.author}</span>
-                        <span>•</span>
-                        <span>{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                        <span>•</span>
-                        <span>{post.readTime}</span>
-                      </div>
-                      
-                      <h3 className="text-2xl font-bold text-gray-800 mb-3 hover:text-indigo-600 transition-colors">
-                        <Link href={`/blog/${post.id}`}>
-                          {post.title}
-                        </Link>
-                      </h3>
-                      
-                      <p className="text-gray-600 mb-4 leading-relaxed">
-                        {post.excerpt}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {post.tags.map((tag) => (
-                          <span key={tag} className="bg-gray-100 text-gray-700 px-2 py-1 rounded-md text-xs font-medium">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      
-                      <Link href={`/blog/${post.id}`} className="btn btn-sm btn-outline border-gray-300 hover:border-indigo-500 hover:bg-indigo-500 hover:text-white transition-all">
-                        Read More
-                        <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                          <path fillRule="evenodd" d="M3 10a1 1 0 011-1h10a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-                        </svg>
-                      </Link>
-                    </div>
-                  </article>
-                ))}
-              </div>
-              
-              {/* Load More */}
-              <div className="text-center mt-12">
-                <button className="btn btn-lg btn-outline border-gray-300 hover:border-indigo-500 hover:bg-indigo-500 hover:text-white transition-all font-bold px-8">
-                  Load More Articles
-                </button>
-              </div>
+              <RecentPostsList posts={recentPosts} initialCount={6} increment={6} />
             </div>
           </div>
         </div>

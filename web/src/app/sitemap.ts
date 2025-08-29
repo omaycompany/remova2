@@ -1,4 +1,6 @@
 import { MetadataRoute } from 'next'
+import { readdirSync } from 'fs'
+import { join } from 'path'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NODE_ENV === "production" 
@@ -13,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services/takedown",
     "/services/optout",
     "/membership",
-    "/membership/free",
     "/become-member",
     "/impact",
     "/transparency",
@@ -39,23 +40,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/intake",
   ];
 
-  // Blog posts
-  const blogPosts = [
-    "/blog/chinese-suppliers-poaching-european-clients",
-    "/blog/us-businesses-losing-eu-china-competition",
-    "/blog/supplier-intelligence-warfare-2024",
-    "/blog/german-industrial-espionage-us-manufacturers",
-    "/blog/chinese-ai-pricing-attacks-electronics",
-    "/blog/european-automotive-supplier-poaching",
-    "/blog/asian-manufacturing-alliance-threat",
-    "/blog/trade-data-warfare-small-businesses",
-    "/blog/state-sponsored-trade-intelligence",
-    "/blog/new-cold-war-tech-trade-2025",
-    "/blog/rcep-afcfta-opportunity-2025",
-    "/blog/eu-cbam-green-tariffs-2025",
-    "/blog/digital-tariffs-and-data-sovereignty-2025",
-    "/blog/global-trade-outlook-2026"
-  ];
+  // Dynamically get all blog posts from the file system
+  let blogPosts: string[] = [];
+  try {
+    const blogDir = join(process.cwd(), 'src/app/blog');
+    const entries = readdirSync(blogDir, { withFileTypes: true });
+    
+    blogPosts = entries
+      .filter(entry => entry.isDirectory() && entry.name !== '[slug]')
+      .map(entry => `/blog/${entry.name}`);
+  } catch (error) {
+    console.warn('Could not read blog directory for sitemap:', error);
+    // Fallback to existing blog posts if file system read fails
+    blogPosts = [
+      "/blog/chinese-suppliers-poaching-european-clients",
+      "/blog/us-businesses-losing-eu-china-competition",
+      "/blog/new-cold-war-tech-trade-2025",
+      "/blog/rcep-afcfta-opportunity-2025",
+      "/blog/eu-cbam-green-tariffs-2025",
+      "/blog/digital-tariffs-and-data-sovereignty-2025",
+      "/blog/global-trade-outlook-2026"
+    ];
+  }
 
   const allPaths = [...paths, ...blogPosts];
   

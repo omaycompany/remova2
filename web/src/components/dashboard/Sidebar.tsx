@@ -11,7 +11,7 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
-  const [expandedGroups, setExpandedGroups] = useState<string[]>(['pillar1', 'pillar2', 'pillar3']);
+  const [expandedGroups, setExpandedGroups] = useState<string[]>(['protection', 'erase', 'tools', 'resources']);
 
   const toggleGroup = (groupId: string) => {
     setExpandedGroups(prev => 
@@ -40,12 +40,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   const navigationGroups = [
     {
-      id: 'pillar1',
-      label: 'Pillar 1: Protect Your Future',
-      description: 'Government filings and partner verification to keep future shipments and business relationships private by law.',
+      id: 'protection',
+      label: 'Protect Your Future',
       items: [
         {
-          label: 'Privacy Shield',
+          label: 'Active Protection',
           href: '/members/privacy-shield',
           icon: (
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,25 +73,48 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       ]
     },
     {
-      id: 'pillar2',
-      label: 'Pillar 2: Erase Your Past',
-      description: 'Systematic removal of existing data from 40+ platforms and databases through takedown operations.',
+      id: 'erase',
+      label: 'Erase Your Past',
       items: [
         {
-          label: 'Data Removals',
-          href: '/members/data-removals',
+          label: 'Active Leaks',
+          href: '/members/data-leaks?status=active',
           icon: (
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z" />
             </svg>
           )
         },
         {
-          label: 'Trade Data Leaks',
-          href: '/members/data-leaks',
+          label: 'Removal Requested Leaks',
+          href: '/members/data-leaks?status=requested',
           icon: (
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          )
+        },
+        {
+          label: 'Removed Leaks',
+          href: '/members/data-leaks?status=removed',
+          icon: (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+          )
+        }
+      ]
+    },
+    {
+      id: 'tools',
+      label: 'Tools',
+      items: [
+        {
+          label: 'Anonymity Checker',
+          href: '/members/anonymity-checker',
+          icon: (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           )
         },
@@ -106,27 +128,53 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           )
         },
         {
-          label: 'Anonymity Checker',
-          href: '/members/anonymity-checker',
+          label: 'Exposure Monitoring',
+          href: '/members/exposure-monitoring',
           icon: (
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
           )
         }
       ]
     },
     {
-      id: 'pillar3',
-      label: 'Pillar 3: Monitor Continuously',
-      description: '24/7 automated scanning with real-time alerts to catch and stop new data leaks immediately.',
+      id: 'resources',
+      label: 'Resources',
       items: [
         {
-          label: 'Exposure Monitoring',
-          href: '/members/exposure-monitoring',
+          label: 'Privacy Guides',
+          href: '/members/resources/guides',
           icon: (
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          )
+        },
+        {
+          label: 'Takedown Templates',
+          href: '/members/resources/templates',
+          icon: (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          )
+        },
+        {
+          label: 'Legal Documents',
+          href: '/members/resources/legal',
+          icon: (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            </svg>
+          )
+        },
+        {
+          label: 'Industry Guides',
+          href: '/members/resources/industry',
+          icon: (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
           )
         }
@@ -246,14 +294,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </svg>
               </button>
               
-              {/* Description for pillars */}
-              {'description' in group && isGroupExpanded(group.id) && (
-                <div className="ml-3 mt-1 mb-2">
-                  <p className="text-xs text-slate-500 px-3 py-1 leading-relaxed">
-                    {group.description}
-                  </p>
-                </div>
-              )}
+
               
               {isGroupExpanded(group.id) && (
                 <div className="ml-3 mt-1 space-y-1">

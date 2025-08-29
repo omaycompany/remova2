@@ -56,9 +56,10 @@ interface ResearchSummary {
 
 interface DataLeaksManagerProps {
   client: Client;
+  statusFilter?: string;
 }
 
-export default function DataLeaksManager({ client }: DataLeaksManagerProps) {
+export default function DataLeaksManager({ client, statusFilter }: DataLeaksManagerProps) {
   const [leaks, setLeaks] = useState<TradeDataLeak[]>([]);
   const [sessions, setSessions] = useState<ResearchSession[]>([]);
   const [summary, setSummary] = useState<ResearchSummary | null>(null);
@@ -73,20 +74,145 @@ export default function DataLeaksManager({ client }: DataLeaksManagerProps) {
     loadResearchData();
   }, []);
 
+  // Sample data for demonstration
+  const getSampleData = () => {
+    if (client.plan_tier === 'free') {
+      // Free users see comprehensive sample data
+      return {
+        leaks: [
+          {
+            id: 'sample-1',
+            research_session_id: 'sample-session-1',
+            source_url: 'https://importyeti.com/supplier/example-supplier',
+            platform_type: 'B2B Marketplace' as const,
+            leak_type: 'Supplier Relationship' as const,
+            status: 'Verified Leak' as const,
+            risk_assessment: 'High' as const,
+            evidence_snippet: 'Your company listed as primary buyer for electronics from Shanghai supplier',
+            analysis_notes: 'High-risk exposure showing supplier relationships and trade volume patterns',
+            identified_trade_partners: ['Shanghai Electronics Co.', 'Global Logistics Inc.'],
+            admin_reviewed: true,
+            takedown_requested: false,
+            discovered_at: '2024-12-15T10:00:00Z',
+            target_company_name: client.org_name || 'Your Company',
+            research_date: '2024-12-15'
+          },
+          {
+            id: 'sample-2',
+            research_session_id: 'sample-session-1',
+            source_url: 'https://trademo.com/companies/example-company',
+            platform_type: 'Data Broker' as const,
+            leak_type: 'Trade Volume' as const,
+            status: 'Verified Leak' as const,
+            risk_assessment: 'Medium' as const,
+            evidence_snippet: 'Monthly import volumes and container counts from Q3 2024',
+            analysis_notes: 'Trade volume data could reveal business growth patterns to competitors',
+            identified_trade_partners: ['Pacific Shipping Lines'],
+            admin_reviewed: true,
+            takedown_requested: true,
+            takedown_status: 'requested',
+            discovered_at: '2024-12-14T14:30:00Z',
+            target_company_name: client.org_name || 'Your Company',
+            research_date: '2024-12-14'
+          },
+          {
+            id: 'sample-3',
+            research_session_id: 'sample-session-2',
+            source_url: 'https://panjiva.com/example-shipment',
+            platform_type: 'Data Broker' as const,
+            leak_type: 'Shipment Details' as const,
+            status: 'Verified Leak' as const,
+            risk_assessment: 'High' as const,
+            evidence_snippet: 'Detailed shipment manifest with product descriptions and values',
+            analysis_notes: 'Complete shipment details including products, values, and supplier information - REMOVED',
+            identified_trade_partners: ['Shenzhen Manufacturing Hub'],
+            admin_reviewed: true,
+            takedown_requested: true,
+            takedown_status: 'completed',
+            discovered_at: '2024-12-10T09:15:00Z',
+            target_company_name: client.org_name || 'Your Company',
+            research_date: '2024-12-10'
+          }
+        ],
+        summary: {
+          total_sessions: 2,
+          completed_sessions: 2,
+          in_progress_sessions: 0,
+          failed_sessions: 0,
+          total_leaks_found: 3,
+          verified_leaks: 3,
+          potential_leaks: 0,
+          high_risk_leaks: 2
+        }
+      };
+    } else {
+      // Paid users see minimal sample data (one per feature)
+      return {
+        leaks: [
+          {
+            id: 'sample-paid-1',
+            research_session_id: 'sample-session-paid',
+            source_url: 'https://example-platform.com/sample',
+            platform_type: 'Data Broker' as const,
+            leak_type: 'Supplier Relationship' as const,
+            status: 'Verified Leak' as const,
+            risk_assessment: 'Medium' as const,
+            evidence_snippet: 'Sample data exposure (example entry)',
+            analysis_notes: 'This is a sample entry - your real data exposures will appear here',
+            identified_trade_partners: ['Sample Partner'],
+            admin_reviewed: true,
+            takedown_requested: false,
+            discovered_at: '2024-12-15T10:00:00Z',
+            target_company_name: 'Sample Company',
+            research_date: '2024-12-15'
+          }
+        ],
+        summary: {
+          total_sessions: 1,
+          completed_sessions: 1,
+          in_progress_sessions: 0,
+          failed_sessions: 0,
+          total_leaks_found: 1,
+          verified_leaks: 1,
+          potential_leaks: 0,
+          high_risk_leaks: 0
+        }
+      };
+    }
+  };
+
   const loadResearchData = async () => {
     setIsLoading(true);
     try {
       const response = await fetch('/api/research/sessions?include_leaks=true');
       if (response.ok) {
         const data = await response.json();
-        setLeaks(data.leaks || []);
-        setSessions(data.sessions || []);
-        setSummary(data.summary || null);
+        
+        // If no real data exists, show sample data
+        if (!data.leaks || data.leaks.length === 0) {
+          const sampleData = getSampleData();
+          setLeaks(sampleData.leaks);
+          setSessions([]);
+          setSummary(sampleData.summary);
+        } else {
+          setLeaks(data.leaks || []);
+          setSessions(data.sessions || []);
+          setSummary(data.summary || null);
+        }
       } else {
-        console.error('Failed to load research data');
+        // If API fails, show sample data
+        const sampleData = getSampleData();
+        setLeaks(sampleData.leaks);
+        setSessions([]);
+        setSummary(sampleData.summary);
       }
     } catch (error) {
       console.error('Error loading research data:', error);
+      // If error occurs, show sample data
+      const sampleData = getSampleData();
+      setLeaks(sampleData.leaks);
+      setSessions([]);
+      setSummary(sampleData.summary);
     } finally {
       setIsLoading(false);
     }

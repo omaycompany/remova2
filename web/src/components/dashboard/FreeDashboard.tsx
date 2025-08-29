@@ -16,7 +16,7 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
         <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center">
-              <span className="text-2xl">🎉</span>
+              <span className="text-2xl">★</span>
             </div>
             <div>
               <h2 className="text-xl font-bold text-slate-800">Welcome to Remova Community!</h2>
@@ -44,6 +44,102 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
               <span className="font-medium text-blue-700 text-lg">
                 {(client.org_name || client.company_name || 'C').substring(0, 2).toUpperCase()}
               </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Sample Data Preview - What You'd See as a Paid User */}
+      <div className="border border-blue-200 bg-blue-50 rounded-lg p-6">
+        <h2 className="text-xl font-bold text-blue-900 mb-3">Preview: What Paid Members See</h2>
+        <p className="text-blue-800 text-sm mb-4">
+          This is sample data showing what your actual dashboard would look like with professional protection active.
+        </p>
+        
+        {/* Sample Protection Status */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div className="bg-white rounded-lg p-3 text-center">
+            <div className="text-xl font-bold text-green-600">7</div>
+            <div className="text-xs text-gray-600">Platforms Protected</div>
+          </div>
+          <div className="bg-white rounded-lg p-3 text-center">
+            <div className="text-xl font-bold text-yellow-600">3</div>
+            <div className="text-xs text-gray-600">In Progress</div>
+          </div>
+          <div className="bg-white rounded-lg p-3 text-center">
+            <div className="text-xl font-bold text-blue-600">12</div>
+            <div className="text-xs text-gray-600">Monitoring</div>
+          </div>
+          <div className="bg-white rounded-lg p-3 text-center">
+            <div className="text-xl font-bold text-gray-600">22</div>
+            <div className="text-xs text-gray-600">Total Platforms</div>
+          </div>
+        </div>
+
+        {/* Sample Active Protections */}
+        <div className="bg-white rounded-lg p-4 mb-4">
+          <h3 className="font-semibold text-gray-900 mb-3">Sample: Active Protections</h3>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between p-2 border border-green-200 bg-green-50 rounded">
+              <span className="text-sm">U.S. Customs CBP Filing</span>
+              <span className="text-xs bg-green-600 text-white px-2 py-1 rounded">Protected</span>
+            </div>
+            <div className="flex items-center justify-between p-2 border border-green-200 bg-green-50 rounded">
+              <span className="text-sm">Panjiva Data Removal</span>
+              <span className="text-xs bg-green-600 text-white px-2 py-1 rounded">Removed</span>
+            </div>
+            <div className="flex items-center justify-between p-2 border border-yellow-200 bg-yellow-50 rounded">
+              <span className="text-sm">ImportGenius Takedown</span>
+              <span className="text-xs bg-yellow-600 text-white px-2 py-1 rounded">In Progress</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Sample Data Leaks */}
+        <div className="bg-white rounded-lg p-4 mb-4">
+          <h3 className="font-semibold text-gray-900 mb-3">Sample: Recent Data Leaks Found</h3>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between p-2 border border-red-200 bg-red-50 rounded">
+              <div>
+                <div className="text-sm font-medium">Supplier relationship exposed on ImportYeti</div>
+                <div className="text-xs text-gray-600">High Risk - Shows your main supplier from China</div>
+              </div>
+              <span className="text-xs bg-red-600 text-white px-2 py-1 rounded">Active</span>
+            </div>
+            <div className="flex items-center justify-between p-2 border border-yellow-200 bg-yellow-50 rounded">
+              <div>
+                <div className="text-sm font-medium">Shipment details on Trademo</div>
+                <div className="text-xs text-gray-600">Medium Risk - Recent container details</div>
+              </div>
+              <span className="text-xs bg-yellow-600 text-white px-2 py-1 rounded">Removal Requested</span>
+            </div>
+            <div className="flex items-center justify-between p-2 border border-green-200 bg-green-50 rounded">
+              <div>
+                <div className="text-sm font-medium">Trade volume data on Volza</div>
+                <div className="text-xs text-gray-600">Previously exposed annual import volumes</div>
+              </div>
+              <span className="text-xs bg-green-600 text-white px-2 py-1 rounded">Removed</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Sample Partner Protection */}
+        <div className="bg-white rounded-lg p-4">
+          <h3 className="font-semibold text-gray-900 mb-3">Sample: Protected Partners</h3>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between p-2 border border-blue-200 bg-blue-50 rounded">
+              <div>
+                <div className="text-sm font-medium">Shanghai Manufacturing Co.</div>
+                <div className="text-xs text-gray-600">Primary Supplier - Electronics</div>
+              </div>
+              <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded">Protected</span>
+            </div>
+            <div className="flex items-center justify-between p-2 border border-blue-200 bg-blue-50 rounded">
+              <div>
+                <div className="text-sm font-medium">Global Logistics Partner</div>
+                <div className="text-xs text-gray-600">Freight Forwarder - Asia</div>
+              </div>
+              <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded">Monitoring</span>
             </div>
           </div>
         </div>
@@ -113,7 +209,7 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 text-center">
-              <div className="text-3xl font-bold mb-2">🛡️ Stealth</div>
+              <div className="text-3xl font-bold mb-2">Stealth</div>
               <div className="text-xl font-semibold mb-2">$295/month</div>
               <div className="text-sm opacity-90 mb-4">Essential protection + monitoring</div>
               <ul className="text-sm opacity-90 text-left space-y-1">
@@ -127,7 +223,7 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                 <span className="bg-slate-200 text-slate-800 px-3 py-1 rounded-full text-xs font-bold">MOST POPULAR</span>
               </div>
-              <div className="text-3xl font-bold mb-2">👻 Vanish</div>
+              <div className="text-3xl font-bold mb-2">Vanish</div>
               <div className="text-xl font-semibold mb-2">$595/month</div>
               <div className="text-sm opacity-90 mb-4">Complete protection + takedowns</div>
               <ul className="text-sm opacity-90 text-left space-y-1">
@@ -138,7 +234,7 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
             </div>
             
             <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 text-center">
-              <div className="text-3xl font-bold mb-2">🛡️ Shield</div>
+              <div className="text-3xl font-bold mb-2">Shield</div>
               <div className="text-xl font-semibold mb-2">$1,250/month</div>
               <div className="text-sm opacity-90 mb-4">Ultimate protection + legal</div>
               <ul className="text-sm opacity-90 text-left space-y-1">
@@ -168,7 +264,7 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
           <div className="space-y-6">
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-slate-600 text-xl">⚠️</span>
+                <span className="text-slate-600 text-xl">!</span>
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900 mb-2">Cost of Inaction</h4>
@@ -180,7 +276,7 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
             
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-slate-600 text-xl">📈</span>
+                <span className="text-slate-600 text-xl">↗</span>
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900 mb-2">Revenue Protection</h4>
@@ -192,7 +288,7 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
             
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-slate-600 text-xl">⏰</span>
+                <span className="text-slate-600 text-xl">⌚</span>
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900 mb-2">Time is Critical</h4>
@@ -206,7 +302,7 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
           <div className="space-y-6">
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-slate-600 text-xl">🛡️</span>
+                <span className="text-slate-600 text-xl">◘</span>
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900 mb-2">Immediate Protection</h4>
@@ -218,7 +314,7 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
             
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-slate-600 text-xl">🎯</span>
+                <span className="text-slate-600 text-xl">●</span>
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900 mb-2">ROI in 30 Days</h4>
@@ -230,7 +326,7 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
             
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-slate-600 text-xl">🤝</span>
+                <span className="text-slate-600 text-xl">✓</span>
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900 mb-2">Expert Support</h4>

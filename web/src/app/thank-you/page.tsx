@@ -505,6 +505,22 @@ function ThankYouContent({ searchParams }: { searchParams: { plan?: string } }) 
           </div>
         </div>
       </div>
+      
+      {/* Google Ads Conversion Tracking for paid plans */}
+      {isPaid && (
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof gtag !== 'undefined') {
+                gtag('event', 'conversion', {
+                  'send_to': 'AW-17514795753/dgBTCLSUk5AbEOml2p9B',
+                  'transaction_id': ''
+                });
+              }
+            `,
+          }}
+        />
+      )}
     </div>
   );
 }

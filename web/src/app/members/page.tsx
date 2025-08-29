@@ -101,6 +101,20 @@ async function MembersPage({ searchParams }: MembersPageProps) {
           client={client} 
           showWelcome={showWelcome}
         />
+        {showWelcome && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                if (typeof gtag !== 'undefined') {
+                  gtag('event', 'conversion', {
+                    'send_to': 'AW-17514795753/dgBTCLSUk5AbEOml2p9B',
+                    'transaction_id': '${client.id}'
+                  });
+                }
+              `,
+            }}
+          />
+        )}
       </DashboardLayout>
     );
   }
@@ -114,6 +128,20 @@ async function MembersPage({ searchParams }: MembersPageProps) {
         client={client} 
         dashboardData={dashboardData}
       />
+      {showWelcome && (
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof gtag !== 'undefined') {
+                gtag('event', 'conversion', {
+                  'send_to': 'AW-17514795753/dgBTCLSUk5AbEOml2p9B',
+                  'transaction_id': '${client.id}'
+                });
+              }
+            `,
+          }}
+        />
+      )}
     </DashboardLayout>
   );
 }

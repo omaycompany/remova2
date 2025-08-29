@@ -106,41 +106,7 @@ export default async function PrivacyRepresentativePage() {
           </div>
         </div>
 
-        {/* Recent Activity */}
-        <div className="border border-gray-200 bg-white rounded-lg p-6">
-          <h2 className="text-lg font-medium mb-4">Recent Activity</h2>
-          <div className="space-y-4">
-            <div className="border-l-4 border-blue-200 pl-4 py-2">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h4 className="font-medium text-sm">Account Setup Complete</h4>
-                  <p className="text-sm text-gray-600">Sarah completed initial privacy assessment and protection setup</p>
-                </div>
-                <span className="text-xs text-gray-500">2 days ago</span>
-              </div>
-            </div>
-            
-            <div className="border-l-4 border-green-200 pl-4 py-2">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h4 className="font-medium text-sm">CBP Filing Submitted</h4>
-                  <p className="text-sm text-gray-600">Confidentiality filing submitted to U.S. Customs and Border Protection</p>
-                </div>
-                <span className="text-xs text-gray-500">3 days ago</span>
-              </div>
-            </div>
-            
-            <div className="border-l-4 border-yellow-200 pl-4 py-2">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h4 className="font-medium text-sm">Platform Monitoring Initiated</h4>
-                  <p className="text-sm text-gray-600">Started continuous monitoring across 16 commercial platforms</p>
-                </div>
-                <span className="text-xs text-gray-500">4 days ago</span>
-              </div>
-            </div>
-          </div>
-        </div>
+
 
         {/* Quick Actions */}
         <div className="border border-gray-200 bg-white rounded-lg p-6">
@@ -196,43 +162,76 @@ export default async function PrivacyRepresentativePage() {
           </div>
         </div>
 
-        {/* Service Level Information */}
-        <div className="border border-gray-200 bg-green-50 rounded-lg p-6">
-          <h3 className="font-medium text-green-800 mb-3">Your Service Level: Premium Vanish Plan</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-            <div>
-              <h4 className="font-medium text-green-900 mb-2">Included Services:</h4>
-              <ul className="text-green-700 space-y-1">
-                <li>• Dedicated privacy representative (Sarah Chen)</li>
-                <li>• 24/7 emergency contact availability</li>
-                <li>• Priority processing for all requests</li>
-                <li>• Quarterly strategy review meetings</li>
-                <li>• Custom privacy solution development</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-medium text-green-900 mb-2">Response Times:</h4>
-              <ul className="text-green-700 space-y-1">
-                <li>• Email responses: 4 hours maximum</li>
-                <li>• Phone calls: Same day callback</li>
-                <li>• Emergency issues: 1 hour response</li>
-                <li>• Removal requests: 24 hour initiation</li>
-                <li>• Status updates: Weekly or as needed</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+
 
         {/* Contact History */}
         <div className="border border-gray-200 bg-white rounded-lg p-6">
           <h2 className="text-lg font-medium mb-4">Contact History</h2>
-          <div className="text-center py-8 text-gray-500">
-            <svg className="w-12 h-12 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
-            <p className="text-sm">No previous communications</p>
-            <p className="text-xs text-gray-400 mt-1">Your conversation history with Sarah will appear here</p>
-          </div>
+          
+          {client.plan_tier === 'free' ? (
+            /* Free users see comprehensive sample communication history */
+            <div className="space-y-4">
+              <div className="border-l-4 border-blue-200 pl-4 py-3">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="font-medium text-sm">Initial Privacy Assessment Complete</h4>
+                  <span className="text-xs text-gray-500">3 days ago</span>
+                </div>
+                <p className="text-sm text-gray-600 mb-2">
+                  Sarah completed your comprehensive privacy assessment and identified 12 high-risk exposures across major platforms.
+                </p>
+                <div className="text-xs text-blue-600">✉ Email • 📞 Follow-up call scheduled</div>
+              </div>
+              
+              <div className="border-l-4 border-green-200 pl-4 py-3">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="font-medium text-sm">CBP Confidentiality Filing Submitted</h4>
+                  <span className="text-xs text-gray-500">5 days ago</span>
+                </div>
+                <p className="text-sm text-gray-600 mb-2">
+                  Sarah submitted your CBP confidentiality filing and provided updates on expected processing timeline.
+                </p>
+                <div className="text-xs text-green-600">📋 Document filed • 📧 Confirmation sent</div>
+              </div>
+              
+              <div className="border-l-4 border-yellow-200 pl-4 py-3">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="font-medium text-sm">Panjiva Takedown Request Initiated</h4>
+                  <span className="text-xs text-gray-500">1 week ago</span>
+                </div>
+                <p className="text-sm text-gray-600 mb-2">
+                  Sarah initiated takedown requests for your data on Panjiva and provided strategy for other platforms.
+                </p>
+                <div className="text-xs text-yellow-600">🔄 In progress • 📊 Status tracking active</div>
+              </div>
+              
+              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <p className="text-sm text-blue-800">
+                  <strong>Sample Communications:</strong> This shows the level of personal attention and detailed updates you'd receive. 
+                  Upgrade to get your dedicated privacy representative.
+                </p>
+              </div>
+            </div>
+          ) : (
+            /* Paid users see minimal sample */
+            <div className="space-y-4">
+              <div className="border-l-4 border-blue-200 pl-4 py-3">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="font-medium text-sm">Welcome & Initial Setup</h4>
+                  <span className="text-xs text-gray-500">Sample</span>
+                </div>
+                <p className="text-sm text-gray-600 mb-2">
+                  Your privacy representative will contact you within 24 hours to begin your protection setup.
+                </p>
+                <div className="text-xs text-blue-600">Sample communication entry</div>
+              </div>
+              
+              <div className="mt-4 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+                <p className="text-sm text-gray-600">
+                  Your actual communications with Sarah will appear here once your service begins.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </DashboardLayout>

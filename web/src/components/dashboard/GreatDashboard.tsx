@@ -89,7 +89,7 @@ export default function GreatDashboard({ client, dashboardData }: GreatDashboard
                     </svg>
                   </div>
                   <div>
-                    <div className="font-medium text-green-800">🛡️ Government Protection Active</div>
+                    <div className="font-medium text-green-800">Government Protection Active</div>
                     <div className="text-sm text-green-700">Your CBP confidentiality filing has been approved - all shipments are protected</div>
                   </div>
                 </div>
@@ -104,28 +104,28 @@ export default function GreatDashboard({ client, dashboardData }: GreatDashboard
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <div className="flex-1">
-                    <h3 className="font-medium text-blue-800 mb-2">⏱️ Protection Timeline</h3>
+                    <h3 className="font-medium text-blue-800 mb-2">Protection Timeline</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
                       <div className="text-center bg-white rounded p-2">
                         <div className="font-medium text-blue-900">CBP Filing</div>
                         <div className="text-blue-700 text-xs">Timeline varies</div>
                         <div className="text-xs text-gray-500">
-                          {dashboardData.cbpFiling?.status === 'filed' ? '✅ Filed' : 
-                           dashboardData.cbpFiling?.status === 'in_progress' ? '🔄 In Progress' : '📋 Starting Soon'}
+                          {dashboardData.cbpFiling?.status === 'filed' ? 'Filed' : 
+                           dashboardData.cbpFiling?.status === 'in_progress' ? 'In Progress' : 'Starting Soon'}
                         </div>
                       </div>
                       <div className="text-center bg-white rounded p-2">
                         <div className="font-medium text-blue-900">Data Removals</div>
                         <div className="text-blue-700 text-xs">2-4 weeks</div>
                         <div className="text-xs text-gray-500">
-                          {dashboardData.stats.removedCount > 0 ? `✅ ${dashboardData.stats.removedCount} Done` : '🔄 Starting'}
+                          {dashboardData.stats.removedCount > 0 ? `${dashboardData.stats.removedCount} Done` : 'Starting'}
                         </div>
                       </div>
                       <div className="text-center bg-white rounded p-2">
                         <div className="font-medium text-blue-900">Full Coverage</div>
                         <div className="text-blue-700 text-xs">6-12 weeks</div>
                         <div className="text-xs text-gray-500">
-                          {progress > 80 ? '✅ Nearly Complete' : progress > 30 ? '🔄 Progressing' : '📋 Planned'}
+                          {progress > 80 ? 'Nearly Complete' : progress > 30 ? 'Progressing' : 'Planned'}
                         </div>
                       </div>
                     </div>
@@ -241,8 +241,16 @@ export default function GreatDashboard({ client, dashboardData }: GreatDashboard
                         </div>
                       </div>
                     ) : (
-                      <div className="text-center py-4 text-gray-500 text-sm">
-                        No recent activity
+                      <div className="flex items-center gap-4 py-2">
+                        <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                        <div className="flex-1">
+                          <div className="text-sm font-medium">
+                            Protection system initialized
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            Your protection services are now active and monitoring
+                          </div>
+                        </div>
                       </div>
                     )}
                   </div>
