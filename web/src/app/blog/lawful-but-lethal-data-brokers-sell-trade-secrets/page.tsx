@@ -15,24 +15,18 @@ export const metadata: Metadata = {
   },
 };
 
-// Data Broker Exposure Assessment Tool
+// Data Broker Exposure Assessment Tool - Static Placeholder
 function DataBrokerExposureAssessment() {
-  const [assessmentData, setAssessmentData] = useState({
-    businessType: '',
-    dataAwareness: '',
-    monitoringLevel: '',
-    protectionMeasures: '',
-    legalFramework: ''
-  });
-  const [exposureResults, setExposureResults] = useState<any>(null);
+  return (
+    <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
+      <h3 className="text-lg font-semibold text-orange-900 mb-2">Data Broker Exposure Assessment</h3>
+      <p className="text-orange-800 text-sm">Evaluate your vulnerability to data broker intelligence gathering and competitive exposure through legal data selling operations.</p>
+    </div>
+  );
+}
 
-  const analyzeDataBrokerExposure = () => {
-    let exposureScore = 0;
-    const exposureVectors: string[] = [];
-    const brokerTargets: string[] = [];
-
-    // Business type exposure assessment
-    if (assessmentData.businessType === 'public-company') {
+export default function LawfulButLethalDataBrokers() {
+  const dataBrokerProtectionChecklist = [
       exposureScore += 4;
       exposureVectors.push('Public company filings provide extensive data for broker analysis');
       brokerTargets.push('SEC filings, earnings calls, and investor communications');

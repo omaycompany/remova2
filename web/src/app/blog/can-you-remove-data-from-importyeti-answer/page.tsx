@@ -15,17 +15,15 @@ export const metadata: Metadata = {
   },
 };
 
-// Removal Difficulty Assessment Tool
+// Removal Difficulty Assessment Tool - Static Placeholder
 function RemovalDifficultyAssessment() {
-  const [assessmentData, setAssessmentData] = useState({
-    dataComplexity: '',
-    businessType: '',
-    timeAvailable: '',
-    technicalSkills: '',
-    legalResources: '',
-    urgencyLevel: ''
-  });
-  const [difficultyResults, setDifficultyResults] = useState<any>(null);
+  return (
+    <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
+      <h3 className="text-lg font-semibold text-orange-900 mb-2">Removal Difficulty Assessment</h3>
+      <p className="text-orange-800 text-sm">Assess the complexity and challenges of removing your data from ImportYeti and similar trade intelligence platforms.</p>
+    </div>
+  );
+}
 
   const assessRemovalDifficulty = () => {
     let difficultyScore = 0;
@@ -567,12 +565,10 @@ export default function ImportYetiDataRemoval() {
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4">Step-by-Step DIY Removal Process</h3>
         
-        <ProgressTracker 
-          title="DIY ImportYeti Data Removal Process"
-          phases={[
-            {
-              name: "Data Discovery and Documentation",
-              duration: "1-2 weeks",
+        <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-green-900 mb-2">Removal Progress Tracker</h3>
+          <p className="text-green-800 text-sm">Track your progress through the ImportYeti data removal process and professional protection implementation.</p>
+        </div>
               description: "Comprehensive identification and documentation of data exposure",
               tasks: [
                 "Search ImportYeti platform for all company data and related information",
