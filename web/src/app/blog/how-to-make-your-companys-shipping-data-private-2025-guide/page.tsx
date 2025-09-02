@@ -164,7 +164,7 @@ export default function ShippingDataPrivacyGuide() {
               <strong>Reasonable Measures:</strong> You must take steps to maintain secrecy of the information
             </li>
             <li className="flex items-start">
-              <span className="text-blue-600 font-semibold mr-2">4.</strong>
+              <span className="text-blue-600 font-semibold mr-2">4.</span>
               <strong>Economic Value:</strong> Information derives value from not being generally known
             </li>
           </ol>
