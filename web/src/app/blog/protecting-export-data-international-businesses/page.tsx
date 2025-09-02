@@ -1,8 +1,7 @@
 
 
-import { useState } from 'react';
 import { Metadata } from 'next';
-import { ProgressTracker, ChecklistGenerator, TimelinePlanner } from '@/components/blog/InteractiveElements';
+import { TimelinePlanner } from '@/components/blog/InteractiveElements';
 
 export const metadata: Metadata = {
   title: "Protecting Your Export Data: A Guide for International Businesses",

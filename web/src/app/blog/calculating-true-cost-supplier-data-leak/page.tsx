@@ -1,8 +1,6 @@
 
 
-import { useState } from 'react';
 import { Metadata } from 'next';
-import { ChecklistGenerator } from '@/components/blog/InteractiveElements';
 
 export const metadata: Metadata = {
   title: "Calculating the True Cost of a Single Supplier Data Leak",

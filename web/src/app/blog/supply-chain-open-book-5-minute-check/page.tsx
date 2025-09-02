@@ -1,8 +1,7 @@
 
 
-import { useState } from 'react';
 import { Metadata } from 'next';
-import { ExposureScanner, CostCalculator, ChecklistGenerator } from '@/components/blog/InteractiveElements';
+import { CostCalculator } from '@/components/blog/InteractiveElements';
 
 export const metadata: Metadata = {
   title: "Is Your Supply Chain an Open Book? How to Check in 5 Minutes",

@@ -1,8 +1,7 @@
 
 
-import { useState } from 'react';
 import { Metadata } from 'next';
-import { ExposureScanner, ProgressTracker, ChecklistGenerator } from '@/components/blog/InteractiveElements';
+import { ExposureScanner } from '@/components/blog/InteractiveElements';
 
 export const metadata: Metadata = {
   title: "How to Remove Your Company Information From Panjiva",

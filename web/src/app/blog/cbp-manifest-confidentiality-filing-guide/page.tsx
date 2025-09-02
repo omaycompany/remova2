@@ -1,8 +1,7 @@
 
 
-import { useState } from 'react';
 import { Metadata } from 'next';
-import { ProgressTracker, ChecklistGenerator } from '@/components/blog/InteractiveElements';
+import { ChecklistGenerator } from '@/components/blog/InteractiveElements';
 
 export const metadata: Metadata = {
   title: "A Step-by-Step Guide to Filing for CBP Manifest Confidentiality",

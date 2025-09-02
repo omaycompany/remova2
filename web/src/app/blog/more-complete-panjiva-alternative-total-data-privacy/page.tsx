@@ -1,8 +1,7 @@
 
 
-import { useState } from 'react';
 import { Metadata } from 'next';
-import { ComparisonMatrix, ProgressTracker } from '@/components/blog/InteractiveElements';
+import { ComparisonMatrix } from '@/components/blog/InteractiveElements';
 
 export const metadata: Metadata = {
   title: "A More Complete Panjiva Alternative for Total Data Privacy",

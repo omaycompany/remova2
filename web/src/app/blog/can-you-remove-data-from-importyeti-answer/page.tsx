@@ -1,8 +1,7 @@
 
 
-import { useState } from 'react';
 import { Metadata } from 'next';
-import { ProgressTracker, ChecklistGenerator } from '@/components/blog/InteractiveElements';
+import { ChecklistGenerator } from '@/components/blog/InteractiveElements';
 
 export const metadata: Metadata = {
   title: "Can You Remove Your Data from ImportYeti? Here's the Answer",

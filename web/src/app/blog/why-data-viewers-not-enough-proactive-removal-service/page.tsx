@@ -1,8 +1,7 @@
 
 
-import { useState } from 'react';
 import { Metadata } from 'next';
-import { ComparisonMatrix, ProgressTracker } from '@/components/blog/InteractiveElements';
+import { ComparisonMatrix } from '@/components/blog/InteractiveElements';
 
 export const metadata: Metadata = {
   title: "Why Data Viewers Aren't Enough: The Case for a Proactive Removal Service",

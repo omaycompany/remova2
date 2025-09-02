@@ -1,8 +1,7 @@
 
 
-import { useState } from 'react';
 import { Metadata } from 'next';
-import { ProgressTracker, ChecklistGenerator } from '@/components/blog/InteractiveElements';
+import { ChecklistGenerator } from '@/components/blog/InteractiveElements';
 
 export const metadata: Metadata = {
   title: "Why Your Commercial Data is the Most Important Asset You're Not Protecting",
