@@ -926,10 +926,10 @@ export default function CalculatingTrueCostSupplierDataLeak() {
           that address all categories of supplier data leak financial impact.
         </p>
 
-        <ChecklistGenerator 
-          title="Supplier Data Leak Cost Mitigation Implementation"
-          items={costMitigationChecklist}
-        />
+        <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-green-900 mb-2">Supplier Data Leak Cost Mitigation Implementation</h3>
+          <p className="text-green-800 text-sm">Comprehensive checklist to guide you through implementing cost mitigation strategies that address all categories of supplier data leak financial impact.</p>
+        </div>
       </section>
 
       {/* ROI Analysis Framework */}
