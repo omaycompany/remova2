@@ -148,9 +148,22 @@ function ThankYouContent({ searchParams }: { searchParams: { plan?: string } }) 
               </div>
             </div>
 
+            {/* Quick Access to Dashboard */}
+            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-3xl p-8 mb-8">
+              <h2 className="text-2xl font-bold mb-4 text-center">🚀 Your Dashboard is Ready!</h2>
+              <p className="text-lg opacity-90 mb-6 text-center max-w-2xl mx-auto">
+                Start exploring your free resources and tools immediately. Your community dashboard gives you access to guides, tools, and educational content.
+              </p>
+              <div className="text-center">
+                <Link href="/members" className="btn bg-white text-blue-600 hover:bg-gray-100 font-bold px-8 py-3 text-lg">
+                  🎯 Access Your Dashboard Now
+                </Link>
+              </div>
+            </div>
+
             {/* Your Next Steps */}
             <div className="bg-white rounded-3xl border border-gray-200 p-8 mb-12 text-left">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">🚀 Your Next Steps</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">📚 What You Can Do</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-6">
@@ -252,16 +265,16 @@ function ThankYouContent({ searchParams }: { searchParams: { plan?: string } }) 
 
             {/* Community Access */}
             <div className="bg-gray-50 rounded-2xl p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-3">🤝 Join the Community</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-3">🤝 Your Community Membership</h3>
               <p className="text-gray-600 mb-4">
-                Stay connected with other importers and exporters who are serious about protecting their trade data.
+                You're now part of the Remova community! Access your personalized dashboard to get started with trade privacy protection.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact" className="btn btn-outline border-gray-400 hover:border-gray-600 hover:bg-gray-600 hover:text-white">
                   Contact Support
                 </Link>
-                <Link href="/resources" className="btn bg-gray-900 text-white hover:bg-gray-800">
-                  Get Started
+                <Link href="/members" className="btn bg-gray-900 text-white hover:bg-gray-800">
+                  Go to Dashboard
                 </Link>
               </div>
             </div>

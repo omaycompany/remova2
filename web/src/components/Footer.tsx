@@ -56,53 +56,47 @@ export default function Footer() {
           {/* Services */}
           <div>
             <h6 className="text-sm font-bold text-gray-900 mb-6 uppercase tracking-wide">
-              Services
+              Protection Plans
             </h6>
             <div className="space-y-4">
-              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
+              <Link href="/membership/stealth" className="block text-gray-600 hover:text-gray-900 transition-colors">
                 Stealth Protection
               </Link>
-              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
+              <Link href="/membership/vanish" className="block text-gray-600 hover:text-gray-900 transition-colors">
                 Vanish Campaign
               </Link>
-              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
+              <Link href="/membership/shield" className="block text-gray-600 hover:text-gray-900 transition-colors">
                 Shield Defense
               </Link>
-              <Link href="/members/anonymity-checker" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                Anonymity Checker
+              <Link href="/membership/free" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Free Resources
               </Link>
               <Link href="/members/exposure-monitoring" className="block text-gray-600 hover:text-gray-900 transition-colors">
                 Exposure Monitoring
               </Link>
-              <Link href="/membership" className="text-red-600 hover:text-red-700 font-medium text-sm">
-                View All Plans →
-              </Link>
             </div>
           </div>
           
-          {/* Resources */}
+          {/* Tools & Resources */}
           <div>
             <h6 className="text-sm font-bold text-gray-900 mb-6 uppercase tracking-wide">
-              Resources
+              Tools & Guides
             </h6>
             <div className="space-y-4">
-              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                Privacy Guides
-              </Link>
-              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                Takedown Templates
-              </Link>
-              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                Audit Checklists
+              <Link href="/tests" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Privacy Tests
               </Link>
               <Link href="/blog" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                Intelligence Blog
+                Privacy Blog
+              </Link>
+              <Link href="/resources" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Resource Library
+              </Link>
+              <Link href="/docs/manifest-privacy-primer.pdf" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Manifest Privacy Guide
               </Link>
               <Link href="/faq" className="block text-gray-600 hover:text-gray-900 transition-colors">
                 FAQ & Support
-              </Link>
-              <Link href="/resources" className="text-red-600 hover:text-red-700 font-medium text-sm">
-                Browse All →
               </Link>
             </div>
           </div>

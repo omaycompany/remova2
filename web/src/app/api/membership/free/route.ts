@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { query } from '@/lib/db';
-import { sendEmail, emailTemplates, sendTeamNotification, generateEmailMagicLink } from '@/lib/email';
+import { sendEmail, emailTemplates, sendTeamNotification, generateDashboardLink } from '@/lib/email';
 import { stripe } from '@/lib/stripe';
 
 const freeSignupSchema = z.object({
@@ -39,12 +39,11 @@ export async function POST(request: NextRequest) {
     let clientId: string | null = null;
     try {
       const result = await query(
-        `INSERT INTO clients (email, company_name, plan_tier, stripe_customer_id, created_at)
+        `INSERT INTO clients (email, org_name, plan_tier, stripe_customer_id, created_at)
          VALUES ($1, $2, $3, $4, NOW())
          ON CONFLICT (email) DO UPDATE SET
-           company_name = EXCLUDED.company_name,
-           stripe_customer_id = COALESCE(EXCLUDED.stripe_customer_id, clients.stripe_customer_id),
-           updated_at = NOW()
+           org_name = EXCLUDED.org_name,
+           stripe_customer_id = COALESCE(EXCLUDED.stripe_customer_id, clients.stripe_customer_id)
          RETURNING id`,
         [email, companyName, 'free', stripeCustomerId]
       );
@@ -56,16 +55,13 @@ export async function POST(request: NextRequest) {
       // Continue with email sending even if DB fails
     }
 
-    // 3. Send welcome email to user (with magic link if available)
-    let magicLink: string | null = null;
-    if (clientId) {
-      magicLink = await generateEmailMagicLink(clientId);
-    }
+    // 3. Send welcome email to user (with direct dashboard link)
+    const dashboardLink = generateDashboardLink();
     
     const welcomeTemplate = emailTemplates.freeSignupWelcome({ 
       email, 
       companyName, 
-      magicLink: magicLink || undefined 
+      dashboardLink 
     });
     const emailResult = await sendEmail({
       to: email,

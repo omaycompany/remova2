@@ -23,6 +23,30 @@ export const dynamic = 'force-dynamic';
 // Blog posts data
 const featuredPosts = [
   {
+    id: "how-to-make-your-companys-shipping-data-private-2025-guide",
+    title: "How to Make Your Company's Shipping Data Private: The Definitive 2025 Guide",
+    excerpt: "Complete guide to protecting your company's shipping and trade data from competitors. Learn legal methods, technical safeguards, and monitoring strategies with interactive tools.",
+    author: "Trade Privacy Legal Team",
+    date: "2024-12-15",
+    category: "Privacy Protection",
+    readTime: "15 min read",
+    image: "/og-image.svg",
+    tags: ["Trade Data Protection", "CBP Confidentiality", "Supplier Privacy"],
+    featured: true
+  },
+  {
+    id: "supply-chain-open-book-5-minute-check",
+    title: "Is Your Supply Chain an Open Book? How to Check in 5 Minutes",
+    excerpt: "Quick assessment to discover if your supply chain data is publicly visible to competitors. Includes 5-minute exposure check and immediate protection strategies.",
+    author: "Supply Chain Intelligence Team",
+    date: "2024-12-15",
+    category: "Risk Assessment",
+    readTime: "5 min read",
+    image: "/og-image.svg",
+    tags: ["Supply Chain Exposure", "Quick Assessment", "Competitive Intelligence"],
+    featured: true
+  },
+  {
     id: "corporate-data-harvesting-employee-privacy-rights",
     title: "Corporate Data Harvesting: How Companies Violate Employee Privacy Rights Daily",
     excerpt: "An exposé of systematic employee surveillance, data collection practices, and the legal frameworks companies exploit to monitor their workforce without consent.",
@@ -110,6 +134,26 @@ const featuredPosts = [
 ];
 
 const recentPosts = [
+  {
+    id: "cbp-manifest-confidentiality-filing-guide",
+    title: "A Step-by-Step Guide to Filing for CBP Manifest Confidentiality",
+    excerpt: "Complete walkthrough of the CBP manifest confidentiality filing process under 19 CFR 103.31. Includes forms, requirements, and legal strategies for trade data protection.",
+    author: "Legal Compliance Team",
+    date: "2024-12-15",
+    category: "Legal Protection",
+    readTime: "12 min read",
+    tags: ["CBP Confidentiality", "Legal Filing", "Trade Secret Protection"]
+  },
+  {
+    id: "how-to-remove-company-information-from-panjiva",
+    title: "How to Remove Your Company Information From Panjiva",
+    excerpt: "Step-by-step guide to removing your company data from Panjiva's trade intelligence database. Includes legal methods, removal templates, and protection strategies.",
+    author: "Data Removal Team",
+    date: "2024-12-15",
+    category: "Data Removal",
+    readTime: "10 min read",
+    tags: ["Panjiva Removal", "Data Deletion", "Privacy Protection"]
+  },
   {
     id: "iot-device-privacy-vulnerabilities-corporate-networks",
     title: "IoT Device Privacy Vulnerabilities: Corporate Networks Under Siege",

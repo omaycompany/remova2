@@ -134,8 +134,8 @@ function stripHtml(html: string): string {
 
 // Email templates
 export const emailTemplates = {
-  freeSignupWelcome: (data: { email: string; companyName: string; magicLink?: string }) => ({
-    subject: '🎉 Welcome to Remova Community!',
+  freeSignupWelcome: (data: { email: string; companyName: string; dashboardLink?: string }) => ({
+    subject: '🎉 Welcome to Remova Community - Your Dashboard is Ready!',
     html: `
 <!DOCTYPE html>
 <html>
@@ -213,9 +213,9 @@ export const emailTemplates = {
       
       <!-- CTA Buttons -->
       <div style="text-align: center; margin: 45px 0;">
-        ${data.magicLink ? `
-        <a href="${data.magicLink}" style="display: inline-block; background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 18px 35px; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 16px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3); transition: transform 0.2s ease;">
-          🔐 Access Your Dashboard
+        ${data.dashboardLink ? `
+        <a href="${data.dashboardLink}" style="display: inline-block; background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 18px 35px; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 16px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3); transition: transform 0.2s ease;">
+          🚀 Access Your Dashboard
         </a>
         <br/>
         ` : ''}
@@ -271,7 +271,7 @@ export const emailTemplates = {
     `
   }),
 
-  paidSignupWelcome: (data: { email: string; companyName: string; plan: 'stealth' | 'vanish' | 'shield'; amount: number; magicLink?: string }) => {
+  paidSignupWelcome: (data: { email: string; companyName: string; plan: 'stealth' | 'vanish' | 'shield'; amount: number; dashboardLink?: string }) => {
     const planNames = { stealth: 'Stealth', vanish: 'Vanish', shield: 'Shield' };
     const planColors = { stealth: '#3b82f6', vanish: '#8b5cf6', shield: '#10b981' };
     const planEmojis = { stealth: '🛡️', vanish: '👻', shield: '🛡️' };
@@ -444,9 +444,9 @@ export const emailTemplates = {
       
       <!-- CTA Buttons -->
       <div style="text-align: center; margin: 45px 0;">
-        ${data.magicLink ? `
-        <a href="${data.magicLink}" style="display: inline-block; background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 18px 35px; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 16px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);">
-          🔐 Access Your Dashboard
+        ${data.dashboardLink ? `
+        <a href="${data.dashboardLink}" style="display: inline-block; background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 18px 35px; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 16px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);">
+          🚀 Access Your Dashboard
         </a>
         <br/>
         ` : ''}
@@ -603,75 +603,15 @@ export const emailTemplates = {
   })
 };
 
-// Send magic link email for sign in
-export async function sendMagicLinkEmail(email: string, magicLink: string, orgName: string): Promise<{ success: boolean; error?: string }> {
-  try {
-    const subject = "Your Remova access link";
-    
-    const text = `Hello${orgName ? ` from ${orgName}` : ''},
+// Note: Magic link functionality has been replaced with direct dashboard access
+// Users now get immediate dashboard access and a simple welcome email with dashboard link
 
-You requested access to your Remova privacy dashboard.
-
-Click this link to sign in (expires in 24 hours):
-${magicLink}
-
-If you have trouble with the link, copy and paste it into your browser address bar.
-
-Security Notice: This email was sent because someone requested access to your Remova account. If you did not request this, please ignore this message.
-
-Need help? Contact our team at notifications@remova.org
-
-Best regards,
-The Remova Team
-
----
-Remova Inc.
-1111B S Governors Ave STE 39322
-Dover, DE 19904
-www.remova.org`;
-
-    console.log(`Sending access link email to: ${email}`);
-    
-    const result = await sendEmailWithResend(email, subject, text);
-    
-    if (result.success) {
-      console.log(`Access link sent successfully to: ${email}`);
-      return { success: true };
-    } else {
-      console.error('Failed to send access link:', result.error);
-      return { success: false, error: result.error };
-    }
-    
-  } catch (error) {
-    console.error('Access link email error:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Unknown error sending access link'
-    };
-  }
-}
-
-// Generate magic link for email inclusion
-export async function generateEmailMagicLink(clientId: string): Promise<string | null> {
-  try {
-    const { token, hash } = generateMagicLinkToken();
-    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
-
-    // Store session for magic link
-    await query(
-      `INSERT INTO member_sessions (client_id, token_hash, expires_at)
-       VALUES ($1, $2, $3)`,
-      [clientId, hash, expiresAt]
-    );
-
-    const baseUrl = process.env.APP_BASE_URL || 
-      (process.env.NODE_ENV === 'production' ? 'https://www.remova.org' : 'http://127.0.0.1:6161');
-    
-    return `${baseUrl}/members/verify?token=${token}`;
-  } catch (error) {
-    console.error('Error generating email magic link:', error);
-    return null;
-  }
+// Generate direct dashboard link for email inclusion
+export function generateDashboardLink(): string {
+  const baseUrl = process.env.APP_BASE_URL || 
+    (process.env.NODE_ENV === 'production' ? 'https://www.remova.org' : 'http://127.0.0.1:6161');
+  
+  return `${baseUrl}/members`;
 }
 
 // Helper function to send notification to team

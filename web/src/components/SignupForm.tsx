@@ -124,7 +124,9 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
         });
 
         if (response.ok) {
-          window.location.href = '/thank-you?plan=free';
+          const result = await response.json();
+          // Redirect to the URL provided by the server (dashboard or thank you page)
+          window.location.href = result.redirectUrl || '/members';
         } else {
           throw new Error('Failed to create free account');
         }

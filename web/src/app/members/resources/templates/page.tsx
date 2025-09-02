@@ -20,51 +20,63 @@ export default async function TakedownTemplatesPage() {
   const templates = [
     {
       title: "Professional Takedown Email Templates",
-      description: "Ready-to-use email templates for requesting data removal from commercial platforms",
+      description: "Ready-to-use email templates for requesting data removal from commercial platforms - Updated with brand-compliant formatting and legal language",
       href: "/docs/takedown-email-templates.pdf",
       type: "Email Templates",
       platforms: ["Panjiva", "ImportGenius", "TradeMap", "General"],
-      usage: "High"
+      usage: "High",
+      brandCompliant: true,
+      lastUpdated: "2024-12-15"
     },
     {
-      title: "Legal Demand Letter Templates",
-      description: "Formal legal templates for escalated removal requests with legal authority",
-      href: "/docs/legal-demand-templates.pdf",
-      type: "Legal Documents",
-      platforms: ["All Platforms", "Government Sites"],
-      usage: "Medium"
+      title: "Executive Brief Template",
+      description: "Professional executive briefing template for board-level privacy reporting",
+      href: "/docs/executive-brief-template.txt",
+      type: "Executive Templates",
+      platforms: ["Internal Reporting"],
+      usage: "Medium",
+      brandCompliant: true,
+      lastUpdated: "2024-12-15"
     },
     {
-      title: "Platform-Specific Removal Scripts",
-      description: "Customized templates for each major trade intelligence platform",
-      href: "/docs/platform-specific-templates.pdf",
-      type: "Script Collection",
-      platforms: ["ImportYeti", "Trademo", "Volza", "Others"],
-      usage: "High"
-    },
-    {
-      title: "GDPR Deletion Request Templates",
-      description: "EU-compliant data deletion requests for European-based platforms",
-      href: "/docs/gdpr-deletion-templates.pdf",
-      type: "Compliance Forms",
-      platforms: ["EU-based Platforms"],
-      usage: "Medium"
-    },
-    {
-      title: "Government Filing Templates",
-      description: "Official forms and templates for government confidentiality requests",
-      href: "/docs/government-filing-templates.pdf",
-      type: "Government Forms",
-      platforms: ["CBP", "Census Bureau", "Trade Agencies"],
-      usage: "Low"
-    },
-    {
-      title: "Escalation Response Templates",
-      description: "Templates for handling platform responses and escalation procedures",
-      href: "/docs/escalation-response-templates.pdf",
+      title: "Incident Alert Template",
+      description: "Immediate response template for data exposure incidents and breaches",
+      href: "/docs/incident-alert-template.txt",
       type: "Response Scripts",
+      platforms: ["Emergency Response"],
+      usage: "High",
+      brandCompliant: true,
+      lastUpdated: "2024-12-15"
+    },
+    {
+      title: "Escalation Contacts Template",
+      description: "Contact management template for platform escalation procedures",
+      href: "/docs/escalation-contacts-template.txt",
+      type: "Contact Management",
       platforms: ["All Platforms"],
-      usage: "Medium"
+      usage: "Medium",
+      brandCompliant: true,
+      lastUpdated: "2024-12-15"
+    },
+    {
+      title: "NDA Baseline Template",
+      description: "Standard non-disclosure agreement template for trade partner protection",
+      href: "/docs/nda-baseline-template.txt",
+      type: "Legal Documents",
+      platforms: ["Partner Agreements"],
+      usage: "High",
+      brandCompliant: true,
+      lastUpdated: "2024-12-15"
+    },
+    {
+      title: "Renewal Calendar Template",
+      description: "Template for tracking protection renewal schedules and deadlines",
+      href: "/docs/renewal-calendar-template.txt",
+      type: "Management Tools",
+      platforms: ["Internal Operations"],
+      usage: "Medium",
+      brandCompliant: true,
+      lastUpdated: "2024-12-15"
     }
   ];
 
@@ -99,9 +111,16 @@ export default async function TakedownTemplatesPage() {
           {templates.map((template, index) => (
             <div key={index} className="border border-gray-200 bg-white rounded-lg p-6">
               <div className="flex items-start justify-between mb-3">
-                <span className="text-xs px-2 py-1 bg-gray-100 text-gray-800 rounded-full">
-                  {template.type}
-                </span>
+                <div className="flex gap-2">
+                  <span className="text-xs px-2 py-1 bg-gray-100 text-gray-800 rounded-full">
+                    {template.type}
+                  </span>
+                  {template.brandCompliant && (
+                    <span className="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full">
+                      ✓ Brand Compliant
+                    </span>
+                  )}
+                </div>
                 <span className={`text-xs px-2 py-1 rounded-full ${
                   template.usage === 'High' ? 'bg-green-100 text-green-800' :
                   template.usage === 'Medium' ? 'bg-yellow-100 text-yellow-800' :

@@ -20,43 +20,83 @@ export default async function LegalDocumentsPage() {
   const legalDocs = [
     {
       title: "Data Protection Agreement Template",
-      description: "Comprehensive DPA template for trade data protection with business partners",
+      description: "Comprehensive DPA template for trade data protection with business partners - Updated with brand-compliant formatting and current legal standards",
       href: "/docs/data-protection-agreement.pdf",
       category: "Contracts",
       jurisdiction: "US/International",
-      complexity: "Intermediate"
+      complexity: "Intermediate",
+      brandCompliant: true,
+      lastUpdated: "2024-12-15"
     },
     {
       title: "NDA Baseline Template for Trade Partners",
-      description: "Non-disclosure agreement specifically designed for protecting trade relationships",
-      href: "/docs/nda-baseline-template.pdf",
+      description: "Non-disclosure agreement specifically designed for protecting trade relationships - Follows Remova brand guidelines",
+      href: "/docs/nda-baseline-template.txt",
       category: "NDAs",
       jurisdiction: "US/International",
-      complexity: "Beginner"
+      complexity: "Beginner",
+      brandCompliant: true,
+      lastUpdated: "2024-12-15"
     },
     {
-      title: "Vendor Agreement Privacy Clauses",
-      description: "Legal clauses for protecting trade data in logistics and shipping contracts",
-      href: "/docs/vendor-privacy-clauses.pdf",
-      category: "Contract Clauses",
+      title: "US Processing Statement Template",
+      description: "Legal statement template for US data processing compliance and privacy notifications",
+      href: "/docs/us-processing-statement.txt",
+      category: "Compliance Statements",
       jurisdiction: "US",
-      complexity: "Advanced"
+      complexity: "Intermediate",
+      brandCompliant: true,
+      lastUpdated: "2024-12-15"
     },
     {
-      title: "CCPA/CPRA Trade Data Rights",
-      description: "California privacy law applications for B2B trade data protection",
-      href: "/docs/ccpa-trade-data-rights.pdf",
-      category: "Privacy Law",
-      jurisdiction: "California",
-      complexity: "Advanced"
+      title: "Security Controls Overview Template",
+      description: "Template for documenting security controls and privacy protection measures",
+      href: "/docs/security-controls-overview.txt",
+      category: "Security Documentation",
+      jurisdiction: "International",
+      complexity: "Advanced",
+      brandCompliant: true,
+      lastUpdated: "2024-12-15"
+    },
+    {
+      title: "Role-Based Access Policy Template",
+      description: "Template for implementing role-based access controls for trade data",
+      href: "/docs/role-based-access-policy.txt",
+      category: "Access Control",
+      jurisdiction: "International",
+      complexity: "Advanced",
+      brandCompliant: true,
+      lastUpdated: "2024-12-15"
+    },
+    {
+      title: "Data Minimization Policy Template",
+      description: "Template for implementing data minimization practices in trade operations",
+      href: "/docs/data-minimization-policy.txt",
+      category: "Privacy Policies",
+      jurisdiction: "International",
+      complexity: "Intermediate",
+      brandCompliant: true,
+      lastUpdated: "2024-12-15"
+    },
+    {
+      title: "Data Retention Policy Template",
+      description: "Template for establishing data retention schedules and deletion procedures",
+      href: "/docs/data-retention-policy.txt",
+      category: "Privacy Policies",
+      jurisdiction: "International",
+      complexity: "Intermediate",
+      brandCompliant: true,
+      lastUpdated: "2024-12-15"
     },
     {
       title: "CBP Confidentiality Legal Framework",
-      description: "Legal basis and precedents for U.S. Customs confidentiality protections",
+      description: "Legal basis and precedents for U.S. Customs confidentiality protections - Updated with current regulations",
       href: "/docs/cbp-confidentiality-legal.pdf",
       category: "Government Law",
       jurisdiction: "Federal US",
-      complexity: "Expert"
+      complexity: "Expert",
+      brandCompliant: true,
+      lastUpdated: "2024-12-15"
     },
     {
       title: "International Trade Privacy Compliance",
