@@ -1,7 +1,7 @@
 
 
 import { Metadata } from 'next';
-import { ChecklistGenerator } from '@/components/blog/InteractiveElements';
+
 
 export const metadata: Metadata = {
   title: "5 Common Mistakes That Leak Your Supplier Information to Competitors",
@@ -15,16 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-// Mistake Assessment Tool
-function MistakeAssessmentTool() {
-  const [assessmentData, setAssessmentData] = useState({
-    documentSharing: '',
-    emailSecurity: '',
-    supplierPortals: '',
-    socialMedia: '',
-    publicFiling: ''
-  });
-  const [assessmentResults, setAssessmentResults] = useState<any>(null);
+// Placeholder for removed interactive component
 
   const analyzeVulnerabilities = () => {
     let vulnerabilityScore = 0;
@@ -348,7 +339,10 @@ export default function SupplierInformationMistakes() {
           your current vulnerability level and identify which areas require immediate attention.
         </p>
 
-        <MistakeAssessmentTool />
+        <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-orange-900 mb-2">Supplier Information Leak Assessment</h3>
+          <p className="text-orange-800 text-sm">Assess your current practices to identify potential supplier information leaks and vulnerabilities.</p>
+        </div>
       </section>
 
       {/* Mistake 1 */}

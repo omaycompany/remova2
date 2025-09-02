@@ -278,7 +278,10 @@ export default function CBPFilingGuide() {
           </div>
         </div>
 
-        <ProgressTracker steps={filingSteps} currentStep={0} />
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">CBP Filing Progress Tracker</h3>
+          <p className="text-blue-800 text-sm">Track your progress through each step of the CBP manifest confidentiality filing process.</p>
+        </div>
       </section>
 
       {/* Section 1: Eligibility Requirements */}

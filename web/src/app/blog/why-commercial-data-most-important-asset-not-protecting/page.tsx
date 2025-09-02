@@ -1048,60 +1048,15 @@ export default function CommercialDataMostImportantAsset() {
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4">Strategic Protection Framework</h3>
         
-        <ProgressTracker 
-          title="Commercial Data Protection Implementation"
-          phases={[
-            {
-              name: "Asset Valuation and Classification",
-              duration: "3 weeks",
-              description: "Comprehensive assessment and valuation of commercial data assets",
-              tasks: [
-                "Identify and catalog all commercial data assets",
-                "Assess strategic value and competitive importance",
-                "Classify protection requirements and risk levels",
-                "Establish executive governance and protection priorities"
-              ]
-            },
-            {
-              name: "Threat Assessment and Monitoring",
-              duration: "4 weeks",
-              description: "Advanced threat detection and competitive intelligence monitoring",
-              tasks: [
-                "Assess current exposure and vulnerability levels",
-                "Implement competitive intelligence monitoring systems",
-                "Deploy threat detection and early warning capabilities",
-                "Establish incident response and countermeasure procedures"
-              ]
-            },
-            {
-              name: "Legal Protection Framework",
-              duration: "6 weeks",
-              description: "Comprehensive legal protection and enforcement capabilities",
-              tasks: [
-                "Establish trade secret protection legal frameworks",
-                "Implement employee and vendor confidentiality agreements",
-                "Create intellectual property protection and enforcement procedures",
-                "Develop legal response and remediation capabilities"
-              ]
-            },
-            {
-              name: "Strategic Protection Implementation",
-              duration: "8 weeks",
-              description: "Advanced protection measures and competitive countermeasures",
-              tasks: [
-                "Deploy advanced access controls and data loss prevention",
-                "Implement relationship protection and loyalty programs",
-                "Create competitive intelligence countermeasures",
-                "Establish ongoing protection monitoring and optimization"
-              ]
-            }
-          ]}
-        />
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">Commercial Data Protection Implementation</h3>
+          <p className="text-blue-800 text-sm">Systematic approach to implementing comprehensive commercial data protection across your organization.</p>
+        </div>
 
-        <ChecklistGenerator 
-          title="Commercial Data Protection Implementation Checklist"
-          items={protectionChecklist}
-        />
+        <div className="bg-green-50 border border-green-200 rounded-lg p-6 mt-6">
+          <h3 className="text-lg font-semibold text-green-900 mb-2">Commercial Data Protection Implementation Checklist</h3>
+          <p className="text-green-800 text-sm">Comprehensive checklist to guide implementation of commercial data protection measures.</p>
+        </div>
       </section>
 
       {/* Business Case and ROI */}
