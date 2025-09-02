@@ -191,6 +191,7 @@ export default async function PrivacyGuidesPage() {
               </div>
             </div>
           ))}
+          </div>
         </div>
 
         {/* Additional Resources */}
