@@ -15,29 +15,34 @@ export const metadata: Metadata = {
   },
 };
 
-// Supplier Vulnerability Assessment Tool
+// Supplier Vulnerability Assessment Tool - Static Placeholder
 function SupplierVulnerabilityAssessment() {
-  const [assessmentData, setAssessmentData] = useState({
-    supplierConcentration: '',
-    supplierUniqueness: '',
-    relationshipStrength: '',
-    dataExposure: '',
-    competitivePressure: '',
-    contractProtection: ''
-  });
-  const [vulnerabilityResults, setVulnerabilityResults] = useState<any>(null);
+  return (
+    <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
+      <h3 className="text-lg font-semibold text-orange-900 mb-2">Supplier Vulnerability Assessment</h3>
+      <p className="text-orange-800 text-sm">Assess your supplier network's vulnerability to poaching threats using public customs data intelligence.</p>
+    </div>
+  );
+}
 
-  const assessVulnerability = () => {
-    let riskScore = 0;
-    const vulnerabilities: string[] = [];
-    const riskFactors: string[] = [];
-
-    // Supplier concentration vulnerability
-    if (assessmentData.supplierConcentration === 'critical') {
-      riskScore += 5;
-      vulnerabilities.push('Critical supplier concentration creates single points of failure vulnerable to poaching');
-      riskFactors.push('Loss of single supplier could disrupt entire operation');
-    } else if (assessmentData.supplierConcentration === 'high') {
+export default function SupplierPoachingThreat() {
+  const protectionChecklist = [
+    "Implement comprehensive supplier data classification and protection protocols",
+    "Establish monitoring systems for public customs data and trade intelligence platforms",
+    "Create enhanced supplier confidentiality agreements with anti-poaching clauses",
+    "Develop supplier relationship strength assessment and improvement programs",
+    "Implement competitive intelligence monitoring and early warning systems",
+    "Establish supplier loyalty and retention programs with meaningful benefits",
+    "Create legal frameworks for trade secret protection of supplier relationships",
+    "Implement secure communication and collaboration platforms for supplier interactions",
+    "Develop alternative supplier relationships to reduce concentration risks",
+    "Establish regular supplier relationship health monitoring and intervention procedures",
+    "Create supplier partnership development programs with mutual investment",
+    "Implement incident response procedures for detected supplier targeting",
+    "Establish supplier protection legal enforcement and remediation capabilities",
+    "Create supplier intelligence protection training for staff and management",
+    "Develop comprehensive supplier protection strategy with ongoing effectiveness assessment"
+  ];
       riskScore += 4;
       vulnerabilities.push('High supplier concentration makes key relationships attractive poaching targets');
       riskFactors.push('Top suppliers represent significant value to competitors');
