@@ -15,29 +15,34 @@ export const metadata: Metadata = {
   },
 };
 
-// Solution Recommendation Engine
+// Solution Recommendation Engine - Static Placeholder
 function SolutionRecommendationEngine() {
-  const [requirements, setRequirements] = useState({
-    primaryNeed: '',
-    businessSize: '',
-    dataComplexity: '',
-    complianceLevel: '',
-    budgetRange: '',
-    timeframe: ''
-  });
-  const [recommendation, setRecommendation] = useState<any>(null);
+  return (
+    <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
+      <h3 className="text-lg font-semibold text-purple-900 mb-2">Solution Recommendation Engine</h3>
+      <p className="text-purple-800 text-sm">Get personalized recommendations for privacy-first alternatives to traditional trade intelligence platforms.</p>
+    </div>
+  );
+}
 
-  const generateRecommendation = () => {
-    let recommendationScore = {
-      'remova-enterprise': 0,
-      'remova-professional': 0,
-      'hybrid-approach': 0,
-      'diy-solution': 0
-    };
-
-    // Primary need scoring
-    if (requirements.primaryNeed === 'complete-removal') {
-      recommendationScore['remova-enterprise'] += 5;
+export default function MoreCompletePanjivaAlternative() {
+  const alternativeComparison = {
+    solutions: [
+      {
+        name: "Panjiva (S&P Global)",
+        description: "Trade intelligence platform with data viewing capabilities",
+        pricing: "$1,000-10,000+ annually"
+      },
+      {
+        name: "ImportGenius",
+        description: "Trade data platform focused on U.S. import/export intelligence",
+        pricing: "$500-5,000+ annually"
+      },
+      {
+        name: "Remova Privacy-as-a-Service",
+        description: "Complete data privacy protection with removal and monitoring",
+        pricing: "$5,000-50,000+ annually"
+      },
       recommendationScore['remova-professional'] += 4;
       recommendationScore['hybrid-approach'] += 2;
       recommendationScore['diy-solution'] += 1;
@@ -856,297 +861,25 @@ export default function MoreCompletePanjivaAlternative() {
         </h2>
 
         <p className="text-gray-700 mb-4 leading-relaxed">
-          The business case for privacy-first alternatives becomes overwhelming when
-              duration: "2-4 weeks",
-              description: "Complete removal of exposed data and implementation of protection measures",
-              tasks: [
-                "Execute comprehensive data removal across all trade platforms",
-                "Implement monitoring systems for new exposures and threats",
-                "Establish legal frameworks for privacy protection and enforcement",
-                "Deploy competitive intelligence countermeasures and defense protocols"
-              ]
-            },
-            {
-              name: "Alternative Intelligence Capabilities",
-              duration: "2-3 weeks",
-              description: "Development of privacy-protected intelligence gathering capabilities",
-              tasks: [
-                "Implement privacy-protected market intelligence capabilities",
-                "Establish secure competitive analysis and benchmarking methods",
-                "Deploy protected supplier and customer discovery processes",
-                "Create privacy-compliant business intelligence frameworks"
-              ]
-            },
-            {
-              name: "Ongoing Privacy Management",
-              duration: "Ongoing",
-              description: "Continuous privacy protection and threat response management",
-              tasks: [
-                "Maintain continuous monitoring and threat detection capabilities",
-                "Execute regular privacy audits and protection optimization",
-                "Manage ongoing legal enforcement and compliance requirements",
-                "Provide ongoing privacy consultation and strategic support"
-              ]
-            }
-          ]}
-        />
-      </section>
-
-      {/* ROI and Business Case */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Business Case: Privacy Protection vs. Intelligence Access
-        </h2>
-
-        <p className="text-gray-700 mb-4 leading-relaxed">
           The business case for privacy-first alternatives becomes overwhelming when 
-          considering the long-term competitive advantages of protection versus the 
-          short-term benefits and long-term vulnerabilities of traditional intelligence access.
+          you consider the comprehensive protection and strategic advantages they provide 
+          compared to the ongoing vulnerabilities of traditional trade intelligence platforms.
         </p>
-
-        <h3 className="text-xl font-semibold text-gray-900 mb-4">Comparative ROI Analysis</h3>
-        
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-            <h4 className="font-semibold text-red-900 mb-3">Traditional Intelligence Platforms</h4>
-            <ul className="text-sm text-red-800 space-y-2">
-              <li><strong>Annual Investment:</strong> $1,000-10,000 for platform access and analysis</li>
-              <li><strong>Intelligence Benefits:</strong> $10,000-50,000 in competitive insights and opportunities</li>
-              <li><strong>Exposure Costs:</strong> $500,000-5,000,000+ in competitive intelligence vulnerability</li>
-              <li><strong>Net ROI:</strong> -2,000% to -50,000% (massive negative returns)</li>
-              <li><strong>Strategic Impact:</strong> Long-term competitive disadvantage and vulnerability</li>
-            </ul>
-          </div>
-          
-          <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-            <h4 className="font-semibold text-green-900 mb-3">Privacy-First Alternatives</h4>
-            <ul className="text-sm text-green-800 space-y-2">
-              <li><strong>Annual Investment:</strong> $5,000-50,000 for comprehensive privacy protection</li>
-              <li><strong>Protection Benefits:</strong> $500,000-5,000,000+ in prevented competitive intelligence losses</li>
-              <li><strong>Strategic Advantages:</strong> $1,000,000-10,000,000+ in preserved competitive advantages</li>
-              <li><strong>Net ROI:</strong> 1,000% to 20,000% (massive positive returns)</li>
-              <li><strong>Strategic Impact:</strong> Long-term competitive advantage preservation and enhancement</li>
-            </ul>
-          </div>
-        </div>
-
-        <h3 className="text-xl font-semibold text-gray-900 mb-4">Strategic Value Comparison</h3>
-        
-        <div className="bg-gray-900 text-white rounded-lg p-6">
-          <h4 className="text-lg font-semibold mb-3">Long-Term Competitive Impact</h4>
-          <div className="grid md:grid-cols-2 gap-6 text-sm text-gray-200">
-            <div>
-              <strong>Intelligence Access Strategy:</strong>
-              <ul className="mt-2 space-y-1">
-                <li>• Short-term tactical intelligence advantages</li>
-                <li>• Commoditized intelligence with diminishing returns</li>
-                <li>• Escalating exposure vulnerability and competitive risk</li>
-                <li>• Net negative value as exposure costs exceed intelligence benefits</li>
-                <li>• Long-term competitive disadvantage and strategic vulnerability</li>
-              </ul>
-            </div>
-            <div>
-              <strong>Privacy Protection Strategy:</strong>
-              <ul className="mt-2 space-y-1">
-                <li>• Long-term competitive advantage preservation</li>
-                <li>• Unique intelligence advantages through protection</li>
-                <li>• Elimination of competitive intelligence vulnerability</li>
-                <li>• Massive positive value from prevented exposure costs</li>
-                <li>• Sustained competitive advantage and market leadership</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Decision Framework */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Decision Framework: Choosing the Right Alternative
-        </h2>
-
-        <p className="text-gray-700 mb-4 leading-relaxed">
-          Selecting the right Panjiva alternative requires careful consideration of 
-          your business objectives, competitive position, and strategic priorities. 
-          Use this framework to make the optimal decision for your organization.
-        </p>
-
-        <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Decision Factors</h3>
-        
-        <div className="space-y-4 mb-6">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <h4 className="font-semibold text-blue-900 mb-2">Competitive Position and Strategy</h4>
-            <p className="text-blue-800 text-sm">
-              Companies with strong competitive positions should prioritize protection 
-              over intelligence access, while companies seeking to improve their position 
-              may benefit from hybrid approaches that balance intelligence and protection.
-            </p>
-          </div>
-
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <h4 className="font-semibold text-blue-900 mb-2">Data Sensitivity and Exposure Risk</h4>
-            <p className="text-blue-800 text-sm">
-              Businesses with high-value trade secrets, critical supplier relationships, 
-              or sensitive customer intelligence should prioritize comprehensive privacy 
-              protection over intelligence gathering capabilities.
-            </p>
-          </div>
-
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <h4 className="font-semibold text-blue-900 mb-2">Resource Allocation and Capabilities</h4>
-            <p className="text-blue-800 text-sm">
-              Organizations with limited internal privacy expertise should invest in 
-              professional privacy services, while those with technical capabilities 
-              may successfully implement DIY privacy approaches.
-            </p>
-          </div>
-        </div>
-
-        <h3 className="text-xl font-semibold text-gray-900 mb-4">Strategic Recommendations</h3>
-        
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-          <h4 className="font-semibold text-yellow-900 mb-3">Executive Decision Guidelines</h4>
-          <div className="grid md:grid-cols-3 gap-6 text-sm">
-            <div>
-              <strong>Choose Privacy-as-a-Service If:</strong>
-              <ul className="text-yellow-700 mt-1 space-y-1">
-                <li>• You have valuable competitive advantages to protect</li>
-                <li>• Your business depends on relationship intelligence</li>
-                <li>• You face sophisticated competitive threats</li>
-                <li>• You need comprehensive compliance support</li>
-                <li>• You want professional privacy expertise</li>
-              </ul>
-            </div>
-            <div>
-              <strong>Choose Hybrid Approach If:</strong>
-              <ul className="text-yellow-700 mt-1 space-y-1">
-                <li>• You need some intelligence access capabilities</li>
-                <li>• You have mixed sensitivity data requirements</li>
-                <li>• You want to balance protection and access</li>
-                <li>• You have moderate budget constraints</li>
-                <li>• You prefer gradual transition approaches</li>
-              </ul>
-            </div>
-            <div>
-              <strong>Choose DIY Approach If:</strong>
-              <ul className="text-yellow-700 mt-1 space-y-1">
-                <li>• You have strong technical capabilities</li>
-                <li>• You have limited budget for professional services</li>
-                <li>• Your data sensitivity is relatively low</li>
-                <li>• You prefer self-managed solutions</li>
-                <li>• You want maximum control over implementation</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Conclusion */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Conclusion: The Privacy-First Future of Business Intelligence
-        </h2>
-
-        <p className="text-gray-700 mb-4 leading-relaxed">
-          The era of trade intelligence platforms that prioritize access over protection 
-          is ending. Sophisticated businesses are recognizing that competitive advantage 
-          comes from protecting intelligence rather than accessing it, and are transitioning 
-          to privacy-first alternatives that provide comprehensive protection while 
-          maintaining essential intelligence capabilities.
-        </p>
-
-        <div className="bg-gray-900 text-white rounded-lg p-6 mb-6">
-          <h3 className="text-lg font-semibold mb-3">The Strategic Imperative</h3>
-          <ul className="space-y-2 text-gray-200">
-            <li className="flex items-start">
-              <span className="text-blue-400 mr-2">🔍</span>
-              <strong>Intelligence Access is Commoditizing:</strong> As intelligence becomes widely available, competitive advantages diminish
-            </li>
-            <li className="flex items-start">
-              <span className="text-red-400 mr-2">⚠</span>
-              <strong>Privacy Protection is Differentiating:</strong> Comprehensive protection creates sustainable competitive advantages
-            </li>
-            <li className="flex items-start">
-              <span className="text-green-400 mr-2">✓</span>
-              <strong>Privacy-First Solutions Exist:</strong> Comprehensive alternatives provide complete protection with professional support
-            </li>
-            <li className="flex items-start">
-              <span className="text-purple-400 mr-2">💎</span>
-              <strong>ROI is Overwhelming:</strong> Privacy protection delivers 1,000%+ returns through prevented exposure costs
-            </li>
-            <li className="flex items-start">
-              <span className="text-yellow-400 mr-2">⭐</span>
-              <strong>First-Mover Advantage:</strong> Early adopters gain sustainable competitive advantages while competitors remain exposed
-            </li>
-          </ul>
-        </div>
 
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <h3 className="font-semibold text-blue-900 mb-3">Ready to Transition to Privacy-First Intelligence?</h3>
-          <p className="text-blue-800 text-sm mb-4">
-            Stop contributing to your own competitive intelligence vulnerability. 
-            Discover comprehensive privacy-first alternatives that protect your 
-            competitive advantages while providing essential intelligence capabilities. 
-            Professional assessment and implementation ensure optimal protection 
-            and maximum competitive benefit.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a 
-              href="/members/privacy-representative" 
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-center"
-            >
-              Get Privacy Assessment
-            </a>
-            <a 
-              href="/members/exposure-monitoring" 
-              className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white text-center"
-            >
-              Monitor Current Exposure
-            </a>
-            <a 
-              href="/docs/privacy-first-intelligence-guide.pdf" 
-              className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white text-center"
-            >
-              Download Implementation Guide
-            </a>
-          </div>
+          <h3 className="font-semibold text-blue-900 mb-3">Privacy-First Alternative Benefits</h3>
+          <ul className="text-sm text-blue-800 space-y-1">
+            <li>• Complete protection from competitive intelligence gathering</li>
+            <li>• Enhanced supplier relationship security and confidentiality</li>
+            <li>• Strategic advantage through information asymmetry</li>
+            <li>• Reduced competitive targeting and business relationship interference</li>
+            <li>• Comprehensive legal protection for trade secrets and confidential information</li>
+          </ul>
         </div>
       </section>
 
-      {/* Related Analysis */}
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Related Privacy Solutions Analysis
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-4">
-          <a href="/blog/panjiva-vs-importgenius-vs-remova-comparison" className="block p-4 border border-gray-200 rounded-lg hover:border-gray-300">
-            <h3 className="font-semibold text-gray-900 mb-2">Platform Comparison Analysis</h3>
-            <p className="text-sm text-gray-600">Detailed comparison of Panjiva, ImportGenius, and Remova approaches</p>
-          </a>
-          
-          <a href="/blog/why-commercial-data-most-important-asset-not-protecting" className="block p-4 border border-gray-200 rounded-lg hover:border-gray-300">
-            <h3 className="font-semibold text-gray-900 mb-2">Strategic Asset Analysis</h3>
-            <p className="text-sm text-gray-600">Why commercial data protection delivers maximum business value</p>
-          </a>
-          
-          <a href="/blog/lawful-but-lethal-data-brokers-sell-trade-secrets" className="block p-4 border border-gray-200 rounded-lg hover:border-gray-300">
-            <h3 className="font-semibold text-gray-900 mb-2">Data Broker Threat Analysis</h3>
-            <p className="text-sm text-gray-600">How $200B industry systematically exploits business intelligence</p>
-          </a>
-        </div>
-      </section>
-
-      {/* Article Meta */}
       <footer className="border-t border-gray-200 pt-6 text-sm text-gray-500">
-        <div className="flex flex-wrap items-center gap-4">
-          <span>Categories: Solution Comparison, Privacy Protection, Competitive Intelligence</span>
-          <span>•</span>
-          <span>Tags: Panjiva alternative, trade data privacy, privacy-as-a-service, competitive protection</span>
-        </div>
-        <div className="mt-4">
-          <p>Last updated: December 15, 2024 | Analysis: Privacy-first alternatives to traditional trade intelligence platforms</p>
-        </div>
+        <p>Last updated: December 15, 2024</p>
       </footer>
     </article>
   );
