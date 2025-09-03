@@ -9,10 +9,12 @@ export default function BecomeMemberPage() {
   const [clientSecret, setClientSecret] = useState<string | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+  const [userEmail, setUserEmail] = useState('');
+  const [userCompany, setUserCompany] = useState('');
 
-  // Create payment intent when a paid plan is selected
+  // Create payment intent when a paid plan is selected AND we have user info
   useEffect(() => {
-    if (selectedPlan === 'free') {
+    if (selectedPlan === 'free' || !userEmail || !userCompany) {
       setClientSecret(undefined);
       return;
     }
@@ -27,8 +29,8 @@ export default function BecomeMemberPage() {
           },
           body: JSON.stringify({
             plan: selectedPlan,
-            email: 'placeholder@example.com', // Will be updated when user enters email
-            companyName: 'Placeholder Company', // Will be updated when user enters company
+            email: userEmail || 'placeholder@example.com',
+            companyName: userCompany || 'Placeholder Company',
           }),
         });
 
@@ -44,7 +46,7 @@ export default function BecomeMemberPage() {
     };
 
     createPaymentIntent();
-  }, [selectedPlan]);
+  }, [selectedPlan, userEmail, userCompany]);
 
   // Hide scroll indicator when user scrolls down
   useEffect(() => {
@@ -70,6 +72,10 @@ export default function BecomeMemberPage() {
             selectedPlan={selectedPlan}
             onPlanChange={setSelectedPlan}
             clientSecret={clientSecret}
+            onUserInfoChange={(email: string, company: string) => {
+              setUserEmail(email);
+              setUserCompany(company);
+            }}
           />
         </StripeProvider>
       </div>
