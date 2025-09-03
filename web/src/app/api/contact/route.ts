@@ -10,7 +10,7 @@ interface ContactFormData {
 }
 
 export async function POST(request: NextRequest) {
-  console.log('🔥 CONTACT FORM API CALLED');
+  console.log('CONTACT FORM API CALLED');
   
   try {
     console.log('📝 Extracting form data...');
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
       message: formData.get('message') as string
     };
 
-    console.log('✅ Extracted contact data:', data);
+    console.log('Extracted contact data:', data);
 
     // Basic validation
     if (!data.name || !data.email || !data.message) {
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('✅ Validation passed')
+    console.log('Validation passed')
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -54,14 +54,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('📧 Preparing to send email...');
+    console.log('Preparing to send email...');
     
     // Send email using our email system
     const { sendEmail, emailTemplates } = await import('@/lib/email');
     
     console.log('📄 Generating email template...');
     const contactTemplate = emailTemplates.contactFormNotification(data);
-    console.log('✅ Email template generated:', {
+    console.log('Email template generated:', {
       subject: contactTemplate.subject,
       htmlLength: contactTemplate.html.length
     });
@@ -75,13 +75,14 @@ export async function POST(request: NextRequest) {
       html: contactTemplate.html
     });
 
-    console.log('📧 Email send result:', emailResult);
+    console.log('Email send result:', emailResult);
 
     if (emailResult.success) {
-      console.log('✅ Contact form notification sent to team successfully');
+      console.log('Contact form notification sent to team successfully');
     } else {
       console.error('❌ Failed to send contact form notification:', emailResult.error);
-      // Don't fail the API call if email fails - still return success to user
+      // Still return success to user since their message was received
+      console.log('Email delivery failed but continuing with success response');
     }
     
     return NextResponse.json(

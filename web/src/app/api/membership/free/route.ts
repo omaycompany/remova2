@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
         },
       });
       stripeCustomerId = stripeCustomer.id;
-      console.log(`✅ Stripe customer created for free user: ${stripeCustomerId}`);
+      console.log(`Stripe customer created for free user: ${stripeCustomerId}`);
     } catch (stripeError) {
       console.error('Stripe customer creation error for free user:', stripeError);
       // Continue without Stripe customer - they can still access free features
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
       );
       
       clientId = result[0]?.id || null;
-      console.log(`✅ Free user saved to database: ${email} with client ID: ${clientId}, Stripe customer: ${stripeCustomerId}`);
+      console.log(`Free user saved to database: ${email} with client ID: ${clientId}, Stripe customer: ${stripeCustomerId}`);
     } catch (dbError) {
       console.error('Database error for free signup:', dbError);
       // Continue with email sending even if DB fails
@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
     });
 
     if (emailResult.success) {
-      console.log(`✅ Welcome email sent to: ${email}`);
+      console.log(`Welcome email sent to: ${email}`);
     } else {
       console.error(`❌ Failed to send welcome email to ${email}:`, emailResult.error);
     }

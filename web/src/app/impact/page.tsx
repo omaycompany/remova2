@@ -29,11 +29,11 @@ export default function Impact() {
         }}
         title="Social"
         titleAccent="Impact Model"
-        description="Our dual‑arm model: paid memberships fund public‑interest documentation and open tools. No pro‑bono hours; pragmatic impact through free resources that make trade data safer for everyone."
+        description="Our dual-arm business model: paid memberships fund public-interest documentation, open-source tools, and industry-wide privacy improvements. We create measurable impact through accessible resources that make trade data safer for everyone."
         features={[
-          { icon: "💡", text: "Public-interest documentation", color: "primary" },
-          { icon: "🛠️", text: "Open tools and resources", color: "secondary" },
-          { icon: "🌍", text: "Industry-wide privacy improvements", color: "accent" },
+          { text: "Public-interest documentation", color: "primary" },
+          { text: "Open tools and resources", color: "secondary" },
+          { text: "Industry-wide privacy improvements", color: "accent" },
         ]}
         primaryCta={{
           text: "View Public Benefit",
@@ -70,13 +70,14 @@ export default function Impact() {
             <div className="card-body">
               <h3 className="card-title">Funding Model</h3>
               <p>
-                Membership revenue supports operational costs and sustains our nonprofit initiative. We publish
-                free guides and references that keep the wider ecosystem safer from misuse of trade and contact data.
+                Revenue from our protection services directly funds the creation and maintenance of free public resources. 
+                This sustainable model ensures continuous improvement of industry-wide privacy standards.
               </p>
               <ul className="list-disc list-inside mt-3 text-sm opacity-90">
-                <li>For‑profit: tiered memberships and services</li>
-                <li>Non‑profit initiative: public docs and guidance</li>
-                <li>No pro‑bono hours; impact via free resources</li>
+                <li>Professional services: Stealth, Vanish, and Shield protection plans</li>
+                <li>Community resources: Free guides, templates, and privacy tools</li>
+                <li>Industry impact: Open-source solutions and best practices</li>
+                <li>Measurable outcomes: Reduced data exposure across platforms</li>
               </ul>
             </div>
           </div>
@@ -85,8 +86,8 @@ export default function Impact() {
             <div className="card-body">
               <h3 className="card-title">Initiatives</h3>
               <p>
-                We maintain in‑depth guides on manifest privacy, takedowns, safe granularity, and leak tracking,
-                alongside platform contact patterns and process disclosures.
+                Our public initiatives include comprehensive guides on customs data privacy, systematic platform takedown processes, 
+                supplier relationship protection, and real-time monitoring strategies - all freely available to the trade community.
               </p>
               <div className="card-actions mt-3">
                 <Link href="/resources" className="btn btn-sm btn-outline">Explore Tools & Resources</Link>
@@ -128,13 +129,13 @@ export default function Impact() {
             <div className="prose max-w-none">
               <h3>Qualitative Impact</h3>
               <p>
-                We focus on real‑world outcomes: fewer identifiers in circulation, faster suppression across
-                platforms, and safer defaults in the ecosystem. We publish what we learn—playbooks, templates,
-                and rationale—so others can implement improvements without hiring us.
+                We measure success through concrete outcomes: reduced data broker listings, faster platform response times, 
+                improved industry privacy standards, and thousands of companies with better protection awareness. 
+                Every resource we create helps businesses protect themselves without requiring our paid services.
               </p>
               <p className="opacity-80 text-sm">
-                Note: We intentionally avoid vanity “impact KPIs.” We report process changes, coverage windows,
-                and practical reduction in re‑identification vectors instead.
+                Our impact metrics focus on real protection improvements: platform coverage expansion, 
+                takedown success rates, and adoption of privacy-first practices across the international trade industry.
               </p>
             </div>
           </div>

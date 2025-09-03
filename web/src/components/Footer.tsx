@@ -59,13 +59,13 @@ export default function Footer() {
               Protection Plans
             </h6>
             <div className="space-y-4">
-              <Link href="/membership/stealth" className="block text-gray-600 hover:text-gray-900 transition-colors">
+              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
                 Stealth Protection
               </Link>
-              <Link href="/membership/vanish" className="block text-gray-600 hover:text-gray-900 transition-colors">
+              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
                 Vanish Campaign
               </Link>
-              <Link href="/membership/shield" className="block text-gray-600 hover:text-gray-900 transition-colors">
+              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
                 Shield Defense
               </Link>
               <Link href="/membership/free" className="block text-gray-600 hover:text-gray-900 transition-colors">
@@ -121,6 +121,9 @@ export default function Footer() {
               </Link>
               <Link href="/contact" className="block text-gray-600 hover:text-gray-900 transition-colors">
                 Contact Us
+              </Link>
+              <Link href="/signin" className="block text-gray-600 hover:text-gray-900 transition-colors font-medium">
+                Member Sign In
               </Link>
               <Link href="/impact" className="text-red-600 hover:text-red-700 font-medium text-sm">
                 Our Impact →

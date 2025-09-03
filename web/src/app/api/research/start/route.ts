@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const researchData = startResearchSchema.parse(body);
 
-    console.log(`🎯 Starting deep research for client ${client.id}: ${researchData.target_company_name}`);
+    console.log(`Starting deep research for client ${client.id}: ${researchData.target_company_name}`);
 
     // Check for rate limiting (max 3 active research sessions per client)
     const { query } = await import('@/lib/db');

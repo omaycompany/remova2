@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
              WHERE stripe_customer_id = $4`,
             [customerEmail, plan, subscriptionId, customerId]
           );
-          console.log(`✅ Updated existing client ${clientId} from plan upgrade`);
+          console.log(`Updated existing client ${clientId} from plan upgrade`);
         } else {
           // Check if client exists by email (could be free user upgrading)
           const emailClient = await client.query(
@@ -104,7 +104,7 @@ export async function POST(request: NextRequest) {
                WHERE id = $4`,
               [plan, customerId, subscriptionId, clientId]
             );
-            console.log(`✅ Updated existing email client ${clientId} with Stripe details`);
+            console.log(`Updated existing email client ${clientId} with Stripe details`);
           } else {
             // Create new client
             const newClient = await client.query(
@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
               [customerEmail, plan, customerId, subscriptionId]
             );
             clientId = newClient.rows[0].id;
-            console.log(`✅ Created new client ${clientId}`);
+            console.log(`Created new client ${clientId}`);
           }
         }
 
@@ -165,7 +165,7 @@ export async function POST(request: NextRequest) {
         });
 
         if (emailResult.success) {
-          console.log(`✅ Welcome email sent to: ${customerEmail}`);
+          console.log(`Welcome email sent to: ${customerEmail}`);
         } else {
           console.error(`❌ Failed to send welcome email to ${customerEmail}:`, emailResult.error);
         }

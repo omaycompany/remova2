@@ -34,10 +34,10 @@ function DirectLoginContent() {
           throw new Error(data.error || 'Failed to generate login link');
         }
 
-        console.log('🔗 Demo Magic Link Generated:');
-        console.log(`📧 Account: ${data.account} (${data.email})`);
-        console.log(`🌐 Magic Link: ${data.magicLink}`);
-        console.log('📋 Automatically redirecting...');
+        console.log('Demo Magic Link Generated:');
+        console.log(`Account: ${data.account} (${data.email})`);
+        console.log(`Magic Link: ${data.magicLink}`);
+        console.log('Automatically redirecting...');
         
         setStatus('success');
         

@@ -75,7 +75,7 @@ export default function Hero() {
 
             {/* Enhanced Call-to-Action Buttons */}
             <div className="flex flex-col lg:flex-row gap-6 justify-center mb-12">
-              <Link href="/become-member" className="group relative btn btn-error btn-lg text-2xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-2 border-red-600">
+              <Link href="/contact#contact-form" className="group relative btn btn-error btn-lg text-2xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-2 border-red-600">
                 <span className="relative z-10 flex items-center gap-3">
                   Request Your Free Audit Now
                   <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

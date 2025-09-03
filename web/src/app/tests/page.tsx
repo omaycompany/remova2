@@ -410,7 +410,7 @@ export default function TestsPage() {
                 </svg>
                 Take Privacy Tests
               </Link>
-              <Link href="/become-member" className="btn btn-lg btn-outline text-white border-white hover:bg-white hover:text-indigo-900 font-bold text-xl px-12 py-6 shadow-xl transition-all">
+              <Link href="/contact#contact-form" className="btn btn-lg btn-outline text-white border-white hover:bg-white hover:text-indigo-900 font-bold text-xl px-12 py-6 shadow-xl transition-all">
                 Get Expert Consultation
               </Link>
             </div>

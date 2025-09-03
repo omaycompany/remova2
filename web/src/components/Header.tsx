@@ -49,11 +49,7 @@ export default function Header() {
                   🛡️ Get Protection Now
                 </a>
               </li>
-              <li className="mt-2">
-                <a className="btn btn-outline btn-md w-full font-bold border-2 border-gray-600 text-gray-700 hover:bg-gray-700 hover:text-white transition-all" href="/signin">
-                  Sign Up / Sign In
-                </a>
-              </li>
+
             </ul>
           </div>
           <a className="btn btn-ghost hover:bg-transparent p-2" href="/">
@@ -93,11 +89,7 @@ export default function Header() {
             <span className="lg:hidden">🛡️ Protect</span>
           </a>
           
-          {/* Secondary CTA Button - Combined Sign Up/Sign In */}
-          <a className="btn btn-outline btn-sm lg:btn-md font-bold border-2 border-gray-600 text-gray-700 hover:bg-gray-700 hover:text-white transition-all shadow-lg" href="/signin">
-            <span className="hidden lg:inline">Sign Up / Sign In</span>
-            <span className="lg:hidden">Join</span>
-          </a>
+
         </div>
       </nav>
       

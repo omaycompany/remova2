@@ -11,7 +11,7 @@ export interface EmailOptions {
 // Use Resend for reliable email sending
 async function sendEmailWithResend(to: string, subject: string, html: string, isAdminCopy: boolean = false): Promise<{ success: boolean; messageId?: string; error?: string }> {
   try {
-    console.log('🚀 Sending email via Resend...');
+    console.log('Sending email via Resend...');
     
     const { Resend } = await import('resend');
     const resend = new Resend(process.env.RESEND_API_KEY);
@@ -63,7 +63,7 @@ async function sendEmailWithResend(to: string, subject: string, html: string, is
       };
     }
     
-    console.log('✅ Email sent successfully via Resend:', result.data);
+    console.log('Email sent successfully via Resend:', result.data);
     return { 
       success: true, 
       messageId: result.data?.id || `resend-${Date.now()}`
@@ -79,8 +79,8 @@ async function sendEmailWithResend(to: string, subject: string, html: string, is
 }
 
 export async function sendEmail(options: EmailOptions): Promise<{ success: boolean; messageId?: string; error?: string }> {
-  console.log('🔄 Starting email send process...');
-  console.log('📧 Email options:', {
+  console.log('Starting email send process...');
+  console.log('Email options:', {
     to: options.to,
     subject: options.subject,
     from: options.from,
@@ -90,7 +90,7 @@ export async function sendEmail(options: EmailOptions): Promise<{ success: boole
 
   // For development, just log
   if (process.env.NODE_ENV === 'development') {
-    console.log('\n📧 EMAIL WOULD BE SENT (DEVELOPMENT MODE):');
+    console.log('\nEMAIL WOULD BE SENT (DEVELOPMENT MODE):');
     console.log('─'.repeat(50));
     console.log(`To: ${options.to}`);
     console.log(`Subject: ${options.subject}`);
@@ -105,12 +105,12 @@ export async function sendEmail(options: EmailOptions): Promise<{ success: boole
   const html = options.html || '';
 
   // Use Resend for production email sending
-  console.log('🚀 Sending email via Resend...');
+  console.log('Sending email via Resend...');
   
   const result = await sendEmailWithResend(to, subject, html);
   
   if (result.success) {
-    console.log('✅ Email sent successfully!');
+    console.log('Email sent successfully!');
     return result;
   } else {
     console.error('❌ Email sending failed:', result.error);
@@ -123,7 +123,7 @@ export async function sendEmail(options: EmailOptions): Promise<{ success: boole
 // Email templates
 export const emailTemplates = {
   freeSignupWelcome: (data: { email: string; companyName: string; dashboardLink?: string }) => ({
-    subject: '🎉 Welcome to Remova Community - Your Dashboard is Ready!',
+    subject: 'Welcome to Remova Community - Your Dashboard is Ready!',
     html: `
 <!DOCTYPE html>
 <html>
@@ -144,7 +144,7 @@ export const emailTemplates = {
       
       <div style="position: relative; z-index: 10;">
         <h1 style="color: #ffffff; margin: 0 0 15px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-          🛡️ Welcome to Remova
+          Welcome to Remova
       </h1>
         <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 18px; font-weight: 500;">
           Your trade privacy journey starts now
@@ -156,7 +156,7 @@ export const emailTemplates = {
     <div style="padding: 50px 40px;">
       <!-- Success Badge -->
       <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 20px 30px; border-radius: 12px; margin-bottom: 40px; text-align: center; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);">
-        <div style="font-size: 18px; font-weight: 700; margin-bottom: 5px;">🎉 Community Access Activated!</div>
+        <div style="font-size: 18px; font-weight: 700; margin-bottom: 5px;">Community Access Activated!</div>
         <div style="font-size: 14px; opacity: 0.9;">Your free membership is ready to use</div>
       </div>
       
@@ -170,8 +170,7 @@ export const emailTemplates = {
       
       <!-- Features Box -->
       <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 2px solid #e2e8f0; border-radius: 16px; padding: 35px; margin: 40px 0;">
-        <h3 style="color: #1f2937; margin: 0 0 25px 0; font-size: 20px; font-weight: 700; display: flex; align-items: center;">
-          <span style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-right: 10px;">🚀</span>
+        <h3 style="color: #1f2937; margin: 0 0 25px 0; font-size: 20px; font-weight: 700;">
           What you can do right now:
         </h3>
         <div style="display: grid; gap: 20px;">
@@ -203,7 +202,7 @@ export const emailTemplates = {
       <div style="text-align: center; margin: 45px 0;">
         ${data.dashboardLink ? `
         <a href="${data.dashboardLink}" style="display: inline-block; background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 18px 35px; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 16px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3); transition: transform 0.2s ease;">
-          🚀 Access Your Dashboard
+          Access Your Dashboard
         </a>
         <br/>
         ` : ''}
@@ -214,14 +213,14 @@ export const emailTemplates = {
 
       <!-- Upgrade Section -->
       <div style="border: 2px solid #e5e7eb; border-radius: 16px; padding: 35px; margin-top: 50px; background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);">
-        <h3 style="color: #1f2937; margin: 0 0 20px 0; font-size: 22px; font-weight: 700;">💡 Ready for professional protection?</h3>
+        <h3 style="color: #1f2937; margin: 0 0 20px 0; font-size: 22px; font-weight: 700;">Ready for professional protection?</h3>
         <p style="color: #4b5563; line-height: 1.6; margin-bottom: 25px; font-size: 16px;">
           When you're ready to actively protect your business from competitive intelligence threats, our professional services are here to help:
         </p>
         
         <div style="display: grid; gap: 15px; margin-bottom: 25px;">
           <div style="border: 2px solid #e5e7eb; border-radius: 12px; padding: 20px; background: white; transition: border-color 0.2s ease;">
-            <div style="font-weight: 700; color: #3b82f6; margin-bottom: 8px; font-size: 16px;">🛡️ Stealth ($295/month)</div>
+            <div style="font-weight: 700; color: #3b82f6; margin-bottom: 8px; font-size: 16px;">Stealth ($295/month)</div>
             <div style="color: #6b7280; font-size: 14px; line-height: 1.5;">Essential protection + monitoring</div>
           </div>
           <div style="border: 2px solid #e5e7eb; border-radius: 12px; padding: 20px; background: white;">
@@ -229,7 +228,7 @@ export const emailTemplates = {
             <div style="color: #6b7280; font-size: 14px; line-height: 1.5;">Complete protection + takedown campaigns</div>
           </div>
           <div style="border: 2px solid #e5e7eb; border-radius: 12px; padding: 20px; background: white;">
-            <div style="font-weight: 700; color: #10b981; margin-bottom: 8px; font-size: 16px;">🛡️ Shield ($1,250/month)</div>
+            <div style="font-weight: 700; color: #10b981; margin-bottom: 8px; font-size: 16px;">Shield ($1,250/month)</div>
             <div style="color: #6b7280; font-size: 14px; line-height: 1.5;">Ultimate protection + legal coverage</div>
           </div>
         </div>
@@ -262,10 +261,10 @@ export const emailTemplates = {
   paidSignupWelcome: (data: { email: string; companyName: string; plan: 'stealth' | 'vanish' | 'shield'; amount: number; dashboardLink?: string }) => {
     const planNames = { stealth: 'Stealth', vanish: 'Vanish', shield: 'Shield' };
     const planColors = { stealth: '#3b82f6', vanish: '#8b5cf6', shield: '#10b981' };
-    const planEmojis = { stealth: '🛡️', vanish: '👻', shield: '🛡️' };
+    const planEmojis = { stealth: '', vanish: '', shield: '' };
     
     return {
-      subject: `🛡️ ${planNames[data.plan]} Protection Activated - Welcome to Remova!`,
+      subject: `${planNames[data.plan]} Protection Activated - Welcome to Remova!`,
       html: `
 <!DOCTYPE html>
 <html>
@@ -298,7 +297,7 @@ export const emailTemplates = {
     <div style="padding: 50px 40px;">
       <!-- Success Badge -->
       <div style="background: linear-gradient(135deg, ${planColors[data.plan]} 0%, #059669 100%); color: white; padding: 20px 30px; border-radius: 12px; margin-bottom: 40px; text-align: center; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);">
-        <div style="font-size: 18px; font-weight: 700; margin-bottom: 5px;">✅ Payment Confirmed - Services Activated</div>
+        <div style="font-size: 18px; font-weight: 700; margin-bottom: 5px;">Payment Confirmed - Services Activated</div>
         <div style="font-size: 14px; opacity: 0.9;">$${(data.amount / 100).toLocaleString()} processed successfully</div>
       </div>
       
@@ -313,7 +312,7 @@ export const emailTemplates = {
       <!-- Next Steps Alert -->
       <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; border-radius: 16px; padding: 30px; margin: 40px 0; position: relative;">
         <div style="position: absolute; top: -12px; left: 30px; background: #f59e0b; color: white; padding: 8px 20px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase;">Action Required</div>
-        <h3 style="color: #92400e; margin: 20px 0 15px 0; font-size: 20px; font-weight: 700;">⚡ Next Steps Required</h3>
+        <h3 style="color: #92400e; margin: 20px 0 15px 0; font-size: 20px; font-weight: 700;">Next Steps Required</h3>
         <p style="color: #92400e; margin: 0 0 20px 0; line-height: 1.6; font-size: 16px;">
           Please complete your company intake form within the next <strong>24 hours</strong> to begin your protection services.
         </p>
@@ -434,7 +433,7 @@ export const emailTemplates = {
       <div style="text-align: center; margin: 45px 0;">
         ${data.dashboardLink ? `
         <a href="${data.dashboardLink}" style="display: inline-block; background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: white; padding: 18px 35px; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 16px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);">
-          🚀 Access Your Dashboard
+          Access Your Dashboard
         </a>
         <br/>
         ` : ''}
@@ -463,7 +462,7 @@ export const emailTemplates = {
   },
 
   contactFormNotification: (data: any) => ({
-    subject: `🔔 New Contact Form: ${data.subject || 'Privacy Consultation'} - ${data.name || data.email}`,
+    subject: `New Contact Form: ${data.subject || 'Privacy Consultation'} - ${data.name || data.email}`,
     html: `
 <!DOCTYPE html>
 <html>
@@ -484,7 +483,7 @@ export const emailTemplates = {
       
       <div style="position: relative; z-index: 10;">
         <h1 style="color: #ffffff; margin: 0 0 15px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-          🔔 New Contact Form
+          New Contact Form
         </h1>
         <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 18px; font-weight: 500;">
           New inquiry from ${data.name || data.email}
@@ -496,7 +495,7 @@ export const emailTemplates = {
     <div style="padding: 50px 40px;">
       <!-- Priority Badge -->
       <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 15px 25px; border-radius: 12px; margin-bottom: 30px; text-align: center; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);">
-        <div style="font-size: 16px; font-weight: 700;">⚡ New Customer Inquiry</div>
+        <div style="font-size: 16px; font-weight: 700;">New Customer Inquiry</div>
         <div style="font-size: 13px; opacity: 0.9;">Please respond within 4 business hours</div>
       </div>
       

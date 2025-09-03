@@ -22,14 +22,17 @@ export default function Contact() {
       const result = await response.json();
 
       if (response.ok) {
-        setSubmitMessage(result.message);
+        setSubmitMessage(result.message || 'Thank you for your message! We will respond within 24 hours.');
         // Reset form
         e.currentTarget.reset();
       } else {
-        setSubmitError(result.error || 'Something went wrong. Please try again.');
+        // Display the actual error message from the server
+        setSubmitError(result.error || `Server error (${response.status}). Please try again or email notifications@remova.org directly.`);
       }
-    } catch {
-      setSubmitError('Network error. Please try again.');
+    } catch (error) {
+      console.error('Contact form error:', error);
+      // More descriptive error message
+      setSubmitError('Unable to send message. Please try again or contact us directly at notifications@remova.org');
     } finally {
       setIsSubmitting(false);
     }

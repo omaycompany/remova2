@@ -148,7 +148,7 @@ export async function POST(request: NextRequest) {
         ]
       );
 
-      console.log(`✅ Intake form saved for client: ${client.id}`);
+      console.log(`Intake form saved for client: ${client.id}`);
     } catch (dbError) {
       console.error('Database error saving intake form:', dbError);
       return NextResponse.json(

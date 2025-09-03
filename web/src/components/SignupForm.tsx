@@ -284,13 +284,13 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret }:
               
               {/* Free Plan - Minimal One Line */}
               <div className="text-center">
-                <div 
-                  className={`inline-flex items-center gap-3 px-4 py-2 rounded-full border border-gray-300 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors ${
-                    selectedPlan === 'free' ? 'ring-2 ring-blue-400 bg-blue-50' : ''
+                                <div
+                  className={`inline-flex items-center gap-6 px-8 py-4 rounded-full border-2 border-gray-300 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors ${
+                    selectedPlan === 'free' ? 'ring-4 ring-blue-400 bg-blue-50' : ''
                   }`}
                   onClick={() => onPlanChange('free')}
                 >
-                  <span className="text-sm text-gray-600">Community Member (Free) - Basic resources</span>
+                  <span className="text-lg font-semibold text-gray-600">Community Member (Free) - Basic resources</span>
                   {selectedPlan === 'free' && <span className="text-blue-600 text-sm">✓</span>}
                 </div>
               </div>

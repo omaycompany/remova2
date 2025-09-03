@@ -257,7 +257,7 @@ export default function DataPrivacyFight() {
                   
                   {/* Action Buttons */}
                   <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link href="/become-member" className="btn btn-warning btn-lg text-lg px-8 py-4 font-black shadow-xl hover:shadow-2xl transition-all transform hover:scale-105">
+                    <Link href="/contact#contact-form" className="btn btn-warning btn-lg text-lg px-8 py-4 font-black shadow-xl hover:shadow-2xl transition-all transform hover:scale-105">
                       Request Your Free Audit Now
                     </Link>
                     <Link href="/membership" className="btn btn-outline btn-lg text-lg px-8 py-4 font-bold text-white border-white hover:bg-white hover:text-red-600 transition-all">
@@ -554,7 +554,7 @@ export default function DataPrivacyFight() {
                   
                   {/* Enhanced Buttons */}
                   <div className="flex flex-col lg:flex-row gap-6 justify-center mb-8">
-                    <Link href="/become-member" className="group relative btn btn-warning btn-lg text-xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-2 border-yellow-400">
+                    <Link href="/contact#contact-form" className="group relative btn btn-warning btn-lg text-xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-2 border-yellow-400">
                       <span className="relative z-10 flex items-center gap-3">
                         🛡️ Request Free Exposure Audit
                         <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -936,7 +936,7 @@ export default function DataPrivacyFight() {
             </div>
             
             <div className="text-center">
-              <Link href="/become-member" className="group relative btn btn-warning btn-lg text-2xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105">
+              <Link href="/contact#contact-form" className="group relative btn btn-warning btn-lg text-2xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105">
                 <span className="relative z-10 flex items-center gap-3">
                   💊 Get Your Prescription: Request a Free Exposure Audit
                   <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
