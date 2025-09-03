@@ -431,7 +431,10 @@ export default function PanjivaRemovalGuide() {
           depending on the complexity of your request and the responsiveness of their team.
         </p>
 
-        <ProgressTracker steps={removalSteps} currentStep={0} />
+        <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-green-900 mb-2">Removal Progress Tracker</h3>
+          <p className="text-green-800 text-sm">Track your progress through the Panjiva data removal process and protection implementation.</p>
+        </div>
 
         <div className="mt-8 mb-6">
           <h3 className="text-xl font-semibold text-gray-900 mb-4">Generate Your Removal Request</h3>

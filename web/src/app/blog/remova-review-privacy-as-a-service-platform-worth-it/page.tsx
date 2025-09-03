@@ -686,22 +686,25 @@ export default function RemovaReview() {
           aligns with your business requirements and timeline.
         </p>
 
-        <ProgressTracker 
-          title="Remova Implementation Process"
-          phases={[
-            {
-              name: "Discovery and Assessment",
-              duration: "1-2 weeks",
-              description: "Comprehensive assessment of data exposure and protection requirements",
-              tasks: [
-                "Complete business data exposure discovery and mapping",
-                "Competitive intelligence risk assessment and threat analysis",
-                "Privacy protection strategy development and customization",
-                "Service level recommendation and implementation planning"
-              ]
-            },
-            {
-              name: "Data Removal Implementation",
+        <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-green-900 mb-2">Implementation Progress Tracker</h3>
+          <p className="text-green-800 text-sm">Track your progress through privacy protection implementation using professional services.</p>
+        </div>
+      </section>
+
+      {/* Client Outcomes Analysis */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+          Client Outcomes Analysis: Real Results from Remova Implementation
+        </h2>
+
+        <p className="text-gray-700 mb-6 leading-relaxed">
+          Understanding actual client outcomes provides critical insight into 
+          the real-world effectiveness of Remova's services and the tangible 
+          value delivered to businesses implementing privacy protection strategies.
+        </p>
+
+        <div className="space-y-6 mb-6">
               duration: "2-4 weeks",
               description: "Systematic removal of business data across all identified platforms",
               tasks: [
