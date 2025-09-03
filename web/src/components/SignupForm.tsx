@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 interface SignupFormProps {
@@ -17,6 +17,17 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret, o
   const [error, setError] = useState<string | null>(null);
   const [email, setEmail] = useState('');
   const [companyName, setCompanyName] = useState('');
+
+  // Debounced effect to notify parent of user info changes
+  useEffect(() => {
+    if (!onUserInfoChange || !email || !companyName) return;
+    
+    const timer = setTimeout(() => {
+      onUserInfoChange(email, companyName);
+    }, 1000); // Wait 1 second after user stops typing
+    
+    return () => clearTimeout(timer);
+  }, [email, companyName, onUserInfoChange]);
 
   const plans = [
     {
@@ -239,9 +250,6 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret, o
                     value={companyName}
                     onChange={(e) => {
                       setCompanyName(e.target.value);
-                      if (onUserInfoChange && e.target.value && email) {
-                        onUserInfoChange(email, e.target.value);
-                      }
                     }}
                     required
                     placeholder={selectedPlan === 'free' ? 'Your Name or Organization' : 'Your Company Name'}
@@ -260,9 +268,6 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret, o
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value);
-                      if (onUserInfoChange && companyName && e.target.value) {
-                        onUserInfoChange(e.target.value, companyName);
-                      }
                     }}
                     required
                     placeholder={selectedPlan === 'free' ? 'your@email.com' : 'business@company.com'}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import StripeProvider from '@/components/StripeProvider';
 import SignupForm from '@/components/SignupForm';
 
@@ -12,6 +12,12 @@ export default function BecomeMemberPage() {
   const [userEmail, setUserEmail] = useState('');
   const [userCompany, setUserCompany] = useState('');
 
+  // Memoized callback to prevent unnecessary re-renders
+  const handleUserInfoChange = useCallback((email: string, company: string) => {
+    setUserEmail(email);
+    setUserCompany(company);
+  }, []);
+
   // Create payment intent when a paid plan is selected AND we have user info
   useEffect(() => {
     if (selectedPlan === 'free' || !userEmail || !userCompany) {
@@ -19,7 +25,8 @@ export default function BecomeMemberPage() {
       return;
     }
 
-    const createPaymentIntent = async () => {
+    // Debounce payment intent creation to prevent excessive API calls
+    const timer = setTimeout(async () => {
       setIsLoading(true);
       try {
         const response = await fetch('/api/create-payment-intent', {
@@ -29,23 +36,25 @@ export default function BecomeMemberPage() {
           },
           body: JSON.stringify({
             plan: selectedPlan,
-            email: userEmail || 'placeholder@example.com',
-            companyName: userCompany || 'Placeholder Company',
+            email: userEmail,
+            companyName: userCompany,
           }),
         });
 
         if (response.ok) {
           const { clientSecret } = await response.json();
           setClientSecret(clientSecret);
+        } else {
+          console.error('Failed to create payment intent:', response.status, response.statusText);
         }
       } catch (error) {
         console.error('Failed to create payment intent:', error);
       } finally {
         setIsLoading(false);
       }
-    };
+    }, 500); // Wait 500ms before creating payment intent
 
-    createPaymentIntent();
+    return () => clearTimeout(timer);
   }, [selectedPlan, userEmail, userCompany]);
 
   // Hide scroll indicator when user scrolls down
@@ -72,10 +81,7 @@ export default function BecomeMemberPage() {
             selectedPlan={selectedPlan}
             onPlanChange={setSelectedPlan}
             clientSecret={clientSecret}
-            onUserInfoChange={(email: string, company: string) => {
-              setUserEmail(email);
-              setUserCompany(company);
-            }}
+            onUserInfoChange={handleUserInfoChange}
           />
         </StripeProvider>
       </div>
