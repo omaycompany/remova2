@@ -1149,44 +1149,19 @@ export default function SupplierPoachingThreat() {
           threat across all industries as competitive intelligence capabilities become 
           more sophisticated and trade data becomes more accessible.
         </p>
-              duration: "4 weeks",
-              description: "Implementation of comprehensive supplier intelligence protection measures",
-              tasks: [
-                "Establish supplier data classification and access controls",
-                "Implement customs data monitoring and exposure detection",
-                "Deploy competitive intelligence gathering countermeasures",
-                "Create legal protection frameworks and enforcement capabilities"
-              ]
-            },
-            {
-              name: "Relationship Strengthening",
-              duration: "6 weeks",
-              description: "Proactive supplier relationship management and loyalty building programs",
-              tasks: [
-                "Implement supplier relationship health monitoring systems",
-                "Launch supplier satisfaction and loyalty improvement programs",
-                "Develop strategic partnership and mutual investment initiatives",
-                "Create competitive protection and advantage sharing programs"
-              ]
-            },
-            {
-              name: "Monitoring and Response",
-              duration: "3 weeks",
-              description: "Advanced threat detection and response capability development",
-              tasks: [
-                "Deploy competitive monitoring and supplier targeting detection systems",
-                "Establish rapid response procedures for detected threats",
-                "Implement countermeasure and relationship protection protocols",
-                "Create legal enforcement and remediation capabilities"
-              ]
-            }
-          ]}
-        />
 
-        <ChecklistGenerator 
-          title="Comprehensive Supplier Protection Checklist"
-          items={protectionChecklist}
-        />
+        <h3 className="text-xl font-semibold text-gray-900 mb-4">Threat Evolution and Escalation</h3>
+        
+        <div className="space-y-4 mb-6">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <h4 className="font-semibold text-yellow-900 mb-2">Increasing Sophistication</h4>
+            <p className="text-yellow-800 text-sm">
+              Supplier poaching campaigns are becoming increasingly sophisticated as 
+              competitive intelligence tools improve and trade data analysis capabilities 
+              become more advanced and accessible to competitors of all sizes.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* Industry Implications */}

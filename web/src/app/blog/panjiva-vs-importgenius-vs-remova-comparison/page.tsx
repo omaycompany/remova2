@@ -15,23 +15,23 @@ export const metadata: Metadata = {
   },
 };
 
-// Solution Recommendation Engine
+// Solution Recommendation Engine - Static Placeholder
 function SolutionRecommendationEngine() {
-  const [userNeeds, setUserNeeds] = useState({
-    primaryGoal: '',
-    dataType: '',
-    protectionLevel: '',
-    budget: '',
-    timeframe: ''
-  });
-  const [recommendation, setRecommendation] = useState<any>(null);
+  return (
+    <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
+      <h3 className="text-lg font-semibold text-purple-900 mb-2">Solution Recommendation Engine</h3>
+      <p className="text-purple-800 text-sm">Get personalized recommendations for your data protection approach based on your specific needs and requirements.</p>
+    </div>
+  );
+}
 
-  const analyzeNeeds = () => {
-    let scores = {
-      panjiva: 0,
-      importgenius: 0,
-      remova: 0
-    };
+export default function PanjivaImportGeniusRemovaComparison() {
+  const comparisonSolutions = [
+    {
+      name: "Panjiva (S&P Global)",
+      description: "Comprehensive trade intelligence platform focused on import/export data analysis and competitive research",
+      pricing: "Enterprise: $15,000+"
+    },
 
     // Goal-based scoring
     if (userNeeds.primaryGoal === 'research-competitors') {

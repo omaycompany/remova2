@@ -14,22 +14,25 @@ export const metadata: Metadata = {
   },
 };
 
-// Panjiva Removal Request Generator
+// Panjiva Removal Request Generator - Static Placeholder
 function RemovalRequestGenerator() {
-  const [formData, setFormData] = useState({
-    companyName: '',
-    contactEmail: '',
-    legalBasis: '',
-    specificConcerns: ''
-  });
-  const [generatedRequest, setGeneratedRequest] = useState('');
+  return (
+    <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 className="text-lg font-semibold text-blue-900 mb-2">Removal Request Generator</h3>
+      <p className="text-blue-800 text-sm">Generate professional, legally-grounded removal requests for Panjiva data deletion.</p>
+    </div>
+  );
+}
 
-  const generateRequest = () => {
-    const template = `Subject: Formal Request for Data Removal - ${formData.companyName}
-
-Dear Panjiva Data Protection Team,
-
-I am writing on behalf of ${formData.companyName} to formally request the removal of our company's information from the Panjiva trade intelligence database pursuant to applicable privacy laws and your stated data protection policies.
+export default function PanjivaRemovalGuide() {
+  const removalSteps = [
+    "Verify Your Data Exposure",
+    "Prepare Legal Documentation",
+    "Submit Formal Removal Request",
+    "Follow Up on Processing",
+    "Implement Ongoing Monitoring",
+    "Prevent Future Exposure"
+  ];
 
 COMPANY INFORMATION:
 Legal Business Name: ${formData.companyName}
