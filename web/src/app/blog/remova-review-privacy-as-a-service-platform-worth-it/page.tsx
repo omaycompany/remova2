@@ -1,7 +1,6 @@
 
 
 import { Metadata } from 'next';
-import { ComparisonMatrix } from '@/components/blog/InteractiveElements';
 
 export const metadata: Metadata = {
   title: "Remova Review: Is a Privacy-as-a-Service Platform Worth It?",
@@ -667,11 +666,10 @@ export default function RemovaReview() {
           methods across key criteria including effectiveness, cost, and strategic value.
         </p>
 
-        <ComparisonMatrix
-          title="Privacy Protection Approach Comparison"
-          solutions={serviceComparison.solutions}
-          features={serviceComparison.features}
-        />
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">Service Comparison Matrix</h3>
+          <p className="text-blue-800 text-sm">Compare Remova's Privacy-as-a-Service features against DIY solutions and alternative approaches.</p>
+        </div>
       </section>
 
       {/* Real-World Implementation */}

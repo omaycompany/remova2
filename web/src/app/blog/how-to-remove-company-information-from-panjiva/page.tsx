@@ -1,7 +1,6 @@
 
 
 import { Metadata } from 'next';
-import { ExposureScanner } from '@/components/blog/InteractiveElements';
 
 export const metadata: Metadata = {
   title: "How to Remove Your Company Information From Panjiva",
@@ -260,7 +259,10 @@ export default function PanjivaRemovalGuide() {
           </ul>
         </div>
 
-        <ExposureScanner />
+        <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-orange-900 mb-2">Data Exposure Scanner</h3>
+          <p className="text-orange-800 text-sm">Scan for your company data exposure across trade intelligence platforms and databases.</p>
+        </div>
 
         <div className="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
           <h3 className="font-semibold text-red-900 mb-2">Real-World Impact of Panjiva Exposure</h3>
@@ -589,10 +591,10 @@ export default function PanjivaRemovalGuide() {
           and ongoing protection.
         </p>
 
-        <ChecklistGenerator 
-          title="Panjiva Data Removal Checklist"
-          items={removalChecklist}
-        />
+        <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-green-900 mb-2">Panjiva Removal Checklist</h3>
+          <p className="text-green-800 text-sm">Step-by-step checklist for removing your company data from Panjiva and protecting your supplier relationships.</p>
+        </div>
       </section>
 
       {/* Section 6: Prevention and Ongoing Protection */}

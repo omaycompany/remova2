@@ -1132,22 +1132,23 @@ export default function SupplierPoachingThreat() {
           framework that addresses all aspects of poaching vulnerability and competitive threats.
         </p>
 
-        <ProgressTracker 
-          title="Supplier Protection Implementation"
-          phases={[
-            {
-              name: "Vulnerability Assessment",
-              duration: "2 weeks",
-              description: "Comprehensive assessment of supplier poaching vulnerabilities and risks",
-              tasks: [
-                "Analyze supplier concentration and dependency risks",
-                "Evaluate relationship strength and switching barriers",
-                "Assess data exposure and intelligence vulnerabilities",
-                "Review competitive pressure and targeting risks"
-              ]
-            },
-            {
-              name: "Intelligence Protection",
+        <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-green-900 mb-2">Supplier Protection Progress Tracker</h3>
+          <p className="text-green-800 text-sm">Track your progress implementing comprehensive supplier protection against poaching threats.</p>
+        </div>
+      </section>
+
+      {/* Industry Implications */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+          Industry Implications: The Escalating Supplier Poaching Threat
+        </h2>
+
+        <p className="text-gray-700 mb-4 leading-relaxed">
+          Supplier poaching using customs intelligence represents a rapidly escalating 
+          threat across all industries as competitive intelligence capabilities become 
+          more sophisticated and trade data becomes more accessible.
+        </p>
               duration: "4 weeks",
               description: "Implementation of comprehensive supplier intelligence protection measures",
               tasks: [
