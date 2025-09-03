@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import SimpleTopBar from './SimpleTopBar';
 import NotificationBanner from './NotificationBanner';

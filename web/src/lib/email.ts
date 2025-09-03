@@ -1,5 +1,4 @@
-import { generateMagicLinkToken } from './auth';
-import { query } from './db';
+// Removed unused imports
 
 export interface EmailOptions {
   to: string | string[];
@@ -18,10 +17,9 @@ async function sendEmailWithResend(to: string, subject: string, html: string, is
     const resend = new Resend(process.env.RESEND_API_KEY);
     
     // Production mode: send emails to actual recipients
-    const adminEmail = 'omaycompany@gmail.com';
     
     // Determine recipients (send to actual recipient + admin copy)
-    let recipients: string[] = [to];
+    const recipients: string[] = [to];
     let emailSubject = subject;
     let emailHtml = html;
     
@@ -120,17 +118,7 @@ export async function sendEmail(options: EmailOptions): Promise<{ success: boole
   }
 }
 
-// Helper function to strip HTML tags for plain text
-function stripHtml(html: string): string {
-  return html
-    .replace(/<[^>]*>/g, '')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .trim();
-}
+
 
 // Email templates
 export const emailTemplates = {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 // Privacy Assessment Quiz Component
 export function PrivacyAssessmentQuiz({ onComplete }: { onComplete?: (score: number) => void }) {

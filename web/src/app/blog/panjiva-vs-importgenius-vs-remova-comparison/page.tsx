@@ -1,7 +1,6 @@
 
 
 import { Metadata } from 'next';
-import { ComparisonMatrix } from '@/components/blog/InteractiveElements';
 
 export const metadata: Metadata = {
   title: "Panjiva vs. ImportGenius vs. Remova: What's the Difference?",

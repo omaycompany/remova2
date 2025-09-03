@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function FreeSignupForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,7 +39,7 @@ export default function FreeSignupForm() {
       } else {
         setError(json.error || "Something went wrong. Please try again.");
       }
-    } catch (e) {
+    } catch {
       setError("Network error. Please try again.");
     } finally {
       setIsSubmitting(false);

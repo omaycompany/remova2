@@ -14,14 +14,6 @@ export const metadata: Metadata = {
 };
 
 export default function ShippingDataPrivacyGuide() {
-  const implementationSteps = [
-    "Assess Current Data Exposure",
-    "File CBP Confidentiality Request", 
-    "Implement Supplier Agreements",
-    "Set Up Monitoring Systems",
-    "Train Your Team",
-    "Establish Ongoing Procedures"
-  ];
 
   const protectionChecklist = [
     "Complete privacy risk assessment for your company",

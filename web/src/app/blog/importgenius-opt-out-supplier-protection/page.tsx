@@ -1,7 +1,6 @@
 
 
 import { Metadata } from 'next';
-import { ExposureScanner } from '@/components/blog/InteractiveElements';
 
 export const metadata: Metadata = {
   title: "How to Opt-Out of ImportGenius and Protect Your Supplier List",

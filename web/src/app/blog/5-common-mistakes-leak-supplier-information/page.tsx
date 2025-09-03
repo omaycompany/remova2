@@ -16,18 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default function SupplierInformationMistakes() {
-  const mistakePreventionChecklist = [
-    "Audit all current document sharing methods and upgrade to encrypted platforms",
-    "Implement comprehensive email security protocols and staff training",
-    "Secure all supplier portals with multi-factor authentication and access controls", 
-    "Establish social media policies and monitoring for supplier information exposure",
-    "Review all public filings and implement confidentiality strategies where possible",
-    "Create supplier confidentiality agreements with specific information protection clauses",
-    "Develop incident response procedures for supplier information leaks",
-    "Implement regular vulnerability assessments and protection audits",
-    "Train all staff on supplier information protection best practices",
-    "Establish ongoing monitoring for supplier information exposure across all channels"
-  ];
+
 
   return (
     <article className="max-w-4xl mx-auto px-4 py-8">

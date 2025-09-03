@@ -1,7 +1,6 @@
 
 
 import { Metadata } from 'next';
-import { ChecklistGenerator } from '@/components/blog/InteractiveElements';
 
 export const metadata: Metadata = {
   title: "Supplier Poaching: The Threat Hiding in Public Customs Data",
