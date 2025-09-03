@@ -843,22 +843,20 @@ export default function MoreCompletePanjivaAlternative() {
           protection needs and long-term competitive advantage preservation.
         </p>
 
-        <ProgressTracker 
-          title="Privacy-First Alternative Implementation"
-          phases={[
-            {
-              name: "Privacy Assessment and Planning",
-              duration: "1-2 weeks",
-              description: "Comprehensive assessment of current exposure and privacy requirements",
-              tasks: [
-                "Assess current data exposure across all trade intelligence platforms",
-                "Evaluate competitive intelligence vulnerabilities and threats",
-                "Define privacy protection objectives and strategic requirements",
-                "Select appropriate privacy-first alternative solution approach"
-              ]
-            },
-            {
-              name: "Data Removal and Protection Implementation",
+        <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-green-900 mb-2">Privacy Implementation Progress Tracker</h3>
+          <p className="text-green-800 text-sm">Track your progress implementing complete data privacy as an alternative to Panjiva exposure.</p>
+        </div>
+      </section>
+
+      {/* ROI and Business Case */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+          Business Case: Privacy Protection vs. Intelligence Access
+        </h2>
+
+        <p className="text-gray-700 mb-4 leading-relaxed">
+          The business case for privacy-first alternatives becomes overwhelming when
               duration: "2-4 weeks",
               description: "Complete removal of exposed data and implementation of protection measures",
               tasks: [

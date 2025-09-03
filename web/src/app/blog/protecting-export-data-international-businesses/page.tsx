@@ -596,10 +596,10 @@ export default function ProtectingExportDataGuide() {
           relationship management across all jurisdictions.
         </p>
 
-        <ProgressTracker 
-          title="Export Data Protection Implementation"
-          steps={protectionSteps}
-        />
+        <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-green-900 mb-2">Export Data Protection Progress Tracker</h3>
+          <p className="text-green-800 text-sm">Track your progress implementing comprehensive export data protection for international businesses.</p>
+        </div>
 
         <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-8">1. Regulatory Compliance Assessment</h3>
         
