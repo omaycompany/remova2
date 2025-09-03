@@ -13,15 +13,15 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
     <div className="space-y-8">
       {/* Welcome Message for New Users */}
       {showWelcome && (
-        <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center">
-              <span className="text-2xl">★</span>
+            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+              <span className="text-2xl">🎉</span>
             </div>
             <div>
-              <h2 className="text-xl font-bold text-slate-800">Welcome to Remova Community!</h2>
-              <p className="text-slate-600">
-                Your free account is active. Explore our resources and tools below.
+              <h2 className="text-xl font-bold text-blue-800">Welcome to Remova Community!</h2>
+              <p className="text-blue-600">
+                Your free account is active. Access free tools and resources below, and see what premium protection offers.
               </p>
             </div>
           </div>
@@ -38,6 +38,9 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
             <p className="text-gray-600">
               Community Member • Free Plan
             </p>
+            <p className="text-sm text-blue-600 mt-1">
+              Browse tools and resources freely • Premium protection available
+            </p>
           </div>
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -49,302 +52,247 @@ export default function FreeDashboard({ client, showWelcome = false }: FreeDashb
         </div>
       </div>
 
-      {/* Sample Data Preview - What You'd See as a Paid User */}
-      <div className="border border-blue-200 bg-blue-50 rounded-lg p-6">
-        <h2 className="text-xl font-bold text-blue-900 mb-3">Preview: What Paid Members See</h2>
-        <p className="text-blue-800 text-sm mb-4">
-          This is sample data showing what your actual dashboard would look like with professional protection active.
-        </p>
-        
-        {/* Sample Protection Status */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white rounded-lg p-3 text-center">
-            <div className="text-xl font-bold text-green-600">7</div>
-            <div className="text-xs text-gray-600">Platforms Protected</div>
-          </div>
-          <div className="bg-white rounded-lg p-3 text-center">
-            <div className="text-xl font-bold text-yellow-600">3</div>
-            <div className="text-xs text-gray-600">In Progress</div>
-          </div>
-          <div className="bg-white rounded-lg p-3 text-center">
-            <div className="text-xl font-bold text-blue-600">12</div>
-            <div className="text-xs text-gray-600">Monitoring</div>
-          </div>
-          <div className="bg-white rounded-lg p-3 text-center">
-            <div className="text-xl font-bold text-gray-600">22</div>
-            <div className="text-xs text-gray-600">Total Platforms</div>
-          </div>
-        </div>
-
-        {/* Sample Active Protections */}
-        <div className="bg-white rounded-lg p-4 mb-4">
-          <h3 className="font-semibold text-gray-900 mb-3">Sample: Active Protections</h3>
-          <div className="space-y-2">
-            <div className="flex items-center justify-between p-2 border border-green-200 bg-green-50 rounded">
-              <span className="text-sm">U.S. Customs CBP Filing</span>
-              <span className="text-xs bg-green-600 text-white px-2 py-1 rounded">Protected</span>
-            </div>
-            <div className="flex items-center justify-between p-2 border border-green-200 bg-green-50 rounded">
-              <span className="text-sm">Panjiva Data Removal</span>
-              <span className="text-xs bg-green-600 text-white px-2 py-1 rounded">Removed</span>
-            </div>
-            <div className="flex items-center justify-between p-2 border border-yellow-200 bg-yellow-50 rounded">
-              <span className="text-sm">ImportGenius Takedown</span>
-              <span className="text-xs bg-yellow-600 text-white px-2 py-1 rounded">In Progress</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Sample Data Leaks */}
-        <div className="bg-white rounded-lg p-4 mb-4">
-          <h3 className="font-semibold text-gray-900 mb-3">Sample: Recent Data Leaks Found</h3>
-          <div className="space-y-2">
-            <div className="flex items-center justify-between p-2 border border-red-200 bg-red-50 rounded">
-              <div>
-                <div className="text-sm font-medium">Supplier relationship exposed on ImportYeti</div>
-                <div className="text-xs text-gray-600">High Risk - Shows your main supplier from China</div>
-              </div>
-              <span className="text-xs bg-red-600 text-white px-2 py-1 rounded">Active</span>
-            </div>
-            <div className="flex items-center justify-between p-2 border border-yellow-200 bg-yellow-50 rounded">
-              <div>
-                <div className="text-sm font-medium">Shipment details on Trademo</div>
-                <div className="text-xs text-gray-600">Medium Risk - Recent container details</div>
-              </div>
-              <span className="text-xs bg-yellow-600 text-white px-2 py-1 rounded">Removal Requested</span>
-            </div>
-            <div className="flex items-center justify-between p-2 border border-green-200 bg-green-50 rounded">
-              <div>
-                <div className="text-sm font-medium">Trade volume data on Volza</div>
-                <div className="text-xs text-gray-600">Previously exposed annual import volumes</div>
-              </div>
-              <span className="text-xs bg-green-600 text-white px-2 py-1 rounded">Removed</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Sample Partner Protection */}
-        <div className="bg-white rounded-lg p-4">
-          <h3 className="font-semibold text-gray-900 mb-3">Sample: Protected Partners</h3>
-          <div className="space-y-2">
-            <div className="flex items-center justify-between p-2 border border-blue-200 bg-blue-50 rounded">
-              <div>
-                <div className="text-sm font-medium">Shanghai Manufacturing Co.</div>
-                <div className="text-xs text-gray-600">Primary Supplier - Electronics</div>
-              </div>
-              <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded">Protected</span>
-            </div>
-            <div className="flex items-center justify-between p-2 border border-blue-200 bg-blue-50 rounded">
-              <div>
-                <div className="text-sm font-medium">Global Logistics Partner</div>
-                <div className="text-xs text-gray-600">Freight Forwarder - Asia</div>
-              </div>
-              <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded">Monitoring</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Free Plan Benefits */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-slate-600" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 0v12h8V4H6z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <h3 className="text-lg font-semibold text-gray-900">Free Resources</h3>
-          </div>
-          <p className="text-gray-600 mb-4">
-            Access our comprehensive library of trade privacy guides and educational content.
-          </p>
-          <Link href="/resources" className="btn bg-slate-700 text-white hover:bg-slate-800 w-full">
-            Browse Resources
-          </Link>
-        </div>
-
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-slate-600" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <h3 className="text-lg font-semibold text-gray-900">Expert Analysis</h3>
-          </div>
-          <p className="text-gray-600 mb-4">
-            Stay informed with our blog covering competitive intelligence threats and industry trends.
-          </p>
-          <Link href="/blog" className="btn bg-slate-700 text-white hover:bg-slate-800 w-full">
-            Read Blog
-          </Link>
-        </div>
-
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-slate-600" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <h3 className="text-lg font-semibold text-gray-900">Self-Service Tools</h3>
-          </div>
-          <p className="text-gray-600 mb-4">
-            Basic tools to help you understand your trade data exposure and take initial protection steps.
-          </p>
-          <Link href="/members/anonymity-checker" className="btn bg-slate-700 text-white hover:bg-slate-800 w-full">
-            Check Exposure
-          </Link>
-        </div>
-      </div>
-
-      {/* Upgrade Promotion */}
-      <div className="bg-slate-800 text-white rounded-xl p-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready for Professional Protection?</h2>
-          <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            While our free resources help you understand the threats, our professional services actively protect your business from competitive intelligence gathering.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 text-center">
-              <div className="text-3xl font-bold mb-2">Stealth</div>
-              <div className="text-xl font-semibold mb-2">$295/month</div>
-              <div className="text-sm opacity-90 mb-4">Essential protection + monitoring</div>
-              <ul className="text-sm opacity-90 text-left space-y-1">
-                <li>• Government filings</li>
-                <li>• 24/7 monitoring</li>
-                <li>• Real-time alerts</li>
-              </ul>
-            </div>
-            
-            <div className="bg-white/20 backdrop-blur-md rounded-xl p-6 text-center border-2 border-white/30 relative">
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-slate-200 text-slate-800 px-3 py-1 rounded-full text-xs font-bold">MOST POPULAR</span>
-              </div>
-              <div className="text-3xl font-bold mb-2">Vanish</div>
-              <div className="text-xl font-semibold mb-2">$595/month</div>
-              <div className="text-sm opacity-90 mb-4">Complete protection + takedowns</div>
-              <ul className="text-sm opacity-90 text-left space-y-1">
-                <li>• Everything in Stealth</li>
-                <li>• 40+ platform removals</li>
-                <li>• Dedicated manager</li>
-              </ul>
-            </div>
-            
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 text-center">
-              <div className="text-3xl font-bold mb-2">Shield</div>
-              <div className="text-xl font-semibold mb-2">$1,250/month</div>
-              <div className="text-sm opacity-90 mb-4">Ultimate protection + legal</div>
-              <ul className="text-sm opacity-90 text-left space-y-1">
-                <li>• Everything in Vanish</li>
-                <li>• $10,000 legal coverage</li>
-                <li>• Priority SLA</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="space-y-4">
-            <Link href="/membership" className="btn bg-white text-indigo-600 hover:bg-gray-100 font-bold px-8 py-3 text-lg inline-block">
-              Compare All Plans
-            </Link>
-            <p className="text-sm opacity-80">
-              No long-term contracts • Cancel anytime • 30-day money-back guarantee
+      {/* Free Tools & Resources - Fully Accessible */}
+      <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2 className="text-xl font-bold text-gray-900">Free Tools & Resources</h2>
+            <p className="text-gray-600 text-sm mt-1">
+              Full access to all tools and educational resources
             </p>
           </div>
+          <div className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+            ✓ Available Now
+          </div>
+        </div>
+        
+        {/* Tools Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          <Link href="/company-exposure-checker" className="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 text-sm">🔍</div>
+              <div>
+                <h3 className="font-medium text-gray-900 group-hover:text-blue-700">Company Exposure Checker</h3>
+                <p className="text-xs text-gray-600 mt-1">Check if your company data is exposed online</p>
+              </div>
+            </div>
+          </Link>
+          
+          <Link href="/container-tracking" className="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 text-sm">📦</div>
+              <div>
+                <h3 className="font-medium text-gray-900 group-hover:text-blue-700">Container Tracking</h3>
+                <p className="text-xs text-gray-600 mt-1">Track containers across shipping lines</p>
+              </div>
+            </div>
+          </Link>
+          
+          <Link href="/hs-code-directory" className="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-green-600 text-sm">📊</div>
+              <div>
+                <h3 className="font-medium text-gray-900 group-hover:text-blue-700">HS Code Directory</h3>
+                <p className="text-xs text-gray-600 mt-1">Complete harmonized system codes</p>
+              </div>
+            </div>
+          </Link>
+          
+          <Link href="/customs-duty-calculator" className="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center text-yellow-600 text-sm">💰</div>
+              <div>
+                <h3 className="font-medium text-gray-900 group-hover:text-blue-700">Customs Duty Calculator</h3>
+                <p className="text-xs text-gray-600 mt-1">Calculate import duties and taxes</p>
+              </div>
+            </div>
+          </Link>
+          
+          <Link href="/trade-data-leak-scanner" className="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-sm">🚨</div>
+              <div>
+                <h3 className="font-medium text-gray-900 group-hover:text-blue-700">Trade Data Leak Scanner</h3>
+                <p className="text-xs text-gray-600 mt-1">Scan for exposed trade information</p>
+              </div>
+            </div>
+          </Link>
+          
+          <Link href="/resources" className="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all">
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 text-sm">📚</div>
+              <div>
+                <h3 className="font-medium text-gray-900 group-hover:text-blue-700">All Resources</h3>
+                <p className="text-xs text-gray-600 mt-1">Guides, templates, and more tools</p>
+              </div>
+            </div>
+          </Link>
+        </div>
+        
+        {/* Quick Links */}
+        <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200">
+          <Link href="/blog" className="text-sm bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full transition-colors">📰 Blog & Analysis</Link>
+          <Link href="/open-tools" className="text-sm bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full transition-colors">🛠️ All Free Tools</Link>
+          <Link href="/gdpr-compliance-checker" className="text-sm bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full transition-colors">⚖️ GDPR Checker</Link>
+          <Link href="/privacy-policy-generator" className="text-sm bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full transition-colors">📄 Policy Generator</Link>
         </div>
       </div>
 
-      {/* Why Upgrade Section */}
-      <div className="bg-white border border-gray-200 rounded-lg p-8">
-        <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Why Most of Our Community Upgrades</h3>
+      {/* Three Premium Protection Pillars - Blurred with Upgrade Prompts */}
+      <div className="bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 rounded-lg p-6">
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold text-slate-800 mb-2">Premium Protection Services</h2>
+          <p className="text-slate-600">
+            Professional privacy protection for businesses serious about competitive intelligence defense
+          </p>
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="space-y-6">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-slate-600 text-xl">!</span>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Cost of Inaction</h4>
-                <p className="text-gray-600 text-sm">
-                  Companies lose significant revenue annually due to competitive intelligence theft. One leaked supplier relationship can result in substantial lost deals.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-slate-600 text-xl">↗</span>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Revenue Protection</h4>
-                <p className="text-gray-600 text-sm">
-                  Our clients report significant improvements in deal closure rates after implementing privacy protection. Your competitive advantage stays hidden.
-                </p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Pillar 1: Government Protection */}
+          <div className="relative group cursor-pointer" onClick={() => window.location.href = '/membership'}>
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-sm rounded-xl z-10 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-white text-lg">🔒</span>
+                </div>
+                <div className="text-blue-600 font-bold text-sm">UPGRADE TO ACCESS</div>
+                <div className="text-xs text-gray-600 mt-1">Starting $295/month</div>
               </div>
             </div>
-            
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-slate-600 text-xl">⌚</span>
+            <div className="bg-white rounded-xl p-6 border border-gray-200 group-hover:border-blue-300 transition-colors">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <span className="text-blue-600 text-lg">🏛️</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900">Government Protection</h3>
               </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Time is Critical</h4>
-                <p className="text-gray-600 text-sm">
-                  Every day your data remains exposed, competitors are gathering intelligence. The longer you wait, the more valuable information leaks out.
-                </p>
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">CBP Confidentiality Filing</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Legal Trade Protection</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-yellow-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Customs Compliance</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Regulatory Filings</span>
+                </div>
               </div>
             </div>
           </div>
-          
-          <div className="space-y-6">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-slate-600 text-xl">◘</span>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Immediate Protection</h4>
-                <p className="text-gray-600 text-sm">
-                  Start protecting your data within 24 hours. Our legal filings and monitoring begin immediately, stopping future leaks at the source.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-slate-600 text-xl">●</span>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">ROI in 30 Days</h4>
-                <p className="text-gray-600 text-sm">
-                  Most clients see positive ROI within the first month through prevented intelligence leaks and protected deals. The cost of our service is minimal compared to one lost opportunity.
-                </p>
+
+          {/* Pillar 2: Data Removal & Takedowns */}
+          <div className="relative group cursor-pointer" onClick={() => window.location.href = '/membership'}>
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-sm rounded-xl z-10 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-white text-lg">🛡️</span>
+                </div>
+                <div className="text-red-600 font-bold text-sm">UPGRADE TO ACCESS</div>
+                <div className="text-xs text-gray-600 mt-1">Starting $595/month</div>
               </div>
             </div>
-            
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-slate-600 text-xl">✓</span>
+            <div className="bg-white rounded-xl p-6 border border-gray-200 group-hover:border-red-300 transition-colors">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                  <span className="text-red-600 text-lg">🗑️</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900">Data Removal & Takedowns</h3>
               </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Expert Support</h4>
-                <p className="text-gray-600 text-sm">
-                  Work with privacy specialists who understand your industry. Get personalized protection strategies and ongoing support.
-                </p>
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Panjiva Removal</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">ImportGenius Takedown</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">40+ Platform Coverage</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Ongoing Takedown Management</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Pillar 3: Monitoring & Protection Coverage */}
+          <div className="relative group cursor-pointer" onClick={() => window.location.href = '/membership'}>
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-sm rounded-xl z-10 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-white text-lg">👁️</span>
+                </div>
+                <div className="text-green-600 font-bold text-sm">UPGRADE TO ACCESS</div>
+                <div className="text-xs text-gray-600 mt-1">Starting $295/month</div>
+              </div>
+            </div>
+            <div className="bg-white rounded-xl p-6 border border-gray-200 group-hover:border-green-300 transition-colors">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                  <span className="text-green-600 text-lg">📡</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900">24/7 Monitoring & Alerts</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Real-time Data Leak Alerts</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Platform Monitoring</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Competitor Intelligence Tracking</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-purple-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Partner Protection Alerts</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
         
-        <div className="mt-8 text-center">
-          <Link href="/membership" className="btn bg-indigo-600 text-white hover:bg-indigo-700 px-8 py-3 text-lg">
-            Protect Your Business Today
+        <div className="text-center mt-6">
+          <Link href="/membership" className="btn bg-slate-800 text-white hover:bg-slate-900 px-8 py-3 text-lg">
+            Compare All Plans & Pricing
           </Link>
-          <p className="mt-3 text-sm text-gray-500">
-            Join companies already protecting their competitive advantage
+          <p className="text-xs text-slate-600 mt-2">
+            No contracts • Cancel anytime • 30-day money-back guarantee
           </p>
+        </div>
+      </div>
+
+      {/* Quick Action Banner */}
+      <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg p-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h3 className="text-xl font-bold mb-2">Ready to Protect Your Business?</h3>
+            <p className="text-blue-100 text-sm">
+              Upgrade to professional protection and start securing your trade data within 24 hours.
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <Link href="/membership" className="btn bg-white text-blue-600 hover:bg-blue-50 px-6 py-2">
+              View Plans
+            </Link>
+            <Link href="/contact" className="btn bg-blue-500 hover:bg-blue-400 text-white px-6 py-2">
+              Get Consultation
+            </Link>
+          </div>
         </div>
       </div>
 
