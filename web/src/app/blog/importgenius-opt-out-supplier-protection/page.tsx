@@ -15,22 +15,18 @@ export const metadata: Metadata = {
   },
 };
 
-// ImportGenius Supplier Vulnerability Assessment
+// ImportGenius Supplier Vulnerability Assessment - Static Placeholder
 function SupplierVulnerabilityAssessment() {
-  const [assessmentData, setAssessmentData] = useState({
-    companyName: '',
-    supplierCount: '',
-    keySuppliers: '',
-    competitiveThreats: ''
-  });
-  const [results, setResults] = useState<any>(null);
+  return (
+    <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
+      <h3 className="text-lg font-semibold text-orange-900 mb-2">Supplier Vulnerability Assessment</h3>
+      <p className="text-orange-800 text-sm">Assess your supplier network's vulnerability to ImportGenius exposure and competitive intelligence gathering.</p>
+    </div>
+  );
+}
 
-  const analyzeVulnerability = () => {
-    const supplierCount = parseInt(assessmentData.supplierCount) || 0;
-    const keySuppliers = parseInt(assessmentData.keySuppliers) || 0;
-    const threats = parseInt(assessmentData.competitiveThreats) || 0;
-
-    // Risk calculation
+export default function ImportGeniusOptOutGuide() {
+  const optOutChecklist = [
     let riskScore = 0;
     if (supplierCount > 10) riskScore += 3;
     else if (supplierCount > 5) riskScore += 2;
@@ -626,10 +622,10 @@ Respectfully,
           from ImportGenius with ongoing protection for your supplier relationships.
         </p>
 
-        <ChecklistGenerator 
-          title="ImportGenius Opt-Out and Protection Checklist"
-          items={optOutChecklist}
-        />
+        <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-green-900 mb-2">Supplier Protection Checklist</h3>
+          <p className="text-green-800 text-sm">Complete protection strategy for suppliers and business relationships.</p>
+        </div>
       </section>
 
       {/* Ongoing Protection */}
