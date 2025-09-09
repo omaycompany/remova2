@@ -122,6 +122,82 @@ export async function sendEmail(options: EmailOptions): Promise<{ success: boole
 
 // Email templates
 export const emailTemplates = {
+  magicLink: (data: { email: string; companyName: string; magicLink: string }) => ({
+    subject: 'Your Secure Access Link - Remova.org',
+    html: `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Secure Access Link</title>
+</head>
+<body style="margin: 0; padding: 0; background: linear-gradient(135deg, #f8fafc 0%, #e5e7eb 100%); font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <!-- Email Container -->
+  <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);">
+    
+    <!-- Header with Remova Brand -->
+    <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 25%, #7c2d12 50%, #dc2626 100%); padding: 40px 40px; text-align: center; position: relative; overflow: hidden;">
+      <div style="position: relative; z-index: 10;">
+        <h1 style="color: #ffffff; margin: 0 0 10px 0; font-size: 28px; font-weight: 800; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          Your Secure Access Link
+        </h1>
+        <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 16px; font-weight: 500;">
+          Click below to securely access your dashboard
+        </p>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div style="padding: 40px 40px;">
+      <h2 style="color: #1f2937; margin: 0 0 20px 0; font-size: 24px; font-weight: 700; line-height: 1.2;">
+        Hi from Remova!
+      </h2>
+      
+      <p style="color: #4b5563; line-height: 1.7; margin-bottom: 30px; font-size: 16px;">
+        You requested secure access to your Remova dashboard for <strong>${data.companyName}</strong>. Click the button below to sign in securely.
+      </p>
+      
+      <!-- CTA Button -->
+      <div style="text-align: center; margin: 40px 0;">
+        <a href="${data.magicLink}" 
+           style="display: inline-block; background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: #ffffff; text-decoration: none; padding: 18px 40px; border-radius: 12px; font-weight: 700; font-size: 16px; letter-spacing: 0.5px; text-transform: uppercase; box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3); transition: all 0.3s ease;">
+          Access Your Dashboard
+        </a>
+      </div>
+      
+      <!-- Security Notice -->
+      <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 20px 25px; border-radius: 12px; margin: 30px 0;">
+        <div style="font-weight: 700; color: #92400e; margin-bottom: 8px; font-size: 14px;">
+          SECURITY NOTICE
+        </div>
+        <div style="color: #92400e; font-size: 14px; line-height: 1.5;">
+          This link expires in 24 hours and can only be used once. If you didn't request this, please ignore this email.
+        </div>
+      </div>
+      
+      <!-- Alternative Link -->
+      <p style="color: #6b7280; font-size: 14px; line-height: 1.6; margin-top: 30px;">
+        Having trouble with the button? Copy and paste this link into your browser:<br>
+        <a href="${data.magicLink}" style="color: #dc2626; word-break: break-all;">${data.magicLink}</a>
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div style="background-color: #f9fafb; padding: 30px 40px; border-top: 1px solid #e5e7eb; text-align: center;">
+      <p style="color: #6b7280; font-size: 14px; margin: 0 0 15px 0;">
+        This email was sent to ${data.email} by Remova.org
+      </p>
+      <p style="color: #9ca3af; font-size: 12px; margin: 0;">
+        Remova.org • Protecting Your Trade Privacy • <a href="https://remova.org" style="color: #dc2626;">remova.org</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
+    `
+  }),
+
   freeSignupWelcome: (data: { email: string; companyName: string; dashboardLink?: string }) => ({
     subject: 'Welcome to Remova Community - Your Dashboard is Ready!',
     html: `
@@ -610,4 +686,30 @@ export async function sendTeamNotification(subject: string, html: string) {
     subject,
     html
     });
+}
+
+// Send magic link email for secure authentication
+export async function sendMagicLinkEmail(email: string, magicLink: string, companyName: string): Promise<{ success: boolean; error?: string }> {
+  try {
+    const template = emailTemplates.magicLink({
+      email,
+      companyName,
+      magicLink
+    });
+
+    const result = await sendEmail({
+      to: email,
+      subject: template.subject,
+      html: template.html,
+      from: process.env.RESEND_FROM_EMAIL || 'notifications@remova.org'
+    });
+
+    return result;
+  } catch (error) {
+    console.error('Magic link email error:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Failed to send magic link email'
+    };
+  }
 }
