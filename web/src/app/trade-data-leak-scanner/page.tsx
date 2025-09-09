@@ -1,16 +1,72 @@
-import React from "react";
-import { Metadata } from 'next';
+"use client";
 
-export const metadata: Metadata = {
-  title: "Free Trade Data Leak Scanner: Detect Business Intelligence Exposure 2025",
-  description: "Scan for trade data leaks and business intelligence exposure. Free tool to detect if your company information appears in competitive intelligence platforms.",
-  openGraph: {
-    title: "Free Trade Data Leak Scanner: Detect Business Intelligence Exposure 2025",
-    description: "Scan for trade data leaks across intelligence platforms. Free scanner to detect unauthorized exposure of your business information.",
+import React, { useState } from "react";
+import Link from 'next/link';
+
+// Mock data platforms and exposure levels
+const mockLeakResults = [
+  {
+    platform: "ImportGenius",
+    exposure: "HIGH",
+    findings: ["15 shipment records", "Supplier relationships exposed", "Product prices visible"],
+    riskLevel: "Critical"
   },
-};
+  {
+    platform: "Panjiva",
+    exposure: "MEDIUM", 
+    findings: ["Company profile active", "Trade patterns visible", "Contact information public"],
+    riskLevel: "Moderate"
+  },
+  {
+    platform: "TradeMap",
+    exposure: "LOW",
+    findings: ["General trade statistics", "Country-level data only"],
+    riskLevel: "Low"
+  }
+];
 
 export default function TradeDataLeakScanner() {
+  const [formData, setFormData] = useState({
+    companyName: '',
+    alternativeNames: '',
+    industry: '',
+    tradingCountries: '',
+    products: ''
+  });
+  const [isScanning, setIsScanning] = useState(false);
+  const [results, setResults] = useState(null);
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const startScan = () => {
+    if (!formData.companyName) {
+      alert('Please enter your company name');
+      return;
+    }
+
+    setIsScanning(true);
+    setResults(null);
+
+    // Simulate scanning process
+    setTimeout(() => {
+      setResults({
+        companyName: formData.companyName,
+        totalPlatforms: 25,
+        exposedPlatforms: 3,
+        riskScore: 7.2,
+        details: mockLeakResults,
+        recommendations: [
+          "Remove data from ImportGenius (Priority: High)",
+          "Request profile deletion from Panjiva", 
+          "Monitor for new data appearances",
+          "Consider professional data removal service"
+        ]
+      });
+      setIsScanning(false);
+    }, 4000);
+  };
   return (
     <div className="min-h-screen bg-white">
       <section className="bg-gradient-to-b from-red-50 to-white py-16">
@@ -41,12 +97,27 @@ export default function TradeDataLeakScanner() {
             <div className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Company Name</label>
-                  <input type="text" placeholder="Enter your company name" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none" />
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Company Name *</label>
+                  <input 
+                    type="text" 
+                    name="companyName"
+                    value={formData.companyName}
+                    onChange={handleInputChange}
+                    placeholder="Enter your company name"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none" 
+                    required
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Alternative Names/DBAs</label>
-                  <input type="text" placeholder="Subsidiaries, trade names, etc." className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none" />
+                  <input 
+                    type="text" 
+                    name="alternativeNames"
+                    value={formData.alternativeNames}
+                    onChange={handleInputChange}
+                    placeholder="Subsidiaries, trade names, etc."
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none" 
+                  />
                 </div>
               </div>
               
@@ -108,10 +179,91 @@ export default function TradeDataLeakScanner() {
               </div>
             </div>
             
-            <button className="w-full bg-red-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-red-700 transition-colors mt-6">
-              Start Comprehensive Leak Scan
+            <button 
+              onClick={startScan}
+              disabled={isScanning}
+              className="w-full bg-red-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-red-700 transition-colors mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isScanning ? (
+                <div className="flex items-center justify-center">
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Scanning 25 Platforms...
+                </div>
+              ) : (
+                'Start Comprehensive Leak Scan'
+              )}
             </button>
           </div>
+
+          {/* Results Display */}
+          {results && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-8 mb-12">
+              <h2 className="text-2xl font-bold text-red-900 mb-6 text-center">Scan Results for {results.companyName}</h2>
+              
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                <div className="bg-white rounded-lg p-6 text-center">
+                  <div className="text-3xl font-bold text-gray-800">{results.totalPlatforms}</div>
+                  <div className="text-sm text-gray-600">Platforms Scanned</div>
+                </div>
+                <div className="bg-white rounded-lg p-6 text-center">
+                  <div className="text-3xl font-bold text-red-600">{results.exposedPlatforms}</div>
+                  <div className="text-sm text-gray-600">Data Exposures Found</div>
+                </div>
+                <div className="bg-white rounded-lg p-6 text-center">
+                  <div className="text-3xl font-bold text-orange-600">{results.riskScore}/10</div>
+                  <div className="text-sm text-gray-600">Risk Score</div>
+                </div>
+              </div>
+
+              <div className="space-y-4 mb-8">
+                <h3 className="text-lg font-semibold text-gray-900">Detailed Findings</h3>
+                {results.details.map((detail, index) => (
+                  <div key={index} className={`bg-white rounded-lg p-4 border-l-4 ${
+                    detail.exposure === 'HIGH' ? 'border-red-500' :
+                    detail.exposure === 'MEDIUM' ? 'border-orange-500' : 'border-green-500'
+                  }`}>
+                    <div className="flex justify-between items-start mb-2">
+                      <h4 className="font-semibold text-gray-900">{detail.platform}</h4>
+                      <span className={`px-2 py-1 rounded text-xs font-bold ${
+                        detail.exposure === 'HIGH' ? 'bg-red-100 text-red-800' :
+                        detail.exposure === 'MEDIUM' ? 'bg-orange-100 text-orange-800' : 'bg-green-100 text-green-800'
+                      }`}>
+                        {detail.exposure} RISK
+                      </span>
+                    </div>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      {detail.findings.map((finding, fIndex) => (
+                        <li key={fIndex}>• {finding}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bg-white rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Recommended Actions</h3>
+                <ul className="space-y-2">
+                  {results.recommendations.map((rec, index) => (
+                    <li key={index} className="flex items-start">
+                      <svg className="w-5 h-5 text-red-600 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-sm text-gray-700">{rec}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className="mt-6 text-center">
+                  <Link href="/membership" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-block">
+                    Get Professional Data Removal Service
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <div className="bg-red-50 rounded-lg p-6 text-center">

@@ -1,16 +1,101 @@
-import React from "react";
-import { Metadata } from 'next';
+"use client";
 
-export const metadata: Metadata = {
-  title: "Free Customs Duty Calculator: Calculate Import Tariffs 2025",
-  description: "Calculate customs duties, import tariffs, and taxes for international shipments. Free duty calculator with current tariff rates and trade agreement benefits.",
-  openGraph: {
-    title: "Free Customs Duty Calculator: Calculate Import Tariffs 2025",
-    description: "Calculate import duties and tariffs for international trade. Free customs duty calculator with current rates and FTA benefits.",
+import React, { useState } from "react";
+import Link from 'next/link';
+
+// Simplified tariff rates for common HS codes and country pairs
+const tariffRates = {
+  'US': {
+    'China': { default: 7.4, electronics: 0, textiles: 11.2, automotive: 2.5 },
+    'Germany': { default: 2.1, electronics: 0, textiles: 8.4, automotive: 2.5 },
+    'Mexico': { default: 0, electronics: 0, textiles: 0, automotive: 0 }, // USMCA
+    'default': { default: 3.2, electronics: 0, textiles: 9.8, automotive: 2.5 }
   },
+  'UK': {
+    'China': { default: 6.2, electronics: 0, textiles: 12.0, automotive: 10.0 },
+    'Germany': { default: 0, electronics: 0, textiles: 0, automotive: 0 }, // EU trade deal
+    'default': { default: 4.7, electronics: 0, textiles: 11.5, automotive: 10.0 }
+  },
+  'Germany': {
+    'China': { default: 6.7, electronics: 0, textiles: 12.0, automotive: 10.0 },
+    'US': { default: 5.1, electronics: 0, textiles: 11.8, automotive: 10.0 },
+    'default': { default: 4.2, electronics: 0, textiles: 11.2, automotive: 10.0 }
+  }
+};
+
+// Common HS codes and categories
+const hsCodeCategories = {
+  '8471': 'electronics', '8517': 'electronics', '8501': 'electronics',
+  '6203': 'textiles', '6109': 'textiles', '6110': 'textiles',
+  '8703': 'automotive', '8708': 'automotive', '4011': 'automotive'
 };
 
 export default function CustomsDutyCalculator() {
+  const [formData, setFormData] = useState({
+    originCountry: '',
+    importCountry: '',
+    hsCode: '',
+    productValue: '',
+    shippingCost: '',
+    insurance: '',
+    applyBenefits: false
+  });
+  const [results, setResults] = useState(null);
+  const [isCalculating, setIsCalculating] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const calculateDuties = () => {
+    const { originCountry, importCountry, hsCode, productValue, shippingCost, insurance, applyBenefits } = formData;
+    
+    if (!originCountry || !importCountry || !productValue) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    setIsCalculating(true);
+
+    setTimeout(() => {
+      const value = parseFloat(productValue) || 0;
+      const shipping = parseFloat(shippingCost) || 0;
+      const ins = parseFloat(insurance) || 0;
+      const cif = value + shipping + ins; // Cost, Insurance, Freight
+
+      // Get tariff rate
+      const countryRates = tariffRates[importCountry] || tariffRates['US'];
+      const originRates = countryRates[originCountry] || countryRates['default'];
+      const hsCategory = hsCodeCategories[hsCode] || 'default';
+      let tariffRate = originRates[hsCategory] || originRates.default;
+
+      // Apply trade benefits
+      if (applyBenefits) {
+        tariffRate = tariffRate * 0.5; // Simplified FTA/GSP benefit
+      }
+
+      const dutyAmount = (cif * tariffRate / 100);
+      const estimatedVAT = importCountry === 'UK' ? (cif + dutyAmount) * 0.20 : 
+                          importCountry === 'Germany' ? (cif + dutyAmount) * 0.19 :
+                          (cif + dutyAmount) * 0.08; // Estimated VAT/GST
+      
+      const totalCost = cif + dutyAmount + estimatedVAT;
+
+      setResults({
+        cifValue: cif,
+        tariffRate: tariffRate,
+        dutyAmount: dutyAmount,
+        vat: estimatedVAT,
+        totalLandedCost: totalCost,
+        savingsFromBenefits: applyBenefits ? dutyAmount : 0
+      });
+      setIsCalculating(false);
+    }, 2000);
+  };
   return (
     <div className="min-h-screen bg-white">
       <section className="bg-gradient-to-b from-orange-50 to-white py-16">
@@ -33,69 +118,195 @@ export default function CustomsDutyCalculator() {
             <div className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Origin Country</label>
-                  <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none">
-                    <option>Select origin country</option>
-                    <option>China</option>
-                    <option>Germany</option>
-                    <option>India</option>
-                    <option>Japan</option>
-                    <option>South Korea</option>
-                    <option>Mexico</option>
-                    <option>Vietnam</option>
-                    <option>Turkey</option>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Origin Country *</label>
+                  <select 
+                    name="originCountry"
+                    value={formData.originCountry}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none"
+                    required
+                  >
+                    <option value="">Select origin country</option>
+                    <option value="China">China</option>
+                    <option value="Germany">Germany</option>
+                    <option value="India">India</option>
+                    <option value="Japan">Japan</option>
+                    <option value="South Korea">South Korea</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="Vietnam">Vietnam</option>
+                    <option value="Turkey">Turkey</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Import Country</label>
-                  <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none">
-                    <option>Select import destination</option>
-                    <option>United States</option>
-                    <option>Germany</option>
-                    <option>United Kingdom</option>
-                    <option>Canada</option>
-                    <option>Australia</option>
-                    <option>France</option>
-                    <option>Netherlands</option>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Import Country *</label>
+                  <select 
+                    name="importCountry"
+                    value={formData.importCountry}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none"
+                    required
+                  >
+                    <option value="">Select import destination</option>
+                    <option value="US">United States</option>
+                    <option value="Germany">Germany</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="France">France</option>
+                    <option value="Netherlands">Netherlands</option>
                   </select>
                 </div>
               </div>
               
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">HS Code</label>
-                  <input type="text" placeholder="Enter 6-digit HS code" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none" />
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">HS Code (Optional)</label>
+                  <input 
+                    type="text" 
+                    name="hsCode"
+                    value={formData.hsCode}
+                    onChange={handleInputChange}
+                    placeholder="Enter 4-6 digit HS code (e.g. 8471)"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none" 
+                  />
+                  <p className="text-xs text-gray-500 mt-1">For more accurate rates</p>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Product Value (USD)</label>
-                  <input type="number" placeholder="0.00" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none" />
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Product Value (USD) *</label>
+                  <input 
+                    type="number" 
+                    name="productValue"
+                    value={formData.productValue}
+                    onChange={handleInputChange}
+                    placeholder="0.00"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none"
+                    required
+                  />
                 </div>
               </div>
               
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Shipping Cost (USD)</label>
-                  <input type="number" placeholder="0.00" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none" />
+                  <input 
+                    type="number" 
+                    name="shippingCost"
+                    value={formData.shippingCost}
+                    onChange={handleInputChange}
+                    placeholder="0.00"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none" 
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Insurance (USD)</label>
-                  <input type="number" placeholder="0.00" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none" />
+                  <input 
+                    type="number" 
+                    name="insurance"
+                    value={formData.insurance}
+                    onChange={handleInputChange}
+                    placeholder="0.00"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none" 
+                  />
                 </div>
               </div>
               
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Apply Trade Benefits?</label>
                 <div className="flex gap-4">
-                  <label className="flex items-center"><input type="radio" name="benefits" className="mr-2" />Yes, check FTA/GSP</label>
-                  <label className="flex items-center"><input type="radio" name="benefits" className="mr-2" />No, standard rates</label>
+                  <label className="flex items-center">
+                    <input 
+                      type="checkbox" 
+                      name="applyBenefits"
+                      checked={formData.applyBenefits}
+                      onChange={handleInputChange}
+                      className="mr-2" 
+                    />
+                    Yes, check for FTA/GSP benefits (50% reduction)
+                  </label>
                 </div>
+                <p className="text-xs text-gray-500 mt-1">Free Trade Agreement or Generalized System of Preferences</p>
               </div>
             </div>
             
-            <button className="w-full bg-orange-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-orange-700 transition-colors mt-6">
-              Calculate Duties & Taxes
+            <button 
+              type="button"
+              onClick={calculateDuties}
+              disabled={isCalculating}
+              className="w-full bg-orange-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-orange-700 transition-colors mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isCalculating ? (
+                <div className="flex items-center justify-center">
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Calculating...
+                </div>
+              ) : (
+                'Calculate Duties & Taxes'
+              )}
             </button>
           </div>
+
+          {/* Results Display */}
+          {results && (
+            <div className="bg-green-50 border border-green-200 rounded-lg p-8 mb-12">
+              <h2 className="text-2xl font-bold text-green-900 mb-6 text-center">Calculation Results</h2>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div className="bg-white rounded-lg p-4 text-center">
+                  <div className="text-2xl font-bold text-gray-800">${results.cifValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                  <div className="text-sm text-gray-600">CIF Value</div>
+                  <div className="text-xs text-gray-500">(Cost + Insurance + Freight)</div>
+                </div>
+                <div className="bg-white rounded-lg p-4 text-center">
+                  <div className="text-2xl font-bold text-orange-600">{results.tariffRate.toFixed(1)}%</div>
+                  <div className="text-sm text-gray-600">Tariff Rate</div>
+                  <div className="text-xs text-gray-500">{formData.applyBenefits ? 'With FTA/GSP Benefits' : 'Standard Rate'}</div>
+                </div>
+                <div className="bg-white rounded-lg p-4 text-center">
+                  <div className="text-2xl font-bold text-blue-600">${results.dutyAmount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                  <div className="text-sm text-gray-600">Customs Duty</div>
+                  <div className="text-xs text-gray-500">Import Tariff</div>
+                </div>
+                <div className="bg-white rounded-lg p-4 text-center">
+                  <div className="text-2xl font-bold text-purple-600">${results.vat.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                  <div className="text-sm text-gray-600">VAT/GST</div>
+                  <div className="text-xs text-gray-500">Estimated Tax</div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg p-6 border-2 border-green-300">
+                <div className="text-center">
+                  <div className="text-3xl font-black text-green-700 mb-2">
+                    ${results.totalLandedCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                  </div>
+                  <div className="text-lg font-semibold text-gray-700">Total Landed Cost</div>
+                  <div className="text-sm text-gray-500">Product + Shipping + Insurance + Duties + Taxes</div>
+                  
+                  {formData.applyBenefits && results.savingsFromBenefits > 0 && (
+                    <div className="mt-4 p-3 bg-green-100 rounded-lg">
+                      <div className="text-green-800 font-semibold">
+                        Savings from Trade Benefits: ${results.savingsFromBenefits.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+              
+              <div className="mt-6 text-center">
+                <p className="text-sm text-gray-600 mb-4">
+                  *This is an estimate based on simplified rates. Actual duties may vary based on specific product classifications, origin rules, and current trade policies.
+                </p>
+                <button 
+                  onClick={() => setResults(null)}
+                  className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors"
+                >
+                  Calculate Another Shipment
+                </button>
+              </div>
+            </div>
+          )}
 
           <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
             <h3 className="text-lg font-semibold text-orange-900 mb-4">Sample Calculation</h3>

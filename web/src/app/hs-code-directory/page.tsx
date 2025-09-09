@@ -1,18 +1,31 @@
-import React from "react";
-import { Metadata } from 'next';
+"use client";
 
-export const metadata: Metadata = {
-  title: "HS Code Directory: Complete Harmonized System Classification Guide 2025",
-  description: "Comprehensive HS code directory with detailed product classifications, tariff codes, and trade descriptions. Free lookup tool for importers and exporters.",
-  openGraph: {
-    title: "HS Code Directory: Complete Harmonized System Classification Guide 2025",
-    description: "Search and browse comprehensive HS codes for international trade. Free directory of harmonized system product classifications.",
-    url: process.env.NODE_ENV === "production" ? "https://www.remova.org/hs-code-directory" : "http://127.0.0.1:6161/hs-code-directory",
-  },
-  alternates: {
-    canonical: process.env.NODE_ENV === "production" ? "https://www.remova.org/hs-code-directory" : "http://127.0.0.1:6161/hs-code-directory",
-  },
-};
+import React, { useState, useMemo } from "react";
+import Link from 'next/link';
+
+// Popular HS codes for search functionality
+const popularHsCodes = [
+  { code: "8471", category: "Electronics", description: "Automatic data processing machines (computers)" },
+  { code: "8517", category: "Electronics", description: "Telephone sets, mobile phones" },
+  { code: "8703", category: "Automotive", description: "Motor cars and vehicles for transport of persons" },
+  { code: "2709", category: "Energy", description: "Petroleum oils, crude" },
+  { code: "3004", category: "Pharmaceuticals", description: "Medicaments for therapeutic/prophylactic uses" },
+  { code: "6203", category: "Textiles", description: "Men's suits, jackets, trousers" },
+  { code: "6109", category: "Textiles", description: "T-shirts, singlets and other vests" },
+  { code: "0901", category: "Food", description: "Coffee, not roasted" },
+  { code: "1001", category: "Agriculture", description: "Wheat and meslin" },
+  { code: "7208", category: "Metals", description: "Flat-rolled products of iron/steel" },
+  { code: "8802", category: "Transportation", description: "Powered aircraft" },
+  { code: "9018", category: "Medical", description: "Medical, surgical instruments" },
+  { code: "6403", category: "Footwear", description: "Footwear with outer soles of rubber/plastic" },
+  { code: "3923", category: "Plastics", description: "Plastic packaging articles" },
+  { code: "8501", category: "Machinery", description: "Electric motors and generators" },
+  { code: "2701", category: "Energy", description: "Coal; briquettes, ovules from coal" },
+  { code: "8471", category: "Electronics", description: "Data processing machines" },
+  { code: "4011", category: "Automotive", description: "New pneumatic tires" },
+  { code: "7013", category: "Glassware", description: "Glassware of a kind used for table, kitchen" },
+  { code: "9403", category: "Furniture", description: "Other furniture and parts thereof" }
+];
 
 // Major HS code categories with examples
 const hsCodeCategories = [
@@ -165,25 +178,32 @@ const hsCodeCategories = [
   }
 ];
 
-const popularHSCodes = [
-  { code: "8471", description: "Automatic data processing machines (computers)", category: "Electronics" },
-  { code: "8517", description: "Telephone sets, mobile phones", category: "Electronics" },
-  { code: "8703", description: "Motor cars and vehicles for transport of persons", category: "Automotive" },
-  { code: "2709", description: "Petroleum oils, crude", category: "Energy" },
-  { code: "3004", description: "Medicaments for therapeutic/prophylactic uses", category: "Pharmaceuticals" },
-  { code: "6203", description: "Men's suits, jackets, trousers", category: "Textiles" },
-  { code: "6109", description: "T-shirts, singlets and other vests", category: "Textiles" },
-  { code: "0901", description: "Coffee, not roasted", category: "Food" },
-  { code: "1001", description: "Wheat and meslin", category: "Agriculture" },
-  { code: "7208", description: "Flat-rolled products of iron/steel", category: "Metals" },
-  { code: "8802", description: "Powered aircraft", category: "Transportation" },
-  { code: "9018", description: "Medical, surgical instruments", category: "Medical" },
-  { code: "6403", description: "Footwear with outer soles of rubber/plastic", category: "Footwear" },
-  { code: "3923", description: "Plastic packaging articles", category: "Plastics" },
-  { code: "8501", description: "Electric motors and generators", category: "Machinery" }
-];
-
 export default function HSCodeDirectory() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
+  // Search functionality
+  const filteredCodes = useMemo(() => {
+    if (!searchTerm) return [];
+    
+    const term = searchTerm.toLowerCase();
+    return popularHsCodes.filter(item => 
+      item.code.toLowerCase().includes(term) ||
+      item.description.toLowerCase().includes(term) ||
+      item.category.toLowerCase().includes(term)
+    );
+  }, [searchTerm]);
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    if (value.trim()) {
+      // Show results immediately as user types
+      setSearchResults(filteredCodes);
+    } else {
+      setSearchResults([]);
+    }
+  };
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -204,16 +224,47 @@ export default function HSCodeDirectory() {
               <div className="relative">
                 <input
                   type="text"
+                  value={searchTerm}
+                  onChange={handleSearch}
                   placeholder="Search HS codes, products, or descriptions..."
                   className="w-full px-6 py-4 text-lg border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
                 />
-                <button className="absolute right-2 top-2 bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">
-                  Search
-                </button>
+                <div className="absolute right-2 top-2">
+                  <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
               </div>
               <p className="text-sm text-gray-500 mt-2">
                 Try searching: "electronics", "8471", "automotive", or "textiles"
               </p>
+              
+              {/* Search Results */}
+              {searchTerm && (
+                <div className="mt-4 bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-y-auto">
+                  {filteredCodes.length > 0 ? (
+                    <div className="p-4">
+                      <h3 className="font-semibold text-gray-900 mb-3">Search Results ({filteredCodes.length})</h3>
+                      <div className="space-y-3">
+                        {filteredCodes.map((item, index) => (
+                          <div key={index} className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <div className="flex items-start justify-between mb-1">
+                              <span className="font-mono text-lg font-bold text-blue-600">{item.code}</span>
+                              <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">{item.category}</span>
+                            </div>
+                            <p className="text-gray-700 text-sm">{item.description}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="p-4 text-center">
+                      <p className="text-gray-500">No HS codes found matching "{searchTerm}"</p>
+                      <p className="text-sm text-gray-400 mt-1">Try searching for product names, categories, or partial HS codes</p>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -224,7 +275,7 @@ export default function HSCodeDirectory() {
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">Popular HS Codes</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {popularHSCodes.map((item, index) => (
+            {popularHsCodes.slice(0, 12).map((item, index) => (
               <div key={index} className="bg-white p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                 <div className="flex items-start justify-between mb-2">
                   <span className="font-mono text-lg font-bold text-blue-600">{item.code}</span>

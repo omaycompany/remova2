@@ -47,9 +47,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create notification using the database function
-    const result = await query<{ create_notification: string }>(
-      `SELECT create_notification($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) as create_notification`,
+    // Create notification directly in the database
+    const result = await query<{ id: string }>(
+      `INSERT INTO notifications (client_id, title, message, type, category, priority, action_url, action_label, expires_at, created_by, created_at, read)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, NOW(), FALSE)
+       RETURNING id`,
       [
         client_id,
         title,
@@ -64,7 +66,7 @@ export async function POST(request: NextRequest) {
       ]
     );
 
-    const notificationId = result[0]?.create_notification;
+    const notificationId = result[0]?.id;
 
     return NextResponse.json({
       success: true,
