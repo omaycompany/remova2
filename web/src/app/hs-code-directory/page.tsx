@@ -3,28 +3,33 @@
 import React, { useState, useMemo } from "react";
 import Link from 'next/link';
 
-// Popular HS codes for search functionality
+// Comprehensive HS codes database for search functionality
 const popularHsCodes = [
-  { code: "8471", category: "Electronics", description: "Automatic data processing machines (computers)" },
-  { code: "8517", category: "Electronics", description: "Telephone sets, mobile phones" },
-  { code: "8703", category: "Automotive", description: "Motor cars and vehicles for transport of persons" },
-  { code: "2709", category: "Energy", description: "Petroleum oils, crude" },
-  { code: "3004", category: "Pharmaceuticals", description: "Medicaments for therapeutic/prophylactic uses" },
-  { code: "6203", category: "Textiles", description: "Men's suits, jackets, trousers" },
-  { code: "6109", category: "Textiles", description: "T-shirts, singlets and other vests" },
-  { code: "0901", category: "Food", description: "Coffee, not roasted" },
-  { code: "1001", category: "Agriculture", description: "Wheat and meslin" },
-  { code: "7208", category: "Metals", description: "Flat-rolled products of iron/steel" },
-  { code: "8802", category: "Transportation", description: "Powered aircraft" },
-  { code: "9018", category: "Medical", description: "Medical, surgical instruments" },
-  { code: "6403", category: "Footwear", description: "Footwear with outer soles of rubber/plastic" },
-  { code: "3923", category: "Plastics", description: "Plastic packaging articles" },
-  { code: "8501", category: "Machinery", description: "Electric motors and generators" },
-  { code: "2701", category: "Energy", description: "Coal; briquettes, ovules from coal" },
-  { code: "8471", category: "Electronics", description: "Data processing machines" },
-  { code: "4011", category: "Automotive", description: "New pneumatic tires" },
-  { code: "7013", category: "Glassware", description: "Glassware of a kind used for table, kitchen" },
-  { code: "9403", category: "Furniture", description: "Other furniture and parts thereof" }
+  { code: "8471", category: "Electronics", description: "Automatic data processing machines (computers)", tariffRange: "0-15%" },
+  { code: "8517", category: "Electronics", description: "Telephone sets, mobile phones", tariffRange: "0-10%" },
+  { code: "8703", category: "Automotive", description: "Motor cars and vehicles for transport of persons", tariffRange: "2.5-25%" },
+  { code: "2709", category: "Energy", description: "Petroleum oils, crude", tariffRange: "0-5.25%" },
+  { code: "3004", category: "Pharmaceuticals", description: "Medicaments for therapeutic/prophylactic uses", tariffRange: "0-6.5%" },
+  { code: "6203", category: "Textiles", description: "Men's suits, jackets, trousers", tariffRange: "16.1-32%" },
+  { code: "6109", category: "Textiles", description: "T-shirts, singlets and other vests", tariffRange: "16.5-32%" },
+  { code: "0901", category: "Food", description: "Coffee, not roasted", tariffRange: "0%" },
+  { code: "1001", category: "Agriculture", description: "Wheat and meslin", tariffRange: "$0.114/kg" },
+  { code: "7208", category: "Metals", description: "Flat-rolled products of iron/steel", tariffRange: "0-25%" },
+  { code: "8802", category: "Transportation", description: "Powered aircraft", tariffRange: "0%" },
+  { code: "9018", category: "Medical", description: "Medical, surgical instruments", tariffRange: "0-6.6%" },
+  { code: "6403", category: "Footwear", description: "Footwear with outer soles of rubber/plastic", tariffRange: "8.5-48%" },
+  { code: "3923", category: "Plastics", description: "Plastic packaging articles", tariffRange: "3-6.5%" },
+  { code: "8501", category: "Machinery", description: "Electric motors and generators", tariffRange: "2.5-6.7%" },
+  { code: "2701", category: "Energy", description: "Coal; briquettes, ovules from coal", tariffRange: "0%" },
+  { code: "4011", category: "Automotive", description: "New pneumatic tires", tariffRange: "3.4-4%" },
+  { code: "7013", category: "Glassware", description: "Glassware of a kind used for table, kitchen", tariffRange: "5-28.5%" },
+  { code: "9403", category: "Furniture", description: "Other furniture and parts thereof", tariffRange: "0-40%" },
+  { code: "8528", category: "Electronics", description: "Monitors, projectors, television receivers", tariffRange: "0-15%" },
+  { code: "6204", category: "Textiles", description: "Women's suits, jackets, dresses", tariffRange: "16.1-32%" },
+  { code: "8708", category: "Automotive", description: "Parts and accessories for motor vehicles", tariffRange: "2.5-25%" },
+  { code: "8473", category: "Electronics", description: "Parts for data processing machines", tariffRange: "0-3.7%" },
+  { code: "6110", category: "Textiles", description: "Jerseys, pullovers, cardigans", tariffRange: "16.5-32%" },
+  { code: "9013", category: "Optics", description: "Liquid crystal devices, optical instruments", tariffRange: "0-8.5%" }
 ];
 
 // Major HS code categories with examples
@@ -252,7 +257,10 @@ export default function HSCodeDirectory() {
                               <span className="font-mono text-lg font-bold text-blue-600">{item.code}</span>
                               <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">{item.category}</span>
                             </div>
-                            <p className="text-gray-700 text-sm">{item.description}</p>
+                            <p className="text-gray-700 text-sm mb-1">{item.description}</p>
+                            {item.tariffRange && (
+                              <p className="text-xs text-gray-500">US Tariff Range: {item.tariffRange}</p>
+                            )}
                           </div>
                         ))}
                       </div>
@@ -281,7 +289,8 @@ export default function HSCodeDirectory() {
                   <span className="font-mono text-lg font-bold text-blue-600">{item.code}</span>
                   <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">{item.category}</span>
                 </div>
-                <p className="text-gray-700 text-sm">{item.description}</p>
+                <p className="text-gray-700 text-sm mb-2">{item.description}</p>
+                <p className="text-xs text-gray-500">US Tariff: {item.tariffRange}</p>
               </div>
             ))}
           </div>

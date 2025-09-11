@@ -3,28 +3,6 @@
 import React, { useState } from "react";
 import Link from 'next/link';
 
-// Mock data platforms and exposure levels
-const mockLeakResults = [
-  {
-    platform: "ImportGenius",
-    exposure: "HIGH",
-    findings: ["15 shipment records", "Supplier relationships exposed", "Product prices visible"],
-    riskLevel: "Critical"
-  },
-  {
-    platform: "Panjiva",
-    exposure: "MEDIUM", 
-    findings: ["Company profile active", "Trade patterns visible", "Contact information public"],
-    riskLevel: "Moderate"
-  },
-  {
-    platform: "TradeMap",
-    exposure: "LOW",
-    findings: ["General trade statistics", "Country-level data only"],
-    riskLevel: "Low"
-  }
-];
-
 export default function TradeDataLeakScanner() {
   const [formData, setFormData] = useState({
     companyName: '',
@@ -33,353 +11,406 @@ export default function TradeDataLeakScanner() {
     tradingCountries: '',
     products: ''
   });
-  const [isScanning, setIsScanning] = useState(false);
-  const [results, setResults] = useState(null);
+  const [showEducationalContent, setShowEducationalContent] = useState(false);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const startScan = () => {
-    if (!formData.companyName) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.companyName.trim()) {
       alert('Please enter your company name');
       return;
     }
-
-    setIsScanning(true);
-    setResults(null);
-
-    // Simulate scanning process
-    setTimeout(() => {
-      setResults({
-        companyName: formData.companyName,
-        totalPlatforms: 25,
-        exposedPlatforms: 3,
-        riskScore: 7.2,
-        details: mockLeakResults,
-        recommendations: [
-          "Remove data from ImportGenius (Priority: High)",
-          "Request profile deletion from Panjiva", 
-          "Monitor for new data appearances",
-          "Consider professional data removal service"
-        ]
-      });
-      setIsScanning(false);
-    }, 4000);
+    setShowEducationalContent(true);
   };
+
   return (
     <div className="min-h-screen bg-white">
       <section className="bg-gradient-to-b from-red-50 to-white py-16">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
-              </svg>
-              <span>Critical Data Exposure Scanner</span>
-            </div>
-            
             <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
-              Trade Data Leak Scanner
+              Trade Data Privacy Assessment
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              Comprehensive scan for trade data leaks and business intelligence exposure. 
-              Detect if your company information, supplier relationships, or competitive 
-              secrets are visible on trade intelligence platforms.
+              Learn about potential trade data exposure risks and understand how your 
+              business information might be accessible through various intelligence platforms.
             </p>
           </div>
 
+          {/* Assessment Form */}
           <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-8 mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Scan for Data Leaks
+              Trade Privacy Risk Assessment
             </h2>
             
-            <div className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Company Name *</label>
-                  <input 
-                    type="text" 
-                    name="companyName"
-                    value={formData.companyName}
-                    onChange={handleInputChange}
-                    placeholder="Enter your company name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none" 
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Alternative Names/DBAs</label>
-                  <input 
-                    type="text" 
-                    name="alternativeNames"
-                    value={formData.alternativeNames}
-                    onChange={handleInputChange}
-                    placeholder="Subsidiaries, trade names, etc."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none" 
-                  />
-                </div>
-              </div>
-              
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Scan Scope</label>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {[
-                    'Trade Intelligence Platforms',
-                    'Customs Databases',
-                    'Business Directories',
-                    'Supply Chain Networks',
-                    'Port Records',
-                    'Shipping Manifests',
-                    'Financial Filings',
-                    'Dark Web Monitoring'
-                  ].map(scope => (
-                    <label key={scope} className="flex items-center">
-                      <input type="checkbox" className="mr-2" defaultChecked />
-                      <span className="text-sm">{scope}</span>
-                    </label>
-                  ))}
-                </div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Company Name *
+                </label>
+                <input
+                  type="text"
+                  name="companyName"
+                  value={formData.companyName}
+                  onChange={handleInputChange}
+                  placeholder="Enter your company name"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none"
+                  required
+                />
               </div>
-              
+
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Priority Concerns</label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {[
-                    'Supplier relationship exposure',
-                    'Pricing information leaks',
-                    'Customer data visibility',
-                    'Product specification details',
-                    'Trade volume patterns',
-                    'Manufacturing locations',
-                    'Strategic partnerships',
-                    'Financial performance data'
-                  ].map(concern => (
-                    <label key={concern} className="flex items-center">
-                      <input type="checkbox" className="mr-2" />
-                      <span className="text-sm">{concern}</span>
-                    </label>
-                  ))}
-                </div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Alternative Company Names (Optional)
+                </label>
+                <input
+                  type="text"
+                  name="alternativeNames"
+                  value={formData.alternativeNames}
+                  onChange={handleInputChange}
+                  placeholder="Other names, subsidiaries, or DBA names"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none"
+                />
               </div>
-              
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Primary Industry *
+                </label>
+                <select
+                  name="industry"
+                  value={formData.industry}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none"
+                  required
+                >
+                  <option value="">Select your industry</option>
+                  <option value="Electronics & Technology">Electronics & Technology</option>
+                  <option value="Automotive">Automotive</option>
+                  <option value="Textiles & Apparel">Textiles & Apparel</option>
+                  <option value="Machinery & Equipment">Machinery & Equipment</option>
+                  <option value="Chemicals & Pharmaceuticals">Chemicals & Pharmaceuticals</option>
+                  <option value="Food & Agriculture">Food & Agriculture</option>
+                  <option value="Consumer Goods">Consumer Goods</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Primary Trading Countries
+                </label>
+                <input
+                  type="text"
+                  name="tradingCountries"
+                  value={formData.tradingCountries}
+                  onChange={handleInputChange}
+                  placeholder="e.g., USA, China, Germany"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Main Product Categories
+                </label>
+                <textarea
+                  name="products"
+                  value={formData.products}
+                  onChange={handleInputChange}
+                  placeholder="Brief description of your main products or services"
+                  rows="3"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none"
+                />
+              </div>
+
+              {/* Privacy Notice */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <div className="flex items-start">
-                  <svg className="w-5 h-5 text-yellow-400 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg className="w-5 h-5 text-blue-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                   </svg>
                   <div>
-                    <h3 className="font-semibold text-yellow-800 text-sm">Comprehensive Scan Notice</h3>
-                    <p className="text-yellow-700 text-sm mt-1">
-                      This scan will check 50+ platforms and databases for exposed trade data. 
-                      Results are for educational purposes and privacy awareness only.
+                    <h3 className="font-semibold text-blue-800 text-sm">Educational Tool Notice</h3>
+                    <p className="text-blue-700 text-sm mt-1">
+                      This is an educational assessment tool. We do not perform actual data scanning 
+                      or store your company information. Results are based on general industry risk factors.
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            <button 
-              onClick={startScan}
-              disabled={isScanning}
-              className="w-full bg-red-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-red-700 transition-colors mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isScanning ? (
-                <div className="flex items-center justify-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Scanning 25 Platforms...
-                </div>
-              ) : (
-                'Start Comprehensive Leak Scan'
-              )}
-            </button>
+
+              <button
+                type="submit"
+                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-6 rounded-lg transition-colors"
+              >
+                Assess Trade Data Privacy Risks
+              </button>
+            </form>
           </div>
 
-          {/* Results Display */}
-          {results && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-8 mb-12">
-              <h2 className="text-2xl font-bold text-red-900 mb-6 text-center">Scan Results for {results.companyName}</h2>
-              
-              <div className="grid md:grid-cols-3 gap-6 mb-8">
-                <div className="bg-white rounded-lg p-6 text-center">
-                  <div className="text-3xl font-bold text-gray-800">{results.totalPlatforms}</div>
-                  <div className="text-sm text-gray-600">Platforms Scanned</div>
+          {/* Educational Content */}
+          {showEducationalContent && (
+            <div className="space-y-8">
+              {/* Risk Assessment Results */}
+              <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                  Trade Data Privacy Risk Assessment for {formData.companyName}
+                </h2>
+                
+                <div className="grid md:grid-cols-3 gap-6 mb-8">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-semibold text-gray-900">Customs Data</h3>
+                    <p className="text-sm text-gray-600 mt-1">Import/export records may be accessible</p>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-semibold text-gray-900">Business Intelligence</h3>
+                    <p className="text-sm text-gray-600 mt-1">Trade patterns may reveal strategies</p>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-semibold text-gray-900">Protection Available</h3>
+                    <p className="text-sm text-gray-600 mt-1">Legal and operational protections exist</p>
+                  </div>
                 </div>
-                <div className="bg-white rounded-lg p-6 text-center">
-                  <div className="text-3xl font-bold text-red-600">{results.exposedPlatforms}</div>
-                  <div className="text-sm text-gray-600">Data Exposures Found</div>
-                </div>
-                <div className="bg-white rounded-lg p-6 text-center">
-                  <div className="text-3xl font-bold text-orange-600">{results.riskScore}/10</div>
-                  <div className="text-sm text-gray-600">Risk Score</div>
+
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Understanding Your Risk Profile</h3>
+                  <p className="text-gray-700 mb-4">
+                    Based on your industry ({formData.industry || 'the industry you selected'}), your company 
+                    may face various levels of trade data exposure through:
+                  </p>
+                  
+                  <ul className="grid md:grid-cols-2 gap-2 text-gray-700">
+                    <li className="flex items-start">
+                      <span className="text-red-500 mr-2">•</span>
+                      Customs and import/export declarations
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-red-500 mr-2">•</span>
+                      Bill of lading and shipping documentation
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-red-500 mr-2">•</span>
+                      Trade intelligence platform aggregation
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-red-500 mr-2">•</span>
+                      Business relationship mapping services
+                    </li>
+                  </ul>
                 </div>
               </div>
 
-              <div className="space-y-4 mb-8">
-                <h3 className="text-lg font-semibold text-gray-900">Detailed Findings</h3>
-                {results.details.map((detail, index) => (
-                  <div key={index} className={`bg-white rounded-lg p-4 border-l-4 ${
-                    detail.exposure === 'HIGH' ? 'border-red-500' :
-                    detail.exposure === 'MEDIUM' ? 'border-orange-500' : 'border-green-500'
-                  }`}>
-                    <div className="flex justify-between items-start mb-2">
-                      <h4 className="font-semibold text-gray-900">{detail.platform}</h4>
-                      <span className={`px-2 py-1 rounded text-xs font-bold ${
-                        detail.exposure === 'HIGH' ? 'bg-red-100 text-red-800' :
-                        detail.exposure === 'MEDIUM' ? 'bg-orange-100 text-orange-800' : 'bg-green-100 text-green-800'
-                      }`}>
-                        {detail.exposure} RISK
-                      </span>
+              {/* Common Platforms Information */}
+              <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-8">
+                <h3 className="text-xl font-bold text-gray-900 mb-6">
+                  Common Trade Intelligence Platforms
+                </h3>
+                
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900 mb-2">Import/Export Data Platforms</h4>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• ImportGenius - US import data aggregation</li>
+                        <li>• Panjiva - Global trade data platform</li>
+                        <li>• Trade Data Monitor - Multi-country coverage</li>
+                        <li>• Volza - Import/export intelligence</li>
+                      </ul>
                     </div>
-                    <ul className="text-sm text-gray-600 space-y-1">
-                      {detail.findings.map((finding, fIndex) => (
-                        <li key={fIndex}>• {finding}</li>
-                      ))}
+                    
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900 mb-2">Business Intelligence</h4>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Market research aggregators</li>
+                        <li>• Competitive intelligence services</li>
+                        <li>• Supply chain mapping tools</li>
+                        <li>• Industry analysis platforms</li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900 mb-2">Potential Exposure Types</h4>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Supplier and customer relationships</li>
+                        <li>• Product specifications and quantities</li>
+                        <li>• Pricing and cost structure insights</li>
+                        <li>• Market expansion strategies</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900 mb-2">Business Impact Areas</h4>
+                      <ul className="text-sm text-gray-600 space-y-1">
+                        <li>• Competitive disadvantage</li>
+                        <li>• Supplier poaching risks</li>
+                        <li>• Strategic information leakage</li>
+                        <li>• Market positioning exposure</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Protection Strategies */}
+              <div className="bg-green-50 border border-green-200 rounded-lg p-8">
+                <h3 className="text-xl font-bold text-green-800 mb-6">
+                  Trade Data Protection Strategies
+                </h3>
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="font-semibold text-green-800 mb-3">Legal Protections</h4>
+                    <ul className="space-y-2 text-green-700">
+                      <li className="flex items-start">
+                        <svg className="w-4 h-4 text-green-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        CBP Manifest Confidentiality (19 CFR 103.31)
+                      </li>
+                      <li className="flex items-start">
+                        <svg className="w-4 h-4 text-green-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        Trade secret protection documentation
+                      </li>
+                      <li className="flex items-start">
+                        <svg className="w-4 h-4 text-green-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        Supplier confidentiality agreements
+                      </li>
+                      <li className="flex items-start">
+                        <svg className="w-4 h-4 text-green-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        Privacy compliance frameworks
+                      </li>
                     </ul>
                   </div>
-                ))}
+                  
+                  <div>
+                    <h4 className="font-semibold text-green-800 mb-3">Operational Measures</h4>
+                    <ul className="space-y-2 text-green-700">
+                      <li className="flex items-start">
+                        <svg className="w-4 h-4 text-green-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        Data removal from intelligence platforms
+                      </li>
+                      <li className="flex items-start">
+                        <svg className="w-4 h-4 text-green-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        Ongoing monitoring and alerts
+                      </li>
+                      <li className="flex items-start">
+                        <svg className="w-4 h-4 text-green-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        Supply chain privacy protocols
+                      </li>
+                      <li className="flex items-start">
+                        <svg className="w-4 h-4 text-green-600 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        Staff training and awareness programs
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
 
-              <div className="bg-white rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Recommended Actions</h3>
-                <ul className="space-y-2">
-                  {results.recommendations.map((rec, index) => (
-                    <li key={index} className="flex items-start">
-                      <svg className="w-5 h-5 text-red-600 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                      <span className="text-sm text-gray-700">{rec}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <div className="mt-6 text-center">
-                  <Link href="/membership" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-block">
-                    Get Professional Data Removal Service
+              {/* Next Steps */}
+              <div className="bg-gray-900 rounded-lg p-8 text-center">
+                <h3 className="text-2xl font-bold text-white mb-4">
+                  Ready to Protect Your Trade Data?
+                </h3>
+                <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+                  Get professional guidance on implementing comprehensive trade data protection 
+                  strategies tailored to your specific industry and risk profile.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link 
+                    href="/contact#contact-form"
+                    className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+                  >
+                    Get Professional Assessment
+                  </Link>
+                  <Link 
+                    href="/blog/supplier-poaching-threat-hiding-public-customs-data"
+                    className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+                  >
+                    Learn More About Trade Privacy
                   </Link>
                 </div>
               </div>
             </div>
           )}
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <div className="bg-red-50 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
+          {/* Always Visible Educational Content */}
+          <div className="grid md:grid-cols-3 gap-8 mt-12">
+            <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-6">
+              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                </svg>
-              </div>
-              <h3 className="font-bold text-red-900 mb-2">Critical Exposures</h3>
-              <p className="text-red-800 text-sm">High-risk data leaks requiring immediate action</p>
-            </div>
-            
-            <div className="bg-orange-50 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              </div>
-              <h3 className="font-bold text-orange-900 mb-2">Visibility Risks</h3>
-              <p className="text-orange-800 text-sm">Moderate exposure requiring monitoring</p>
-            </div>
-            
-            <div className="bg-yellow-50 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="font-bold text-yellow-900 mb-2">Protected Areas</h3>
-              <p className="text-yellow-800 text-sm">Well-protected data with low exposure risk</p>
-            </div>
-            
-            <div className="bg-green-50 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="font-bold text-green-900 mb-2">Secure Status</h3>
-              <p className="text-green-800 text-sm">No significant data exposure detected</p>
-            </div>
-          </div>
-
-          <div className="bg-gray-50 rounded-lg p-8 mb-12">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Sample Scan Results</h3>
-            
-            <div className="space-y-4">
-              <div className="bg-white rounded-lg p-6 border-l-4 border-red-500">
-                <div className="flex justify-between items-start mb-3">
-                  <h4 className="font-semibold text-red-900">Critical: Supplier Relationship Exposed</h4>
-                  <span className="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">High Risk</span>
-                </div>
-                <p className="text-gray-700 text-sm mb-3">
-                  Your company's relationship with 12 key suppliers is visible on Panjiva, including 
-                  detailed transaction history, pricing patterns, and exclusive partnership agreements.
-                </p>
-                <div className="flex items-center text-sm">
-                  <svg className="w-4 h-4 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-red-600">Found on: Panjiva, ImportGenius, Trade Data Monitor</span>
-                </div>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 border-l-4 border-orange-500">
-                <div className="flex justify-between items-start mb-3">
-                  <h4 className="font-semibold text-orange-900">Warning: Product Specifications Visible</h4>
-                  <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded text-sm">Medium Risk</span>
-                </div>
-                <p className="text-gray-700 text-sm mb-3">
-                  Detailed product specifications and HS code classifications are accessible through customs 
-                  records, potentially enabling reverse engineering by competitors.
-                </p>
-                <div className="flex items-center text-sm">
-                  <svg className="w-4 h-4 text-orange-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-orange-600">Found on: Multiple customs databases, 3 trade platforms</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Get Professional Help */}
-          <section className="bg-red-50 border border-red-200 rounded-lg p-8 text-center">
-            <h3 className="text-2xl font-bold text-red-900 mb-4">
-              Discovered Data Leaks? Take Action Now
-            </h3>
-            <p className="text-red-800 text-lg mb-6 max-w-2xl mx-auto">
-              If our scan reveals trade data exposure, our experts can help you remove your information 
-              from intelligence platforms and implement comprehensive protection strategies.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/contact#contact-form"
-                className="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-                Get Emergency Data Removal
-              </a>
-              
-              <a 
-                href="/data-removal-request-generator"
-                className="inline-flex items-center gap-2 bg-white text-red-600 px-8 py-4 rounded-lg font-semibold border border-red-600 hover:bg-red-50 transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                Generate Removal Requests
-              </a>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Customs Data Exposure</h3>
+              <p className="text-gray-600 text-sm">
+                Import and export records can reveal detailed business relationships, 
+                product specifications, and trading patterns to competitors.
+              </p>
             </div>
-          </section>
+
+            <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-6">
+              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Business Intelligence Risk</h3>
+              <p className="text-gray-600 text-sm">
+                Multiple platforms aggregate and analyze trade data to provide 
+                competitive intelligence services to your competitors.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-6">
+              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.25-4.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Protection Solutions</h3>
+              <p className="text-gray-600 text-sm">
+                Legal protections and professional services exist to help companies 
+                secure their trade data and maintain competitive advantages.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
