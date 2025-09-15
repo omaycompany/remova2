@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createCheckoutSession } from '@/lib/stripe';
 import { z } from 'zod';
+import { getCanonicalBaseUrl } from '@/lib/seo';
 
 const checkoutSchema = z.object({
   plan: z.enum(['stealth', 'vanish', 'shield']),
@@ -15,8 +16,7 @@ export async function GET(request: NextRequest) {
     const { plan: validatedPlan } = checkoutSchema.parse({ plan });
 
     // Get base URL
-    const baseUrl = process.env.APP_BASE_URL || 
-      (process.env.NODE_ENV === 'production' ? 'https://www.remova.org' : 'http://127.0.0.1:6161');
+    const baseUrl = process.env.APP_BASE_URL || getCanonicalBaseUrl();
 
     // Create Stripe checkout session
     const session = await createCheckoutSession(validatedPlan, baseUrl);

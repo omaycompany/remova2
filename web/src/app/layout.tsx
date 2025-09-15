@@ -5,6 +5,7 @@ import "./globals.css";
 import ConsentBanner from "@/components/ConsentBanner";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { LayoutContent } from "@/components/LayoutContent";
+import { getCanonicalBaseUrl } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NODE_ENV === "production" ? "https://www.remova.org" : "http://127.0.0.1:6161"),
+  metadataBase: new URL(getCanonicalBaseUrl()),
   title: {
     default: "Remova.org — The Digital Shield for Global Commerce",
     template: "%s — Remova.org",
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
     title: "Remova.org — The Digital Shield for Global Commerce", 
     description:
       "Privacy-as-a-Service for importers and exporters. Protect your supplier relationships, pricing strategies, and market intelligence from competitors.",
-    url: process.env.NODE_ENV === "production" ? "https://www.remova.org" : "http://127.0.0.1:6161",
+    url: getCanonicalBaseUrl(),
     siteName: "Remova.org",
             images: [
           {
@@ -79,7 +80,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const baseUrl = process.env.NODE_ENV === "production" ? "https://www.remova.org" : "http://127.0.0.1:6161";
+  const baseUrl = getCanonicalBaseUrl();
   
   const jsonLd = {
     "@context": "https://schema.org",

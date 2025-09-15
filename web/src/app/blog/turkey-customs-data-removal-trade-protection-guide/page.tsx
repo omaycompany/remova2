@@ -1,12 +1,17 @@
+
+
 import { Metadata } from 'next';
+import { generateCanonicalMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: "Turkey Customs Data Removal: Trade Protection Guide for International Businesses 2025",
   description: "Complete guide to protecting your business data from Turkish customs databases and trade intelligence platforms. Essential for companies trading with Turkey.",
-  openGraph: {
-    title: "Turkey Customs Data Removal: Trade Protection Guide for International Businesses 2025",
-    description: "Learn how to remove your company data from Turkish customs databases and protect your trade relationships in this strategic market.",
-  },
+  ...generateCanonicalMetadata("/blog/turkey-customs-data-removal-trade-protection-guide", {
+    openGraph: {
+      title: "Turkey Customs Data Removal: Trade Protection Guide for International Businesses 2025",
+      description: "Learn how to remove your company data from Turkish customs databases and protect your trade relationships in this strategic market.",
+    },
+  }),
 };
 
 export default function TurkeyCustomsDataRemovalGuide() {

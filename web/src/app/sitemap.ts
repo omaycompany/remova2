@@ -1,11 +1,10 @@
 import { MetadataRoute } from 'next'
 import { readdirSync } from 'fs'
 import { join } from 'path'
+import { getCanonicalBaseUrl } from '@/lib/seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NODE_ENV === "production" 
-    ? "https://www.remova.org" 
-    : "http://127.0.0.1:6161";
+  const baseUrl = getCanonicalBaseUrl();
   
   const paths = [
     "",

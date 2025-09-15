@@ -1,10 +1,12 @@
 import { Metadata } from 'next';
 import IntakeForm from '@/components/IntakeForm';
+import { generateCanonicalMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Company Intake - Remova',
   description: 'Secure company intake form to begin your privacy protection services.',
-  robots: 'noindex, nofollow',
+  robots: 'noindex, nofollow', // Keep noindex for intake form - this is intentional
+  ...generateCanonicalMetadata("/intake"),
 };
 
 export default function IntakePage() {

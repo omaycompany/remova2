@@ -27,7 +27,7 @@ export default function robots(): MetadataRoute.Robots {
         ],
       }
     ],
-    sitemap: 'https://remova.org/sitemap.xml',
-    host: 'https://remova.org'
+    sitemap: 'https://www.remova.org/sitemap.xml',
+    host: 'https://www.remova.org'
   }
 }
