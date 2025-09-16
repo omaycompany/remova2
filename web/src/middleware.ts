@@ -19,8 +19,8 @@ export function middleware(request: NextRequest) {
     'herokuapp.com', // This will catch any Heroku subdomain
   ]
   
-  // Check if current hostname needs to redirect
-  const shouldRedirect = redirectDomains.some(domain => 
+  // Check if current hostname needs to redirect (but not if already on canonical domain)
+  const shouldRedirect = hostname !== canonicalDomain && redirectDomains.some(domain => 
     hostname === domain || hostname.endsWith('.' + domain)
   )
   
