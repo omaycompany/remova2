@@ -26,7 +26,8 @@ export function middleware(request: NextRequest) {
   
   if (shouldRedirect) {
     // Redirect to canonical domain with HTTPS
-    url.host = canonicalDomain
+    url.hostname = canonicalDomain
+    url.port = '' // Clear any port number
     url.protocol = 'https:'
     
     return NextResponse.redirect(url, 301) // 301 = Permanent redirect
