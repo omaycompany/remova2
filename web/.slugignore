@@ -1,0 +1,54 @@
+# Development files
+*.md
+README*
+SETUP*
+DEVELOPMENT*
+DEMO*
+LOCAL*
+MIGRATION*
+NOTIFICATION*
+STRIPE-BILLING*
+SIGNUP-FLOW*
+SEO*
+PDF-GENERATION*
+EMAIL-SETUP*
+GOOGLE-SEARCH*
+
+# Build artifacts that aren't needed
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# Scripts directory (build scripts, not runtime)
+scripts/
+
+# Content calendar
+content-calendar-2025.md
+
+# VS Code workspace
+*.code-workspace
+
+# Test files
+test-*
+*test*
+
+# Documentation files
+*.md
+!README.md
+
+# Development configs that aren't needed in production
+eslint.config.mjs
+postcss.config.mjs
+
+# Environment example
+env.example
+
+# Large generated docs that can be recreated
+public/docs/generated/
+public/docs/previews/
+public/docs/industry-guides/
+public/docs/premium/
+public/docs/resources/
+
+# Keep only essential docs
+# public/docs/*.txt (removal guides)
+# public/docs/*.pdf (core guides only)
