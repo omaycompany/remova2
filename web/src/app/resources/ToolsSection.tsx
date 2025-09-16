@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -271,17 +271,6 @@ const allTools: Tool[] = [
     features: ['Incident Tracking', 'Detailed Reports', 'Impact Analysis']
   },
   {
-    id: 'advanced-resources',
-    title: 'Advanced Legal Resources',
-    description: 'Comprehensive legal guides and resources for trade data protection.',
-    href: '/members/resources/legal',
-    icon: '⚖️',
-    category: 'Legal Resources',
-    accessLevel: 'vanish',
-    status: 'available',
-    features: ['Legal Guides', 'Compliance Templates', 'Expert Analysis']
-  },
-  {
     id: 'industry-guides',
     title: 'Industry-Specific Privacy Guides',
     description: 'Tailored privacy protection guides for specific industries and trade sectors.',
@@ -326,63 +315,6 @@ const allTools: Tool[] = [
     accessLevel: 'shield',
     status: 'available',
     features: ['Custom Development', 'Enterprise Grade', 'Dedicated Support']
-  },
-  {
-    id: 'privacy-representative',
-    title: 'EU Privacy Representative Service',
-    description: 'Professional EU GDPR representative services for non-EU businesses.',
-    href: '/members/privacy-representative',
-    icon: '🇪🇺',
-    category: 'Compliance Services',
-    accessLevel: 'shield',
-    status: 'available',
-    features: ['GDPR Compliance', 'EU Representative', 'Legal Standing']
-  },
-
-  // Coming Soon Tools
-  {
-    id: 'evidence-packer',
-    title: 'Evidence Packer',
-    description: 'CLI tool to bundle URLs, screenshots, and notes into standardized archives.',
-    href: '/open-tools',
-    icon: '📦',
-    category: 'Open Source Tools',
-    accessLevel: 'free',
-    status: 'coming_soon',
-    features: ['CLI Tool', 'Evidence Bundling', 'Standardized Format']
-  },
-  {
-    id: 'variant-suggester',
-    title: 'Company Name Variant Suggester',
-    description: 'Utility to suggest company name variants for comprehensive privacy coverage.',
-    href: '/open-tools',
-    icon: '🔄',
-    category: 'Open Source Tools',
-    accessLevel: 'free',
-    status: 'coming_soon',
-    features: ['Name Variants', 'Coverage Analysis', 'Smart Suggestions']
-  },
-  {
-    id: 'ai-threat-detection',
-    title: 'AI Threat Detection System',
-    description: 'Advanced AI-powered system for detecting new privacy threats and data exposure.',
-    href: '#',
-    icon: '🤖',
-    category: 'AI Tools',
-    accessLevel: 'shield',
-    status: 'coming_soon',
-    features: ['AI-Powered', 'Threat Detection', 'Predictive Analysis']
-  },
-  {
-    id: 'blockchain-verification',
-    title: 'Blockchain Privacy Verification',
-    description: 'Blockchain-based verification system for privacy compliance and data integrity.',
-    href: '#',
-    icon: '⛓️',
-    category: 'Blockchain Tools',
-    accessLevel: 'shield',
-    status: 'coming_soon',
-    features: ['Blockchain Verification', 'Immutable Records', 'Compliance Proof']
   }
 ];
 
@@ -400,42 +332,16 @@ const categories = [
   'Analysis Tools',
   'Audit Tools',
   'Intelligence Reports',
-  'Legal Resources',
   'Educational Resources',
   'Partner Services',
   'Support Services',
-  'Enterprise Solutions',
-  'Compliance Services',
-  'Open Source Tools',
-  'AI Tools',
-  'Blockchain Tools'
+  'Enterprise Solutions'
 ];
 
-export default function ToolsPage() {
-  const [client, setClient] = useState<Client | null>(null);
-  const [loading, setLoading] = useState(true);
+export default function ToolsSection({ client }: { client: any }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
-
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
-  const checkAuth = async () => {
-    try {
-      const response = await fetch('/api/auth/me');
-      const data = await response.json();
-      
-      if (data.authenticated && data.client) {
-        setClient(data.client);
-      }
-    } catch (error) {
-      console.error('Auth check error:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const canAccessTool = (toolAccessLevel: string): boolean => {
     if (!client) return toolAccessLevel === 'free';
@@ -453,15 +359,6 @@ export default function ToolsPage() {
       case 'stealth': return 'bg-blue-100 text-blue-800';
       case 'vanish': return 'bg-purple-100 text-purple-800';
       case 'shield': return 'bg-green-100 text-green-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
-  };
-
-  const getStatusColor = (status: string): string => {
-    switch (status) {
-      case 'available': return 'bg-green-100 text-green-800';
-      case 'beta': return 'bg-yellow-100 text-yellow-800';
-      case 'coming_soon': return 'bg-orange-100 text-orange-800';
       default: return 'bg-gray-100 text-gray-800';
     }
   };
@@ -487,37 +384,19 @@ export default function ToolsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <section className="bg-gradient-to-b from-blue-600 to-indigo-700 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-6xl font-black mb-6">
-              All Tools & Resources
-            </h1>
-            <p className="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto mb-8">
-              Comprehensive suite of privacy protection tools, trade utilities, and compliance resources. 
-              Access levels vary by membership tier.
-            </p>
-            
-            {/* User Status */}
-            <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
-              <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="font-medium">
-                {client ? (
-                  `${client.plan_tier.charAt(0).toUpperCase()}${client.plan_tier.slice(1)} Member`
-                ) : (
-                  'Free Access'
-                )}
-              </span>
-            </div>
-          </div>
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50/30">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-gray-900 via-blue-700 to-purple-700 bg-clip-text text-transparent">
+            Privacy & Trade Tools
+          </h2>
+          <p className="text-xl opacity-80 max-w-4xl mx-auto text-gray-700 font-medium leading-relaxed">
+            Comprehensive suite of privacy protection tools, trade utilities, and compliance resources to secure your business operations.
+          </p>
         </div>
-      </section>
 
-      {/* Filters */}
-      <section className="bg-white border-b border-gray-200 py-6">
-        <div className="max-w-7xl mx-auto px-4">
+        {/* Filters */}
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-12">
           <div className="flex flex-col lg:flex-row gap-6">
             {/* Search */}
             <div className="flex-1">
@@ -550,188 +429,99 @@ export default function ToolsPage() {
             Showing {filteredTools.length} of {allTools.length} tools
           </div>
         </div>
-      </section>
 
-      {/* Tools Grid */}
-      <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredTools.map((tool) => {
-              const hasAccess = canAccessTool(tool.accessLevel);
-              const isComingSoon = tool.status === 'coming_soon';
-              
-              return (
-                <div
-                  key={tool.id}
-                  onClick={() => handleToolClick(tool)}
-                  className={`
-                    relative bg-white rounded-xl border border-gray-200 p-6 transition-all duration-300
-                    ${hasAccess && !isComingSoon ? 'hover:shadow-lg cursor-pointer hover:border-blue-300' : ''}
-                    ${!hasAccess ? 'opacity-60' : ''}
-                    ${isComingSoon ? 'opacity-75' : ''}
-                  `}
-                >
-                  {/* Blur Overlay for Restricted Tools */}
-                  {!hasAccess && (
-                    <div className="absolute inset-0 bg-white/80 backdrop-blur-sm rounded-xl flex items-center justify-center z-10">
-                      <div className="text-center p-4">
-                        <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m0 0v2m0-2h2m-2 0H10m4-6V9a4 4 0 00-8 0v2m0 0v2m0-2h8m-8 0H6" />
-                          </svg>
-                        </div>
-                        <p className="font-semibold text-gray-900 mb-1">
-                          {tool.accessLevel.charAt(0).toUpperCase()}{tool.accessLevel.slice(1)} Required
-                        </p>
-                        <p className="text-sm text-gray-600">
-                          Upgrade to access this tool
-                        </p>
+        {/* Tools Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredTools.map((tool) => {
+            const hasAccess = canAccessTool(tool.accessLevel);
+            const isComingSoon = tool.status === 'coming_soon';
+            
+            return (
+              <div
+                key={tool.id}
+                onClick={() => handleToolClick(tool)}
+                className={`
+                  relative bg-white rounded-xl border border-gray-200 p-6 transition-all duration-300
+                  ${hasAccess && !isComingSoon ? 'hover:shadow-lg cursor-pointer hover:border-blue-300' : ''}
+                  ${!hasAccess ? 'opacity-60' : ''}
+                  ${isComingSoon ? 'opacity-75' : ''}
+                `}
+              >
+                {/* Blur Overlay for Restricted Tools */}
+                {!hasAccess && (
+                  <div className="absolute inset-0 bg-white/80 backdrop-blur-sm rounded-xl flex items-center justify-center z-10">
+                    <div className="text-center p-4">
+                      <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m0 0v2m0-2h2m-2 0H10m4-6V9a4 4 0 00-8 0v2m0 0v2m0-2h8m-8 0H6" />
+                        </svg>
                       </div>
-                    </div>
-                  )}
-
-                  {/* Coming Soon Overlay */}
-                  {isComingSoon && (
-                    <div className="absolute top-4 right-4 z-20">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(tool.status)}`}>
-                        Coming Soon
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Tool Content */}
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="text-3xl">{tool.icon}</div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">
-                        {tool.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        {tool.description}
+                      <p className="font-semibold text-gray-900 mb-1">
+                        {tool.accessLevel.charAt(0).toUpperCase()}{tool.accessLevel.slice(1)} Required
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        Upgrade to access this tool
                       </p>
                     </div>
                   </div>
+                )}
 
-                  {/* Features */}
-                  {tool.features && (
-                    <div className="mb-4">
-                      <div className="flex flex-wrap gap-2">
-                        {tool.features.slice(0, 3).map((feature, index) => (
-                          <span
-                            key={index}
-                            className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs"
-                          >
-                            {feature}
-                          </span>
-                        ))}
-                        {tool.features.length > 3 && (
-                          <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
-                            +{tool.features.length - 3} more
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  )}
+                {/* Tool Content */}
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="text-3xl">{tool.icon}</div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                      {tool.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      {tool.description}
+                    </p>
+                  </div>
+                </div>
 
-                  {/* Footer */}
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">
-                      {tool.category}
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getAccessLevelColor(tool.accessLevel)}`}>
-                        {tool.accessLevel.charAt(0).toUpperCase()}{tool.accessLevel.slice(1)}
-                      </span>
-                      {tool.status !== 'available' && tool.status !== 'coming_soon' && (
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(tool.status)}`}>
-                          {tool.status === 'beta' ? 'Beta' : tool.status}
+                {/* Features */}
+                {tool.features && (
+                  <div className="mb-4">
+                    <div className="flex flex-wrap gap-2">
+                      {tool.features.slice(0, 3).map((feature, index) => (
+                        <span
+                          key={index}
+                          className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs"
+                        >
+                          {feature}
+                        </span>
+                      ))}
+                      {tool.features.length > 3 && (
+                        <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
+                          +{tool.features.length - 3} more
                         </span>
                       )}
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                )}
 
-          {filteredTools.length === 0 && (
-            <div className="text-center py-12">
-              <div className="text-gray-400 text-6xl mb-4">🔍</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No tools found</h3>
-              <p className="text-gray-600">Try adjusting your search terms or category filter.</p>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Access Level Guide */}
-      <section className="bg-white border-t border-gray-200 py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Access Levels</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Different tools require different membership levels. Upgrade to unlock more powerful privacy protection tools.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {[
-              {
-                level: 'free',
-                title: 'Free',
-                description: 'Basic assessment and educational tools',
-                color: 'from-gray-500 to-gray-600',
-                tools: allTools.filter(t => t.accessLevel === 'free').length
-              },
-              {
-                level: 'stealth',
-                title: 'Stealth',
-                description: 'Privacy protection and monitoring tools',
-                color: 'from-blue-500 to-blue-600',
-                tools: allTools.filter(t => ['free', 'stealth'].includes(t.accessLevel)).length
-              },
-              {
-                level: 'vanish',
-                title: 'Vanish',
-                description: 'Data removal and advanced legal tools',
-                color: 'from-purple-500 to-purple-600',
-                tools: allTools.filter(t => ['free', 'stealth', 'vanish'].includes(t.accessLevel)).length
-              },
-              {
-                level: 'shield',
-                title: 'Shield',
-                description: 'Complete suite with enterprise features',
-                color: 'from-green-500 to-green-600',
-                tools: allTools.length
-              }
-            ].map((tier) => (
-              <div key={tier.level} className="bg-white rounded-xl border border-gray-200 p-6 text-center">
-                <div className={`w-12 h-12 bg-gradient-to-r ${tier.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                  <span className="text-white font-bold text-lg">
-                    {tier.title.charAt(0)}
+                {/* Footer */}
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-gray-500">
+                    {tool.category}
+                  </span>
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${getAccessLevelColor(tool.accessLevel)}`}>
+                    {tool.accessLevel.charAt(0).toUpperCase()}{tool.accessLevel.slice(1)}
                   </span>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{tier.title}</h3>
-                <p className="text-gray-600 text-sm mb-4">{tier.description}</p>
-                <div className="text-2xl font-bold text-gray-900 mb-1">{tier.tools}</div>
-                <div className="text-xs text-gray-500">Available Tools</div>
               </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-8">
-            <Link
-              href="/membership"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
-            >
-              <span>Upgrade Your Access</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </Link>
-          </div>
+            );
+          })}
         </div>
-      </section>
-    </div>
+
+        {filteredTools.length === 0 && (
+          <div className="text-center py-12">
+            <div className="text-gray-400 text-6xl mb-4">🔍</div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">No tools found</h3>
+            <p className="text-gray-600">Try adjusting your search terms or category filter.</p>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }

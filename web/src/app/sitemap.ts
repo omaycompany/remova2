@@ -22,7 +22,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/no-abuse",
     "/trust",
     "/resources",
-    "/tools",
     "/contact",
     "/about",
     "/data-privacy",

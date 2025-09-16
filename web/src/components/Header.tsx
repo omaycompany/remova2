@@ -10,8 +10,7 @@ export default function Header() {
 
   const menuItems = [
     { href: '/membership', label: 'Protection Plans' },
-    { href: '/tools', label: 'All Tools' },
-    { href: '/resources', label: 'Resources' },
+    { href: '/resources', label: 'Tools & Resources' },
     { href: '/blog', label: 'Blog' },
     { href: '/about', label: 'About' },
     { href: '/contact', label: 'Contact' }
@@ -63,8 +62,7 @@ export default function Header() {
               data-nimg="1"
               className="h-14 lg:h-16 w-auto transition-all hover:scale-105"
               style={{ color: 'transparent' }}
-              srcSet="/_next/image?url=%2FREMOVA%20LOGO.png&w=256&q=75 1x, /_next/image?url=%2FREMOVA%20LOGO.png&w=640&q=75 2x"
-              src="/_next/image?url=%2FREMOVA%20LOGO.png&w=640&q=75"
+              src="/REMOVA LOGO.png"
             />
           </a>
         </div>

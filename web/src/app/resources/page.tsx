@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { getClientFromSession } from '@/lib/auth';
 import { cookies } from 'next/headers';
+import ToolsSection from './ToolsSection';
 
 export const metadata = {
-  title: "Privacy Intelligence Hub - Resources & Guides",
-  description: "Practical resources to reduce competitive intelligence exposure—protect customer relationships, prevent supplier poaching, and minimize data broker signals without disrupting operations.",
+  title: "Privacy Intelligence Hub - Tools & Resources",
+  description: "Comprehensive tools and resources to reduce competitive intelligence exposure—protect customer relationships, prevent supplier poaching, and minimize data broker signals without disrupting operations.",
 };
 
 // Force dynamic rendering to ensure Header/Footer work properly
@@ -530,6 +531,9 @@ export default async function ResourcesPage() {
           ))}
         </div>
       </section>
+      
+      {/* Tools Section */}
+      <ToolsSection client={client} />
       
       {/* Support Our Mission Section */}
       <section className="py-20 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-white">
