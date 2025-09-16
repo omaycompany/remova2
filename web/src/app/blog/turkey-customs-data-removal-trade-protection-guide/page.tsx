@@ -1,17 +1,18 @@
 
 
 import { Metadata } from 'next';
-import { generateCanonicalMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: "Turkey Customs Data Removal: Trade Protection Guide for International Businesses 2025",
   description: "Complete guide to protecting your business data from Turkish customs databases and trade intelligence platforms. Essential for companies trading with Turkey.",
-  ...generateCanonicalMetadata("/blog/turkey-customs-data-removal-trade-protection-guide", {
-    openGraph: {
-      title: "Turkey Customs Data Removal: Trade Protection Guide for International Businesses 2025",
-      description: "Learn how to remove your company data from Turkish customs databases and protect your trade relationships in this strategic market.",
-    },
-  }),
+  alternates: {
+    canonical: process.env.NODE_ENV === "production" ? "https://www.remova.org/blog/turkey-customs-data-removal-trade-protection-guide" : "http://127.0.0.1:6161/blog/turkey-customs-data-removal-trade-protection-guide",
+  },
+  openGraph: {
+    title: "Turkey Customs Data Removal: Trade Protection Guide for International Businesses 2025",
+    description: "Learn how to remove your company data from Turkish customs databases and protect your trade relationships in this strategic market.",
+    url: process.env.NODE_ENV === "production" ? "https://www.remova.org/blog/turkey-customs-data-removal-trade-protection-guide" : "http://127.0.0.1:6161/blog/turkey-customs-data-removal-trade-protection-guide",
+  },
 };
 
 export default function TurkeyCustomsDataRemovalGuide() {
