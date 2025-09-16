@@ -416,7 +416,7 @@ export default function BillingDashboard() {
           </div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">Ready to Unlock Premium Protection?</h3>
           <p className="text-gray-600 mb-4">
-            You're currently enjoying our free community access. Upgrade to Stealth, Vanish, or Shield for advanced privacy protection services.
+            You're currently enjoying our free community access. Upgrade to Stealth, Vanish, or Shield for advanced privacy services.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/membership" className="btn bg-indigo-600 text-white hover:bg-indigo-700">

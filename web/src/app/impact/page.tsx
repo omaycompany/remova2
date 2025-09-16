@@ -74,7 +74,7 @@ export default function Impact() {
                 This sustainable model ensures continuous improvement of industry-wide privacy standards.
               </p>
               <ul className="list-disc list-inside mt-3 text-sm opacity-90">
-                <li>Professional services: Stealth, Vanish, and Shield protection plans</li>
+                <li>Professional services: Stealth, Vanish, and Shield</li>
                 <li>Community resources: Free guides, templates, and privacy tools</li>
                 <li>Industry impact: Open-source solutions and best practices</li>
                 <li>Measurable outcomes: Reduced data exposure across platforms</li>

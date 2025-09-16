@@ -912,8 +912,8 @@ function getCTAConfig(ctaType) {
     },
     stealth: {
       title: '🛡️ Automate Your Protection',
-      description: 'Stop doing this manually. Our Stealth Membership provides 24/7 monitoring and professional takedown services.',
-      buttonText: 'Upgrade to Stealth Protection',
+      description: 'Stop doing this manually. Our Stealth provides 24/7 monitoring and professional takedown services.',
+      buttonText: 'Upgrade to Stealth',
       url: 'https://remova.org/membership'
     },
     premium: {

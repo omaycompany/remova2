@@ -12,7 +12,7 @@ export const dynamic = 'force-dynamic';
 // All pricing plans for display (removed custom package)
 const pricingPlans = [
   {
-    name: "Stealth Membership",
+    name: "Stealth",
     subtitle: "Essential protection - Pillars 1 + 3",
     price: "$295",
     monthlyPrice: "$295",
@@ -29,19 +29,19 @@ const pricingPlans = [
       "🪪 Remova-Verified Partner badge",
       "📧 Priority email support (24h response)",
     ],
-    cta: "Get Stealth Protection",
+    cta: "Get Stealth",
     href: "/become-member",
     availability: "Essential Protection",
     isPopular: false,
   },
   {
-    name: "Vanish Membership", 
+    name: "Vanish", 
     subtitle: "Complete 3-pillar protection + historical cleanup",
     price: "$595",
     monthlyPrice: "$595",
     note: "/month (billed annually at $7,140)",
     features: [
-      "✨ Everything in Stealth Membership",
+      "✨ Everything in Stealth",
       "🧹 Systematic database takedowns (40+ platforms)",
       "🧹 Manual follow-up enforcement",
       "🧹 Custom removal requests",
@@ -56,7 +56,7 @@ const pricingPlans = [
     isPopular: true,
   },
   {
-    name: "Shield Membership",
+    name: "Shield",
     subtitle: "Ultimate protection with legal coverage + priority SLA",
     price: "$1,250",
     monthlyPrice: "$1,250",
@@ -69,7 +69,7 @@ const pricingPlans = [
       "⚖️ Multi-entity compliance support",
       "📞 Premium support (1h response all channels)",
     ],
-    cta: "Get Shield Protection",
+    cta: "Get Shield",
     href: "/become-member",
     availability: "Ultimate Protection",
     isPopular: false,

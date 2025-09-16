@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface DashboardStats {
   totalClients: number;
@@ -12,72 +13,105 @@ interface DashboardStats {
   pendingIntakes: number;
 }
 
+interface AdminUser {
+  id: string;
+  email: string;
+  full_name: string;
+  role: string;
+  package_access: 'all' | 'stealth' | 'vanish' | 'shield';
+}
+
 export default function AdminDashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [admin, setAdmin] = useState<AdminUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    loadDashboardStats();
+    loadDashboardData();
   }, []);
 
-  const loadDashboardStats = async () => {
+  const loadDashboardData = async () => {
     try {
-      const response = await fetch('/api/admin/dashboard/stats');
-      if (response.ok) {
-        const data = await response.json();
-        setStats(data);
+      // Load admin info and stats in parallel
+      const [statsResponse, adminResponse] = await Promise.all([
+        fetch('/api/admin/dashboard/stats'),
+        fetch('/api/admin/auth/me')
+      ]);
+
+      if (statsResponse.ok) {
+        const statsData = await statsResponse.json();
+        setStats(statsData);
+      }
+
+      if (adminResponse.ok) {
+        const adminData = await adminResponse.json();
+        setAdmin(adminData.admin);
       }
     } catch (error) {
-      console.error('Failed to load dashboard stats:', error);
+      console.error('Failed to load dashboard data:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const quickActions = [
-    {
-      title: 'Manage Users',
-      description: 'View and manage client accounts',
-      icon: '👥',
-      href: '/admin/users',
-      color: 'bg-blue-500'
-    },
-    {
-      title: 'Privacy Services',
-      description: 'CBP filings, takedowns, and protection services',
-      icon: '🛡️',
-      href: '/admin/services',
-      color: 'bg-green-500'
-    },
-    {
-      title: 'Analytics & Reports',
-      description: 'Business intelligence and performance metrics',
-      icon: '📊',
-      href: '/admin/analytics',
-      color: 'bg-purple-500'
-    },
-    {
-      title: 'Audit Logs',
-      description: 'Monitor all system activity and security events',
-      icon: '📋',
-      href: '/admin/audit',
-      color: 'bg-orange-500'
-    },
-    {
-      title: 'Admin Management',
-      description: 'Manage administrator accounts and permissions',
-      icon: '👨‍💼',
-      href: '/admin/admins',
-      color: 'bg-red-500'
-    },
-    {
-      title: 'System Settings',
-      description: 'Configure platform settings and integrations',
-      icon: '⚙️',
-      href: '/admin/settings',
-      color: 'bg-indigo-500'
+  const getQuickActions = (packageAccess: string) => {
+    const baseActions = [
+      {
+        title: 'Manage Users',
+        description: `View and manage ${packageAccess === 'all' ? 'all' : packageAccess} client accounts`,
+        icon: '👥',
+        href: '/admin/users',
+        color: 'bg-blue-500'
+      },
+      {
+        title: 'Privacy Services',
+        description: 'CBP filings, takedowns, and protection services',
+        icon: '🛡️',
+        href: '/admin/services',
+        color: 'bg-green-500'
+      },
+      {
+        title: 'Analytics & Reports',
+        description: `${packageAccess === 'all' ? 'All package' : packageAccess.charAt(0).toUpperCase() + packageAccess.slice(1)} performance metrics`,
+        icon: '📊',
+        href: '/admin/analytics',
+        color: 'bg-purple-500'
+      },
+      {
+        title: 'Audit Logs',
+        description: 'Monitor system activity and security events',
+        icon: '📋',
+        href: '/admin/audit',
+        color: 'bg-orange-500'
+      }
+    ];
+
+    // Add admin management only for super_admin and admin roles
+    if (admin?.role === 'super_admin' || admin?.role === 'admin') {
+      baseActions.push({
+        title: 'Admin Management',
+        description: 'Manage administrator accounts and permissions',
+        icon: '👨‍💼',
+        href: '/admin/admins',
+        color: 'bg-red-500'
+      });
     }
-  ];
+
+    // Add system settings only for super_admin
+    if (admin?.role === 'super_admin') {
+      baseActions.push({
+        title: 'System Settings',
+        description: 'Configure platform settings and integrations',
+        icon: '⚙️',
+        href: '/admin/settings',
+        color: 'bg-indigo-500'
+      });
+    }
+
+    return baseActions;
+  };
+
+  const quickActions = admin ? getQuickActions(admin.package_access) : [];
 
   if (isLoading) {
     return (
@@ -100,7 +134,19 @@ export default function AdminDashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-black text-slate-900">Dashboard</h1>
-          <p className="text-slate-600 mt-1">Overview of platform activity and metrics</p>
+          <p className="text-slate-600 mt-1">
+            {admin?.package_access === 'all' 
+              ? 'Overview of all platform activity and metrics'
+              : `Overview of ${admin?.package_access.charAt(0).toUpperCase()}${admin?.package_access.slice(1)} package metrics`
+            }
+          </p>
+          {admin?.package_access !== 'all' && (
+            <div className="mt-2">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                {admin?.package_access.charAt(0).toUpperCase()}{admin?.package_access.slice(1)} Access
+              </span>
+            </div>
+          )}
         </div>
         <div className="text-sm text-slate-500">
           Last updated: {new Date().toLocaleString()}
@@ -218,7 +264,7 @@ export default function AdminDashboard() {
               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
               <div className="flex-1">
                 <p className="text-sm font-medium text-slate-900">New paid member signup</p>
-                <p className="text-xs text-slate-500">Shield plan - 2 minutes ago</p>
+                <p className="text-xs text-slate-500">Shield - 2 minutes ago</p>
               </div>
             </div>
             
@@ -234,7 +280,7 @@ export default function AdminDashboard() {
               <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
               <div className="flex-1">
                 <p className="text-sm font-medium text-slate-900">Intake form submitted</p>
-                <p className="text-xs text-slate-500">Vanish plan - 1 hour ago</p>
+                <p className="text-xs text-slate-500">Vanish - 1 hour ago</p>
               </div>
             </div>
           </div>

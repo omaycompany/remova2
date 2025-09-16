@@ -1477,8 +1477,8 @@ function generateChapter5Content(chapter) {
     <div class="cta-box">
         <div class="cta-content">
             <h3 class="cta-title">🛡️ Let Our Experts Handle the Monitoring</h3>
-            <p class="cta-description">Stop doing this manually. Our Stealth Membership provides 24/7 automated monitoring across 40+ platforms with instant alerts and professional takedown services. Your competitors will never surprise you again.</p>
-            <a href="https://remova.org/membership" class="cta-button">Upgrade to Stealth Protection</a>
+            <p class="cta-description">Stop doing this manually. Our Stealth provides 24/7 automated monitoring across 40+ platforms with instant alerts and professional takedown services. Your competitors will never surprise you again.</p>
+            <a href="https://remova.org/membership" class="cta-button">Upgrade to Stealth</a>
         </div>
     </div>
     

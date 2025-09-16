@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     "supplier relationship protection",
     "competitive intelligence defense",
     "import export privacy",
-    "stealth plan",
-    "vanish plan",
+    "stealth",
+    "vanish",
     "fortress plan",
   ],
   authors: [{ name: "Remova.org" }],
@@ -98,7 +98,7 @@ export default function RootLayout({
     "service": [
       {
         "@type": "Service",
-        "name": "Stealth Plan",
+        "name": "Stealth",
         "description": "Proactive protection with CBP manifest confidentiality filing and renewal management",
         "url": `${baseUrl}/membership`,
         "offers": {
@@ -110,7 +110,7 @@ export default function RootLayout({
       },
       {
         "@type": "Service", 
-        "name": "Vanish Plan",
+        "name": "Vanish",
         "description": "Comprehensive removal with historical data takedown campaigns across 40+ platforms",
         "url": `${baseUrl}/membership`,
         "offers": {
@@ -122,7 +122,7 @@ export default function RootLayout({
       },
       {
         "@type": "Service",
-        "name": "Shield Membership", 
+        "name": "Shield", 
         "description": "Ultimate protection with legal coverage, priority SLA, and custom partner engagement",
         "url": `${baseUrl}/membership`,
         "offers": {

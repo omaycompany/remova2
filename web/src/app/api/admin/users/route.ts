@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAdminFromRequest, hasPermission, logAdminActivity } from '@/lib/admin-auth';
+import { getAdminFromRequest, hasPermission, logAdminActivity, getAccessiblePlans } from '@/lib/admin-auth';
 import { query, queryOne } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
@@ -38,6 +38,14 @@ export async function GET(request: NextRequest) {
       paramCount++;
       conditions.push(`plan_tier = $${paramCount}`);
       values.push(plan);
+    }
+
+    // Apply package access restrictions
+    const accessiblePlans = getAccessiblePlans(admin.package_access);
+    if (accessiblePlans.length < 4) { // If not 'all' access
+      paramCount++;
+      conditions.push(`plan_tier = ANY($${paramCount})`);
+      values.push(accessiblePlans);
     }
 
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';

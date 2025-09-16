@@ -298,7 +298,7 @@ export default function DataPrivacyFight() {
               </svg>
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full animate-ping"></div>
               </div>
-              <span className="font-bold text-lg">THE REMOVA SHIELD PROTECTION SYSTEM</span>
+              <span className="font-bold text-lg">THE REMOVA SHIELD</span>
             </div>
             <h2 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9] bg-gradient-to-r from-gray-900 via-emerald-700 to-blue-700 bg-clip-text text-transparent">
               Your Digital Shield Against<br />

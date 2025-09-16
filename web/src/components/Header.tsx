@@ -10,7 +10,8 @@ export default function Header() {
 
   const menuItems = [
     { href: '/membership', label: 'Protection Plans' },
-    { href: '/resources', label: 'Tools and Resources' },
+    { href: '/tools', label: 'All Tools' },
+    { href: '/resources', label: 'Resources' },
     { href: '/blog', label: 'Blog' },
     { href: '/about', label: 'About' },
     { href: '/contact', label: 'Contact' }

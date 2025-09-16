@@ -60,13 +60,13 @@ export default function Footer() {
             </h6>
             <div className="space-y-4">
               <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                Stealth Protection
+                Stealth
               </Link>
               <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                Vanish Campaign
+                Vanish
               </Link>
               <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                Shield Defense
+                Shield
               </Link>
               <Link href="/membership/free" className="block text-gray-600 hover:text-gray-900 transition-colors">
                 Free Resources

@@ -2,21 +2,21 @@ import Link from "next/link";
 
 const features = [
   {
-    title: "Stealth Plan",
+    title: "Stealth",
     subtitle: "Proactive Protection",
     desc: "CBP manifest confidentiality filing, multi-entity coverage, and renewal management. Essential protection for any importer or exporter.",
     href: "/pricing",
     price: "$3,540/year"
   },
   {
-    title: "Vanish Plan", 
+    title: "Vanish", 
     subtitle: "Comprehensive Removal",
     desc: "Historical data takedown campaigns across 40+ platforms including ImportGenius, Panjiva, and Datamyne. Our flagship offering.",
     href: "/pricing",
     price: "$7,140/year"
   },
   {
-    title: "Shield Membership",
+    title: "Shield",
     subtitle: "Ultimate Protection", 
     desc: "Everything in Vanish plus legal coverage up to $10,000/year, priority SLA, and custom partner engagement programs.",
     href: "/pricing",
@@ -29,7 +29,7 @@ export default function Features() {
     <section className="container mx-auto px-4 py-12">
       <div className="grid md:grid-cols-3 gap-6">
         {features.map((f) => (
-          <div key={f.title} className={`card bg-base-100 border-2 hover:shadow-xl transition-shadow ${f.title === 'Vanish Plan' ? 'border-primary' : 'border-base-300'}`}>
+          <div key={f.title} className={`card bg-base-100 border-2 hover:shadow-xl transition-shadow ${f.title === 'Vanish' ? 'border-primary' : 'border-base-300'}`}>
             <div className="card-body">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="card-title text-lg">{f.title}</h3>

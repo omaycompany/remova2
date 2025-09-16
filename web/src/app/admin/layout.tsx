@@ -95,6 +95,9 @@ export default function AdminLayout({
                 <div className="text-right">
                   <p className="text-sm font-medium text-slate-900">{admin.full_name}</p>
                   <p className="text-xs text-slate-500 capitalize">{admin.role.replace('_', ' ')}</p>
+                  <p className="text-xs text-blue-600 font-medium">
+                    {admin.package_access === 'all' ? 'All Packages' : admin.package_access.charAt(0).toUpperCase() + admin.package_access.slice(1)}
+                  </p>
                 </div>
                 
                 <div className="flex items-center gap-2">

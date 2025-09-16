@@ -35,11 +35,11 @@ function ThankYouContent({ searchParams }: { searchParams: { plan?: string } }) 
       color: "blue"
     },
     vanish: {
-      title: "Vanish Protection Activated", 
+      title: "Vanish Activated", 
       subtitle: "Complete 3-Pillar Protection + Historical Cleanup",
       price: "$595/month",
       services: [
-        "Everything in Stealth Membership",
+        "Everything in Stealth",
         "Systematic database takedowns (40+ platforms)",
         "Manual follow-up enforcement",
         "Dedicated account manager",
@@ -50,7 +50,7 @@ function ThankYouContent({ searchParams }: { searchParams: { plan?: string } }) 
       color: "purple"
     },
     shield: {
-      title: "Shield Protection Activated",
+      title: "Shield Activated",
       subtitle: "Ultimate Protection + Legal Coverage",
       price: "$1,250/month", 
       services: [

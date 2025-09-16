@@ -49,7 +49,7 @@ const plans: Plan[] = [
     recommended: true,
     description: 'Complete 3-pillar protection + historical cleanup',
     features: [
-      'Everything in Stealth plan',
+      'Everything in Stealth',
       'Historical data takedowns (40+ platforms)',
       'Custom removal requests',
       'Dedicated account manager',
@@ -64,7 +64,7 @@ const plans: Plan[] = [
     interval: 'year',
     description: 'Ultimate protection with legal coverage + priority SLA',
     features: [
-      'Everything in Vanish plan',
+      'Everything in Vanish',
       'Legal protection up to $10,000/year',
       'Priority SLA (<24h escalation)',
       'Custom partner engagement programs',

@@ -237,7 +237,7 @@ export default async function PartnerProtectionPage() {
                   <h4 className="font-medium text-green-900 mb-2">How it works:</h4>
                   <ul className="text-green-700 space-y-1">
                     <li>• Refer your trade partners to Remova</li>
-                    <li>• They must sign up for Vanish or Shield plan</li>
+                    <li>• They must sign up for Vanish or Shield</li>
                     <li>• Earn $1,000 after their first month payment</li>
                     <li>• No limit on number of referrals</li>
                   </ul>

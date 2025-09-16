@@ -9,6 +9,7 @@ export interface AdminUser {
   email: string;
   full_name: string;
   role: 'super_admin' | 'admin' | 'support' | 'viewer';
+  package_access: 'all' | 'stealth' | 'vanish' | 'shield';
   is_active: boolean;
   last_login_at: Date | null;
   created_at: Date;
@@ -34,6 +35,37 @@ export const ADMIN_PERMISSIONS = {
 
 export function hasPermission(role: AdminUser['role'], permission: string): boolean {
   return ADMIN_PERMISSIONS[role].includes(permission as any);
+}
+
+// Package access control
+export function canAccessPackage(adminPackageAccess: AdminUser['package_access'], clientPlan: string): boolean {
+  if (adminPackageAccess === 'all') return true;
+  
+  switch (adminPackageAccess) {
+    case 'shield':
+      return ['free', 'stealth', 'vanish', 'shield'].includes(clientPlan);
+    case 'vanish':
+      return ['free', 'stealth', 'vanish'].includes(clientPlan);
+    case 'stealth':
+      return ['free', 'stealth'].includes(clientPlan);
+    default:
+      return false;
+  }
+}
+
+export function getAccessiblePlans(packageAccess: AdminUser['package_access']): string[] {
+  switch (packageAccess) {
+    case 'all':
+      return ['free', 'stealth', 'vanish', 'shield'];
+    case 'shield':
+      return ['free', 'stealth', 'vanish', 'shield'];
+    case 'vanish':
+      return ['free', 'stealth', 'vanish'];
+    case 'stealth':
+      return ['free', 'stealth'];
+    default:
+      return ['free'];
+  }
 }
 
 // Token management
@@ -155,6 +187,7 @@ export async function verifyAdminSession(token: string): Promise<AdminUser | nul
       email: admin.email,
       full_name: admin.full_name,
       role: admin.role,
+      package_access: admin.package_access || 'all',
       is_active: admin.is_active,
       last_login_at: admin.last_login_at ? new Date(admin.last_login_at) : null,
       created_at: new Date(admin.created_at)
