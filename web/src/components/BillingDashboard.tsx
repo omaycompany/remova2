@@ -105,7 +105,7 @@ export default function BillingDashboard() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          return_url: window.location.href,
+          return_url: `${window.location.protocol}//${window.location.hostname}${window.location.pathname}`,
         }),
       });
 
