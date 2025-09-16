@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "Remova",
   },
   alternates: {
-    canonical: "https://remova.org/blog/chinese-suppliers-poaching-european-clients"
+    canonical: "https://www.remova.org/blog/chinese-suppliers-poaching-european-clients"
   }
 };
 

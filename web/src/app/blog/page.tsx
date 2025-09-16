@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     siteName: "Remova",
   },
   alternates: {
-    canonical: "https://remova.org/blog"
+    canonical: "https://www.remova.org/blog"
   }
 };
 

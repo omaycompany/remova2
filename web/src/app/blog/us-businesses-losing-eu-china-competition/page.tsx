@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "Remova",
   },
   alternates: {
-    canonical: "https://remova.org/blog/us-businesses-losing-eu-china-competition"
+    canonical: "https://www.remova.org/blog/us-businesses-losing-eu-china-competition"
   }
 };
 

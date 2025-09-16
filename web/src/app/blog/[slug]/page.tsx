@@ -6742,7 +6742,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       siteName: "Remova",
     },
     alternates: {
-      canonical: `https://remova.org/blog/${slug}`
+      canonical: `https://www.remova.org/blog/${slug}`
     }
   };
 }

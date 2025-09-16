@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "Remova",
   },
   alternates: {
-    canonical: "https://remova.org/blog/digital-tariffs-and-data-sovereignty-2025"
+    canonical: "https://www.remova.org/blog/digital-tariffs-and-data-sovereignty-2025"
   }
 };
 

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "Remova",
   },
   alternates: {
-    canonical: "https://remova.org/blog/eu-cbam-green-tariffs-2025"
+    canonical: "https://www.remova.org/blog/eu-cbam-green-tariffs-2025"
   }
 };
 

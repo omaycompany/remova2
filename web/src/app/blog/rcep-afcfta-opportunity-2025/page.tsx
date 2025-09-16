@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "Remova",
   },
   alternates: {
-    canonical: "https://remova.org/blog/rcep-afcfta-opportunity-2025"
+    canonical: "https://www.remova.org/blog/rcep-afcfta-opportunity-2025"
   }
 };
 

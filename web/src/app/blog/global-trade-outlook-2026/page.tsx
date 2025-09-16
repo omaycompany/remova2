@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "Remova",
   },
   alternates: {
-    canonical: "https://remova.org/blog/global-trade-outlook-2026"
+    canonical: "https://www.remova.org/blog/global-trade-outlook-2026"
   }
 };
 

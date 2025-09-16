@@ -141,7 +141,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
       siteName: "Remova",
     },
     alternates: {
-      canonical: `https://remova.org/blog/category/${category}`
+      canonical: `https://www.remova.org/blog/category/${category}`
     }
   };
 }
