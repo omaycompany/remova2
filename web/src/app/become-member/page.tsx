@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import StripeProvider from '@/components/StripeProvider';
 import SignupForm from '@/components/SignupForm';
 
@@ -11,12 +11,6 @@ export default function BecomeMemberPage() {
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
   const [userEmail, setUserEmail] = useState('');
   const [userCompany, setUserCompany] = useState('');
-
-  // Memoized callback to prevent unnecessary re-renders
-  const handleUserInfoChange = useCallback((email: string, company: string) => {
-    setUserEmail(email);
-    setUserCompany(company);
-  }, []);
 
   // Create payment intent when a paid plan is selected AND we have user info
   useEffect(() => {
@@ -81,7 +75,10 @@ export default function BecomeMemberPage() {
             selectedPlan={selectedPlan}
             onPlanChange={setSelectedPlan}
             clientSecret={clientSecret}
-            onUserInfoChange={handleUserInfoChange}
+            email={userEmail}
+            companyName={userCompany}
+            onEmailChange={setUserEmail}
+            onCompanyNameChange={setUserCompany}
           />
         </StripeProvider>
       </div>

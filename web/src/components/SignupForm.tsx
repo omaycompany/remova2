@@ -1,33 +1,37 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 interface SignupFormProps {
   selectedPlan: 'free' | 'stealth' | 'vanish' | 'shield';
   onPlanChange: (plan: 'free' | 'stealth' | 'vanish' | 'shield') => void;
   clientSecret?: string;
-  onUserInfoChange?: (email: string, company: string) => void;
+  email: string;
+  companyName: string;
+  onEmailChange: (value: string) => void;
+  onCompanyNameChange: (value: string) => void;
 }
 
-export default function SignupForm({ selectedPlan, onPlanChange, clientSecret, onUserInfoChange }: SignupFormProps) {
+export default function SignupForm({
+  selectedPlan,
+  onPlanChange,
+  clientSecret,
+  email,
+  companyName,
+  onEmailChange,
+  onCompanyNameChange,
+}: SignupFormProps) {
   const stripe = useStripe();
   const elements = useElements();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [email, setEmail] = useState('');
-  const [companyName, setCompanyName] = useState('');
 
-  // Debounced effect to notify parent of user info changes
   useEffect(() => {
-    if (!onUserInfoChange || !email || !companyName) return;
-    
-    const timer = setTimeout(() => {
-      onUserInfoChange(email, companyName);
-    }, 1000); // Wait 1 second after user stops typing
-    
-    return () => clearTimeout(timer);
-  }, [email, companyName, onUserInfoChange]);
+    if (!clientSecret) {
+      setError(null);
+    }
+  }, [clientSecret]);
 
   const plans = [
     {
@@ -249,7 +253,7 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret, o
                     className="input input-bordered input-xl w-full text-lg p-6 rounded-2xl border-2"
                     value={companyName}
                     onChange={(e) => {
-                      setCompanyName(e.target.value);
+                      onCompanyNameChange(e.target.value);
                     }}
                     required
                     placeholder={selectedPlan === 'free' ? 'Your Name or Organization' : 'Your Company Name'}
@@ -267,7 +271,7 @@ export default function SignupForm({ selectedPlan, onPlanChange, clientSecret, o
                     className="input input-bordered input-xl w-full text-lg p-6 rounded-2xl border-2"
                     value={email}
                     onChange={(e) => {
-                      setEmail(e.target.value);
+                      onEmailChange(e.target.value);
                     }}
                     required
                     placeholder={selectedPlan === 'free' ? 'your@email.com' : 'business@company.com'}
