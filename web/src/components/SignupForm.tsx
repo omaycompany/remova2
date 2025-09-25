@@ -11,6 +11,7 @@ interface SignupFormProps {
   companyName: string;
   onEmailChange: (value: string) => void;
   onCompanyNameChange: (value: string) => void;
+  paymentIntentError: string | null;
 }
 
 export default function SignupForm({
@@ -21,6 +22,7 @@ export default function SignupForm({
   companyName,
   onEmailChange,
   onCompanyNameChange,
+  paymentIntentError,
 }: SignupFormProps) {
   const stripe = useStripe();
   const elements = useElements();
@@ -500,12 +502,12 @@ export default function SignupForm({
             </div>
 
             {/* Error Display */}
-            {error && (
+            {(error || paymentIntentError) && (
               <div className="alert alert-error max-w-2xl mx-auto">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <span>{error}</span>
+                <span>{error || paymentIntentError}</span>
               </div>
             )}
 

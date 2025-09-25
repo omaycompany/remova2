@@ -7,22 +7,38 @@ import SignupForm from '@/components/SignupForm';
 export default function BecomeMemberPage() {
   const [selectedPlan, setSelectedPlan] = useState<'free' | 'stealth' | 'vanish' | 'shield'>('vanish');
   const [clientSecret, setClientSecret] = useState<string | undefined>();
-  const [isLoading, setIsLoading] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
   const [userEmail, setUserEmail] = useState('');
   const [userCompany, setUserCompany] = useState('');
+  const [paymentIntentError, setPaymentIntentError] = useState<string | null>(null);
+
+  const handlePlanChange = (plan: 'free' | 'stealth' | 'vanish' | 'shield') => {
+    setSelectedPlan(plan);
+    setPaymentIntentError(null);
+  };
+
+  const handleEmailChange = (email: string) => {
+    setUserEmail(email);
+    setPaymentIntentError(null);
+  };
+
+  const handleCompanyChange = (company: string) => {
+    setUserCompany(company);
+    setPaymentIntentError(null);
+  };
 
   // Create payment intent when a paid plan is selected AND we have user info
   useEffect(() => {
     if (selectedPlan === 'free' || !userEmail || !userCompany) {
       setClientSecret(undefined);
+      setPaymentIntentError(null);
       return;
     }
 
     // Debounce payment intent creation to prevent excessive API calls
     const timer = setTimeout(async () => {
-      setIsLoading(true);
       try {
+        setPaymentIntentError(null);
         const response = await fetch('/api/create-payment-intent', {
           method: 'POST',
           headers: {
@@ -35,16 +51,20 @@ export default function BecomeMemberPage() {
           }),
         });
 
-        if (response.ok) {
-          const { clientSecret } = await response.json();
-          setClientSecret(clientSecret);
+        const payload = await response.json().catch(() => null);
+
+        if (response.ok && payload?.clientSecret) {
+          setClientSecret(payload.clientSecret);
+          setPaymentIntentError(null);
         } else {
-          console.error('Failed to create payment intent:', response.status, response.statusText);
+          const message = payload?.message || 'Unable to prepare payment. Please try again in a moment.';
+          setPaymentIntentError(message);
+          setClientSecret(undefined);
         }
       } catch (error) {
-        console.error('Failed to create payment intent:', error);
-      } finally {
-        setIsLoading(false);
+        const message = error instanceof Error ? error.message : 'Unable to prepare payment. Please try again in a moment.';
+        setPaymentIntentError(message);
+        setClientSecret(undefined);
       }
     }, 500); // Wait 500ms before creating payment intent
 
@@ -73,12 +93,13 @@ export default function BecomeMemberPage() {
         <StripeProvider key={clientSecret || 'no-client-secret'} clientSecret={clientSecret}>
           <SignupForm
             selectedPlan={selectedPlan}
-            onPlanChange={setSelectedPlan}
+            onPlanChange={handlePlanChange}
             clientSecret={clientSecret}
             email={userEmail}
             companyName={userCompany}
-            onEmailChange={setUserEmail}
-            onCompanyNameChange={setUserCompany}
+            onEmailChange={handleEmailChange}
+            onCompanyNameChange={handleCompanyChange}
+            paymentIntentError={paymentIntentError}
           />
         </StripeProvider>
       </div>
