@@ -11,8 +11,12 @@ interface SignupFormProps {
   companyName: string;
   onEmailChange: (value: string) => void;
   onCompanyNameChange: (value: string) => void;
-  couponCode: string;
-  onCouponChange: (value: string) => void;
+  couponDraft: string;
+  couponStatus: 'idle' | 'applying' | 'applied' | 'invalid';
+  couponSavings: number;
+  onCouponDraftChange: (value: string) => void;
+  onCouponApply: () => void;
+  onCouponClear: () => void;
   paymentIntentError: string | null;
 }
 
@@ -24,8 +28,12 @@ export default function SignupForm({
   companyName,
   onEmailChange,
   onCompanyNameChange,
-  couponCode,
-  onCouponChange,
+  couponDraft,
+  couponStatus,
+  couponSavings,
+  onCouponDraftChange,
+  onCouponApply,
+  onCouponClear,
   paymentIntentError,
 }: SignupFormProps) {
   const stripe = useStripe();
@@ -35,16 +43,16 @@ export default function SignupForm({
   const [showCoupon, setShowCoupon] = useState(false);
 
   useEffect(() => {
-    if (selectedPlan === 'free') {
-      setShowCoupon(false);
-    }
-  }, [selectedPlan]);
-
-  useEffect(() => {
     if (!clientSecret) {
       setError(null);
     }
   }, [clientSecret]);
+
+  useEffect(() => {
+    if (selectedPlan === 'free') {
+      setShowCoupon(false);
+    }
+  }, [selectedPlan]);
 
   const plans = [
     {
@@ -450,42 +458,74 @@ export default function SignupForm({
                     </div>
 
                     <div className="space-y-4">
-                      <button
-                        type="button"
-                        className="btn btn-sm btn-ghost text-sm font-semibold"
-                        onClick={() => {
-                          setShowCoupon((prev) => {
-                            const next = !prev;
-                            if (!next) {
-                              onCouponChange('');
-                            }
-                            return next;
-                          });
-                        }}
-                        aria-expanded={showCoupon}
-                        aria-controls="coupon-input"
-                        disabled={selectedPlan === 'free'}
-                      >
-                        {showCoupon ? 'Hide coupon' : 'Have a coupon?'}
-                      </button>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-ghost text-sm font-semibold"
+                          onClick={() => {
+                            setShowCoupon((prev) => {
+                              const next = !prev;
+                              if (!next) {
+                                onCouponClear();
+                              }
+                              return next;
+                            });
+                          }}
+                          aria-expanded={showCoupon}
+                          aria-controls="coupon-input"
+                          disabled={selectedPlan === 'free'}
+                        >
+                          {showCoupon ? 'Hide coupon' : 'Have a coupon?'}
+                        </button>
+                        {couponStatus === 'applied' && couponSavings > 0 && (
+                          <span className="badge badge-success badge-sm">
+                            {`Coupon applied - saved $${couponSavings.toLocaleString()}`}
+                          </span>
+                        )}
+                      </div>
 
                       {showCoupon && (
                         <div id="coupon-input" className="form-control">
                           <label className="label" htmlFor="couponCode">
                             <span className="label-text font-semibold text-sm">Coupon Code</span>
                           </label>
-                          <input
-                            id="couponCode"
-                            type="text"
-                            value={couponCode}
-                            onChange={(event) => onCouponChange(event.target.value)}
-                            placeholder="ENTER CODE"
-                            className="input input-bordered uppercase tracking-widest text-sm"
-                            autoComplete="off"
-                          />
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                            <input
+                              id="couponCode"
+                              type="text"
+                              value={couponDraft}
+                              onChange={(event) => onCouponDraftChange(event.target.value)}
+                              placeholder="ENTER CODE"
+                              className="input input-bordered uppercase tracking-widest text-sm w-full sm:w-auto"
+                              autoComplete="off"
+                              maxLength={64}
+                              disabled={couponStatus === 'applying' || !clientSecret}
+                            />
+                            <div className="flex gap-2">
+                              <button
+                                type="button"
+                                className="btn btn-sm btn-primary font-semibold"
+                                onClick={onCouponApply}
+                                disabled={couponStatus === 'applying' || !couponDraft.trim() || !clientSecret}
+                              >
+                                {couponStatus === 'applying' ? 'Applying…' : 'Apply'}
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn-sm btn-ghost"
+                                onClick={onCouponClear}
+                                disabled={(!couponDraft.trim() && couponSavings <= 0) || !clientSecret}
+                              >
+                                Clear
+                              </button>
+                            </div>
+                          </div>
                           <p className="text-xs text-gray-500 mt-2">
                             Enter your Remova-issued coupon to apply eligible discounts at checkout.
                           </p>
+                          {couponStatus === 'invalid' && (
+                            <p className="text-xs text-error font-semibold mt-1">Invalid or unsupported coupon code.</p>
+                          )}
                         </div>
                       )}
                     </div>

@@ -11,13 +11,25 @@ export default function BecomeMemberPage() {
   const [userEmail, setUserEmail] = useState('');
   const [userCompany, setUserCompany] = useState('');
   const [paymentIntentError, setPaymentIntentError] = useState<string | null>(null);
-  const [couponCode, setCouponCode] = useState('');
+  const [couponDraft, setCouponDraft] = useState('');
+  const [appliedCoupon, setAppliedCoupon] = useState<string | undefined>(undefined);
+  const [couponStatus, setCouponStatus] = useState<'idle' | 'applying' | 'applied' | 'invalid'>('idle');
+  const [couponSavings, setCouponSavings] = useState(0);
+  const [couponNonce, setCouponNonce] = useState(0);
+
+  const resetCouponState = () => {
+    setCouponDraft('');
+    setAppliedCoupon(undefined);
+    setCouponStatus('idle');
+    setCouponSavings(0);
+    setCouponNonce((prev) => prev + 1);
+  };
 
   const handlePlanChange = (plan: 'free' | 'stealth' | 'vanish' | 'shield') => {
     setSelectedPlan(plan);
     setPaymentIntentError(null);
     if (plan === 'free') {
-      setCouponCode('');
+      resetCouponState();
     }
   };
 
@@ -31,21 +43,72 @@ export default function BecomeMemberPage() {
     setPaymentIntentError(null);
   };
 
-  const handleCouponChange = (code: string) => {
-    setCouponCode(code);
+  const handleCouponDraftChange = (code: string) => {
+    setCouponDraft(code);
+    const trimmed = code.trim();
+
+    if (!trimmed) {
+      resetCouponState();
+      return;
+    }
+
+    const normalized = trimmed.toUpperCase();
+    if (appliedCoupon && normalized !== appliedCoupon) {
+      setAppliedCoupon(undefined);
+      setCouponStatus('idle');
+      setCouponSavings(0);
+      setCouponNonce((prev) => prev + 1);
+    } else if (couponStatus === 'invalid') {
+      setCouponStatus('idle');
+    }
+  };
+
+  const handleCouponApply = () => {
+    const trimmed = couponDraft.trim();
+
+    if (!trimmed) {
+      setCouponStatus('invalid');
+      setPaymentIntentError('Enter a coupon code before applying.');
+      return;
+    }
+
+    if (!userEmail || !userCompany) {
+      setPaymentIntentError('Please complete your business information before applying a coupon.');
+      return;
+    }
+
+    const normalized = trimmed.toUpperCase();
+    setCouponDraft(normalized);
+    setCouponStatus('applying');
+    setAppliedCoupon(normalized);
+    setCouponSavings(0);
+    setPaymentIntentError(null);
+    setCouponNonce((prev) => prev + 1);
+  };
+
+  const handleCouponClear = () => {
+    resetCouponState();
   };
 
   // Create payment intent when a paid plan is selected AND we have user info
   useEffect(() => {
-    if (selectedPlan === 'free' || !userEmail || !userCompany) {
-      setClientSecret(undefined);
-      setPaymentIntentError(null);
+    if (selectedPlan === 'free') {
       return;
     }
 
+    const trimmedEmail = userEmail.trim();
+    const trimmedCompany = userCompany.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailIsValid = emailPattern.test(trimmedEmail);
+
+    if (!emailIsValid || trimmedCompany.length < 2) {
+      return;
+    }
+
+    let cancelled = false;
+
     const timer = setTimeout(async () => {
       try {
-        setPaymentIntentError(null);
         const response = await fetch('/api/create-payment-intent', {
           method: 'POST',
           headers: {
@@ -53,31 +116,65 @@ export default function BecomeMemberPage() {
           },
           body: JSON.stringify({
             plan: selectedPlan,
-            email: userEmail,
-            companyName: userCompany,
-            couponCode: couponCode || undefined,
+            email: trimmedEmail,
+            companyName: trimmedCompany,
+            couponCode: appliedCoupon || undefined,
           }),
         });
 
         const payload = await response.json().catch(() => null);
+        if (cancelled) return;
 
         if (response.ok && payload?.clientSecret) {
           setClientSecret(payload.clientSecret);
           setPaymentIntentError(null);
+
+          const discountAmountCents = typeof payload?.discountAmount === 'number' ? payload.discountAmount : 0;
+          const serverCoupon = payload?.appliedCoupon || null;
+          const savings = Number((discountAmountCents / 100).toFixed(2));
+
+          if (appliedCoupon) {
+            if (serverCoupon && discountAmountCents > 0) {
+              setCouponSavings(savings);
+              setCouponStatus('applied');
+            } else {
+              setCouponSavings(0);
+              setCouponStatus('invalid');
+              setAppliedCoupon(undefined);
+            }
+          } else {
+            setCouponSavings(0);
+            setCouponStatus('idle');
+          }
         } else {
           const message = payload?.message || payload?.error || 'Unable to prepare payment. Please try again in a moment.';
           setPaymentIntentError(message);
-          setClientSecret(undefined);
+
+          if (appliedCoupon) {
+            setCouponStatus('invalid');
+            setAppliedCoupon(undefined);
+            setCouponSavings(0);
+          }
         }
       } catch (error) {
+        if (cancelled) return;
+
         const message = error instanceof Error ? error.message : 'Unable to prepare payment. Please try again in a moment.';
         setPaymentIntentError(message);
-        setClientSecret(undefined);
-      }
-    }, 500);
 
-    return () => clearTimeout(timer);
-  }, [selectedPlan, userEmail, userCompany, couponCode]);
+        if (appliedCoupon) {
+          setCouponStatus('invalid');
+          setAppliedCoupon(undefined);
+          setCouponSavings(0);
+        }
+      }
+    }, 400);
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [selectedPlan, userEmail, userCompany, appliedCoupon, couponNonce]);
 
   // Hide scroll indicator when user scrolls down
   useEffect(() => {
@@ -107,8 +204,12 @@ export default function BecomeMemberPage() {
             companyName={userCompany}
             onEmailChange={handleEmailChange}
             onCompanyNameChange={handleCompanyChange}
-            couponCode={couponCode}
-            onCouponChange={handleCouponChange}
+            couponDraft={couponDraft}
+            couponStatus={couponStatus}
+            couponSavings={couponSavings}
+            onCouponDraftChange={handleCouponDraftChange}
+            onCouponApply={handleCouponApply}
+            onCouponClear={handleCouponClear}
             paymentIntentError={paymentIntentError}
           />
         </StripeProvider>

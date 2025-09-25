@@ -29,6 +29,7 @@ export async function POST(request: NextRequest) {
     const normalizedCode = couponCode?.trim().toUpperCase();
     const multiplier = normalizedCode ? coupons[normalizedCode] ?? 1 : 1;
     const amount = Math.round(baseAmount * multiplier);
+    const discountAmount = baseAmount - amount;
 
     // Create payment intent
     const paymentIntent = await stripe.paymentIntents.create({
@@ -39,6 +40,7 @@ export async function POST(request: NextRequest) {
         email,
         companyName,
         coupon: normalizedCode || 'NONE',
+        discountAmount: discountAmount.toString(),
       },
       receipt_email: email,
       description: `${plan === 'stealth' ? 'Stealth' : plan === 'vanish' ? 'Vanish' : 'Shield'} Membership - ${companyName}`,
@@ -49,6 +51,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       clientSecret: paymentIntent.client_secret,
+      appliedCoupon: normalizedCode && coupons[normalizedCode] ? normalizedCode : null,
+      discountAmount,
     });
 
   } catch (error) {
