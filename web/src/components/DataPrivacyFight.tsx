@@ -276,7 +276,7 @@ export default function DataPrivacyFight() {
       </section>
 
       {/* SOLUTION SECTION */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-emerald-50 via-blue-50/30 to-indigo-50/20">
+      <section id="how-remova-works" className="relative py-24 overflow-hidden bg-gradient-to-br from-emerald-50 via-blue-50/30 to-indigo-50/20">
         {/* Enhanced Background Elements */}
         <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute inset-0" style={{
@@ -402,7 +402,7 @@ export default function DataPrivacyFight() {
       </section>
 
       {/* HOW IT WORKS SECTION */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-gray-50 via-slate-50/30 to-blue-50/20">
+      <section id="why-important" className="relative py-24 overflow-hidden bg-gradient-to-br from-gray-50 via-slate-50/30 to-blue-50/20">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
           <div className="absolute inset-0" style={{

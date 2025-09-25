@@ -52,8 +52,8 @@ export default function BecomeMemberPage() {
       return;
     }
 
-    const normalized = trimmed.toUpperCase();
-    if (appliedCoupon && normalized !== appliedCoupon) {
+    // Don't convert to uppercase - preserve original case for Stripe
+    if (appliedCoupon && trimmed !== appliedCoupon) {
       setAppliedCoupon(undefined);
       setCouponStatus('idle');
       setCouponSavings(0);
@@ -77,10 +77,10 @@ export default function BecomeMemberPage() {
       return;
     }
 
-    const normalized = trimmed.toUpperCase();
-    setCouponDraft(normalized);
+    // Don't convert to uppercase - preserve original case for Stripe
+    setCouponDraft(trimmed);
     setCouponStatus('applying');
-    setAppliedCoupon(normalized);
+    setAppliedCoupon(trimmed);
     setCouponSavings(0);
     setPaymentIntentError(null);
     setCouponNonce((prev) => prev + 1);

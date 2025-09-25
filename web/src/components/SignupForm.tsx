@@ -457,6 +457,17 @@ export default function SignupForm({
                       </h3>
                     </div>
 
+                    {clientSecret ? (
+                      <div className="bg-white p-6 border border-base-300 rounded-lg shadow-sm">
+                        <PaymentElement />
+                      </div>
+                    ) : (
+                      <div className="text-center py-12 bg-base-50 rounded-lg">
+                        <div className="loading loading-spinner loading-lg text-primary"></div>
+                        <p className="mt-4 text-sm opacity-70">Preparing secure payment form...</p>
+                      </div>
+                    )}
+
                     <div className="space-y-4">
                       <div className="flex items-center gap-2">
                         <button
@@ -495,8 +506,8 @@ export default function SignupForm({
                               type="text"
                               value={couponDraft}
                               onChange={(event) => onCouponDraftChange(event.target.value)}
-                              placeholder="ENTER CODE"
-                              className="input input-bordered uppercase tracking-widest text-sm w-full sm:w-auto"
+                              placeholder="Enter code"
+                              className="input input-bordered text-sm w-full sm:w-auto"
                               autoComplete="off"
                               maxLength={64}
                               disabled={couponStatus === 'applying' || !clientSecret}
@@ -529,17 +540,6 @@ export default function SignupForm({
                         </div>
                       )}
                     </div>
-
-                    {clientSecret ? (
-                      <div className="bg-white p-6 border border-base-300 rounded-lg shadow-sm">
-                        <PaymentElement />
-                      </div>
-                    ) : (
-                      <div className="text-center py-12 bg-base-50 rounded-lg">
-                        <div className="loading loading-spinner loading-lg text-primary"></div>
-                        <p className="mt-4 text-sm opacity-70">Preparing secure payment form...</p>
-                      </div>
-                    )}
                   </>
                 ) : (
                   <div className="space-y-6">

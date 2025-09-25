@@ -1,4 +1,13 @@
+"use client";
+
 import Link from "next/link";
+
+const scrollToSection = (sectionId: string) => {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 
 export default function Hero() {
   return (
@@ -42,50 +51,26 @@ export default function Hero() {
               Every day you wait is another day they map your business relationships and target your accounts.
             </p>
 
-            {/* Live Threat Display */}
-            <div className="mb-12 max-w-4xl mx-auto">
-              <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-red-200 p-6 shadow-xl">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-bold text-gray-800">Live Data Exposure Monitoring</h3>
-                  <div className="flex items-center gap-2 text-red-600">
-                    <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm font-medium">ACTIVE THREATS</span>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                  <div className="bg-red-50 rounded-lg p-4">
-                    <div className="text-2xl font-bold text-red-600 mb-1">40+</div>
-                    <div className="text-sm text-gray-600">Platforms Selling Your Data</div>
-                  </div>
-                  <div className="bg-orange-50 rounded-lg p-4">
-                    <div className="text-2xl font-bold text-orange-600 mb-1">24/7</div>
-                    <div className="text-sm text-gray-600">Real-time Data Collection</div>
-                  </div>
-                  <div className="bg-yellow-50 rounded-lg p-4">
-                    <div className="text-2xl font-bold text-yellow-600 mb-1">73%</div>
-                    <div className="text-sm text-gray-600">Companies Lose Key Accounts</div>
-                  </div>
-                  <div className="bg-red-50 rounded-lg p-4">
-                    <div className="text-2xl font-bold text-red-600 mb-1">Active</div>
-                    <div className="text-sm text-gray-600">Protections Running</div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             {/* Enhanced Call-to-Action Buttons */}
             <div className="flex flex-col lg:flex-row gap-6 justify-center mb-12">
-              <Link href="/contact#contact-form" className="group relative btn btn-error btn-lg text-2xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-2 border-red-600">
+              <button 
+                onClick={() => scrollToSection('why-important')} 
+                className="group relative btn btn-error btn-lg text-2xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-2 border-red-600"
+              >
                 <span className="relative z-10 flex items-center gap-3">
-                  Request Your Free Audit Now
+                  Why It's Important
                   <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </span>
-              </Link>
-              <Link href="/membership" className="btn btn-outline btn-lg text-xl px-12 py-6 font-bold border-gray-600 text-gray-700 hover:bg-gray-700 hover:text-white transition-all shadow-xl border-2">
-                See All Protection Plans
-              </Link>
+              </button>
+              <button 
+                onClick={() => scrollToSection('how-remova-works')} 
+                className="btn btn-outline btn-lg text-xl px-12 py-6 font-bold border-gray-600 text-gray-700 hover:bg-gray-700 hover:text-white transition-all shadow-xl border-2"
+              >
+                How Remova Works
+              </button>
             </div>
 
             {/* Trust Indicators & Urgency */}

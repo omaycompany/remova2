@@ -20,16 +20,43 @@ export async function POST(request: NextRequest) {
       shield: 1500000,
     };
 
-    const coupons: Record<string, number> = {
-      REMOVA10: 0.9,
-      REMOVA20: 0.8,
-    };
-
     const baseAmount = pricing[plan];
-    const normalizedCode = couponCode?.trim().toUpperCase();
-    const multiplier = normalizedCode ? coupons[normalizedCode] ?? 1 : 1;
-    const amount = Math.round(baseAmount * multiplier);
-    const discountAmount = baseAmount - amount;
+    let amount = baseAmount;
+    let discountAmount = 0;
+    let appliedCoupon: string | null = null;
+    let stripePromotionCode: any = null;
+
+    // If coupon code is provided, validate it with Stripe
+    if (couponCode?.trim()) {
+      const trimmedCode = couponCode.trim();
+      
+      try {
+        // Find the promotion code in Stripe (case-insensitive search)
+        const promotionCodes = await stripe.promotionCodes.list({
+          code: trimmedCode,
+          active: true,
+          limit: 1,
+        });
+
+        if (promotionCodes.data.length > 0) {
+          stripePromotionCode = promotionCodes.data[0];
+          const coupon = stripePromotionCode.coupon;
+          
+          // Calculate discount based on coupon type
+          if (coupon.percent_off) {
+            discountAmount = Math.round(baseAmount * (coupon.percent_off / 100));
+          } else if (coupon.amount_off) {
+            discountAmount = Math.min(coupon.amount_off, baseAmount);
+          }
+          
+          amount = baseAmount - discountAmount;
+          appliedCoupon = trimmedCode;
+        }
+      } catch (error) {
+        console.error('Error validating coupon code:', error);
+        // Continue without coupon if validation fails
+      }
+    }
 
     // Create payment intent
     const paymentIntent = await stripe.paymentIntents.create({
@@ -39,8 +66,9 @@ export async function POST(request: NextRequest) {
         plan,
         email,
         companyName,
-        coupon: normalizedCode || 'NONE',
+        coupon: appliedCoupon || 'NONE',
         discountAmount: discountAmount.toString(),
+        ...(stripePromotionCode && { promotionCodeId: stripePromotionCode.id }),
       },
       receipt_email: email,
       description: `${plan === 'stealth' ? 'Stealth' : plan === 'vanish' ? 'Vanish' : 'Shield'} Membership - ${companyName}`,
@@ -51,7 +79,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       clientSecret: paymentIntent.client_secret,
-      appliedCoupon: normalizedCode && coupons[normalizedCode] ? normalizedCode : null,
+      appliedCoupon,
       discountAmount,
     });
 
