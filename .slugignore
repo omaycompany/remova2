@@ -1,0 +1,2 @@
+# Exclude Next.js cache directories to keep the Heroku slug under the soft limit
+web/.next/cache/

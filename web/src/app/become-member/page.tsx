@@ -11,10 +11,14 @@ export default function BecomeMemberPage() {
   const [userEmail, setUserEmail] = useState('');
   const [userCompany, setUserCompany] = useState('');
   const [paymentIntentError, setPaymentIntentError] = useState<string | null>(null);
+  const [couponCode, setCouponCode] = useState('');
 
   const handlePlanChange = (plan: 'free' | 'stealth' | 'vanish' | 'shield') => {
     setSelectedPlan(plan);
     setPaymentIntentError(null);
+    if (plan === 'free') {
+      setCouponCode('');
+    }
   };
 
   const handleEmailChange = (email: string) => {
@@ -27,6 +31,10 @@ export default function BecomeMemberPage() {
     setPaymentIntentError(null);
   };
 
+  const handleCouponChange = (code: string) => {
+    setCouponCode(code);
+  };
+
   // Create payment intent when a paid plan is selected AND we have user info
   useEffect(() => {
     if (selectedPlan === 'free' || !userEmail || !userCompany) {
@@ -35,7 +43,6 @@ export default function BecomeMemberPage() {
       return;
     }
 
-    // Debounce payment intent creation to prevent excessive API calls
     const timer = setTimeout(async () => {
       try {
         setPaymentIntentError(null);
@@ -48,6 +55,7 @@ export default function BecomeMemberPage() {
             plan: selectedPlan,
             email: userEmail,
             companyName: userCompany,
+            couponCode: couponCode || undefined,
           }),
         });
 
@@ -57,7 +65,7 @@ export default function BecomeMemberPage() {
           setClientSecret(payload.clientSecret);
           setPaymentIntentError(null);
         } else {
-          const message = payload?.message || 'Unable to prepare payment. Please try again in a moment.';
+          const message = payload?.message || payload?.error || 'Unable to prepare payment. Please try again in a moment.';
           setPaymentIntentError(message);
           setClientSecret(undefined);
         }
@@ -66,10 +74,10 @@ export default function BecomeMemberPage() {
         setPaymentIntentError(message);
         setClientSecret(undefined);
       }
-    }, 500); // Wait 500ms before creating payment intent
+    }, 500);
 
     return () => clearTimeout(timer);
-  }, [selectedPlan, userEmail, userCompany]);
+  }, [selectedPlan, userEmail, userCompany, couponCode]);
 
   // Hide scroll indicator when user scrolls down
   useEffect(() => {
@@ -99,6 +107,8 @@ export default function BecomeMemberPage() {
             companyName={userCompany}
             onEmailChange={handleEmailChange}
             onCompanyNameChange={handleCompanyChange}
+            couponCode={couponCode}
+            onCouponChange={handleCouponChange}
             paymentIntentError={paymentIntentError}
           />
         </StripeProvider>

@@ -11,6 +11,8 @@ interface SignupFormProps {
   companyName: string;
   onEmailChange: (value: string) => void;
   onCompanyNameChange: (value: string) => void;
+  couponCode: string;
+  onCouponChange: (value: string) => void;
   paymentIntentError: string | null;
 }
 
@@ -22,12 +24,21 @@ export default function SignupForm({
   companyName,
   onEmailChange,
   onCompanyNameChange,
+  couponCode,
+  onCouponChange,
   paymentIntentError,
 }: SignupFormProps) {
   const stripe = useStripe();
   const elements = useElements();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showCoupon, setShowCoupon] = useState(false);
+
+  useEffect(() => {
+    if (selectedPlan === 'free') {
+      setShowCoupon(false);
+    }
+  }, [selectedPlan]);
 
   useEffect(() => {
     if (!clientSecret) {
@@ -437,7 +448,48 @@ export default function SignupForm({
                         Payment Information
                       </h3>
                     </div>
-                    
+
+                    <div className="space-y-4">
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-ghost text-sm font-semibold"
+                        onClick={() => {
+                          setShowCoupon((prev) => {
+                            const next = !prev;
+                            if (!next) {
+                              onCouponChange('');
+                            }
+                            return next;
+                          });
+                        }}
+                        aria-expanded={showCoupon}
+                        aria-controls="coupon-input"
+                        disabled={selectedPlan === 'free'}
+                      >
+                        {showCoupon ? 'Hide coupon' : 'Have a coupon?'}
+                      </button>
+
+                      {showCoupon && (
+                        <div id="coupon-input" className="form-control">
+                          <label className="label" htmlFor="couponCode">
+                            <span className="label-text font-semibold text-sm">Coupon Code</span>
+                          </label>
+                          <input
+                            id="couponCode"
+                            type="text"
+                            value={couponCode}
+                            onChange={(event) => onCouponChange(event.target.value)}
+                            placeholder="ENTER CODE"
+                            className="input input-bordered uppercase tracking-widest text-sm"
+                            autoComplete="off"
+                          />
+                          <p className="text-xs text-gray-500 mt-2">
+                            Enter your Remova-issued coupon to apply eligible discounts at checkout.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+
                     {clientSecret ? (
                       <div className="bg-white p-6 border border-base-300 rounded-lg shadow-sm">
                         <PaymentElement />
