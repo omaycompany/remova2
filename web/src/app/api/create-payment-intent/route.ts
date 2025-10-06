@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
             discountAmount = Math.min(coupon.amount_off, baseAmount);
           }
           
-          amount = baseAmount - discountAmount;
+          amount = Math.max(baseAmount - discountAmount, 50); // Minimum $0.50
           appliedCoupon = trimmedCode;
         }
       } catch (error) {
@@ -58,16 +58,20 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Ensure minimum charge amount (Stripe requires at least $0.50)
+    const finalAmount = Math.max(amount, 50);
+    const actualDiscountAmount = baseAmount - finalAmount;
+
     // Create payment intent
     const paymentIntent = await stripe.paymentIntents.create({
-      amount,
+      amount: finalAmount,
       currency: 'usd',
       metadata: {
         plan,
         email,
         companyName,
         coupon: appliedCoupon || 'NONE',
-        discountAmount: discountAmount.toString(),
+        discountAmount: actualDiscountAmount.toString(),
         ...(stripePromotionCode && { promotionCodeId: stripePromotionCode.id }),
       },
       receipt_email: email,
@@ -80,7 +84,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       clientSecret: paymentIntent.client_secret,
       appliedCoupon,
-      discountAmount,
+      discountAmount: actualDiscountAmount,
     });
 
   } catch (error) {
