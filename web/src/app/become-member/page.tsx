@@ -155,6 +155,11 @@ export default function BecomeMemberPage() {
             setAppliedCoupon(undefined);
             setCouponSavings(0);
           }
+          
+          // Don't clear clientSecret on coupon validation failure to preserve PaymentElement
+          if (!appliedCoupon) {
+            setClientSecret(undefined);
+          }
         }
       } catch (error) {
         if (cancelled) return;
@@ -166,6 +171,11 @@ export default function BecomeMemberPage() {
           setCouponStatus('invalid');
           setAppliedCoupon(undefined);
           setCouponSavings(0);
+        }
+        
+        // Don't clear clientSecret on coupon validation failure to preserve PaymentElement
+        if (!appliedCoupon) {
+          setClientSecret(undefined);
         }
       }
     }, 400);
@@ -195,7 +205,7 @@ export default function BecomeMemberPage() {
   return (
     <div className="min-h-screen bg-gray-50 relative">
       <div className="container mx-auto px-4 py-8">
-        <StripeProvider key={clientSecret || 'no-client-secret'} clientSecret={clientSecret}>
+        <StripeProvider clientSecret={clientSecret}>
           <SignupForm
             selectedPlan={selectedPlan}
             onPlanChange={handlePlanChange}
