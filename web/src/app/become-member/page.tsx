@@ -7,8 +7,6 @@ import SignupForm from '@/components/SignupForm';
 export default function BecomeMemberPage() {
   const [selectedPlan, setSelectedPlan] = useState<'free' | 'stealth' | 'vanish' | 'shield'>('vanish');
   const [clientSecret, setClientSecret] = useState<string | undefined>();
-  const [elementsKey, setElementsKey] = useState(0);
-  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
   const [userEmail, setUserEmail] = useState('');
   const [userCompany, setUserCompany] = useState('');
@@ -85,7 +83,6 @@ export default function BecomeMemberPage() {
     setAppliedCoupon(trimmed);
     setCouponSavings(0);
     setPaymentIntentError(null);
-    setIsApplyingCoupon(true);
     setCouponNonce((prev) => prev + 1);
   };
 
@@ -129,16 +126,8 @@ export default function BecomeMemberPage() {
         if (cancelled) return;
 
         if (response.ok && payload?.clientSecret) {
-          // Only update clientSecret if it's different to avoid unnecessary Elements recreation
-          if (clientSecret !== payload.clientSecret) {
-            setClientSecret(payload.clientSecret);
-            // Only recreate Elements if we're not applying a coupon (to preserve PaymentElement state)
-            if (!isApplyingCoupon) {
-              setElementsKey((prev) => prev + 1);
-            }
-          }
+          setClientSecret(payload.clientSecret);
           setPaymentIntentError(null);
-          setIsApplyingCoupon(false);
 
           const discountAmountCents = typeof payload?.discountAmount === 'number' ? payload.discountAmount : 0;
           const serverCoupon = payload?.appliedCoupon || null;
@@ -184,8 +173,6 @@ export default function BecomeMemberPage() {
           setCouponSavings(0);
         }
         
-        setIsApplyingCoupon(false);
-        
         // Don't clear clientSecret on coupon validation failure to preserve PaymentElement
         if (!appliedCoupon) {
           setClientSecret(undefined);
@@ -197,7 +184,7 @@ export default function BecomeMemberPage() {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [selectedPlan, userEmail, userCompany, appliedCoupon, couponNonce, isApplyingCoupon]);
+  }, [selectedPlan, userEmail, userCompany, appliedCoupon, couponNonce]);
 
   // Hide scroll indicator when user scrolls down
   useEffect(() => {
@@ -218,7 +205,7 @@ export default function BecomeMemberPage() {
   return (
     <div className="min-h-screen bg-gray-50 relative">
       <div className="container mx-auto px-4 py-8">
-        <StripeProvider key={elementsKey} clientSecret={clientSecret}>
+        <StripeProvider clientSecret={clientSecret}>
           <SignupForm
             selectedPlan={selectedPlan}
             onPlanChange={handlePlanChange}

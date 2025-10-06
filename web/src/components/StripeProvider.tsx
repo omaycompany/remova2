@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -13,9 +13,9 @@ interface StripeProviderProps {
 }
 
 export default function StripeProvider({ children, clientSecret }: StripeProviderProps) {
-  const options = clientSecret ? {
-    clientSecret,
-    appearance: {
+  // Memoize options to prevent unnecessary re-renders
+  const options = useMemo(() => {
+    const baseAppearance = {
       theme: 'stripe' as const,
       variables: {
         colorPrimary: '#3b82f6',
@@ -26,23 +26,21 @@ export default function StripeProvider({ children, clientSecret }: StripeProvide
         spacingUnit: '4px',
         borderRadius: '8px',
       },
-    },
-  } : {
-    mode: 'setup' as const,
-    currency: 'usd',
-    appearance: {
-      theme: 'stripe' as const,
-      variables: {
-        colorPrimary: '#3b82f6',
-        colorBackground: '#ffffff',
-        colorText: '#1f2937',
-        colorDanger: '#ef4444',
-        fontFamily: 'ui-sans-serif, system-ui, sans-serif',
-        spacingUnit: '4px',
-        borderRadius: '8px',
-      },
-    },
-  };
+    };
+
+    if (clientSecret) {
+      return {
+        clientSecret,
+        appearance: baseAppearance,
+      };
+    }
+
+    return {
+      mode: 'setup' as const,
+      currency: 'usd',
+      appearance: baseAppearance,
+    };
+  }, [clientSecret]);
 
   return (
     <Elements stripe={stripePromise} options={options}>
