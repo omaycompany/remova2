@@ -14,8 +14,9 @@ interface StripeProviderProps {
 
 export default function StripeProvider({ children, clientSecret }: StripeProviderProps) {
   // Memoize options to prevent unnecessary re-renders
-  const options = useMemo(() => {
-    const baseAppearance = {
+  const options = useMemo(() => ({
+    clientSecret,
+    appearance: {
       theme: 'stripe' as const,
       variables: {
         colorPrimary: '#3b82f6',
@@ -26,24 +27,14 @@ export default function StripeProvider({ children, clientSecret }: StripeProvide
         spacingUnit: '4px',
         borderRadius: '8px',
       },
-    };
+    },
+  }), [clientSecret]);
 
-    if (clientSecret) {
-      return {
-        clientSecret,
-        appearance: baseAppearance,
-      };
-    }
+  // Only render Elements when we have a clientSecret to avoid mode mismatch
+  if (!clientSecret) {
+    return <div>{children}</div>;
+  }
 
-    // Use setup mode when no clientSecret to avoid mode mismatch
-    return {
-      mode: 'setup' as const,
-      currency: 'usd',
-      appearance: baseAppearance,
-    };
-  }, [clientSecret]);
-
-  // Always render Elements to provide context, but with different options
   return (
     <Elements stripe={stripePromise} options={options}>
       {children}

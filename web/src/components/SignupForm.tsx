@@ -625,7 +625,12 @@ export default function SignupForm({
                 ) : selectedPlan === 'free' ? (
                   '🎉 Join the Community - Free'
                 ) : (
-                  `🛡️ Complete Purchase - $${plans.find(p => p.id === selectedPlan)?.yearlyPrice?.toLocaleString()}/year`
+                  (() => {
+                    const plan = plans.find(p => p.id === selectedPlan);
+                    const basePrice = plan?.yearlyPrice || 0;
+                    const discountedPrice = basePrice - couponSavings;
+                    return `🛡️ Complete Purchase - $${discountedPrice.toLocaleString()}/year`;
+                  })()
                 )}
               </button>
               

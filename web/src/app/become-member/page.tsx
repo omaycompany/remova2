@@ -1,8 +1,16 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import StripeProvider from '@/components/StripeProvider';
-import SignupForm from '@/components/SignupForm';
+import dynamic from 'next/dynamic';
+
+// Dynamically import Stripe components to avoid SSR issues
+const StripeProvider = dynamic(() => import('@/components/StripeProvider'), {
+  ssr: false,
+});
+
+const SignupForm = dynamic(() => import('@/components/SignupForm'), {
+  ssr: false,
+});
 
 export default function BecomeMemberPage() {
   const [selectedPlan, setSelectedPlan] = useState<'free' | 'stealth' | 'vanish' | 'shield'>('vanish');
