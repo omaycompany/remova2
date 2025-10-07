@@ -56,7 +56,14 @@ export default function SignupForm({
   
   // Guard against missing Elements context during SSR
   if (!stripe || !elements) {
-    return null;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="loading loading-spinner loading-lg text-primary mb-4"></div>
+          <p className="text-gray-600">Loading payment form...</p>
+        </div>
+      </div>
+    );
   }
 
   const plans = [

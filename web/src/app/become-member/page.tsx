@@ -2,12 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import StripeProvider from '@/components/StripeProvider';
 
-// Dynamically import Stripe components to avoid SSR issues
-const StripeProvider = dynamic(() => import('@/components/StripeProvider'), {
-  ssr: false,
-});
-
+// Only dynamically import SignupForm to avoid SSR issues with Stripe hooks
 const SignupForm = dynamic(() => import('@/components/SignupForm'), {
   ssr: false,
 });
