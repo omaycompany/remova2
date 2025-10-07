@@ -41,11 +41,6 @@ export default function SignupForm({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showCoupon, setShowCoupon] = useState(false);
-  
-  // Guard against missing Elements context during SSR
-  if (!stripe || !elements) {
-    return null;
-  }
 
   useEffect(() => {
     if (!clientSecret) {
@@ -58,6 +53,11 @@ export default function SignupForm({
       setShowCoupon(false);
     }
   }, [selectedPlan]);
+  
+  // Guard against missing Elements context during SSR
+  if (!stripe || !elements) {
+    return null;
+  }
 
   const plans = [
     {
