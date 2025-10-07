@@ -35,6 +35,7 @@ export default function StripeProvider({ children, clientSecret }: StripeProvide
       };
     }
 
+    // Use setup mode when no clientSecret to avoid mode mismatch
     return {
       mode: 'setup' as const,
       currency: 'usd',
@@ -42,6 +43,7 @@ export default function StripeProvider({ children, clientSecret }: StripeProvide
     };
   }, [clientSecret]);
 
+  // Always render Elements to provide context, but with different options
   return (
     <Elements stripe={stripePromise} options={options}>
       {children}
