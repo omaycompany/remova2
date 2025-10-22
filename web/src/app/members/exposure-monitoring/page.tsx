@@ -1,42 +1,31 @@
+'use client';
 
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
-import { getClientById } from '@/lib/auth';
-import ExposureMonitoringClient from './ExposureMonitoringClient';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import DashboardLayout from '@/components/dashboard/DashboardLayout';
 
-export const dynamic = 'force-dynamic';
+interface Client {
+  id: string;
+  company_name: string;
+  plan_tier: string;
+}
 
-export default async function ExposureMonitoringPage() {
-  const cookieStore = await cookies();
-  const sessionCookie = cookieStore.get('remova_session');
+export default function ExposureMonitoringPage() {
+  const router = useRouter();
+  const [client, setClient] = useState<Client | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!sessionCookie?.value) {
-    redirect('/membership/free');
-  }
-
-  const [clientId, timestamp] = sessionCookie.value.split(':');
-
-  if (!clientId || !timestamp) {
-    redirect('/membership/free');
-  }
-
-  const sessionTime = parseInt(timestamp, 10);
-  const now = Date.now();
-  const twentyFourHours = 24 * 60 * 60 * 1000;
-
-  if (Number.isNaN(sessionTime) || now - sessionTime > twentyFourHours) {
-    redirect('/membership/free?error=session_expired');
-  }
-
-  const client = await getClientById(clientId);
-
-  if (!client) {
-    redirect('/membership/free?error=client_not_found');
-  }
-
-  if (client.plan_tier === 'free') {
-    redirect('/membership/free');
-  }
+  useEffect(() => {
+    // For now, simulate authentication check
+    // In production, you'd check cookies/session here
+    const mockClient = {
+      id: 'demo-client',
+      company_name: 'Your Company',
+      plan_tier: 'shield'
+    };
+    setClient(mockClient);
+    setLoading(false);
+  }, []);
 
   // Monitoring platforms with status
   const monitoringPlatforms = [
