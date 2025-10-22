@@ -13,7 +13,6 @@ export default function Header() {
     { href: '/resources', label: 'Tools & Resources' },
     { href: '/blog', label: 'Blog' },
     { href: '/about', label: 'About' },
-    { href: '/trust', label: 'Trust' },
     { href: '/contact', label: 'Contact' }
   ];
 
