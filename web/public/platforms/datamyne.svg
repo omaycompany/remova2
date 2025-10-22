@@ -1,0 +1,7 @@
+<svg width="128" height="40" viewBox="0 0 128 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="4" width="32" height="32" rx="8" fill="#0A3D62"/>
+  <path d="M16 24V16H20.5L24 19.5L20.5 23H16Z" fill="#1ABC9C"/>
+  <path d="M25 16H27V24H25" stroke="#1ABC9C" stroke-width="2" stroke-linecap="round"/>
+  <text x="44" y="26" fill="#0F1F2E" font-family="'Inter', 'Helvetica', 'Arial', sans-serif" font-size="18" font-weight="600">Datamyne</text>
+</svg>
+

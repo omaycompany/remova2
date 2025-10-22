@@ -27,7 +27,7 @@ const featuredPosts = [
     title: "How to Make Your Company's Shipping Data Private: The Definitive 2025 Guide",
     excerpt: "Complete guide to protecting your company's shipping and trade data from competitors. Learn legal methods, technical safeguards, and monitoring strategies with interactive tools.",
     author: "Trade Privacy Legal Team",
-    date: "2024-12-15",
+    date: "2025-10-15",
     category: "Privacy Protection",
     readTime: "15 min read",
     image: "/og-image.svg",
@@ -39,7 +39,7 @@ const featuredPosts = [
     title: "Is Your Supply Chain an Open Book? How to Check in 5 Minutes",
     excerpt: "Quick assessment to discover if your supply chain data is publicly visible to competitors. Includes 5-minute exposure check and immediate protection strategies.",
     author: "Supply Chain Intelligence Team",
-    date: "2024-12-15",
+    date: "2025-10-15",
     category: "Risk Assessment",
     readTime: "5 min read",
     image: "/og-image.svg",
@@ -51,7 +51,7 @@ const featuredPosts = [
     title: "Corporate Data Harvesting: How Companies Violate Employee Privacy Rights Daily",
     excerpt: "An exposé of systematic employee surveillance, data collection practices, and the legal frameworks companies exploit to monitor their workforce without consent.",
     author: "Privacy Rights Research Team",
-    date: "2024-12-10",
+    date: "2025-10-10",
     category: "Employee Privacy",
     readTime: "14 min read",
     image: "/og-image.svg",
@@ -63,7 +63,7 @@ const featuredPosts = [
     title: "GDPR Compliance Failures: The Hidden Cost of Privacy Law Violations",
     excerpt: "An investigation into systematic GDPR compliance failures across industries, revealing how companies exploit legal loopholes while facing devastating financial and reputational consequences.",
     author: "GDPR Compliance Research Team",
-    date: "2024-12-11",
+    date: "2025-10-11",
     category: "Regulatory Compliance",
     readTime: "16 min read",
     image: "/og-image.svg",
@@ -75,7 +75,7 @@ const featuredPosts = [
     title: "Social Media Data Mining: The Psychology of Digital Manipulation",
     excerpt: "A comprehensive investigation into how social media platforms use advanced psychological profiling and behavioral manipulation to influence user behavior, purchasing decisions, and political beliefs.",
     author: "Digital Psychology Research Team",
-    date: "2024-12-12",
+    date: "2025-10-12",
     category: "Digital Manipulation",
     readTime: "18 min read",
     image: "/og-image.svg",
@@ -87,7 +87,7 @@ const featuredPosts = [
     title: "How Chinese Suppliers Are Systematically Poaching European Manufacturers' Clients",
     excerpt: "Investigation reveals sophisticated competitive intelligence operations targeting European manufacturers through trade data analysis, resulting in billions in lost contracts.",
     author: "Competitive Intelligence Research Team",
-    date: "2024-12-15",
+    date: "2025-10-15",
     category: "Competitive Threats",
     readTime: "12 min read",
     image: "/og-image.svg",
@@ -99,7 +99,7 @@ const featuredPosts = [
     title: "Why US Businesses Are Losing the Global Trade War to EU and Chinese Competitors",
     excerpt: "Analysis reveals how European sophistication and Chinese efficiency are systematically dismantling American dominance in global trade through superior competitive intelligence.",
     author: "Global Market Research Team",
-    date: "2024-12-12",
+    date: "2025-10-12",
     category: "US Competitiveness",
     readTime: "14 min read",
     image: "/og-image.svg",
@@ -111,7 +111,7 @@ const featuredPosts = [
     title: "The $200B Supplier Intelligence War: How Competitors Steal Your Manufacturing Partners",
     excerpt: "Exclusive investigation into the systematic targeting of manufacturing relationships through trade data analysis and coordinated competitive intelligence operations.",
     author: "Supply Chain Intelligence Team",
-    date: "2024-12-10",
+    date: "2025-10-10",
     category: "Supplier Protection",
     readTime: "11 min read",
     image: "/og-image.svg",
@@ -139,7 +139,7 @@ const recentPosts = [
     title: "A Step-by-Step Guide to Filing for CBP Manifest Confidentiality",
     excerpt: "Complete walkthrough of the CBP manifest confidentiality filing process under 19 CFR 103.31. Includes forms, requirements, and legal strategies for trade data protection.",
     author: "Legal Compliance Team",
-    date: "2024-12-15",
+    date: "2025-10-15",
     category: "Legal Protection",
     readTime: "12 min read",
     tags: ["CBP Confidentiality", "Legal Filing", "Trade Secret Protection"]
@@ -149,7 +149,7 @@ const recentPosts = [
     title: "How to Remove Your Company Information From Panjiva",
     excerpt: "Step-by-step guide to removing your company data from Panjiva's trade intelligence database. Includes legal methods, removal templates, and protection strategies.",
     author: "Data Removal Team",
-    date: "2024-12-15",
+    date: "2025-10-15",
     category: "Data Removal",
     readTime: "10 min read",
     tags: ["Panjiva Removal", "Data Deletion", "Privacy Protection"]
@@ -159,7 +159,7 @@ const recentPosts = [
     title: "IoT Device Privacy Vulnerabilities: Corporate Networks Under Siege",
     excerpt: "An investigative analysis of how Internet of Things devices create massive privacy and security vulnerabilities in corporate environments, exposing sensitive business data and employee information.",
     author: "IoT Security Research Team",
-    date: "2024-12-13",
+    date: "2025-10-13",
     category: "IoT Privacy",
     readTime: "17 min read",
     tags: ["IoT Security", "Corporate Privacy", "Device Vulnerabilities"]
@@ -169,7 +169,7 @@ const recentPosts = [
     title: "Third-Party Data Brokers: The Hidden B2B Information Trading Economy",
     excerpt: "An investigation into the massive underground economy of data brokers who collect, aggregate, and sell comprehensive business intelligence about companies and their employees.",
     author: "Data Intelligence Research Team",
-    date: "2024-12-14",
+    date: "2025-10-14",
     category: "Data Brokers",
     readTime: "19 min read",
     tags: ["Data Brokers", "Business Intelligence", "B2B Privacy"]
@@ -179,7 +179,7 @@ const recentPosts = [
     title: "German Industrial Consortiums Target US Manufacturers with Trade Intelligence",
     excerpt: "Exclusive report on coordinated German industrial intelligence operations systematically targeting American manufacturing contracts through sophisticated trade data analysis.",
     author: "Industrial Intelligence Team",
-    date: "2024-12-08",
+    date: "2025-10-08",
     category: "Industrial Espionage",
     readTime: "13 min read",
     tags: ["German Competition", "Industrial Espionage", "US Manufacturing"]
@@ -189,7 +189,7 @@ const recentPosts = [
     title: "How Chinese AI-Powered Pricing Destroys US Electronics Profit Margins",
     excerpt: "Investigation into machine learning algorithms used by Chinese manufacturers to systematically undercut US electronics companies with precision pricing warfare.",
     author: "AI Warfare Research Team",
-    date: "2024-12-05",
+    date: "2025-10-05",
     category: "AI Competition",
     readTime: "11 min read",
     tags: ["Chinese AI", "Pricing Warfare", "Electronics Industry"]
@@ -199,7 +199,7 @@ const recentPosts = [
     title: "European Automakers Systematically Poach US Supplier Networks",
     excerpt: "Analysis of coordinated European automotive industry intelligence operations targeting American supplier relationships through trade data mining.",
     author: "Automotive Intelligence Team",
-    date: "2024-12-02",
+    date: "2025-10-02",
     category: "Automotive Competition",
     readTime: "9 min read",
     tags: ["European Automotive", "Supplier Poaching", "Trade Intelligence"]
@@ -306,7 +306,7 @@ export default function BlogPage() {
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M2 5L8 5V3C8 2.44772 8.44772 2 9 2H11C11.5523 2 12 2.44772 12 3V5L18 5C18.5523 5 19 5.44772 19 6C19 6.55228 18.5523 7 18 7L17 7V16C17 17.1046 16.1046 18 15 18H5C3.89543 18 3 17.1046 3 16L3 7L2 7C1.44772 7 1 6.55228 1 6C1 5.44772 1.44772 5 2 5ZM5 7V16H15V7H5ZM10 3V5H10V3Z" clipRule="evenodd" />
               </svg>
-              <span className="font-bold text-lg">TRADE PRIVACY INTELLIGENCE</span>
+              <span className="font-bold text-lg">TRADE PRIVACY INTELLIGENCE • Updated Oct 2025</span>
             </div>
             
             {/* Main Title */}

@@ -13,6 +13,7 @@ export default function Header() {
     { href: '/resources', label: 'Tools & Resources' },
     { href: '/blog', label: 'Blog' },
     { href: '/about', label: 'About' },
+    { href: '/trust', label: 'Trust' },
     { href: '/contact', label: 'Contact' }
   ];
 
@@ -62,7 +63,7 @@ export default function Header() {
               data-nimg="1"
               className="h-14 lg:h-16 w-auto transition-all hover:scale-105"
               style={{ color: 'transparent' }}
-              src="/REMOVA LOGO.png"
+              src="/REMOVA%20LOGO.png"
             />
           </a>
         </div>

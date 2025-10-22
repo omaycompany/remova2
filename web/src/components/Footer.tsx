@@ -25,6 +25,7 @@ export default function Footer() {
                 width={200} 
                 height={56} 
                 className="h-14 w-auto" 
+                priority
               />
             </Link>
             <p className="text-gray-600 mb-8 max-w-sm leading-relaxed">
@@ -115,6 +116,21 @@ export default function Footer() {
               </Link>
               <Link href="/trust" className="block text-gray-600 hover:text-gray-900 transition-colors">
                 Trust & Security
+              </Link>
+              <Link href="/trust/soc2-roadmap" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                SOC 2 Roadmap
+              </Link>
+              <Link href="/trust/iso-27001-roadmap" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                ISO 27001 Plan
+              </Link>
+              <Link href="/trust/security-leadership" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Security Leadership
+              </Link>
+              <Link href="/trust/penetration-testing" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Pen Test Summary
+              </Link>
+              <Link href="/trust/case-study" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Case Study Results
               </Link>
               <Link href="/careers" className="block text-gray-600 hover:text-gray-900 transition-colors">
                 Careers

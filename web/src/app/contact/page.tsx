@@ -78,6 +78,13 @@ export default function Contact() {
               <a href="mailto:notifications@remova.org" className="btn btn-outline btn-lg text-xl px-12 py-6 font-bold border-2 border-gray-600 text-gray-700 hover:bg-gray-700 hover:text-white transition-all shadow-xl">
                 ✉️ Email Directly
               </a>
+              <a
+                href="https://calendar.app.google/fUNW34GaHfSkApPs7"
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-secondary btn-lg text-xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-2 border-secondary">
+                📅 Book a Call
+              </a>
             </div>
             
             {/* Trust Indicators */}
@@ -163,10 +170,10 @@ export default function Contact() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-black mb-3 text-gray-800">Phone</h3>
-                <p className="text-gray-600 mb-4">Available via contact form</p>
-                <div className="btn btn-outline btn-sm font-bold border-2 border-emerald-600 text-emerald-700 cursor-default">
-                  By Request
-                </div>
+                <p className="text-gray-600 mb-4">+1 351 215-0442</p>
+                <a href="tel:+13512150442" className="btn btn-outline btn-sm font-bold border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors">
+                  Call Us
+                </a>
               </div>
             </div>
             
@@ -225,6 +232,28 @@ export default function Contact() {
                   <h4 className="text-lg font-black text-gray-800 mb-3">Service</h4>
                   <p className="text-gray-600">Enterprise privacy<br />protection specialists</p>
                 </div>
+              </div>
+              <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                <a
+                  href="mailto:notifications@remova.org"
+                  className="btn btn-primary"
+                >
+                  Email notifications@remova.org
+                </a>
+                <a
+                  href="tel:+13512150442"
+                  className="btn btn-outline"
+                >
+                  Call +1 351 215-0442
+                </a>
+                <a
+                  href="https://calendar.app.google/fUNW34GaHfSkApPs7"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-secondary"
+                >
+                  Schedule a meeting
+                </a>
               </div>
             </div>
           </div>

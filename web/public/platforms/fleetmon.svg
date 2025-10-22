@@ -1,0 +1,7 @@
+<svg width="128" height="40" viewBox="0 0 128 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="4" width="32" height="32" rx="8" fill="#083D3C"/>
+  <path d="M26 23C26 25.2091 24.2091 27 22 27H18C15.7909 27 14 25.2091 14 23V17" stroke="#1DD3B0" stroke-width="2" stroke-linecap="round"/>
+  <path d="M14 17C16.2091 17 18 15.2091 18 13H22C24.2091 13 26 14.7909 26 17V19C26 20.1046 25.1046 21 24 21H18" stroke="#1DD3B0" stroke-width="2" stroke-linecap="round"/>
+  <text x="44" y="26" fill="#0B2423" font-family="'Inter', 'Helvetica', 'Arial', sans-serif" font-size="18" font-weight="600">FleetMon</text>
+</svg>
+

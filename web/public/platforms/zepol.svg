@@ -1,0 +1,8 @@
+<svg width="128" height="40" viewBox="0 0 128 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="4" width="32" height="32" rx="8" fill="#1E2A38"/>
+  <path d="M26 16C26 14.8954 25.1046 14 24 14H18C16.8954 14 16 14.8954 16 16V24C16 25.1046 16.8954 26 18 26H24C25.1046 26 26 25.1046 26 24V16Z" stroke="#5CC8FF" stroke-width="2"/>
+  <path d="M18 20H24" stroke="#5CC8FF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M21 17L24 20L21 23" stroke="#5CC8FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="44" y="26" fill="#101620" font-family="'Inter', 'Helvetica', 'Arial', sans-serif" font-size="18" font-weight="600">Zepol</text>
+</svg>
+

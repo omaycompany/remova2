@@ -1,0 +1,8 @@
+<svg width="128" height="40" viewBox="0 0 128 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="4" width="32" height="32" rx="8" fill="#23395B"/>
+  <path d="M17 16H25" stroke="#FFBA49" stroke-width="2" stroke-linecap="round"/>
+  <path d="M17 20H22" stroke="#FFBA49" stroke-width="2" stroke-linecap="round"/>
+  <path d="M17 24H27" stroke="#FFBA49" stroke-width="2" stroke-linecap="round"/>
+  <text x="44" y="26" fill="#1B2231" font-family="'Inter', 'Helvetica', 'Arial', sans-serif" font-size="18" font-weight="600">ManifestJournal</text>
+</svg>
+

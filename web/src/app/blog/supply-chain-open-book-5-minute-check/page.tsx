@@ -13,18 +13,47 @@ export const metadata: Metadata = {
   },
 };
 
-// Quick Exposure Assessment Tool - Static Placeholder
 function QuickExposureCheck() {
+  const signals = [
+    {
+      title: "Competitor Outreach",
+      question: "Have competitors referenced shipment IDs, container numbers, or supplier pricing in recent outreach?",
+      action: "If yes, collect the message and send it to notifications@remova.org — we can match it to the underlying trade dataset and start takedown filings."
+    },
+    {
+      title: "Public Search",
+      question: "Do your company name and HS codes return detailed records on Panjiva, ImportGenius, ImportYeti, or Datamyne?",
+      action: "Capture URLs and screenshots. We have direct takedown contacts at these platforms; include proof when you email us."
+    },
+    {
+      title: "Supplier Mentions",
+      question: "Can suppliers find your shipment volumes or customer names through open search?",
+      action: "Ask them to forward screenshots or login details. We’ll incorporate them into the takedown evidence packet."
+    },
+    {
+      title: "Government Filings",
+      question: "Was your CBP manifest confidentiality filing submitted or renewed in the last 90 days?",
+      action: "If not, complete CBP Form 7552 immediately. We handle rush filings for members — book a slot at https://calendar.app.google/fUNW34GaHfSkApPs7."
+    }
+  ];
+
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6">
       <h3 className="text-lg font-semibold mb-4">5-Minute Supply Chain Exposure Check</h3>
       <p className="text-sm text-gray-600 mb-4">
-        Quick assessment to discover if your supply chain data is publicly visible to competitors.
+        Answer these prompts right now. If any response is “yes” or “not sure,” escalate — that data is already powering competitor outreach.
       </p>
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <p className="text-blue-800 text-sm">
-          Interactive exposure assessment tool would appear here in full implementation.
-        </p>
+      <div className="space-y-4">
+        {signals.map((item) => (
+          <div key={item.title} className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <h4 className="text-sm font-bold text-blue-900 mb-2">{item.title}</h4>
+            <p className="text-blue-800 text-sm mb-2">{item.question}</p>
+            <div className="text-blue-700 text-xs">{item.action}</div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-4 text-xs text-gray-500">
+        Want the automated version? Join the waitlist when you contact us — we’re onboarding the interactive scanner with members first.
       </div>
     </div>
   );
@@ -70,11 +99,11 @@ export default function SupplyChainOpenBook5MinuteCheck() {
           competitive advantages before competitors can exploit your supply chain intelligence.
         </p>
         <div className="flex items-center space-x-4 mt-6 text-sm text-gray-500">
-          <span>Published: December 15, 2024</span>
+          <span>Published: October 15, 2025</span>
           <span>•</span>
           <span>8 min read</span>
           <span>•</span>
-          <span>Quick assessment</span>
+          <span>Updated monthly</span>
         </div>
       </header>
 

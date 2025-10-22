@@ -201,23 +201,32 @@ export default function Trust() {
 
             <div className="card bg-base-100 border border-base-300 shadow-lg">
               <div className="card-body">
-                <h3 className="text-xl font-bold mb-4">How We Operate</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
-                    <span>Maintain up‑to‑date contacts with major platforms</span>
+                <h3 className="text-xl font-bold mb-4">Key Assurance Pages</h3>
+                <ul className="space-y-3 text-sm">
+                  <li>
+                    <Link href="/trust/soc2-roadmap" className="link link-primary">
+                      SOC 2 Type II Readiness Roadmap
+                    </Link>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
-                    <span>Align requests to platform policies and escalation paths</span>
+                  <li>
+                    <Link href="/trust/iso-27001-roadmap" className="link link-primary">
+                      ISO 27001 Certification Roadmap
+                    </Link>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
-                    <span>Process quality focus over vanity KPIs</span>
+                  <li>
+                    <Link href="/trust/security-leadership" className="link link-primary">
+                      Security Leadership (DPO/CISO)
+                    </Link>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
-                    <span>Never publish client data—only summarized metrics</span>
+                  <li>
+                    <Link href="/trust/penetration-testing" className="link link-primary">
+                      Penetration Testing Summary
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/trust/case-study" className="link link-primary">
+                      Before/After Case Study
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -230,8 +239,12 @@ export default function Trust() {
               <p className="text-lg mb-6">
                 We provide complete visibility into our processes and results through artifacts, receipts, and timelines—while never exposing your sensitive business data.
               </p>
-              <div className="card-actions justify-center">
-                <Link href="/contact" className="btn btn-primary">Request Audit Trail</Link>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+                <Link href="/trust/soc2-roadmap" className="btn btn-primary">SOC 2 Roadmap</Link>
+                <Link href="/trust/iso-27001-roadmap" className="btn btn-secondary">ISO 27001 Plan</Link>
+                <Link href="/trust/security-leadership" className="btn btn-outline">Security Leadership</Link>
+                <Link href="/trust/penetration-testing" className="btn btn-outline">Pen Test Summary</Link>
+                <Link href="/trust/case-study" className="btn btn-outline">Case Study Results</Link>
               </div>
             </div>
           </div>

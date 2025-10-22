@@ -165,14 +165,32 @@
             color: #374151;
         }
         
-        .content ul, .content ol {
-            margin: 16px 0 16px 20px;
+        .content ul,
+        .content ol {
+            margin: 16px 0 16px 0;
+            padding-left: 0;
+            list-style: none;
         }
         
-        .content li {
+        .content ul li,
+        .content ol li {
+            position: relative;
+            padding-left: 22px;
             margin-bottom: 8px;
             line-height: 1.6;
             color: #374151;
+        }
+
+        .content ul li::before,
+        .content ol li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 9999px;
+            background: #4f46e5;
         }
         
         .content strong {

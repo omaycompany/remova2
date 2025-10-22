@@ -1,0 +1,8 @@
+<svg width="128" height="40" viewBox="0 0 128 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="4" y="4" width="32" height="32" rx="8" fill="#1F3C88"/>
+  <path d="M16 24V17C16 15.8954 16.8954 15 18 15H24C25.1046 15 26 15.8954 26 17V24" stroke="#87C5FF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M19 19H23" stroke="#87C5FF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M18 24L20.5 21.5L23 24" stroke="#87C5FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="44" y="26" fill="#1B2A4A" font-family="'Inter', 'Helvetica', 'Arial', sans-serif" font-size="18" font-weight="600">ImportYeti</text>
+</svg>
+

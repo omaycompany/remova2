@@ -1,4 +1,7 @@
+import Image from "next/image";
+import Link from "next/link";
 import PageHero from "@/components/PageHero";
+import OzzyPortrait from "@/Ozzy Ocak Profile Picture.png";
 
 export const metadata = {
   title: "About Remova.org",
@@ -18,8 +21,8 @@ export default function About() {
           ),
         }}
         title="Defending Against the"
-        titleAccent="$200B Intelligence War"
-        description="Every day, your competitors use sophisticated trade intelligence platforms to systematically steal your suppliers, undercut your pricing, and poach your customers. Remova Inc. levels the playing field by making your commercial data invisible to competitive intelligence operations."
+        titleAccent="Trade Intelligence Dragnet"
+        description="Cross-border manifest data is repackaged by dozens of trade intelligence platforms. Remova Inc. hardens your supply chain footprint so competitors cannot mine your suppliers, pricing, or customer movements."
         features={[
           { icon: "🎯", text: "Anti-Intelligence Warfare", color: "primary" },
           { icon: "📊", text: "Trade Data Protection", color: "secondary" },
@@ -54,6 +57,52 @@ export default function About() {
         }}
       />
 
+      {/* Founder Section */}
+      <section className="py-20 bg-base-100">
+        <div className="container mx-auto px-4">
+          <div className="grid items-center gap-12 lg:grid-cols-[360px,1fr]">
+            <div className="relative mx-auto w-60 h-60 sm:w-72 sm:h-72 lg:mx-0">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 blur-3xl"></div>
+              <div className="relative overflow-hidden rounded-full border-8 border-primary/20 shadow-2xl">
+                <Image
+                  src={OzzyPortrait}
+                  alt="Ozzy Ocak, Founder of Remova Inc."
+                  priority
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </div>
+            <div>
+              <span className="inline-flex items-center gap-2 px-3 py-1 mb-6 text-sm font-semibold tracking-wide uppercase rounded-full bg-primary/10 text-primary">
+                Founder & Chief Intelligence Officer
+              </span>
+              <h2 className="mb-6 text-4xl font-black leading-tight text-gray-900 sm:text-5xl">
+                Ozzy Ocak
+              </h2>
+              <p className="mb-6 text-lg leading-relaxed text-gray-700">
+                Ozzy leads Remova Inc. after a decade building privacy-first infrastructure for finance, logistics, and outbound sales teams across Europe and North America. He previously engineered commercial data removal programs for global trading firms, co-founded Buffsend to control outreach compliance limits, and has overseen more than 1,200 takedown filings across the platforms we monitor today.
+              </p>
+              <p className="mb-6 text-lg leading-relaxed text-gray-700">
+                Raised between Istanbul and Basel, Ozzy blends first-principle analysis with hands-on technical execution. He still reviews every escalation packet before it goes out, which keeps our engagements grounded in verifiable evidence instead of recycled marketing claims.
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <Link
+                  href="https://www.linkedin.com/in/oguzhanocak/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-primary"
+                >
+                  Connect on LinkedIn
+                </Link>
+                <a href="mailto:notifications@remova.org" className="btn btn-outline">
+                  Email Ozzy
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Mission & Vision Section */}
       <section className="relative bg-gradient-to-br from-emerald-50 via-blue-50/30 to-indigo-50/20 py-24 overflow-hidden">
         {/* Background Pattern */}
@@ -76,8 +125,8 @@ export default function About() {
               <span className="font-bold text-lg">OUR MISSION</span>
             </div>
             <h2 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9] bg-gradient-to-r from-gray-900 via-emerald-700 to-blue-700 bg-clip-text text-transparent">
-              Stopping the<br />
-              <span className="text-emerald-600">Intelligence War</span>
+              Shutting down the<br />
+              <span className="text-emerald-600">Trade Intelligence Dragnet</span>
             </h2>
             <p className="text-2xl opacity-80 max-w-5xl mx-auto leading-relaxed text-gray-700 font-medium">
               Competitors are using advanced trade intelligence platforms to systematically steal your suppliers, undercut your pricing, and poach your customers. We make your commercial data invisible to these intelligence operations.
@@ -147,27 +196,27 @@ export default function About() {
       <section className="py-16 bg-base-100">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Intelligence War by the Numbers</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Intelligence War Benchmarks</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Understanding the scale of competitive intelligence operations targeting your business
+              Indicators that demonstrate how far competitive intelligence operators can reach without active suppression
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="space-y-2">
-              <div className="text-4xl font-bold text-primary">$200B</div>
-              <div className="text-sm opacity-60 font-medium">Intelligence Market Size</div>
+              <div className="text-4xl font-bold text-primary">40+</div>
+              <div className="text-sm opacity-60 font-medium">Trade Intelligence Platforms</div>
             </div>
             <div className="space-y-2">
-              <div className="text-4xl font-bold text-secondary">40+</div>
-              <div className="text-sm opacity-60 font-medium">Threat Platforms</div>
+              <div className="text-4xl font-bold text-secondary">120</div>
+              <div className="text-sm opacity-60 font-medium">Customs Authorities Watched</div>
             </div>
             <div className="space-y-2">
               <div className="text-4xl font-bold text-accent">Millions</div>
-              <div className="text-sm opacity-60 font-medium">Exposed Records</div>
+              <div className="text-sm opacity-60 font-medium">Bill-of-Lading Rows Captured Daily</div>
             </div>
             <div className="space-y-2">
-              <div className="text-4xl font-bold text-success">Daily</div>
-              <div className="text-sm opacity-60 font-medium">New Threats</div>
+              <div className="text-4xl font-bold text-success">24h</div>
+              <div className="text-sm opacity-60 font-medium">Threat Sweep Interval</div>
             </div>
           </div>
         </div>
@@ -252,12 +301,142 @@ export default function About() {
         </div>
       </section>
 
+      {/* Platforms We Monitor */}
+      <section className="py-20 bg-base-200/60 border-t border-base-300">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 text-secondary font-semibold mb-4">
+              Platforms we monitor & file requests with
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Know exactly who receives your takedown packets
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Every artifact we prepare ties back to a named platform policy team. Explore the ecosystems our clients ask us to keep under control.
+            </p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <a
+              href="https://www.spglobal.com/marketintelligence/en/mi/products/panjiva-supply-chain-intelligence.html"
+              target="_blank"
+              rel="noreferrer"
+              className="group card border border-base-300 bg-base-100 hover:border-primary/40 hover:shadow-xl transition-all"
+            >
+              <div className="card-body items-center text-center">
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-base-200 group-hover:bg-primary/10 transition-colors mb-4">
+                <Image src="/platforms/panjiva.svg" alt="Panjiva logo" width={96} height={32} className="object-contain" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">Panjiva</h3>
+                <p className="text-sm text-gray-600">Global trade data mapped by S&P Global Market Intelligence.</p>
+              </div>
+            </a>
+            <a
+              href="https://www.importgenius.com/learn/how-importgenius-works"
+              target="_blank"
+              rel="noreferrer"
+              className="group card border border-base-300 bg-base-100 hover:border-primary/40 hover:shadow-xl transition-all"
+            >
+              <div className="card-body items-center text-center">
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-base-200 group-hover:bg-primary/10 transition-colors mb-4">
+                <Image src="/platforms/importgenius.svg" alt="ImportGenius logo" width={96} height={32} className="object-contain" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">ImportGenius</h3>
+                <p className="text-sm text-gray-600">US Customs manifests, shipping records, and supplier insights.</p>
+              </div>
+            </a>
+            <a
+              href="https://www.descartes.com/products/datamyne"
+              target="_blank"
+              rel="noreferrer"
+              className="group card border border-base-300 bg-base-100 hover:border-primary/40 hover:shadow-xl transition-all"
+            >
+              <div className="card-body items-center text-center">
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-base-200 group-hover:bg-primary/10 transition-colors mb-4">
+                <Image src="/platforms/datamyne.svg" alt="Datamyne logo" width={96} height={32} className="object-contain" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">Datamyne</h3>
+                <p className="text-sm text-gray-600">Descartes' data warehouse of import/export filings across the Americas.</p>
+              </div>
+            </a>
+            <a
+              href="https://www.importyeti.com/about"
+              target="_blank"
+              rel="noreferrer"
+              className="group card border border-base-300 bg-base-100 hover:border-primary/40 hover:shadow-xl transition-all"
+            >
+              <div className="card-body items-center text-center">
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-base-200 group-hover:bg-primary/10 transition-colors mb-4">
+                <Image src="/platforms/importyeti.svg" alt="ImportYeti logo" width={96} height={32} className="object-contain" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">ImportYeti</h3>
+                <p className="text-sm text-gray-600">Open-source inspired manifest monitoring with rapid indexing.</p>
+              </div>
+            </a>
+            <a
+              href="https://www.trademo.com/global-trade-data"
+              target="_blank"
+              rel="noreferrer"
+              className="group card border border-base-300 bg-base-100 hover:border-primary/40 hover:shadow-xl transition-all"
+            >
+              <div className="card-body items-center text-center">
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-base-200 group-hover:bg-primary/10 transition-colors mb-4">
+                <Image src="/platforms/trademo.svg" alt="Trademo logo" width={96} height={32} className="object-contain" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">Trademo</h3>
+                <p className="text-sm text-gray-600">Global trade intelligence combining customs data and predictive risk.</p>
+              </div>
+            </a>
+            <a
+              href="https://www.datamyne.com/zepol-company-history/"
+              target="_blank"
+              rel="noreferrer"
+              className="group card border border-base-300 bg-base-100 hover:border-primary/40 hover:shadow-xl transition-all"
+            >
+              <div className="card-body items-center text-center">
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-base-200 group-hover:bg-primary/10 transition-colors mb-4">
+                <Image src="/platforms/zepol.svg" alt="Zepol logo" width={96} height={32} className="object-contain" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">Zepol</h3>
+                <p className="text-sm text-gray-600">Legacy US import data service now operating within Descartes.</p>
+              </div>
+            </a>
+            <a
+              href="https://manifestjournal.com/about"
+              target="_blank"
+              rel="noreferrer"
+              className="group card border border-base-300 bg-base-100 hover:border-primary/40 hover:shadow-xl transition-all"
+            >
+              <div className="card-body items-center text-center">
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-base-200 group-hover:bg-primary/10 transition-colors mb-4">
+                <Image src="/platforms/manifestjournal.svg" alt="ManifestJournal logo" width={96} height={32} className="object-contain" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">ManifestJournal</h3>
+                <p className="text-sm text-gray-600">Freight-focused intelligence with emphasis on containerized goods.</p>
+              </div>
+            </a>
+            <a
+              href="https://www.fleetmon.com/solutions/maritime-data/"
+              target="_blank"
+              rel="noreferrer"
+              className="group card border border-base-300 bg-base-100 hover:border-primary/40 hover:shadow-xl transition-all"
+            >
+              <div className="card-body items-center text-center">
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-base-200 group-hover:bg-primary/10 transition-colors mb-4">
+                <Image src="/platforms/fleetmon.svg" alt="FleetMon logo" width={96} height={32} className="object-contain" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">FleetMon</h3>
+                <p className="text-sm text-gray-600">AIS-driven vessel tracking augmenting shipment intelligence.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Documentation Initiative CTA */}
       <section className="relative py-20 bg-gradient-to-r from-accent/10 via-base-100 to-warning/10 overflow-hidden">
-        {/* Background decorative elements */}
         <div className="absolute top-10 right-10 w-32 h-32 bg-accent/20 rounded-full blur-2xl"></div>
         <div className="absolute bottom-10 left-10 w-40 h-40 bg-warning/20 rounded-full blur-2xl"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full mb-6">
@@ -266,12 +445,12 @@ export default function About() {
               </svg>
               <span className="font-semibold">Public Benefit Initiative</span>
             </div>
-            
+
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
               Open Documentation for
               <span className="text-accent block md:inline md:ml-3">Safer Trade</span>
             </h2>
-            
+
             <p className="text-xl opacity-80 mb-8 leading-relaxed">
               We publish detailed, open resources—manifest privacy primers, takedown playbooks, leak tracking guides—to raise the baseline for everyone in international trade.
             </p>
@@ -288,7 +467,7 @@ export default function About() {
                   <p className="text-sm opacity-70">Comprehensive guides on trade data protection</p>
                 </div>
               </div>
-              
+
               <div className="card bg-base-100/80 backdrop-blur border border-warning/20 hover:border-warning/40 transition-colors">
                 <div className="card-body text-center p-6">
                   <div className="w-12 h-12 bg-warning/10 rounded-xl flex items-center justify-center mx-auto mb-4">
@@ -300,7 +479,7 @@ export default function About() {
                   <p className="text-sm opacity-70">Step-by-step removal procedures</p>
                 </div>
               </div>
-              
+
               <div className="card bg-base-100/80 backdrop-blur border border-primary/20 hover:border-primary/40 transition-colors">
                 <div className="card-body text-center p-6">
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">

@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Takedown Ops",
-  description: "Site‑specific requests to Panjiva, ImportGenius, Datamyne/PIERS/JOC, ImportYeti, ImportInfo, Trademo; escalation if needed.",
+  title: "Trade Data Takedown Services — Remova Inc.",
+  description: "Site-specific removal and suppression requests for platforms like Panjiva, ImportGenius, Datamyne, ImportYeti, ImportInfo, and Trademo with full evidence tracking and escalation.",
 };
 
 export default function Takedown() {
