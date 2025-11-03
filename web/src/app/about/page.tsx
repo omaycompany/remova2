@@ -60,16 +60,25 @@ export default function About() {
       {/* Founder Section */}
       <section className="py-20 bg-base-100">
         <div className="container mx-auto px-4">
-          <div className="grid items-center gap-12 lg:grid-cols-[360px,1fr]">
-            <div className="relative mx-auto w-60 h-60 sm:w-72 sm:h-72 lg:mx-0">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 blur-3xl"></div>
-              <div className="relative overflow-hidden rounded-full border-8 border-primary/20 shadow-2xl">
-                <Image
-                  src={OzzyPortrait}
-                  alt="Ozzy Ocak, Founder of Remova Inc."
-                  priority
-                  className="object-cover w-full h-full"
-                />
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-xl">
+                <div className="absolute inset-0 rounded-[48px] bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 blur-3xl"></div>
+                <div className="relative flex items-center gap-6 rounded-[48px] border-8 border-primary/20 bg-white/90 p-6 shadow-2xl backdrop-blur">
+                  <div className="w-28 h-28 overflow-hidden rounded-full border-4 border-primary/40">
+                    <Image
+                      src={OzzyPortrait}
+                      alt="Ozzy Ocak, Founder of Remova Inc."
+                      priority
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-primary/80">Founder & Chief Intelligence Officer</p>
+                    <p className="text-2xl font-black text-gray-900">Ozzy Ocak</p>
+                    <p className="text-sm text-gray-500">Remova Inc.</p>
+                  </div>
+                </div>
               </div>
             </div>
             <div>
