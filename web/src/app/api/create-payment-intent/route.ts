@@ -1,4 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
+// import { stripe } from '@/lib/stripe';
+// import { z } from 'zod';
+
+// DISABLED: Service business model - payment intents disabled
+// This API endpoint is preserved but disabled for potential future re-activation
+
+export async function POST(request: NextRequest) {
+  // Return error indicating service is not available
+  return NextResponse.json(
+    { error: 'Payment processing is currently unavailable. Please contact us for service inquiries.' },
+    { status: 503 }
+  );
+}
+
+/* PRESERVED CODE FOR FUTURE USE:
+import { NextRequest, NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
 import { z } from 'zod';
 
@@ -103,3 +119,4 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+*/

@@ -3,81 +3,81 @@ import Link from "next/link";
 export default function DataPrivacyFight() {
   const threats = [
     {
-      title: "Competitor Intelligence",
+      title: "Trade Data Exposure",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
         </svg>
       ),
-      description: "Your trade data is being used against you",
-      impact: "$2.3M",
-      impactLabel: "Average revenue lost per competitor intelligence leak",
-      details: [
-        "Supplier relationship mapping",
-        "Pricing strategy exposure", 
-        "Market timing intelligence",
-        "Product sourcing discovery"
-      ],
-      bgGradient: "from-red-50 to-orange-50",
-      borderColor: "border-red-200"
-    },
-    {
-      title: "Business Vulnerabilities", 
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
-        </svg>
-      ),
-      description: "Commercial data exposure creates real business risks",
-      impact: "73%",
-      impactLabel: "Of companies lose major accounts within 6 months of exposure",
-      details: [
-        "Lost competitive advantage",
-        "Supplier poaching by competitors",
-        "Targeted business attacks",
-        "Contract renegotiation leverage loss"
-      ],
-      bgGradient: "from-amber-50 to-yellow-50",
-      borderColor: "border-amber-200"
-    },
-    {
-      title: "Privacy Violations",
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
-        </svg>
-      ),
-      description: "Your confidential business information is public",
+      description: "Customs data contains sensitive business information",
       impact: "40+",
-      impactLabel: "Intelligence platforms selling your data right now",
+      impactLabel: "Trade intelligence platforms tracking shipment data",
       details: [
-        "Trade secrets exposed",
-        "Strategic planning compromised",
-        "Partnership details revealed",
-        "Financial performance indicators leaked"
+        "Supplier and customer relationships",
+        "Product specifications and volumes", 
+        "Shipping patterns and frequencies",
+        "Source countries and routes"
       ],
-      bgGradient: "from-purple-50 to-indigo-50",
-      borderColor: "border-purple-200"
+      bgGradient: "from-blue-50 to-indigo-50",
+      borderColor: "border-blue-200"
     },
     {
-      title: "Regulatory Non-Compliance",
+      title: "Business Intelligence Markets", 
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
       ),
-      description: "Data protection requirements are strengthening globally",
-      impact: "$4.9M",
-      impactLabel: "Average GDPR fine for commercial data violations",
+      description: "Trade data is commercially available through legal channels",
+      impact: "Growing",
+      impactLabel: "Market for commercial trade intelligence services",
       details: [
-        "GDPR commercial data requirements",
-        "Industry-specific privacy mandates", 
-        "Cross-border data transfer restrictions",
-        "Audit and compliance failures"
+        "Subscription-based platform access",
+        "Searchable company databases",
+        "Historical shipment records",
+        "Competitive analysis tools"
       ],
-      bgGradient: "from-blue-50 to-cyan-50",
-      borderColor: "border-blue-200"
+      bgGradient: "from-emerald-50 to-teal-50",
+      borderColor: "border-emerald-200"
+    },
+    {
+      title: "Privacy Considerations",
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+        </svg>
+      ),
+      description: "Companies can take steps to protect their commercial information",
+      impact: "Legal",
+      impactLabel: "Privacy filings available through customs authorities",
+      details: [
+        "Government confidentiality requests",
+        "Platform removal procedures",
+        "Data protection regulations",
+        "Privacy rights and options"
+      ],
+      bgGradient: "from-purple-50 to-indigo-50",
+      borderColor: "border-purple-200"
+    },
+    {
+      title: "Compliance Framework",
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      ),
+      description: "International data protection standards continue evolving",
+      impact: "Multiple",
+      impactLabel: "Jurisdictions with data protection requirements",
+      details: [
+        "GDPR and EU privacy rules",
+        "Regional data protection laws", 
+        "Cross-border transfer protocols",
+        "Industry-specific requirements"
+      ],
+      bgGradient: "from-sky-50 to-cyan-50",
+      borderColor: "border-sky-200"
     }
   ];
 
@@ -115,80 +115,79 @@ export default function DataPrivacyFight() {
   return (
     <>
       {/* PROBLEMS SECTION */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-slate-50 via-red-50/30 to-orange-50/20">
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20">
         {/* Enhanced Background Pattern */}
         <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 5L90 50L50 95L10 50Z' fill='%23dc2626' opacity='0.4'/%3E%3Ccircle cx='50' cy='50' r='25' fill='none' stroke='%23dc2626' stroke-width='1' opacity='0.3'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 5L90 50L50 95L10 50Z' fill='%233b82f6' opacity='0.4'/%3E%3Ccircle cx='50' cy='50' r='25' fill='none' stroke='%233b82f6' stroke-width='1' opacity='0.3'/%3E%3C/svg%3E")`,
           }}></div>
         </div>
         
         {/* Floating Visual Elements */}
-        <div className="absolute top-20 left-20 w-32 h-32 bg-red-100 rounded-full blur-3xl opacity-40 animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-orange-100 rounded-full blur-3xl opacity-40 animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 bg-blue-100 rounded-full blur-3xl opacity-40"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-indigo-100 rounded-full blur-3xl opacity-40"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           {/* Enhanced Header */}
           <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-red-500/10 to-orange-500/10 text-red-600 px-6 py-3 rounded-full mb-8 border border-red-200 backdrop-blur-sm shadow-lg">
-              <div className="relative">
-                <svg className="w-6 h-6 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 text-blue-600 px-6 py-3 rounded-full mb-8 border border-blue-200 backdrop-blur-sm shadow-lg">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
               </svg>
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
-              </div>
-              <span className="font-bold text-lg">CRITICAL DATA EXPOSURE ALERT</span>
+              <span className="font-bold text-lg">Understanding Trade Data Exposure</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9] bg-gradient-to-r from-gray-900 via-red-800 to-orange-800 bg-clip-text text-transparent">
-              While You Focus on Business,<br />
-              <span className="text-red-600">Your Competitors Buy Your Secrets.</span>
+            <h2 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9] bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-800 bg-clip-text text-transparent">
+              How Trade Intelligence<br />
+              <span className="text-blue-600">Platforms Work</span>
             </h2>
             <p className="text-2xl opacity-80 max-w-5xl mx-auto leading-relaxed text-gray-700 font-medium">
-              Every piece of your trade data that's exposed becomes a weapon in the hands of your competition. Here's exactly what they're using against you right now.
+              Trade intelligence platforms collect customs data from government sources and organize it into searchable databases. Understanding what information is available helps businesses make informed privacy decisions.
             </p>
             
-            {/* Real-time Data Simulation */}
+            {/* Platform Overview */}
             <div className="mt-12 max-w-3xl mx-auto">
-              <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-red-200 p-6 shadow-xl">
+              <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-blue-200 p-6 shadow-xl">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-bold text-gray-800">Live Threat Intelligence</h3>
-                  <div className="flex items-center gap-2 text-red-600">
-                    <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm font-medium">ACTIVE MONITORING</span>
+                  <h3 className="text-lg font-bold text-gray-800">Trade Intelligence Landscape</h3>
+                  <div className="flex items-center gap-2 text-blue-600">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-sm font-medium">Market Overview</span>
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-4 text-center">
-                  <div className="bg-red-50 rounded-lg p-4">
-                    <div className="text-2xl font-bold text-red-600 mb-1">40+</div>
-                    <div className="text-sm text-gray-600">Platforms Selling Your Data</div>
+                  <div className="bg-blue-50 rounded-lg p-4">
+                    <div className="text-2xl font-bold text-blue-600 mb-1">40+</div>
+                    <div className="text-sm text-gray-600">Intelligence Platforms</div>
                   </div>
-                  <div className="bg-orange-50 rounded-lg p-4">
-                    <div className="text-2xl font-bold text-orange-600 mb-1">Commercial</div>
-                    <div className="text-sm text-gray-600">Data Marketplaces</div>
+                  <div className="bg-indigo-50 rounded-lg p-4">
+                    <div className="text-2xl font-bold text-indigo-600 mb-1">Global</div>
+                    <div className="text-sm text-gray-600">Data Coverage</div>
                   </div>
-                  <div className="bg-yellow-50 rounded-lg p-4">
-                    <div className="text-2xl font-bold text-yellow-600 mb-1">24/7</div>
-                    <div className="text-sm text-gray-600">Real-time Data Updates</div>
+                  <div className="bg-purple-50 rounded-lg p-4">
+                    <div className="text-2xl font-bold text-purple-600 mb-1">Public</div>
+                    <div className="text-sm text-gray-600">Government Sources</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Enhanced Threat Cards */}
+          {/* Information Cards */}
           <div className="grid lg:grid-cols-2 gap-10 max-w-8xl mx-auto">
             {threats.map((threat, index) => (
               <div key={index} className="group relative">
                 {/* Card */}
-                <div className={`bg-gradient-to-br ${threat.bgGradient} ${threat.borderColor} border-2 hover:border-red-300 hover:shadow-2xl transition-all duration-500 h-full rounded-3xl overflow-hidden backdrop-blur-sm group-hover:scale-[1.02] transform`}>
+                <div className={`bg-gradient-to-br ${threat.bgGradient} ${threat.borderColor} border-2 hover:shadow-xl transition-all duration-300 h-full rounded-3xl overflow-hidden backdrop-blur-sm`}>
                   <div className="p-10">
                     {/* Header */}
                     <div className="flex items-start gap-6 mb-8">
-                      <div className="flex-shrink-0 w-20 h-20 bg-white/80 rounded-2xl flex items-center justify-center group-hover:bg-white transition-colors shadow-lg text-red-600">
+                      <div className="flex-shrink-0 w-20 h-20 bg-white/80 rounded-2xl flex items-center justify-center shadow-lg text-blue-600">
                         {threat.icon}
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-3xl font-black mb-3 group-hover:text-red-600 transition-colors text-gray-800">
+                        <h3 className="text-3xl font-black mb-3 text-gray-800">
                           {threat.title}
                         </h3>
                         <p className="text-lg text-gray-600 leading-relaxed font-medium">
@@ -200,7 +199,7 @@ export default function DataPrivacyFight() {
                     {/* Impact Metric */}
                     <div className="bg-white/70 rounded-2xl p-6 mb-8 border border-white/50 shadow-lg">
                       <div className="text-center">
-                        <div className="text-4xl font-black text-red-600 mb-2">{threat.impact}</div>
+                        <div className="text-4xl font-black text-blue-600 mb-2">{threat.impact}</div>
                         <div className="text-sm font-semibold text-gray-700 uppercase tracking-wide">{threat.impactLabel}</div>
                       </div>
                     </div>
@@ -208,8 +207,8 @@ export default function DataPrivacyFight() {
                     {/* Details */}
                     <div className="space-y-4">
                       {threat.details.map((detail, detailIndex) => (
-                        <div key={detailIndex} className="flex items-start gap-4 p-4 rounded-xl bg-white/50 hover:bg-white/70 transition-colors border border-white/30">
-                          <div className="flex-shrink-0 w-3 h-3 bg-red-500 rounded-full mt-2 shadow-sm"></div>
+                        <div key={detailIndex} className="flex items-start gap-4 p-4 rounded-xl bg-white/50 border border-white/30">
+                          <div className="flex-shrink-0 w-3 h-3 bg-blue-500 rounded-full mt-2 shadow-sm"></div>
                           <span className="text-lg font-semibold leading-relaxed text-gray-800">{detail}</span>
                         </div>
                       ))}
@@ -223,11 +222,11 @@ export default function DataPrivacyFight() {
             ))}
           </div>
           
-          {/* Enhanced Bottom CTA */}
+          {/* Information & Next Steps */}
           <div className="text-center mt-20">
             <div className="relative max-w-5xl mx-auto">
-              {/* Urgent Alert Box */}
-              <div className="bg-gradient-to-r from-red-600 to-orange-600 rounded-3xl p-12 text-white shadow-2xl relative overflow-hidden">
+              {/* Informational Box */}
+              <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl p-12 text-white shadow-2xl relative overflow-hidden">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
                   <div className="absolute inset-0" style={{
@@ -237,36 +236,37 @@ export default function DataPrivacyFight() {
                 
                 <div className="relative z-10">
                   <div className="flex items-center justify-center gap-3 mb-6">
-                    <div className="w-4 h-4 bg-white rounded-full animate-pulse"></div>
-                    <span className="text-xl font-black uppercase tracking-wider">CRITICAL SITUATION</span>
-                    <div className="w-4 h-4 bg-white rounded-full animate-pulse"></div>
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-xl font-black uppercase tracking-wider">Your Privacy Options</span>
                   </div>
                   
                   <h3 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
-                    This Is Happening to Your Business Right Now.
+                    Understand Your Data Exposure
                   </h3>
                   
                   <div className="max-w-3xl mx-auto space-y-4 text-xl leading-relaxed">
                     <p className="font-semibold">
-                  While you read this, competitors are purchasing your trade data, mapping your supplier relationships, and targeting your customers.
-                </p>
-                    <p className="text-2xl font-black text-yellow-300">
-                  Every hour of delay gives them more intelligence to use against you.
-                </p>
+                      Trade intelligence platforms collect customs data and make it available to subscribers. Understanding what information is public helps businesses make informed privacy decisions.
+                    </p>
+                    <p className="text-lg opacity-90">
+                      We offer free assessments to help you understand your current exposure and available protection options.
+                    </p>
                   </div>
                   
                   {/* Action Buttons */}
                   <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link href="/contact#contact-form" className="btn btn-warning btn-lg text-lg px-8 py-4 font-black shadow-xl hover:shadow-2xl transition-all transform hover:scale-105">
-                      Request Your Free Audit Now
+                    <Link href="/contact#contact-form" className="btn btn-primary btn-lg text-lg px-8 py-4 font-black shadow-xl hover:shadow-2xl transition-all bg-white text-blue-600 hover:bg-blue-50">
+                      Request Free Assessment
                     </Link>
-                    <Link href="/membership" className="btn btn-outline btn-lg text-lg px-8 py-4 font-bold text-white border-white hover:bg-white hover:text-red-600 transition-all">
-                      See All Protection Plans
+                    <Link href="/services" className="btn btn-outline btn-lg text-lg px-8 py-4 font-bold text-white border-white hover:bg-white hover:text-blue-600 transition-all">
+                      View Our Services
                     </Link>
                   </div>
                   
                   <p className="text-sm opacity-90 mt-6 font-medium">
-                    ⚡ Free exposure audit available • No commitment required • Fast Assessment
+                    Free assessment available • No obligation • Confidential consultation
                   </p>
                 </div>
               </div>
@@ -292,20 +292,17 @@ export default function DataPrivacyFight() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-20">
             <div className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 text-emerald-600 px-6 py-3 rounded-full mb-8 border border-emerald-200 backdrop-blur-sm shadow-lg">
-              <div className="relative">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full animate-ping"></div>
-              </div>
-              <span className="font-bold text-lg">THE REMOVA SHIELD</span>
+              <span className="font-bold text-lg">Our Protection System</span>
             </div>
             <h2 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9] bg-gradient-to-r from-gray-900 via-emerald-700 to-blue-700 bg-clip-text text-transparent">
-              Your Digital Shield Against<br />
-              <span className="text-emerald-600">Business Intelligence Theft</span>
+              Complete Trade Data<br />
+              <span className="text-emerald-600">Privacy Protection</span>
             </h2>
             <p className="text-2xl opacity-80 max-w-5xl mx-auto leading-relaxed text-gray-700 font-medium">
-              A complete protection system that makes your trade data private and keeps it that way
+              A three-pillar system that helps make your trade data private through legal filings, systematic removal, and continuous monitoring
             </p>
             
             {/* Protection Stats */}
@@ -513,7 +510,7 @@ export default function DataPrivacyFight() {
       </section>
 
       {/* CALL TO ACTION SECTION */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900">
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-indigo-900 via-blue-900 to-slate-900">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -522,8 +519,8 @@ export default function DataPrivacyFight() {
         </div>
         
         {/* Floating Elements */}
-        <div className="absolute top-20 left-20 w-40 h-40 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-32 h-32 bg-white/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-20 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center">
@@ -536,34 +533,35 @@ export default function DataPrivacyFight() {
                 <div className="relative z-10 text-white">
                   {/* Badge */}
                   <div className="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full mb-8 border border-white/30">
-                    <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
-                    <span className="font-black text-lg uppercase tracking-wider">TIME-SENSITIVE PROTECTION</span>
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                    <span className="font-black text-lg uppercase tracking-wider">Get Started</span>
                   </div>
                   
                   {/* Main Headline */}
                   <h2 className="text-5xl lg:text-7xl font-black mb-8 leading-[0.9]">
-                    Stop the Intelligence Leak.<br />
-                    <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">Secure Your Business.</span>
+                    Protect Your Trade Data<br />
+                    <span className="bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent">with Expert Guidance</span>
                   </h2>
                   
                   {/* Description */}
                   <p className="text-2xl opacity-90 mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
-                  Your competitors' intelligence advantage ends the moment you make your data private. 
-                  Don't give them another day to map your business relationships.
+                  We help businesses understand their data exposure and implement comprehensive privacy protection through legal filings and systematic removal processes.
                 </p>
                   
                   {/* Enhanced Buttons */}
                   <div className="flex flex-col lg:flex-row gap-6 justify-center mb-8">
-                    <Link href="/contact#contact-form" className="group relative btn btn-warning btn-lg text-xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-2 border-yellow-400">
+                    <Link href="/contact#contact-form" className="group relative btn btn-primary btn-lg text-xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 bg-white text-blue-600 hover:bg-blue-50">
                       <span className="relative z-10 flex items-center gap-3">
-                        🛡️ Request Free Exposure Audit
+                        Contact Us
                         <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                       </span>
                   </Link>
-                    <Link href="/membership" className="btn btn-outline btn-lg text-xl px-12 py-6 font-bold text-white border-white hover:bg-white hover:text-indigo-900 transition-all shadow-xl border-2">
-                      See All Protection Plans
+                    <Link href="/services" className="btn btn-outline btn-lg text-xl px-12 py-6 font-bold text-white border-white hover:bg-white hover:text-indigo-900 transition-all shadow-xl border-2">
+                      View Our Services
                   </Link>
                   </div>
                   
@@ -579,13 +577,13 @@ export default function DataPrivacyFight() {
                       <svg className="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                       </svg>
-                      <span className="text-sm font-bold">24-Hour Results</span>
+                      <span className="text-sm font-bold">Professional Service</span>
                     </div>
                     <div className="flex items-center justify-center gap-3 bg-white/10 rounded-xl p-4 backdrop-blur-sm">
                       <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                       </svg>
-                      <span className="text-sm font-bold">No Commitment</span>
+                      <span className="text-sm font-bold">Confidential</span>
                     </div>
                   </div>
                 </div>
@@ -595,32 +593,32 @@ export default function DataPrivacyFight() {
         </div>
       </section>
 
-      {/* The True Cost of a Single Leak */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-red-50 via-orange-50/30 to-yellow-50/20">
+      {/* Understanding Business Impact */}
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50/30 to-slate-50/20">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 10L110 60L60 110L10 60Z' fill='%23dc2626' opacity='0.4'/%3E%3Ccircle cx='60' cy='60' r='40' fill='none' stroke='%23dc2626' stroke-width='2' opacity='0.3'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 10L110 60L60 110L10 60Z' fill='%233b82f6' opacity='0.4'/%3E%3Ccircle cx='60' cy='60' r='40' fill='none' stroke='%233b82f6' stroke-width='2' opacity='0.3'/%3E%3C/svg%3E")`,
           }}></div>
         </div>
         
         {/* Floating Elements */}
-        <div className="absolute top-20 left-20 w-32 h-32 bg-red-100 rounded-full blur-3xl opacity-60 animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-orange-100 rounded-full blur-3xl opacity-60 animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 bg-blue-100 rounded-full blur-3xl opacity-60"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-indigo-100 rounded-full blur-3xl opacity-60"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto">
             {/* Header */}
             <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-red-500/10 to-orange-500/10 text-red-600 px-6 py-3 rounded-full mb-8 border border-red-200 backdrop-blur-sm shadow-lg">
-                <svg className="w-6 h-6 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 text-blue-600 px-6 py-3 rounded-full mb-8 border border-blue-200 backdrop-blur-sm shadow-lg">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                 </svg>
-                <span className="font-bold text-lg">BUSINESS IMPACT ANALYSIS</span>
+                <span className="font-bold text-lg">Why Privacy Matters</span>
               </div>
-              <h2 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9] bg-gradient-to-r from-gray-900 via-red-700 to-orange-700 bg-clip-text text-transparent">
-                One Leak.<br />
-                <span className="text-red-600">Catastrophic Consequences.</span>
+              <h2 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9] bg-gradient-to-r from-gray-900 via-blue-700 to-indigo-700 bg-clip-text text-transparent">
+                Understanding Data<br />
+                <span className="text-blue-600">Exposure Impact</span>
             </h2>
             </div>
 
@@ -629,76 +627,76 @@ export default function DataPrivacyFight() {
               {/* Story Side */}
               <div className="space-y-8">
                 <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-red-200 shadow-xl">
-                  <h3 className="text-2xl font-black mb-6 text-gray-800">What is the real cost of a single piece of your trade data being exposed?</h3>
+                  <h3 className="text-2xl font-black mb-6 text-gray-800">Why Businesses Consider Privacy Important</h3>
                   
                   <div className="space-y-6 text-lg leading-relaxed text-gray-700">
                     <p className="font-medium">
-                      It's not just a line on a spreadsheet. It's the moment your biggest competitor discovers your confidential supplier in Vietnam—the one that gives you a <span className="font-black text-red-600">30% cost advantage</span>—and instantly erases your edge in the market.
+                      Trade data includes supplier relationships, customer information, and shipping patterns. When this information is publicly accessible, businesses lose control over their commercial intelligence.
                     </p>
                     <p className="font-medium">
-                      It's the loss of your top distributor in the United States, an account that represents <span className="font-black text-red-600 text-xl">50% of your annual sales</span>, because a local rival saw your customer list and undercut you.
+                      Understanding what information is available helps companies make informed decisions about protecting their trade relationships and competitive positioning.
                     </p>
                   </div>
                 </div>
                 
-                {/* Impact Quote */}
-                <div className="bg-gradient-to-r from-red-600 to-orange-600 rounded-3xl p-8 text-white shadow-2xl">
+                {/* Informational Quote */}
+                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl p-8 text-white shadow-2xl">
                   <blockquote className="text-2xl font-black leading-relaxed">
-                    "For importers and exporters, a data leak isn't a minor setback. It can be an extinction-level event."
+                    "Trade data privacy is about controlling your business information in an era of public customs records."
                   </blockquote>
                 </div>
               </div>
 
-              {/* Impact Metrics Side */}
+              {/* Common Concerns Side */}
               <div className="space-y-6">
-                <h3 className="text-3xl font-black text-gray-800 mb-8">Real Business Impact</h3>
+                <h3 className="text-3xl font-black text-gray-800 mb-8">Common Business Concerns</h3>
                 
-                {/* Impact Cards */}
+                {/* Concern Cards */}
                 <div className="space-y-4">
-                  <div className="bg-white rounded-2xl p-6 border border-red-200 shadow-lg">
+                  <div className="bg-white rounded-2xl p-6 border border-blue-200 shadow-lg">
                     <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center">
-                        <span className="text-2xl">💰</span>
+                      <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center">
+                        <span className="text-2xl">🤝</span>
                       </div>
                       <div>
-                        <div className="text-3xl font-black text-red-600">$2.3M</div>
-                        <div className="text-sm font-bold text-gray-600">Average revenue lost per major leak</div>
+                        <div className="text-xl font-black text-blue-600">Supplier Privacy</div>
+                        <div className="text-sm font-medium text-gray-600">Protecting manufacturer relationships</div>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="bg-white rounded-2xl p-6 border border-orange-200 shadow-lg">
+                  <div className="bg-white rounded-2xl p-6 border border-indigo-200 shadow-lg">
                     <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center">
-                        <span className="text-2xl">⏱️</span>
+                      <div className="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center">
+                        <span className="text-2xl">📊</span>
                       </div>
                       <div>
-                        <div className="text-3xl font-black text-orange-600">48hrs</div>
-                        <div className="text-sm font-bold text-gray-600">Time for competitors to act on leaked data</div>
+                        <div className="text-xl font-black text-indigo-600">Competitive Intelligence</div>
+                        <div className="text-sm font-medium text-gray-600">Managing publicly available data</div>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="bg-white rounded-2xl p-6 border border-yellow-200 shadow-lg">
+                  <div className="bg-white rounded-2xl p-6 border border-purple-200 shadow-lg">
                     <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center">
-                        <span className="text-2xl">📉</span>
+                      <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center">
+                        <span className="text-2xl">🔒</span>
                       </div>
                       <div>
-                        <div className="text-3xl font-black text-yellow-600">73%</div>
-                        <div className="text-sm font-bold text-gray-600">Of companies lose key accounts within 6 months</div>
+                        <div className="text-xl font-black text-purple-600">Strategic Information</div>
+                        <div className="text-sm font-medium text-gray-600">Maintaining business confidentiality</div>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="bg-white rounded-2xl p-6 border border-red-200 shadow-lg">
+                  <div className="bg-white rounded-2xl p-6 border border-pink-200 shadow-lg">
                     <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center">
-                        <span className="text-2xl">⚡</span>
+                      <div className="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center">
+                        <span className="text-2xl">🛡️</span>
                       </div>
                       <div>
-                        <div className="text-3xl font-black text-red-600">Permanent</div>
-                        <div className="text-sm font-bold text-gray-600">Competitive advantage erosion</div>
+                        <div className="text-xl font-black text-pink-600">Market Position</div>
+                        <div className="text-sm font-medium text-gray-600">Preserving competitive advantage</div>
                       </div>
                     </div>
                   </div>
@@ -709,7 +707,7 @@ export default function DataPrivacyFight() {
         </div>
       </section>
 
-      {/* The Cybersecurity Blind Spot */}
+      {/* Understanding Different Security Layers */}
       <section className="relative py-24 overflow-hidden bg-gradient-to-br from-slate-100 via-gray-100/30 to-zinc-100/20">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
@@ -719,22 +717,22 @@ export default function DataPrivacyFight() {
         </div>
         
         {/* Floating Elements */}
-        <div className="absolute top-20 left-20 w-32 h-32 bg-orange-100 rounded-full blur-3xl opacity-50 animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-yellow-100 rounded-full blur-3xl opacity-50 animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-indigo-100 rounded-full blur-3xl opacity-50"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto">
             {/* Header */}
             <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500/10 to-yellow-500/10 text-orange-600 px-6 py-3 rounded-full mb-8 border border-orange-200 backdrop-blur-sm shadow-lg">
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 text-blue-600 px-6 py-3 rounded-full mb-8 border border-blue-200 backdrop-blur-sm shadow-lg">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
-                <span className="font-bold text-lg">CYBERSECURITY REALITY CHECK</span>
+                <span className="font-bold text-lg">Complementary Security Approaches</span>
               </div>
-              <h2 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9] bg-gradient-to-r from-gray-900 via-orange-700 to-yellow-700 bg-clip-text text-transparent">
-                You Lock Your Doors,<br />
-                <span className="text-orange-600">But Your Blueprints Are for Sale Online.</span>
+              <h2 className="text-5xl md:text-7xl font-black mb-8 leading-[0.9] bg-gradient-to-r from-gray-900 via-blue-700 to-indigo-700 bg-clip-text text-transparent">
+                Different Types of<br />
+                <span className="text-blue-600">Business Information Security</span>
             </h2>
             </div>
 
@@ -742,111 +740,94 @@ export default function DataPrivacyFight() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Content Side */}
               <div className="space-y-8">
-                <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-orange-200 shadow-xl">
-                  <h3 className="text-2xl font-black mb-6 text-gray-800">The Legal Data Threat</h3>
+                <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-blue-200 shadow-xl">
+                  <h3 className="text-2xl font-black mb-6 text-gray-800">Public vs. Private Data</h3>
                   <div className="space-y-6 text-lg leading-relaxed text-gray-700">
                     <p className="font-medium">
-                      You spend thousands on firewalls, VPNs, and cybersecurity to protect you from illegal hacks. But what about the threats that are <span className="font-black text-orange-600">perfectly legal</span>?
+                      Traditional cybersecurity protects against unauthorized access to your private systems. Trade data privacy addresses a different challenge: information that becomes <span className="font-black text-blue-600">legally public</span> through government processes.
                     </p>
                     <p className="font-medium">
-                Every day, your most sensitive commercial data—your suppliers, your customers, your shipping volumes—is legally collected from customs records and sold to anyone who will pay for it, including your direct competitors.
+                      Customs data from international shipments is collected by governments and becomes part of the public record, accessible through legal channels.
               </p>
                   </div>
                 </div>
                 
-                {/* Warning Quote */}
-                <div className="bg-gradient-to-r from-orange-600 to-yellow-600 rounded-3xl p-8 text-white shadow-2xl">
+                {/* Informational Quote */}
+                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl p-8 text-white shadow-2xl">
                   <blockquote className="text-2xl font-black leading-relaxed">
-                    "Traditional cybersecurity can't protect you from this. If your business intelligence is for sale, you don't have security."
+                    "Understanding different types of data exposure helps businesses implement comprehensive protection strategies."
                   </blockquote>
                 </div>
               </div>
 
-              {/* Security Gap Visualization */}
+              {/* Security Comparison */}
               <div className="space-y-6">
-                <h3 className="text-3xl font-black text-gray-800 mb-8">The Security Gap</h3>
+                <h3 className="text-3xl font-black text-gray-800 mb-8">Two Security Areas</h3>
                 
                 {/* Security Comparison */}
                 <div className="space-y-4">
-                  {/* What You Protect */}
-                  <div className="bg-emerald-50 rounded-2xl p-6 border border-emerald-200">
+                  {/* Traditional Security */}
+                  <div className="bg-blue-50 rounded-2xl p-6 border border-blue-200">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center">
+                      <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
                         <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                         </svg>
                       </div>
                       <div>
-                        <h4 className="font-black text-emerald-700">What You Protect</h4>
-                        <p className="text-sm text-emerald-600">Traditional cybersecurity covers</p>
+                        <h4 className="font-black text-blue-700">Traditional Cybersecurity</h4>
+                        <p className="text-sm text-blue-600">Protects private systems</p>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-3 text-sm">
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>Servers & databases</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>Email systems</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>Network traffic</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>Employee devices</span>
                       </div>
                     </div>
                   </div>
                   
-                  {/* What's Exposed */}
-                  <div className="bg-red-50 rounded-2xl p-6 border border-red-200">
+                  {/* Trade Data Privacy */}
+                  <div className="bg-indigo-50 rounded-2xl p-6 border border-indigo-200">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center">
+                      <div className="w-12 h-12 bg-indigo-500 rounded-xl flex items-center justify-center">
                         <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                          <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
                         </svg>
                       </div>
                       <div>
-                        <h4 className="font-black text-red-700">What's Still Exposed</h4>
-                        <p className="text-sm text-red-600">Legal data collection continues</p>
+                        <h4 className="font-black text-indigo-700">Trade Data Privacy</h4>
+                        <p className="text-sm text-indigo-600">Manages public records</p>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-3 text-sm">
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        <span>Trade data</span>
+                        <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                        <span>Customs data</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        <span>Supplier networks</span>
+                        <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                        <span>Supplier information</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        <span>Customer lists</span>
+                        <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                        <span>Customer relationships</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                        <span>Shipping volumes</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Cost Comparison */}
-                  <div className="bg-white rounded-2xl p-6 border-2 border-orange-200 shadow-lg">
-                    <div className="text-center">
-                      <h4 className="font-black text-gray-800 mb-4">Annual Security Spending vs. Leak Cost</h4>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <div className="text-2xl font-black text-blue-600">$50K+</div>
-                          <div className="text-xs text-gray-600">Cybersecurity Budget</div>
-                        </div>
-                        <div>
-                          <div className="text-2xl font-black text-red-600">$2.3M</div>
-                          <div className="text-xs text-gray-600">Single Leak Cost</div>
-                        </div>
+                        <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                        <span>Shipping patterns</span>
                       </div>
                     </div>
                   </div>
@@ -857,97 +838,6 @@ export default function DataPrivacyFight() {
         </div>
       </section>
 
-      {/* Reframing the Service */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50/30 to-purple-50/20">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.02]">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 5L75 40L40 75L5 40Z' fill='%233b82f6' opacity='0.4'/%3E%3Ccircle cx='40' cy='40' r='25' fill='none' stroke='%233b82f6' stroke-width='1' opacity='0.3'/%3E%3C/svg%3E")`,
-          }}></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-5xl mx-auto text-center">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 px-6 py-3 rounded-full mb-8 border border-blue-200 backdrop-blur-sm shadow-lg">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              <span className="font-bold text-lg">BUSINESS PROTECTION REFRAMED</span>
-            </div>
-            <h2 className="text-5xl md:text-7xl font-black mb-12 leading-[0.9] bg-gradient-to-r from-gray-900 via-blue-700 to-purple-700 bg-clip-text text-transparent">
-              This Isn't a Service.<br />
-              <span className="text-blue-600">It's an Insurance Policy for Your Business.</span>
-            </h2>
-            
-            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-12 border border-blue-200 shadow-2xl">
-              <div className="space-y-8 text-left max-w-4xl">
-                <p className="text-2xl leading-relaxed font-medium text-gray-700">
-                You don't think of this as a logistical task or a filing service. You should think of it as the most important insurance policy you can buy.
-              </p>
-                <p className="text-xl leading-relaxed font-medium text-gray-600">
-                You have insurance for your building, your inventory, and your liability. But do you have insurance for the very business relationships that generate all of your revenue?
-              </p>
-                <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
-                  <p className="text-2xl font-black leading-relaxed">
-                Remova is that policy. We are your proactive defense against the existential risks of supplier and customer poaching. We are the prescription that ensures your competitive advantage remains yours and yours alone.
-              </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* The High-Stakes Choice */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-gray-900 via-slate-900 to-zinc-900">
-        {/* Background Elements */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L55 30L30 55L5 30Z' fill='%23ffffff' opacity='0.4'/%3E%3C/svg%3E")`,
-          }}></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-5xl mx-auto text-center">
-            <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm text-white px-6 py-3 rounded-full mb-8 border border-white/30">
-              <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-              <span className="font-bold text-lg">CRITICAL BUSINESS DECISION</span>
-            </div>
-            
-            <h2 className="text-5xl md:text-7xl font-black mb-12 leading-[0.9] text-white">
-              The Choice:<br />
-              <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">Privacy or Extinction.</span>
-            </h2>
-            
-            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl mb-12">
-              <div className="space-y-8 text-white">
-                <p className="text-2xl leading-relaxed font-medium">
-                In today's hyper-competitive global market, the choice is simple.
-              </p>
-                <p className="text-xl leading-relaxed font-medium opacity-90">
-                You can allow your trade data to remain public, giving your competitors a live roadmap to dismantle your business. Or you can make it private.
-              </p>
-                <div className="bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded-2xl p-8 border border-red-400/30">
-                  <p className="text-2xl font-black leading-relaxed text-yellow-300">
-                This is not an optional upgrade. It is a mandatory prescription for any serious importer or exporter.
-              </p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="text-center">
-              <Link href="/contact#contact-form" className="group relative btn btn-warning btn-lg text-2xl px-12 py-6 font-black shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105">
-                <span className="relative z-10 flex items-center gap-3">
-                  💊 Get Your Prescription: Request a Free Exposure Audit
-                  <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

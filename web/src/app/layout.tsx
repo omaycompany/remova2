@@ -20,24 +20,26 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(getCanonicalBaseUrl()),
   title: {
-    default: "Remova.org — The Digital Shield for Global Commerce",
+    default: "Remova.org — Trade Data Protection Services",
     template: "%s — Remova.org",
   },
   description:
-    "Remova.org prevents corporate data from being sold and businesses getting hurt because of it. Privacy-as-a-Service (PaaS) for importers and exporters - protect your supplier relationships, pricing strategies, and market intelligence.",
+    "Professional trade data protection services for importers and exporters. Expert consulting, government privacy filings, systematic data removal, and ongoing monitoring to protect your supplier relationships and business intelligence.",
   applicationName: "Remova.org",
   keywords: [
+    "trade data protection services",
+    "privacy consulting",
+    "customs privacy filing",
+    "data removal services",
     "supply chain privacy",
     "trade data protection", 
     "manifest confidentiality",
-    "privacy-as-a-service",
-    "data obfuscation",
     "supplier relationship protection",
     "competitive intelligence defense",
-    "import export privacy",
-    "stealth",
-    "vanish",
-    "fortress plan",
+    "import export privacy services",
+    "CBP Form 28",
+    "CBP Form 29",
+    "trade intelligence monitoring",
   ],
   authors: [{ name: "Remova.org" }],
   creator: "Remova.org",
@@ -45,9 +47,9 @@ export const metadata: Metadata = {
   // Note: canonical URLs should be set per-page, not globally
   openGraph: {
     type: "website",
-    title: "Remova.org — The Digital Shield for Global Commerce", 
+    title: "Remova.org — Trade Data Protection Services", 
     description:
-      "Privacy-as-a-Service for importers and exporters. Protect your supplier relationships, pricing strategies, and market intelligence from competitors.",
+      "Professional trade data protection services. Expert consulting, government privacy filings, systematic data removal, and continuous monitoring for importers and exporters.",
     url: getCanonicalBaseUrl(),
     siteName: "Remova.org",
             images: [
@@ -61,8 +63,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Remova.org — The Digital Shield for Global Commerce",
-    description: "Privacy-as-a-Service for importers and exporters. Protect your supply chain from competitors.",
+    title: "Remova.org — Trade Data Protection Services",
+    description: "Professional privacy consulting and data protection services for importers and exporters. Protect your supply chain relationships.",
     images: ["/REMOVA LOGO.png"],
   },
   robots: {
@@ -84,55 +86,64 @@ export default function RootLayout({
   
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "ProfessionalService",
     "name": "Remova.org",
-    "description": "For-profit organization preventing corporate data from being sold. Privacy-as-a-Service for global commerce protection.",
+    "description": "Professional trade data protection services including privacy consulting, government filings, data removal, and ongoing monitoring for importers and exporters.",
     "url": baseUrl,
-            "logo": `${baseUrl}/REMOVA LOGO.png`,
+    "logo": `${baseUrl}/REMOVA LOGO.png`,
     "sameAs": [],
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
       "url": `${baseUrl}/contact`
     },
-    "service": [
-      {
-        "@type": "Service",
-        "name": "Stealth",
-        "description": "Proactive protection with CBP manifest confidentiality filing and renewal management",
-        "url": `${baseUrl}/membership`,
-        "offers": {
+    "areaServed": {
+      "@type": "Place",
+      "name": "Worldwide"
+    },
+    "priceRange": "$$-$$$",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Trade Data Protection Services",
+      "itemListElement": [
+        {
           "@type": "Offer",
-          "price": "3540",
-          "priceCurrency": "USD",
-          "billingIncrement": "Year"
-        }
-      },
-      {
-        "@type": "Service", 
-        "name": "Vanish",
-        "description": "Comprehensive removal with historical data takedown campaigns across 40+ platforms",
-        "url": `${baseUrl}/membership`,
-        "offers": {
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Trade Data Protection Audit",
+            "description": "Comprehensive assessment of trade data exposure across 40+ intelligence platforms",
+            "url": `${baseUrl}/services/trade-data-protection-audit`
+          }
+        },
+        {
           "@type": "Offer",
-          "price": "7140",
-          "priceCurrency": "USD",
-          "billingIncrement": "Year"
-        }
-      },
-      {
-        "@type": "Service",
-        "name": "Shield", 
-        "description": "Ultimate protection with legal coverage, priority SLA, and custom partner engagement",
-        "url": `${baseUrl}/membership`,
-        "offers": {
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Trade Data Removal Service",
+            "description": "Systematic removal of existing trade data from intelligence platforms",
+            "url": `${baseUrl}/services/trade-data-removal`
+          }
+        },
+        {
           "@type": "Offer",
-          "price": "15000",
-          "priceCurrency": "USD",
-          "billingIncrement": "Year"
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Government Privacy Filing",
+            "description": "Professional filing of confidentiality requests with customs authorities including CBP Form 28/29",
+            "url": `${baseUrl}/services/government-privacy-filing`
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Ongoing Monitoring Service",
+            "description": "24/7 automated surveillance of trade intelligence platforms with immediate alerts",
+            "url": `${baseUrl}/services/ongoing-monitoring`
+          }
         }
-      }
-    ]
+      ]
+    }
   };
 
   return (

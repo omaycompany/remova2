@@ -336,6 +336,38 @@ export default function CustomsDutyCalculator() {
           </div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-br from-orange-600 to-red-700">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-6">
+            Need Help with Trade Compliance?
+          </h2>
+          <p className="text-xl text-orange-100 mb-8 max-w-2xl mx-auto">
+            Beyond cost calculations, we help businesses protect their trade data, ensure compliance, and maintain privacy in international commerce.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/contact#contact-form"
+              className="inline-flex items-center justify-center gap-2 bg-white text-orange-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+              </svg>
+              Contact Us
+            </Link>
+            <Link
+              href="/services"
+              className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-orange-600 transition-colors"
+            >
+              View Our Services
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

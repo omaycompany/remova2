@@ -61,24 +61,24 @@ export default function FAQ() {
       ]
     },
     {
-      category: "Plans & Pricing",
+      category: "Services & Pricing",
       icon: "💼",
       questions: [
         {
-          question: "What's included in each membership tier?",
-          answer: "Community Member (Free): Basic tools and educational resources. Stealth ($295/month): Essential protection with government filings and 24/7 monitoring. Vanish ($595/month): Complete protection including historical takedowns across 40+ platforms and dedicated account management. Shield ($1,250/month): Ultimate protection with $10,000 legal coverage fund and priority SLA."
+          question: "What services do you offer?",
+          answer: "We offer a range of trade data protection services including Trade Data Protection Audits, Trade Data Exposure Assessments, Trade Data Removal, Government Privacy Filing (including CBP Form 28/29), Ongoing Monitoring, and Partner Privacy Verification. Each service is customized to your specific business needs and exposure level."
         },
         {
-          question: "Why are your services so expensive?",
-          answer: "Consider the cost of losing your most profitable supplier to a competitor, or having your biggest customer poached because they discovered your relationship online. Our annual fee is typically less than the value of a single strategic relationship. This isn't an expense—it's insurance against business extinction."
+          question: "How much do your services cost?",
+          answer: "Service pricing is customized based on your business size, exposure level, and protection needs. We provide detailed quotes after an initial assessment. Trade data privacy is a business decision based on evaluating the value of your commercial relationships. Companies consider factors like supplier confidentiality, customer privacy, and competitive intelligence when deciding whether privacy protection aligns with their business strategy."
         },
         {
-          question: "Can I start with a lower tier and upgrade later?",
-          answer: "Absolutely. Many clients start with Stealth to stop new data leakage, then upgrade to Vanish for historical cleanup, and eventually to Shield for maximum protection. You can upgrade anytime, and we'll prorate the difference."
+          question: "Can I start with one service and add others later?",
+          answer: "Absolutely. Many clients start with a Trade Data Protection Audit to understand their exposure, then proceed with government filings to stop new data leakage, and later add ongoing monitoring or historical data removal. We work with you to create a phased approach that fits your budget and priorities."
         },
         {
-          question: "Do you offer discounts for multi-year contracts?",
-          answer: "We focus on delivering exceptional value rather than discount pricing. Our annual billing model already provides significant operational efficiency. For enterprise clients with complex multi-entity needs, we can discuss custom arrangements."
+          question: "Do you offer packages or bundles?",
+          answer: "Yes. We can bundle services for better efficiency and pricing. For example, combining government filing with ongoing monitoring, or pairing exposure assessment with systematic removal. Contact us to discuss which combination makes sense for your business."
         },
         {
           question: "What's the ROI on your services?",
@@ -92,11 +92,11 @@ export default function FAQ() {
       questions: [
         {
           question: "How do I know if I need this?",
-          answer: "If you import/export goods, have valuable supplier relationships, or operate in competitive markets, you're at risk. Try our free Community Membership to see what data is already exposed about your business. Most companies are shocked by what they discover."
+          answer: "If you import/export goods, have valuable supplier relationships, or operate in competitive markets, you're at risk. Use our free assessment tools to see what data is already exposed about your business. Most companies are shocked by what they discover. Contact us for a comprehensive evaluation."
         },
         {
           question: "What information do you need from me?",
-          answer: "We need your company's legal name, any DBA names, business registration numbers, and key personnel information. For paid services, we'll also need authorized representative details for government filings. We handle everything securely and only collect what's necessary for protection."
+          answer: "For initial consultations, we need your company's legal name and basic contact information. For services like government filings, we'll need DBA names, business registration numbers, and authorized representative details. We handle everything securely and only collect what's necessary for protection."
         },
         {
           question: "How long does it take to see results?",
@@ -158,19 +158,19 @@ export default function FAQ() {
       questions: [
         {
           question: "What kind of support do you provide?",
-          answer: "All members get email support. Stealth members receive priority response within 24 hours. Vanish members get phone support with 4-hour response time. Shield members receive premium support with 1-hour response across all channels, plus a dedicated account manager."
+          answer: "All clients receive dedicated email and phone support. Response times vary based on service level and contract terms. Many of our ongoing service clients receive dedicated account managers and priority support channels. We work closely with you throughout the entire protection process."
         },
         {
-          question: "Can I cancel my membership?",
-          answer: "Yes, you can cancel anytime. Memberships are billed annually and non-refundable, but you'll continue receiving services through your current billing period. Most clients choose to maintain protection indefinitely once they understand the ongoing threats."
+          question: "Can I cancel ongoing services?",
+          answer: "Yes, you can discontinue ongoing services based on your service agreement terms. One-time projects are completed and closed. Ongoing monitoring services can be paused or cancelled according to your contract. Most clients choose to maintain protection indefinitely once they understand the ongoing threats."
         },
         {
-          question: "Do you offer enterprise or multi-entity plans?",
-          answer: "Yes. Shield Membership includes multi-entity support for complex corporate structures. For larger enterprises, we offer custom arrangements with dedicated teams, specialized reporting, and enhanced SLAs. Contact us for enterprise pricing."
+          question: "Do you offer enterprise or multi-entity services?",
+          answer: "Yes. We provide services for complex corporate structures with multiple entities. For larger enterprises, we offer custom arrangements with dedicated teams, specialized reporting, and enhanced SLAs. Contact us to discuss your multi-entity protection needs and pricing."
         },
         {
           question: "How do I track the progress of my protection?",
-          answer: "Your member dashboard provides real-time visibility into filing status, takedown progress, monitoring alerts, and protection coverage. You'll receive monthly reports showing exposure reduction and ongoing protection status."
+          answer: "We provide regular status updates throughout your service engagement. For ongoing services, you'll receive detailed reports showing filing status, takedown progress, monitoring alerts, and protection coverage. The frequency and format of reporting is customized based on your service package."
         }
       ]
     }
@@ -181,7 +181,7 @@ export default function FAQ() {
       <PageHeader
         title="Frequently Asked Questions"
         subtitle="Find answers to common questions about our services, processes, and policies. Can't find what you're looking for? Contact our support team."
-        actions={<Link href="/contact" className="btn btn-primary">Contact Support</Link>}
+        actions={<Link href="/contact#contact-form" className="btn btn-primary">Contact Us</Link>}
       />
 
       <section className="container mx-auto px-4 py-10">
@@ -204,8 +204,8 @@ export default function FAQ() {
                 </ul>
                 <div className="divider"></div>
                 <div className="space-y-2">
-                  <Link href="/help-support" className="btn btn-outline btn-sm w-full">Help & Support</Link>
-                  <Link href="/contact" className="btn btn-primary btn-sm w-full">Contact Us</Link>
+                  <Link href="/services" className="btn btn-outline btn-sm w-full">View Services</Link>
+                  <Link href="/contact#contact-form" className="btn btn-primary btn-sm w-full">Contact Us</Link>
                 </div>
               </div>
             </div>
@@ -245,9 +245,9 @@ export default function FAQ() {
               Our support team is here to help. We typically respond to all inquiries within 24 hours during business days.
             </p>
             <div className="grid md:grid-cols-3 gap-4 max-w-xl mx-auto mt-6">
-              <Link href="/contact" className="btn btn-primary">Contact Form</Link>
+              <Link href="/contact#contact-form" className="btn btn-primary">Contact Form</Link>
               <a href="mailto:hello@remova.org" className="btn btn-outline">Email Us</a>
-              <Link href="/help-support" className="btn btn-ghost">Help Center</Link>
+              <Link href="/services" className="btn btn-ghost">View Services</Link>
             </div>
           </div>
         </div>

@@ -33,13 +33,13 @@ export default function Footer() {
             </p>
             
             <Link 
-              href="/become-member" 
-              className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors shadow-lg"
+              href="/contact#contact-form" 
+              className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
               </svg>
-              Get Protection
+              Contact Us
             </Link>
             
             <div className="mt-8 pt-6 border-t border-gray-200">
@@ -57,23 +57,23 @@ export default function Footer() {
           {/* Services */}
           <div>
             <h6 className="text-sm font-bold text-gray-900 mb-6 uppercase tracking-wide">
-              Protection Plans
+              Our Services
             </h6>
             <div className="space-y-4">
-              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                Stealth
+              <Link href="/services/trade-data-protection-audit" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Protection Audit
               </Link>
-              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                Vanish
+              <Link href="/services/trade-data-removal" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Data Removal
               </Link>
-              <Link href="/membership" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                Shield
+              <Link href="/services/government-privacy-filing" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Government Filing
               </Link>
-              <Link href="/membership/free" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                Free Resources
+              <Link href="/services/ongoing-monitoring" className="block text-gray-600 hover:text-gray-900 transition-colors">
+                Ongoing Monitoring
               </Link>
-              <Link href="/members/exposure-monitoring" className="block text-gray-600 hover:text-gray-900 transition-colors">
-                Exposure Monitoring
+              <Link href="/services" className="block text-blue-600 hover:text-blue-700 font-medium transition-colors">
+                View All Services →
               </Link>
             </div>
           </div>
@@ -120,10 +120,10 @@ export default function Footer() {
               <Link href="/contact" className="block text-gray-600 hover:text-gray-900 transition-colors">
                 Contact Us
               </Link>
-              <Link href="/signin" className="block text-gray-600 hover:text-gray-900 transition-colors font-medium">
-                Member Sign In
+              <Link href="/contact#contact-form" className="block text-blue-600 hover:text-blue-700 font-medium transition-colors">
+                Contact Form
               </Link>
-              <Link href="/impact" className="text-red-600 hover:text-red-700 font-medium text-sm">
+              <Link href="/impact" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
                 Our Impact →
               </Link>
             </div>

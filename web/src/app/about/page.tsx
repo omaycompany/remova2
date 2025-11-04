@@ -29,17 +29,17 @@ export default function About() {
           { icon: "⚔️", text: "Competitive Defense", color: "accent" },
         ]}
         primaryCta={{
-          text: "Get Protection",
-          href: "/become-member",
+          text: "Contact Us",
+          href: "/contact#contact-form",
           icon: (
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
             </svg>
           ),
         }}
         secondaryCta={{
-          text: "See Threats",
-          href: "/blog",
+          text: "View Services",
+          href: "/services",
         }}
         visualCard={{
           icon: (
@@ -177,7 +177,7 @@ export default function About() {
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-accent rounded-full mt-2"></div>
-                    <span className="text-sm"><strong>Shield:</strong> Ongoing protection + immediate threat response</span>
+                    <span className="text-sm"><strong>Shield:</strong> Ongoing protection + monitoring response</span>
                   </div>
                 </div>
               </div>
@@ -192,7 +192,7 @@ export default function About() {
                 </div>
                 <h3 className="text-3xl font-black mb-6 group-hover:text-orange-600 transition-colors text-gray-800">Why We&apos;re Different</h3>
                 <p className="text-lg leading-relaxed font-medium text-gray-600">
-                  Unlike generic privacy services, we specialize exclusively in competitive intelligence defense. We understand the specific threats, platforms, and tactics used against importers and exporters.
+                  Unlike generic privacy services, we specialize exclusively in trade data privacy. We understand the specific platforms, regulations, and procedures relevant to importers and exporters.
                 </p>
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-orange-50/20 pointer-events-none rounded-3xl"></div>
@@ -225,7 +225,7 @@ export default function About() {
             </div>
             <div className="space-y-2">
               <div className="text-4xl font-bold text-success">24h</div>
-              <div className="text-sm opacity-60 font-medium">Threat Sweep Interval</div>
+              <div className="text-sm opacity-60 font-medium">Monitoring Interval</div>
             </div>
           </div>
         </div>

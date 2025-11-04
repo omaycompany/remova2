@@ -9,7 +9,7 @@ export default function Header() {
   if (pathname && pathname.startsWith('/members/')) return null;
 
   const menuItems = [
-    { href: '/membership', label: 'Protection Plans' },
+    { href: '/services', label: 'Services' },
     { href: '/resources', label: 'Tools & Resources' },
     { href: '/blog', label: 'Blog' },
     { href: '/about', label: 'About' },
@@ -45,8 +45,8 @@ export default function Header() {
                 </li>
               ))}
               <li className="mt-4">
-                <a className="btn btn-error btn-md w-full font-black text-white shadow-lg hover:shadow-xl transition-all transform hover:scale-105" href="/become-member">
-                  🛡️ Get Protection Now
+                <a className="btn btn-primary btn-md w-full font-black text-white shadow-lg hover:shadow-xl transition-all transform hover:scale-105" href="/contact#contact-form">
+                  Contact Us
                 </a>
               </li>
 
@@ -81,14 +81,10 @@ export default function Header() {
         
         <div className="navbar-end gap-3">
           {/* Primary CTA Button */}
-          <a className="group btn btn-error btn-sm lg:btn-md font-black text-white shadow-xl hover:shadow-2xl transition-all transform hover:scale-105 border-2 border-red-600" href="/become-member">
-            <span className="hidden lg:inline flex items-center gap-2">
-              🛡️ Get Protection
-            </span>
-            <span className="lg:hidden">🛡️ Protect</span>
+          <a className="group btn btn-primary btn-sm lg:btn-md font-black text-white shadow-xl hover:shadow-2xl transition-all transform hover:scale-105" href="/contact#contact-form">
+            <span className="hidden lg:inline">Contact Us</span>
+            <span className="lg:hidden">Contact</span>
           </a>
-          
-
         </div>
       </nav>
       

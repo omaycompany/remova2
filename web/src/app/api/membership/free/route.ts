@@ -1,4 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
+// import { z } from 'zod';
+// import { query } from '@/lib/db';
+// import { sendEmail, emailTemplates, sendTeamNotification, generateDashboardLink } from '@/lib/email';
+// import { stripe } from '@/lib/stripe';
+
+// DISABLED: Service business model - free signup disabled
+// This API endpoint is preserved but disabled for potential future re-activation
+
+export async function POST(request: NextRequest) {
+  // Return error indicating service is not available
+  return NextResponse.json(
+    { error: 'Free signup is currently unavailable. Please contact us for service inquiries.' },
+    { status: 503 }
+  );
+}
+
+/* PRESERVED CODE FOR FUTURE USE:
+import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { query } from '@/lib/db';
 import { sendEmail, emailTemplates, sendTeamNotification, generateDashboardLink } from '@/lib/email';
@@ -139,3 +157,4 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+*/
