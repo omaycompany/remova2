@@ -45,3 +45,8 @@ EXECUTE FUNCTION update_consultation_updated_at();
 
 
 
+
+
+
+
+

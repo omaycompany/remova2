@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ConsentBanner from "@/components/ConsentBanner";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import TawkTo from "@/components/TawkTo";
 import { LayoutContent } from "@/components/LayoutContent";
 import { getCanonicalBaseUrl } from "@/lib/seo";
 
@@ -156,6 +157,7 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <GoogleAnalytics />
+        <TawkTo />
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-content focus:rounded">
           Skip to main content
         </a>
