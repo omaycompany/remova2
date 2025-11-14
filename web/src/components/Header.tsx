@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from 'next/navigation';
-import Image from 'next/image';
+import { getAssetPath } from '@/lib/paths';
 
 export default function Header() {
   const pathname = usePathname();
@@ -51,13 +51,13 @@ export default function Header() {
             </ul>
           </div>
           <a className="btn btn-ghost hover:bg-transparent p-2" href="/">
-            <Image
+            <img
               alt="Remova"
-              src="/REMOVA LOGO.png"
+              src={getAssetPath("/REMOVA LOGO.png")}
               width={240}
               height={64}
               className="h-14 lg:h-16 w-auto transition-all hover:scale-105"
-              priority
+              loading="eager"
             />
           </a>
         </div>

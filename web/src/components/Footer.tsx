@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import { getAssetPath } from '@/lib/paths';
 
 export default function Footer() {
   return (
@@ -14,13 +14,13 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-6">
-              <Image 
-                src="/REMOVA LOGO.png" 
+              <img 
+                src={getAssetPath("/REMOVA LOGO.png")} 
                 alt="Remova" 
                 width={200} 
                 height={56} 
                 className="h-14 w-auto" 
-                priority
+                loading="eager"
               />
             </Link>
             <p className="text-gray-600 mb-8 max-w-sm leading-relaxed">
