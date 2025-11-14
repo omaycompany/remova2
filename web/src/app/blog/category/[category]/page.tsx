@@ -2,7 +2,8 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-export const dynamic = 'force-dynamic';
+// Force static rendering for GitHub Pages export
+export const dynamic = 'force-static';
 
 // Blog posts data - same as in the main blog page
 const featuredPosts = [

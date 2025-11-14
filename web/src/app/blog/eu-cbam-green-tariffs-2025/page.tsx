@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   }
 };
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 
 export default function EUCBAMGreenTariffs2025() {
   return (

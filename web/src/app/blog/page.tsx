@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   }
 };
 
-// Force dynamic rendering to ensure Header/Footer work properly
-export const dynamic = 'force-dynamic';
+// Force static rendering for GitHub Pages export
+export const dynamic = 'force-static';
 
 // Blog posts data
 const featuredPosts = [

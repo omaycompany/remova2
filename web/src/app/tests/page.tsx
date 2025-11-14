@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   }
 };
 
-// Force dynamic rendering
-export const dynamic = 'force-dynamic';
+// Force static rendering for GitHub Pages export
+export const dynamic = 'force-static';
 
 // Privacy tests data
 const privacyTests = [

@@ -5,8 +5,8 @@ export const metadata = {
   description: "Free tools and resources to help you protect your trade data. Risk assessments, compliance checkers, calculators, and practical guides for international traders.",
 };
 
-// Force dynamic rendering to ensure Header/Footer work properly
-export const dynamic = 'force-dynamic';
+// Force static rendering for GitHub Pages export
+export const dynamic = 'force-static';
 
 // All tools and resources - completely free to use
 const allTools = [

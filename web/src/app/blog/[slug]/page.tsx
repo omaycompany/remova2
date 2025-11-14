@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-// Force dynamic rendering
-export const dynamic = 'force-dynamic';
+// Force static rendering for GitHub Pages export
+export const dynamic = 'force-static';
 
 // Sample blog posts data - in a real app this would come from a CMS or database
 const blogPosts = {
