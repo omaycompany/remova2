@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Header() {
   const pathname = usePathname();
@@ -50,16 +51,13 @@ export default function Header() {
             </ul>
           </div>
           <a className="btn btn-ghost hover:bg-transparent p-2" href="/">
-            <img
+            <Image
               alt="Remova"
-              loading="lazy"
+              src="/REMOVA LOGO.png"
               width={240}
               height={64}
-              decoding="async"
-              data-nimg="1"
               className="h-14 lg:h-16 w-auto transition-all hover:scale-105"
-              style={{ color: 'transparent' }}
-              src="/REMOVA%20LOGO.png"
+              priority
             />
           </a>
         </div>
