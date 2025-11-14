@@ -5,6 +5,34 @@ import { notFound } from "next/navigation";
 // Force static rendering for GitHub Pages export
 export const dynamic = 'force-static';
 
+// Required for static export
+export async function generateStaticParams() {
+  // Get all blog post slugs from the blogPosts object keys
+  return [
+    { slug: 'corporate-data-harvesting-employee-privacy-rights' },
+    { slug: 'gdpr-compliance-failures-real-world-consequences' },
+    { slug: 'social-media-data-mining-psychological-profiling' },
+    { slug: 'iot-device-privacy-vulnerabilities-corporate-networks' },
+    { slug: 'third-party-data-brokers-b2b-information-trading' },
+    { slug: 'panjiva-data-exposure-2024' },
+    { slug: 'competitive-intelligence-tactics-2024' },
+    { slug: 'chinese-suppliers-poaching-european-clients' },
+    { slug: 'us-businesses-losing-eu-china-competition' },
+    { slug: 'supplier-intelligence-warfare-2024' },
+    { slug: 'german-industrial-espionage-us-manufacturers' },
+    { slug: 'chinese-ai-pricing-attacks-electronics' },
+    { slug: 'european-automotive-supplier-poaching' },
+    { slug: 'asian-manufacturing-alliance-threat' },
+    { slug: 'trade-data-warfare-small-businesses' },
+    { slug: 'state-sponsored-trade-intelligence' },
+    { slug: 'new-cold-war-tech-trade-2025' },
+    { slug: 'rcep-afcfta-opportunity-2025' },
+    { slug: 'eu-cbam-green-tariffs-2025' },
+    { slug: 'digital-tariffs-and-data-sovereignty-2025' },
+    { slug: 'global-trade-outlook-2026' },
+  ];
+}
+
 // Sample blog posts data - in a real app this would come from a CMS or database
 const blogPosts = {
   "corporate-data-harvesting-employee-privacy-rights": {

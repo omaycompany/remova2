@@ -5,6 +5,35 @@ import { notFound } from "next/navigation";
 // Force static rendering for GitHub Pages export
 export const dynamic = 'force-static';
 
+// Required for static export
+export async function generateStaticParams() {
+  return [
+    { category: 'Privacy Protection' },
+    { category: 'Risk Assessment' },
+    { category: 'Employee Privacy' },
+    { category: 'Regulatory Compliance' },
+    { category: 'Digital Manipulation' },
+    { category: 'Competitive Threats' },
+    { category: 'US Competitiveness' },
+    { category: 'Supplier Protection' },
+    { category: 'Tech Trade 2025' },
+    { category: 'Legal Protection' },
+    { category: 'Data Removal' },
+    { category: 'IoT Privacy' },
+    { category: 'Data Brokers' },
+    { category: 'Industrial Espionage' },
+    { category: 'AI Competition' },
+    { category: 'Automotive Competition' },
+    { category: 'Asian Competition' },
+    { category: 'Small Business Defense' },
+    { category: 'State Threats' },
+    { category: 'Regionalization' },
+    { category: 'Sustainability' },
+    { category: 'Digital Trade' },
+    { category: '2026 Outlook' },
+  ];
+}
+
 // Blog posts data - same as in the main blog page
 const featuredPosts = [
   {
