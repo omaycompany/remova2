@@ -6,11 +6,18 @@ export default function GoogleAnalytics() {
     return null;
   }
 
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || 'AW-17514795753';
+  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-YR03QTP6EC';
+
+  if (!gaId) {
+    return null;
+  }
+
   return (
     <>
       <Script
         strategy="afterInteractive"
-        src="https://www.googletagmanager.com/gtag/js?id=AW-17514795753"
+        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
       />
       <Script
         id="gtag-init"
@@ -20,8 +27,8 @@ export default function GoogleAnalytics() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'AW-17514795753');
-            gtag('config', 'G-YR03QTP6EC');
+            gtag('config', '${gaId}');
+            ${gaMeasurementId ? `gtag('config', '${gaMeasurementId}');` : ''}
           `,
         }}
       />

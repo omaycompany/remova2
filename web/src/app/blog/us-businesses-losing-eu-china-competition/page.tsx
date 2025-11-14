@@ -457,7 +457,7 @@ export default function USBusinessesLosingPage() {
                   <Link href="/resources" className="btn bg-white text-blue-600 hover:bg-gray-100 font-bold px-8 py-3">
                     Get Competitive Intelligence Guide
                   </Link>
-                  <Link href="/become-member" className="btn btn-outline text-white border-white hover:bg-white hover:text-blue-600 font-bold px-8 py-3">
+                  <Link href="/contact" className="btn btn-outline text-white border-white hover:bg-white hover:text-blue-600 font-bold px-8 py-3">
                     Access Expert Protection Tools
                   </Link>
                 </div>

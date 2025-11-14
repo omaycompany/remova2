@@ -64,7 +64,7 @@ export default function GlobalTradeOutlook2026() {
 
             <div className="mt-12 flex flex-col sm:flex-row gap-4">
               <Link href="/resources" className="btn btn-outline border-gray-300">Get 2026 Planning Kits</Link>
-              <Link href="/become-member" className="btn bg-indigo-600 text-white">Protect Competitive Data</Link>
+              <Link href="/contact" className="btn bg-indigo-600 text-white">Protect Competitive Data</Link>
             </div>
           </div>
         </div>

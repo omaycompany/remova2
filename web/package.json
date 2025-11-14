@@ -12,40 +12,21 @@
     "type-check": "tsc --noEmit",
     "pre-commit": "npm run lint:blog",
     "pre-push": "npm run lint && npm run build",
-    "check-build": "npm run lint && npm run type-check && npm run build",
-    "generate-pdfs": "node scripts/generate-pdfs.js",
-    "generate-removal-guides": "node scripts/trade-removal-pdfs.js",
-    "generate-brand-guide": "node scripts/brand-identity-generator.js",
-    "generate-flagship-guide": "node scripts/flagship-guide-generator.js",
-    "generate-all-resources": "node scripts/comprehensive-resources-generator.js",
-    "preview-pdfs": "node scripts/preview-pdfs.js",
-    "serve-previews": "node scripts/serve-previews.js"
+    "check-build": "npm run lint && npm run type-check && npm run build"
   },
   "engines": {
     "node": "^20 || ^22"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.24.1",
-    "@stripe/react-stripe-js": "^3.9.1",
-    "@stripe/stripe-js": "^7.8.0",
-    "@types/bcryptjs": "^2.4.6",
-    "bcryptjs": "^3.0.2",
-    "googleapis": "^158.0.0",
     "next": "15.4.6",
-    "nodemailer": "^6.9.15",
-    "pg": "^8.13.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "resend": "^6.0.1",
-    "stripe": "^18.4.0",
-    "zod": "^3.23.8"
+    "resend": "^6.0.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/node": "^20",
-    "@types/nodemailer": "^6.4.18",
-    "@types/pg": "^8.11.10",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
@@ -53,7 +34,6 @@
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
     "postcss": "^8.5.6",
-    "puppeteer": "^22.15.0",
     "tailwindcss": "^4.1.11",
     "typescript": "^5"
   }

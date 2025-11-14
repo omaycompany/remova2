@@ -115,7 +115,7 @@ export default function NewColdWarTechTrade2025() {
             {/* CTA */}
             <div className="mt-12 flex flex-col sm:flex-row gap-4">
               <Link href="/resources" className="btn btn-outline border-gray-300">Browse Tools</Link>
-              <Link href="/become-member" className="btn bg-indigo-600 text-white">Get Protection</Link>
+              <Link href="/contact" className="btn bg-indigo-600 text-white">Get Protection</Link>
             </div>
           </div>
         </div>

@@ -211,13 +211,13 @@ export default function CommercialDataMostImportantAsset() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <a 
-              href="/members/privacy-representative" 
+              href="/contact#privacy-representative" 
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-center"
             >
               Get Commercial Data Protection
             </a>
             <a 
-              href="/members/data-leaks" 
+              href="/contact#data-leaks" 
               className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white text-center"
             >
               Start Protection Program

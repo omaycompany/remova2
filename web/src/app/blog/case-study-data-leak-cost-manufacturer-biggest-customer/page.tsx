@@ -598,13 +598,13 @@ export default function CaseStudyDataLeakManufacturer() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <a 
-              href="/members/privacy-representative" 
+              href="/contact#privacy-representative" 
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-center"
             >
               Get Expert Protection Assessment
             </a>
             <a 
-              href="/members/exposure-monitoring" 
+              href="/contact#exposure-monitoring" 
               className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white text-center"
             >
               Start Intelligence Monitoring

@@ -354,7 +354,7 @@ export default function ChineseSuppliersPoachingPage() {
                   <Link href="/resources" className="btn bg-white text-indigo-600 hover:bg-gray-100 font-bold px-8 py-3">
                     Get Free Protection Guide
                   </Link>
-                  <Link href="/become-member" className="btn btn-outline text-white border-white hover:bg-white hover:text-indigo-600 font-bold px-8 py-3">
+                  <Link href="/contact" className="btn btn-outline text-white border-white hover:bg-white hover:text-indigo-600 font-bold px-8 py-3">
                     Access Expert Tools
                   </Link>
                 </div>

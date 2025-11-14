@@ -39,3 +39,93 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+tsconfig.tsbuildinfo
+
+# ============================================
+# Operating System Files
+# ============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================
+# IDE and Editor Files
+# ============================================
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ============================================
+# Logs and Temporary Files
+# ============================================
+*.log
+logs/
+*.tmp
+*.temp
+*.bak
+*.backup
+.cache/
+.temp/
+
+# ============================================
+# Testing and Coverage
+# ============================================
+coverage/
+.nyc_output/
+.jest/
+*.lcov
+
+# ============================================
+# Build Artifacts
+# ============================================
+.turbo
+.swc/
+.parcel-cache
+.eslintcache
+.stylelintcache
+
+# ============================================
+# Uploads and User Content
+# ============================================
+uploads/
+public/uploads/
+*.csv
+*.xlsx
+*.xls
+
+# ============================================
+# Miscellaneous
+# ============================================
+*.pid
+*.seed
+*.pid.lock
+.npm
+.pnpm-store/

@@ -450,7 +450,7 @@ export default function BlogPage() {
                 <div className="mt-8 p-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl text-white">
                   <h4 className="font-bold mb-2">Weekly Privacy Insights</h4>
                   <p className="text-sm opacity-90 mb-4">Get the latest trade privacy research delivered to your inbox.</p>
-                  <Link href="/become-member" className="btn btn-sm bg-white text-indigo-600 hover:bg-gray-100 font-bold w-full">
+                  <Link href="/contact" className="btn btn-sm bg-white text-indigo-600 hover:bg-gray-100 font-bold w-full">
                     Subscribe Free
                   </Link>
                 </div>
@@ -478,7 +478,7 @@ export default function BlogPage() {
             </p>
             
             <div className="flex flex-col lg:flex-row gap-6 justify-center">
-              <Link href="/become-member" className="btn btn-lg bg-white text-indigo-900 hover:bg-gray-100 font-black text-xl px-12 py-6 shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-0">
+              <Link href="/contact" className="btn btn-lg bg-white text-indigo-900 hover:bg-gray-100 font-black text-xl px-12 py-6 shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 border-0">
                 <svg className="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                 </svg>

@@ -6851,7 +6851,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <Link href="/resources" className="btn bg-white text-indigo-600 hover:bg-gray-100 font-bold px-8 py-3">
                   Browse Free Resources
                 </Link>
-                <Link href="/become-member" className="btn btn-outline text-white border-white hover:bg-white hover:text-indigo-600 font-bold px-8 py-3">
+                <Link href="/contact" className="btn btn-outline text-white border-white hover:bg-white hover:text-indigo-600 font-bold px-8 py-3">
                   Join Free Community
                 </Link>
               </div>

@@ -13,8 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services/leakwatch",
     "/services/takedown",
     "/services/optout",
-    "/membership",
-    "/become-member",
     "/impact",
     "/transparency",
     "/open-tools",
@@ -36,7 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/terms",
     "/disclosures",
     "/pricing",
-    "/intake",
   ];
 
   // Dynamically get all blog posts from the file system

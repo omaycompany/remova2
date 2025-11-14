@@ -1,6 +1,13 @@
 import Script from 'next/script'
 
 export default function TawkTo() {
+  const tawkPropertyId = process.env.NEXT_PUBLIC_TAWK_PROPERTY_ID || '6911eafc6571561959748e13';
+  const tawkWidgetId = process.env.NEXT_PUBLIC_TAWK_WIDGET_ID || '1j9mvrqoo';
+
+  if (!tawkPropertyId || !tawkWidgetId) {
+    return null;
+  }
+
   return (
     <Script
       id="tawk-to"
@@ -11,7 +18,7 @@ export default function TawkTo() {
           (function(){
             var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
             s1.async=true;
-            s1.src='https://embed.tawk.to/6911eafc6571561959748e13/1j9mvrqoo';
+            s1.src='https://embed.tawk.to/${tawkPropertyId}/${tawkWidgetId}';
             s1.charset='UTF-8';
             s1.setAttribute('crossorigin','*');
             s0.parentNode.insertBefore(s1,s0);

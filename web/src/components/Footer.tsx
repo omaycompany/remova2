@@ -2,13 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from 'next/navigation';
 
 export default function Footer() {
-  const pathname = usePathname();
-  // Hide footer on members dashboard routes 
-  if (pathname && pathname.startsWith('/members/')) return null;
-  
   return (
     <footer className="bg-gray-50 text-gray-900 border-t border-gray-200" role="contentinfo">
       

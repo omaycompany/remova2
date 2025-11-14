@@ -416,13 +416,13 @@ export default function BillOfLadingPrivacyRisk() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a 
-              href="/members/privacy-representative" 
+              href="/contact#privacy-representative" 
               className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 text-center font-semibold"
             >
               Get Privacy Assessment
             </a>
             <a 
-              href="/members/exposure-monitoring" 
+              href="/contact#exposure-monitoring" 
               className="px-6 py-3 border border-gray-600 text-white rounded-lg hover:bg-gray-800 text-center"
             >
               Monitor BOL Exposure

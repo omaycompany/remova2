@@ -16,7 +16,7 @@ export default function CTA() {
         <p className="opacity-80 mt-2">Start Intake + NDA and get a baseline assessment.</p>
         <div className="mt-6 flex justify-center gap-3">
           <Link href="/contact" className="btn btn-primary btn-lg">Start Intake</Link>
-          <Link href="/membership" className="btn btn-outline btn-lg">See Membership</Link>
+          <Link href="/services" className="btn btn-outline btn-lg">View Services</Link>
         </div>
       </div>
     </section>
