@@ -12,27 +12,45 @@ export default function Contact() {
     setSubmitMessage('');
     setSubmitError('');
 
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const company = formData.get('company') as string || '';
+    const phone = formData.get('phone') as string || '';
+    const subject = formData.get('subject') as string || 'Privacy Consultation';
+    const message = formData.get('message') as string;
+
     try {
-      const formData = new FormData(e.currentTarget);
+      // Try API route first (works on Next.js server)
       const response = await fetch('/api/contact', {
         method: 'POST',
         body: formData,
       });
 
+      // If API route doesn't exist (404) or fails, fall back to mailto
+      if (response.status === 404 || !response.ok) {
+        throw new Error('API route not available');
+      }
+
       const result = await response.json();
 
       if (response.ok) {
         setSubmitMessage(result.message || 'Thank you for your message! We will respond within 24 hours.');
-        // Reset form
         e.currentTarget.reset();
       } else {
-        // Display the actual error message from the server
         setSubmitError(result.error || `Server error (${response.status}). Please try again or email notifications@remova.org directly.`);
       }
     } catch (error) {
-      console.error('Contact form error:', error);
-      // More descriptive error message
-      setSubmitError('Unable to send message. Please try again or contact us directly at notifications@remova.org');
+      // Fallback to mailto for static sites (GitHub Pages)
+      console.log('API route unavailable, using mailto fallback');
+      const mailtoBody = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nPhone: ${phone}\n\nMessage:\n${message}`
+      );
+      const mailtoSubject = encodeURIComponent(subject);
+      window.location.href = `mailto:notifications@remova.org?subject=${mailtoSubject}&body=${mailtoBody}`;
+      
+      setSubmitMessage('Your email client should open. If it doesn\'t, please email notifications@remova.org directly.');
+      e.currentTarget.reset();
     } finally {
       setIsSubmitting(false);
     }

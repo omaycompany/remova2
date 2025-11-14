@@ -2,6 +2,11 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
+  // Skip middleware for static export (GitHub Pages)
+  if (process.env.GITHUB_PAGES === 'true') {
+    return NextResponse.next()
+  }
+  
   const url = request.nextUrl.clone()
   const hostname = request.headers.get('host') || ''
   
